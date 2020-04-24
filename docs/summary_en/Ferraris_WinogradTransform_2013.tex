@@ -1,0 +1,210 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage[latin1]{inputenc}
+\usepackage{geometry}
+\geometry{left=1.15in, right=1.15in, top=.72in, bottom=.72in}
+
+\usepackage{pictexwd,dcpic}
+
+\usepackage{mathrsfs}
+
+\def\quotient#1#2{%
+	\raise1ex\hbox{$#1$}\Big/\lower1ex\hbox{$#2$}%
+}
+
+% FINE 
+
+\title{
+    Winograd Transform in Error Correcting Code theory
+}
+\author{Sebastiano Ferraris}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Supervisor:} Umberto Cerruti. \\
+\textbf{Alma mater:} Universit\`a degli studi di Torino, Facoltà di Scienze Matematiche Fisiche Naturali, Corso di Laurea in Matematica. \\
+\textbf{Date:} 17/07/2013 
+
+\medskip
+
+~\\
+The main goal of the thesis was exploring possible applications of the Winograd transform in Error Correcting Code theory.
+The Winograd transform consists of a generalisation of the Discrete Fourier Transform, defined as the transformation matrix from the ubiquitous polynomial algebra $\quotient{ \mathbb{F}[x] }{ (x^r -1 )}$ and the product of fields defined by its isomorphic factorisation $x^r -1$ [3].
+\\
+This transformation factorizes the algebra into a product of fields in analogy to how whole numbers split into product of prime numbers. Algebraic fields can be then seen as elementary particles composing a more complex compound, and the Winograd transform as the mass spectrometer providing its composition.
+\\
+The thesis can be broadly subdivided into three parts. In the first one we introduce the algebraic structures at the core of Error Correcting Code theory, with particular emphasis on the ideals and idempotents and on their transformations. The Winograd transform is here introduced and its behaviour over ideals and idempotents analysed.
+The second part introduces the theory of error correcting codes; here the definitions and results introduced from an algebraic perspective are set to work in the definition of linear codes, cyclic codes and BCH codes [2,4].
+\\
+In the third part, the first two parts are combined to prove that the blocks of the Winograd transform can be used as \emph{control matrices} or \emph{generating matrices} in the cyclic codes and that the same blocks can be used to diminish the amount of information to be embedded in a message, via the identification of \emph{null-information subvectors}.
+\\
+
+
+\noindent
+The first part can be quickly summarized with a diagram:
+%
+%\vspace{0.2in}
+
+\[
+\begindc{\commdiag}[40]  % CAMBIA per diminuire la dimensione del diagramma
+%sotto
+\obj(0,5)[V]{$ \mathcal{V}_{r, \mathbb{F}}^{c} $}
+\obj(40,5)[M]{$\mathcal{M}_{r,\mathbb{F} }^{c}$}
+
+
+%metà
+\obj(0,20)[R]{$ \quotient{ \mathbb{F}[x] }{ (x^r -1 )} $}
+\obj(40,20)[A]{$ \mathbb{F}C_{r} $}
+\obj(-40,20)[P]{$ \prod_{v} \mathbb{F} (\xi^{v}) $}
+
+%sopra
+\obj(0,40)[Q]{$ \prod_{v} \quotient{ \mathbb{F}[x] }{ (M^{(v)}(x) )} $}
+
+%frecce orizzontali
+\mor{V}{M}{$\psi_{1}$}
+\mor{R}{A}{$\psi_{4}$}
+\mor{R}{P}{$\eta$}
+
+%frecce verticali
+\mor{R}{V}{$\psi_{2}$}
+\mor{A}{M}{$\psi_{3}$}
+\mor{R}{Q}{$\gamma$}
+
+%frecce oblique
+\mor{P}{Q}{$\mu$}
+%\mor{A}{Q}{$\mu_{2}$}
+
+\enddc
+\]
+
+%\vspace{0.2in}
+
+\noindent
+where $\mathcal{V}_{r, \mathbb{F}}^{c}$ e $\mathcal{M}_{r,\mathbb{F} }^{c}$ 
+are the circulant vectors and circulant matrices algebras and the of dimension $r$ over the field $\mathbb{F}$. 
+$\prod_{v} \mathbb{F} (\xi^{v})$ e $\prod_{v} \quotient{ \mathbb{F}[x] }{ (M^{(v)}(x) )}$ 
+are product of the splitting fields, and all the arrows are isomorphisms. \\
+Idempotents and ideals of $\quotient{ \mathbb{F}[x] }{ (x^r -1 )}$, that plays a fundamental role in the theory and that are in general not simple to be found, becomes easily accessible in the splitting field, thanks to the Winograd transform $\gamma$.\\
+
+The diagram also shows the strong relationship between circulant matrices and the Winograd transform, which led to the definition of a new structure, here called \emph{interlinked circulant vectors}. \\ 
+This definition allows to define the vectors of the residual polynomials over every factor of the decomposition $x^r - 1$ in a vector of vectors of various dimensions, that are still keeping the same properties they had in the original structure. Which means:
+\begin{align*}
+\psi_{5} :  \prod_{v\in \mathscr{L}} \quotient{\mathbb{F}_{q} \lbrack x \rbrack  }{M^{(v)}(x)}    
+& \longrightarrow  
+\coprod_{v\in \mathscr{L} } \mathcal{V}_{m(v), q}^{c}   \\
+%%
+( a(x) \mod{M^{(v)}(x)} )_{v \in \mathscr{L}} 
+&\longmapsto  
+( (a_v )_0, (a_v)_1, \dots (a_v)_{m(v)-1})_{v \in \mathscr{L}} ~,
+\end{align*}
+Where $\prod$ is the usual product of fields, $\coprod$ is the interlinked product defined in the thesis, $\mathscr{L}$ is the set of the degreed of the divisors of $x^r - 1$. 
+
+Afterwards we explore the new diagram, where $\gamma$ can be identified with $\rho$ through the interlinked circulant vectors:
+%\vspace{0.3in}
+
+\[
+\begindc{\commdiag}[25]  % CAMBIA per diminuire la dimensione del diagramma
+
+% R
+\obj(0,0)[R]{$ \quotient{ \mathbb{F}[x] }{ (x^r -1 )}  $}
+%PQ
+\obj(0,30)[Q]{$\prod_{v} \quotient{ \mathbb{F}[x] }{ (M^{(v)}(x) )}$}
+\obj(-60,0)[P]{$ \prod_{v} \mathbb{F} (\xi^{v})  $}
+
+%Vc base
+\obj(30,-10)[Vc]{$ \mathcal{V}_{r, q}^{c} $}
+
+%le V
+\obj(30,-40)[Vh]{$ \coprod_{v\in \mathscr{L} } \mathcal{V}_{m(v), q}^{c} $}
+\obj(90,-10)[Vb]{$ \coprod_{v\in \mathscr{L} } \mathcal{V}_{m(v), q}^{c}$}
+
+%Vc base
+
+
+%FRECCE
+% RPQ
+\mor{R}{P}{$ \eta $}
+\mor{R}{Q}{$ \gamma $}   
+\mor{P}{Q}{$ \mu $}
+%psi_2
+\mor{R}{Vc}{$\psi_{2}$}
+%R V
+\mor{Vc}{Vb}{$\rho$}
+\mor{Vc}{Vh}{$\delta$}
+% V V altre psi
+\mor{P}{Vh}{$\psi_{6}$}
+\mor{Q}{Vb}{$\psi_{5}$}
+%id
+\mor{Vb}{Vh}{$Id_{r}$}
+
+
+\enddc
+\]
+
+\vspace{0.2in}
+
+\noindent
+Having in mind a thesis oriented towards application, and in the attempt of exploiting the understanding of the relationships between algebraic structures, in the thesis the reader can find numerous examples:\\
+Considering $r = 7$ over the field $\mathbb{Z}_2$, it follows:
+\begin{align*}   
+\gamma(x^0) &= (1,1,1) =  (1,1,0,0,1,0,0) \\
+\gamma(x^1) &= (1,x,x) = (1,0,1,0,0,1,0) \\
+\gamma(x^2) &= (1,x^2,x^2) = (1,0,0,1,0,0,1) \\
+\gamma(x^3) &= (1,1+x^2,1+x+x^2) = (1,1,0,1,1,1,1) \\
+\gamma(x^4) &= (1,1+x,x+x^2) = (1,1,1,0,0,1,1) \\
+\gamma(x^5) &= (1,1+x+x^2,1+x^2) = (1,1,1,1,1,0,1) \\
+\gamma(x^6) &= (1,x+x^2,1+x) = (1,0,1,1,1,1,0)~,
+\end{align*}
+Where the second equality of each line shows the polynomial in the corresponding interlinked circular vector.
+The matrix $\Gamma$, defining the Winograd transform, in this case results to be the block circulant matrix:
+\begin{align*}
+\Gamma = 
+\left(
+\begin{array} { c }
+\Gamma^{(0)}  \\ \\
+\Gamma^{(1)} \\ \\
+\Gamma^{(3)} 
+\end{array}
+\right)
+=
+\left(
+\begin{array} { c c c c c c c c}
+1 & 1 & 1 & 1 & 1 & 1 & 1  \\
+\hline
+1 & 0 & 0 & 1 & 1 & 1 & 0  \\
+0 & 1 & 0 & 0 & 1 & 1 & 1  \\
+0 & 0 & 1 & 1 & 0 & 1 & 1  \\
+\hline
+1 & 0 & 0 & 1 & 0 & 1 & 1  \\
+0 & 1 & 0 & 1 & 1 & 0 & 1  \\
+0 & 0 & 1 & 1 & 1 & 1 & 0  
+\end{array}
+\right)~.
+\end{align*}
+Every subset of prime polynomials in the decomposition of $x^r - 1$ defines a set of blocks in the matrix $\Gamma$, which can be recomposed to create cyclic code's generating matrices, or duals' control matrices. The inverse of $\Gamma$, indicated with $\Delta$ in the literature, can be used to decode an encoded message: $\Delta$ can be a turn into a device to quickly find the \emph{null-information subvectors} in the interlinked circular vectors, and so to recover the original message in a quicker way if compared to the classical syndrome-based method.\\
+There are $31$ titles in the thesis bibliography, though the main source is the pre-print written by the supervisor [1], that we combined with the three strongholds in error correcting code theory [2,3,4].  
+
+
+\begin{enumerate}
+	\item U. Cerruti, F. Vaccarino \emph{From Cyclotomic Extensions to Generalized
+		Ramanuyan's Sum through the Winograd Transform}, pre-print.    
+	\item Luigia Berardi, \emph{Algebra e teoria dei codici correttori}, Franco angeli
+	Editore 1994.
+	\item Richard E. Blahut, \emph{Theory and Practice of Error Control Codes}, 
+	Addison Wesley publishing Company, 1984.
+	\item Ian F. Blake, Ronald C. Mullin, \emph{The Mathematical Theory of Coding},
+	Academic Press 1975.
+\end{enumerate}
+
+
+
+
+
+\end{document}

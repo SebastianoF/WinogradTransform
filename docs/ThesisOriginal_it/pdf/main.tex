@@ -1,0 +1,230 @@
+\documentclass[a4paper,10pt,twoside]{book} 
+
+\usepackage[italian]{babel}
+\usepackage{euscript}
+\usepackage[utf8]{inputenc}
+
+%spaziatura linee (opzionale)
+%\linespread{1.2}
+
+
+
+%%pacchetto per l'inclusione di figure postscript
+\usepackage{graphics}
+%%pacchetto per l'inclusione di figure eps
+\usepackage[dvips]{graphicx}
+
+%%comando per l'inserimento dell'intestazione
+\pagestyle{headings} \makeatletter
+
+%%pacchetto per l'inserimento di pezzi di codice
+\usepackage{verbatim}
+
+%%pacchetto per l'intestazione carina (riga sotto l'intestazione)
+\usepackage{fancyhdr}
+%\input{fancyhdr.sty}
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{}}
+\lhead{} \rhead{} \chead{\emph{\leftmark}}
+
+%\end{comment}
+\makeatother
+
+%\usepackage{makeidx}
+\usepackage{eurosym}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+%\usepackage{makeidx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{comment}
+\usepackage{enumerate}
+
+\usepackage{mathrsfs}
+
+%%% per i diagrammi commutativi: 
+\usepackage{pictexwd,dcpic}
+
+
+%Ridefinizione per il quoziente!
+\def\quotient#1#2{%
+    \raise1ex\hbox{$#1$}\Big/\lower1ex\hbox{$#2$}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Definizione teoremi: $%%%%%
+
+\newtheorem{definizione}{Definizione}[section]
+\newtheorem{esempio}{Esempio}[section]
+\newtheorem{osservazione}{Osservazione}[section]
+\newtheorem{lemmax}{Lemma}[section]
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{prop}{Proprietà}[section]
+\newtheorem{corollario}{Corollario}[section]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% pacchetti speciali:
+
+\setcounter{chapter}{-1}
+
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%INIZIO FRONTESPIZIO
+\begin{titlepage}
+%
+\pagestyle{empty}
+\begingroup
+% INTESTAZIONE
+\vspace*{-7\topskip}
+
+\vspace{3 cm}
+%%%titolo
+
+\centering \expandafter{\Large{UNIVERSITA' DEGLI STUDI DI TORINO}\par}
+\begin{center}
+        \LARGE{\rm\expandafter{Facoltà di Scienze Matematiche Fisiche Naturali}}\par
+        \large\expandafter{Corso di Laurea in Matematica}\par
+\end{center}
+
+%\vspace{0.5cm}
+\begin{center}
+        {\LARGE{Tesi di Laurea Magistrale}\par}
+\end{center}
+
+% TITOLO
+\vspace{1cm}
+\begin{center}
+        {\huge\bf \baselineskip=0.95em plus 1pt \expandafter{
+        La Trasformata di Winograd \\ nella \\ Teoria dei Codici
+        Correttori
+        \par}}
+\end{center}
+
+%\vspace{1cm}
+%RELATORE
+%\begin{center}
+        %{\rm{Laureando}}\\
+    %    {\large\textbf{Sebastiano Ferraris}}
+%\end{center}
+
+%\vspace{2.5cm}
+
+\vspace{1cm}
+\begin{figure}[!h]
+%centrare
+\begin{center}
+%resize in cm
+\resizebox{4.0 cm}{4.0 cm}{\includegraphics{images/unito.jpg}} %1.5 2.5
+\end{center}
+\end{figure}
+\vspace{1cm}
+
+
+
+\begin{tabular}{c p{3.3cm}c c}
+
+
+
+Relatore & & { } \\
+Prof. \textbf{Umberto Cerruti} & & \\
+{\small Università di Torino} & & Laureando \\
+{  } & &  \textbf{Sebastiano Ferraris}  \\
+Controrelatrice & & { } \\
+Prof.ssa \textbf{Lea Terracini} & & { }\\
+{\small Università di Torino} & & { }\\
+
+
+\end{tabular}
+\vspace{1 cm}
+
+%CHIUSURA
+%\vspace{0.5cm}
+\begin{center}
+\large{Sessione di Luglio 2013 \\ Anno Accademico 2012-2013}
+\end{center}
+\par
+\vfill\par 
+\clearpage
+\endgroup
+
+
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%% FINE FRONTESPIZIO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \qquad
+%  \thispagestyle{empty}
+% \newpage
+% \qquad
+%  \thispagestyle{empty}
+% \newpage
+
+\qquad
+  \pagestyle{empty}
+ \newpage
+
+ 
+%%%%%%%%%%%%  SOMMARIO
+
+\pagenumbering{Roman}
+\input{frontback/0pref}
+
+%%%%%%%%%%%%%%%%%%%%%% INDICE             %
+
+\qquad
+  \pagestyle{empty}
+ \newpage
+ \qquad
+  \pagestyle{empty}
+ \newpage
+
+\pagestyle{fancy}  %\pagenumbering{Roman}
+ \tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%   saltapagina        %
+
+% \qquad
+%  \thispagestyle{empty}
+% \newpage
+% \qquad
+%  \thispagestyle{empty}
+% \newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% CAPITOLI     %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\pagestyle{fancy} \pagenumbering{arabic}
+
+
+\input{chapters/QuattroAlgebreIsomorfe.tex}
+
+\input{chapters/Fattorizzazione.tex}
+
+\input{chapters/OperatoriIdealiIdempotenti.tex}
+
+\input{chapters/TrasformataDiWinograd.tex}
+
+\input{chapters/CodiciLineari.tex}
+
+\input{chapters/CodiciCiclici.tex}
+
+\input{chapters/Applicazione.tex}
+
+
+
+%%%%%%%%%%%%% Appendice  %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{plain}
+
+\input{frontback/App.tex}
+
+%%%%%%%%%%%%% BIBLIOGRAFIA  %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{frontback/biblio.tex}
+
+\end{document}

@@ -1,0 +1,53 @@
+
+%PREFAZIONE
+
+\chapter*{Introduzione}
+
+%%%%%%% CITAZIONE versione 1!!
+%\vspace*{0,4cm}
+\begin{flushright}
+\lq\lq Calcolo esatto per cominciare a conoscere tutte le cose esistenti e tutti i segreti oscuri e misteriosi. \rq\rq 
+\vspace*{0.3cm}
+
+- Ahmes, 1600 a.C.
+\end{flushright}
+
+\vspace*{0.6cm}
+
+Il punto di partenza di questa tesi sono alcune lezioni di Laboratorio di Applicazioni dell'Algebra tenuto nel $2011$ ed un pre-print del prof. Umberto Cerruti \cite{cerruti} che ho di utilizzato per approfondire diversi argomenti inerenti la teoria dei codici correttori che hanno suscitato il mio interesse e la mia curiosità. I principali che propongo in questa tesi sono:
+\begin{enumerate}
+   \item[{\bf capitolo 1}] Scomposizione dell'algebra $\mathcal{R}_{r,\mathbb{F}} = \quotient{ \mathbb{F}[x] }{ (x^r -1 )} $ in un prodotto di campi: attraverso lo studio della fattorizzazione di $x^r -1$ tramite un gruppo isomorfo al gruppo di Galois $Gal(\mathbb{F}(\xi), \mathbb{F}))$ che agisce sul gruppo generato da $x$ in $\mathcal{R}_{r,\mathbb{F}} $ arriviamo a costruire una nuova algebra sui fattori irriducibili del polinomio $x^r -1$. Ricordando che per $M^{(v)}(x)$ fattore irriducibile di $x^r -1$, ogni quoziente
+   \begin{align*}
+      \quotient{ \mathbb{F}[x] }{ M^{(v)}(x) }
+   \end{align*}
+   è un campo, costruiamo la nuova algebra come il prodotto di tali campi. Questa è ancora isomorfa a $\mathcal{R}_{r,\mathbb{F}}$ e l'isomorfismo così creato viene definito {\bf trasformata di Winograd}.\\
+   Sempre nel capitolo 1 dimostriamo una formula basata sul teorema di Burnside per determinare la cardinalità dell'insieme dei fattori irriducibili $M^{(v)}(x)$.
+   
+   \item[{\bf capitolo 2}] Studio degli ideali e degli idempotenti di $\mathcal{R}_{r,q}$: a partire da questo punto proseguiamo considerando solo i campi finiti per orientare la direzione sulle applicazioni alla teoria dei codici correttori. Dopo la definizione di alcuni operatori su $\mathcal{R}_{r,q}$ presentiamo uno studio sugli ideali e sugli idempotenti che giocano un ruolo fondamentale nella teoria dei codici correttori. Data la semplicità degli ideali e degli idempotenti di un campo, questo studio non avviene direttamente su $\mathcal{R}_{r,q}$ ma sulla scomposizione in campi ricavata nel capitolo precedente.
+   
+   \item[{\bf capitolo 3}] Trasformata di Winograd come trasformazione lineare fra $\mathcal{R}_{r,q}$ ed il prodotto di campi in cui si scompone: approfondiamo la definizione di trasformata di Winograd ricavando la matrice associata alla trasformazione e la matrice inversa e presentiamo alcune delle sue proprietà più rilevanti per gli scopi della tesi. Per poter definire la matrice di trasformazione in modo più semplice partiamo dalla definizione di una ulteriore algebra, che chiamiamo {\bf algebra dei vettori circolanti concatenati}. Questa continua ad essere un'algebra isomorfa a quelle già proposte e mantiene la struttura di prodotto di campi, ma con una forma più efficace per parlare di matrici di trasformazioni. Anche in questo capitolo i vari sviluppi della teoria sono accompagnati da esempi numerici.
+   
+   \item[{\bf capitoli 4 e 5}] Introduzione alla teoria dei codici correttori: in questo interludio presentiamo la teoria dei codici correttori dalle basi, per arrivare a definire i codici lineari, i codici ciclici ed i codici BCH. Nel corso del capitolo utilizziamo la maggior parte dei risultati ottenuti nei capitoli 1 e 2 e prepariamo il terreno per poter presentare le applicazioni della trasformata di Winograd ai codici correttori, scopo della tesi.
+   
+   \item[{\bf capitolo 6}] Applicazioni dello studio di $\mathcal{R}_{r,q}$ e della trasformata di Winograd alla teoria dei codici correttori: come prima applicazione vediamo che una scelta di blocchi della trasformata di Winograd definisce una matrice che può essere usata come matrice di controllo o come matrice generatrice di determinati codici correttori. La seconda applicazione è un sistema per codificare e decodificare un messaggio che permette di diminuire la quantità di informazione per inviare un messaggio codificato, individuando in ogni parola alcuni sottovettori che non non contengono informazioni rilevanti. 
+\end{enumerate}
+\noindent
+Originariamente la trasformata di Winograd è stata scoperta come strumento per diminuire la complessità computazionale del prodotto di convoluzione e come alternativa alla trasformata di Fourier discreta. \\
+È stata presentata per la prima volta nell'articolo \emph{On Computing the Discrete Fourier Transform} \cite{winograd2} di Shmuel Winograd. \\
+In questa ricerca ho omesso i collegamenti fra la trasformata di Winograd e la Trasformata di Fourier, ho omesso le implicazioni con la teoria dei codici spettrale e non ho parlato di una applicazione della trasformata di Winograd alla teoria dei codici correttori scoperta da Miller, Truong e Reed presentata nel 1980 con l'articolo \emph{Efficient Program for decoding the $(255,223)$ Reed-Solomon Code over $GF(2^{8})$} \cite{miller}. \\
+Ho invece considerato la trasformata di Winograd come una trasformazione lineare fra due spazi vettoriali, esaminando due applicazioni ai codici ciclici. \\
+Le fonti principali, oltre al già citato articolo del relatore della tesi, sono \emph{Theory and Practice of Error Control Codes}, di Richard E. Blahut \cite{blahut} ed \emph{Algebra e teoria dei codici correttori} di Luigia Berardi \cite{berardi}.
+%
+\newpage
+%
+\section*{Ringraziamenti}
+Sono stati innumerevoli gli aiuti ed i contributi, diretti o indiretti, grazie ai quali ho potuto procedere con la tesi. I più diretti alla risoluzione di alcuni problemi sono stati sicuramente quelli di Stefano Barbero che ringrazio per la sua perenne disponibilità a risolvere i dubbi degli studenti di Matematica. Di palazzo Campana vorrei anche ringraziare Paolo Martini, Andrea Montabone, Nadir Murru, Simone Garruto, Riccardo Jadanza, Andrea Ricolfi e Michele Voto per l'amicizia e per avere condiviso con me le loro idee. \\
+Ringrazio Giuliano De Rossi ex-collega della tc-web, per i suggerimenti sui diagrammi commutativi e i colleghi della sim-tec che sono stati loro malgrado assillati dalle mie deformazioni matematiche. Ringrazio anche Filippo Ferraris per i suggerimenti sulla stesura (che non ho avuto modo di seguire) e per l'interesse che ha sempre dimostrato nei miei studi.
+Ringrazio infine, per il sostegno morale Francesco Giovo e Barbara Bosia, per quello immorale Andrea Baglione e per quello immortale Federica Narciso.\\
+
+
+\begin{flushright}
+\vspace*{0.5cm}
+
+Sebastiano Ferraris, \emph{Villar Dora} 2013.
+\end{flushright}

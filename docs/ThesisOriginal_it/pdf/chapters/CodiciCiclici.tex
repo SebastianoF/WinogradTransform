@@ -1,0 +1,710 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% CAPITOLI     %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Codici ciclici}
+
+I codici ciclici costituiscono una importante sottoclasse dei codici lineari, con una codifica ed una decodifica particolarmente efficienti. L'idea alla base è quella di poter utilizzare la teoria dei campi finiti sullo spazio delle parole del codice, che in tal modo diventa oltre che spazio vettoriale, anche campo dotato di rappresentazione polinomiale, ed in particolare anello i cui ideali ed idempotenti che abbiamo già introdotto giocano un ruolo essenziale.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduzione}
+
+Sia  $\mathbb{F}^{r}$ spazio vettoriale r-dimensionale sul campo finito $\mathbb{F}$ di ordine $q=p^n$ per $p$ primo ed $(r,q) = 1$, affinché nella decomposizione di $x^r-1$ tutti i polinomi irriducibili abbiamo molteplicità $1$.
+\begin{definizione}
+   Un codice lineare $C$ di lunghezza $r$ (cioè sottospazio vettoriale di $\mathbb{F}^{r}$) si dice {\bf ciclico} se è chiuso rispetto alla permutazione ciclica dei suoi elementi verso destra:
+   \begin{align*}
+      \mathbf{c} = (c_{0},c_{1}, \dots , c_{r-1}) \in C \Longrightarrow (c_{r-1},c_{0}, \dots , c_{r-2}) \in C 
+   \end{align*}
+\end{definizione}
+\noindent
+I codici ciclici possono essere rappresentati utilizzando le algebre viste nel primo capitolo; potremmo considerare $C$ come sottospazio vettoriale di $\mathbb{F}^{r}$ i cui vettori sono chiusi rispetto allo shifter nel prodotto di convoluzione ($\mathbf{c}$ è una parola del codice allora anche $(0,1,0,\dots, 0) \star \mathbf{c}$ è una parola del codice). Ma possiamo anche considerarli come sottospazi vettoriali di $\mathcal{R}_{r, q}$ chiusi rispetto al prodotto per $x$ (se $f(x)$ è una parola del codice allora anche $xf(x)$ è una parola del codice). \\
+Una caratterizzazione algebrica che permette di sfruttare quanto visto sulla struttura $\mathcal{R}_{r, q}$ è data dal seguente teorema:
+\begin{teorema}
+   Un codice lineare $C$ di lunghezza $r$ sull'alfabeto $\mathbb{F}_{q}$ è ciclico se e solo se è un ideale di $\mathcal{R}_{r, q}$. 
+\end{teorema}
+\begin{proof}
+      \begin{itemize}
+   \item[$\Rightarrow$)] Sia $C$ codice ciclico di $\mathcal{R}_{r, q}$: se $c(x)$ è una parola di $C$ allora anche $x^{k}c(x)$ è una parola di $C$ comunque scelto $k$. Per linearità tutte le combinazioni lineari di $x^{k}c(x)$ sono elementi del codice:
+   \begin{align*}
+     \lambda_{0}c(x) + \lambda_{1}x^{1}c(x) &+ \dots + \lambda_{r-1}x^{r-1}c(x) = \\
+     &= (\lambda_{0} + \lambda_{1}x^{1} + \dots + \lambda_{r-1}x^{r-1})c(x) \in C
+   \end{align*}
+   Quindi ogni polinomio della forma $f(x)c(x)$ è un elemento di $C$.
+   \item[$\Leftarrow$)] Sia $C$ ideale di $\mathcal{R}_{r, q}$. Se $c(x)$ è una parola di $C$ segue che $f(x)c(x) \in C$ comunque scelto $f(x) \in \mathcal{R}_{r, q}$. Quindi a fortiori 
+   \begin{align*}
+     xc(x) \in C
+   \end{align*}
+   Pertanto $C$ è un codice lineare.
+\end{itemize}
+\end{proof}
+\noindent
+Abbiamo stabilito che i codici ciclici sono ideali di $\mathcal{R}_{r, q}$; li indicheremo con $\mathfrak{a}, \mathfrak{b}, \mathfrak{c}, \dots$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Polinomi generatori}
+
+Correndo il rischio di essere ripetitivi riformuliamo alcuni teoremi del capitolo \ref{cap:fattorizzazione} nella teoria dei codici correttori.
+\begin{teorema}
+   Sia $\mathfrak{a}$ codice ciclico di lunghezza $r$, allora ogni elemento $f(x)$ di tale codice può essere scritto come 
+   $f(x) = g(x)a(x)$ per qualche $g(x)$ e per $a(x)$ polinomio monico di grado minimo fissato in $\mathfrak{a}$.
+\end{teorema}
+\begin{proof}
+   Sia per assurdo $f(x) \in \mathfrak{a}$ ed $f(x)$ non multiplo di $a(x)$. Segue che 
+   \begin{align*}
+      f(x) = q(x)a(x) + r(x)
+   \end{align*}
+   dove il grado di $r(x)$ è positivo e minore del grado di $a$ ed $r(x) = f(x) - q(x)a(x) \in \mathfrak{a}$. Ma questo è in contraddizione con il fatto che $a(x)$ ha grado minimo, pertanto $\mathfrak{a} = (a(x))$.
+\end{proof}
+\noindent
+  Abbiamo quindi ritrovato una conferma del fatto che $\mathcal{R}_{r, q}$ è un anello a ideali principali, cioè ogni ideale e quindi ogni codice lineare può essere identificato semplicemente dal polinomio che lo genera. Per descrivere un codice ciclico quindi non è necessario fornire la matrice generatrice come nel caso dei codici lineari, ma è sufficiente indicare un determinato polinomio.
+\begin{definizione}
+   Dato $\mathfrak{a}$ codice ciclico, un polinomio monico e di grado minimo in $\mathfrak{a}$ è detto {\bf polinomio generatore}. Esso genera $\mathfrak{a}$ come ideale nell'anello $\mathcal{R}_{r, q}$. 
+\end{definizione}
+\noindent
+Ripetiamo tre proprietà che definiscono i polinomi generatori di un codice ciclico, formulate e dimostrate nei teoremi \ref{teo:genDiIdeali}, \ref{teo:corrispEtiIde1} e \ref{teo:corrispEtiIde2}. 
+\begin{teorema}
+   Sia $\mathfrak{a}$ ideale di $\mathcal{R}_{r, q} = \quotient{\mathbb{F} \lbrack x \rbrack  }{ x^{r}- 1}$, cioè codice ciclico di dimensione $r$.  Allora
+   \begin{enumerate}
+      \item Se $a(x)$ è polinomio generatore di $\mathfrak{a}$ allora è un divisore di $x^r - 1$.
+      \item Se $a(x)$ è un divisore monico di $x^r-1$ allora genera il codice ciclico $\mathfrak{a}$, cioè
+      \begin{align*}
+         C = \lbrace f(x)c(x) \mid f(x) \in \mathcal{R}_{r, q}  \rbrace
+      \end{align*}
+      \item Esiste quindi una corrispondenza biunivoca fra i codici ciclici ed i divisori di $x^r - 1$.
+   \end{enumerate}
+\end{teorema}
+\noindent
+Possiamo individuare tutti i codici ciclici presenti nella struttura $\mathcal{R}_{r, q}$ valutando la fattorizzazione di $x^r-1$. Ogni fattore irriducibile di $x^r - 1$ genera quindi un codice ciclico, ma anche ogni prodotto di una scelta di tali fattori genera un codice ciclico essendo ancora un fattore di $x^r - 1$. La seguente definizione ha lo scopo di sottolineare tale distinzione:
+\begin{definizione}
+   I codici ciclici di $\mathcal{R}_{r, q}$ generati dai fattori irriducibili di $x^r-1$ sono detti codici {\bf primitivi}, mentre quelli generati dal prodotto di almeno due dei fattori irriducibili non triviali sono detti codici {\bf composti}. 
+\end{definizione}
+\noindent
+Dal corollario \ref{coroll:cardIdealiDiR} segue che 
+\begin{corollario}
+   Sia $h$ il numero dei fattori irriducibili di $x^r - 1$, allora i codici ciclici in $\mathcal{R}_{r, q}$ sono $2^h$.
+\end{corollario}
+\noindent
+Se si vogliono escludere i codici generati dai divisori banali $1$ ed $x^r -1$, che sono inutili nella pratica essendo rispettivamente i sottospazi impropri $\mathcal{R}_{r, q}$ e $0$, allora $\mathcal{R}_{r, q}$ possiede $2^h - 2$ codici ciclici non banali. 
+Fin ora abbiamo dimostrato che ogni codice ciclico di lunghezza $r$ è un ideale di $\mathcal{R}_{r, q}$ univocamente determinato da un polinomio particolare, detto polinomio generatore, costruito come prodotto dei divisori irriducibili di $x^r - 1$. Rimane da dimostrare che anche ogni parola di un codice ciclico è univocamente determinata come prodotto di un polinomio per il polinomio generatore. 
+\begin{teorema}
+   Sia $\mathfrak{a}$ codice ciclico di lunghezza $r$ generato dal polinomio monico $a(x)$ di grado $r-k$, allora ogni parola di $\mathfrak{a}$ può essere rappresentata in modo unico come il prodotto $f(x)a(x)$, per $f(x) \in \mathcal{R}_{r, q}$ di grado minore o uguale a $k-1$.
+\end{teorema}
+\begin{proof}
+   Per definizione di codice ciclico ogni parola è un elemento dell'ideale $\mathfrak{a}$ quindi è in particolare della forma $f(x)a(x)$. La dimostrazione è suddivisa in due parti: 
+   \begin{itemize}
+      \item Se $deg(f(x)) \leq k-1$ e la parola del codice $t(x)$ può essere rappresentata con due scritture equivalenti
+      \begin{align*}
+         t(x) = f(x)a(x) = g(x)a(x)
+      \end{align*}
+      allora $f(x)a(x)$ ha grado minore ad $r$ ed $(f(x)- g(x))a(x) = 0$ modulo $x^r-1$. Quindi $f(x) = g(x)$. 
+      \item Se $deg(f(x)) \geq k$ allora il caso è meno immediato del precedente considerando la struttura di $\mathcal{R}$. Sia $t(x) = f(x)a(x)$ polinomio che quozientato per $x^r-1$ rappresenta una parola del codice $\mathfrak{a}$. Dato che $deg(f(x)a(x))\geq r $ si considera divisione di $t(x)$ per $x^r - 1$ 
+      \begin{align*}
+      t(x) = f(x)a(x) = q(x)(x^r - 1) + r(x)
+      \end{align*}
+      dove $r(x)$ è nullo oppure ha grado minore o uguale ad $r-1$. Ma $a(x)$ è un divisore di $x^r-1$ quindi dall'equazione precedente $a(x)$ divide $r(x)$:
+      \begin{align*}
+         r(x) = s(x)a(x)
+      \end{align*}
+      dove il grado di $s(x)$ è minore o uguale a $k-1$. Si può dunque scrivere
+      \begin{align*}
+      t(x) = f(x)a(x) = q(x)(x^r - 1) + s(x)a(x)
+      \end{align*}
+      che in $\mathcal{R}$ diventa $t(x) = s(x)a(x)$ e dal caso precedente $s(x)$ è unicamente determinato, avendo grado minore o uguale a $k-1$.
+   \end{itemize}
+\end{proof}
+% \noindent
+% Si conclude il paragrafo analizzando i codici ciclici di $\mathcal{R}_{7, 2}$:
+% \begin{esempio}
+%    todo 
+% \end{esempio}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Matrice generatrice di un codice ciclico}
+I codici ciclici sono in particolare codici lineari, quindi si possono applicare i metodi di codifica e di decodifica presentati nel capitolo precedente. Per poter applicare tali metodi è però necessario risalire alla matrice generatrice dal polinomio generatore del codice. In questo paragrafo, continuando a seguire \cite{berardi}, si presentano due metodi per determinare la matrice cercata. \\
+Il {\bf primo metodo} è conseguenza del corollario \ref{teo:matGenId}:
+\begin{teorema}\label{teo:ciclicoPrimoMetodo}
+   Sia $\mathfrak{a}$ codice ciclico di lunghezza $r$, generato dal polinomio monico $a(x)$ di grado $r-k$
+   \begin{align*}
+      a(x) = a_{0} + a_{1}x^{1} + \dots + a_{r-k-1}x^{r-k-1} + x^{r-k}
+   \end{align*}
+   Allora una possibile matrice generatrice del codice $\mathfrak{a}$ è data da
+   \begin{align*}
+      G = 
+      \left(
+      \begin{array} {c c c c c c c c}
+      a_{0} & a_{1} & \dots & a_{r-k-1} & 1 & 0 & \dots & 0 \\
+      0 & a_{0} & a_{1} & \dots & a_{r-k-1} & 1 & \dots & 0  \\
+       & \ddots &  & \ddots &  & \ddots &  &     \\
+      0 & \dots & 0 & a_{0} & a_{1} & \dots & a_{r-k-1} & 1      
+      \end{array}
+      \right)
+   \end{align*}
+\end{teorema}
+% \begin{esempio}
+%    todo
+% \end{esempio}
+% \noindent
+Oltre a  fornire la matrice generatrice e quindi a consentire l'applicazione dei metodi di codifica e di decodifica, il teorema precedente afferma che i codici ciclici generati da un polinomio di grado $r-k$ sono $(r,k)$-codici.
+\\
+Il {\bf secondo metodo} per determinare la matrice generatrice di un codice ciclico a partire dal polinomio generatore $a(x)$ utilizza i resti delle divisioni dei polinomi $x^{j}$ per $a(x)$. Se il grado del polinomio generatore è uguale ad $r-k$ allora dalle divisioni
+\begin{align*}
+   x^{j} = q_{j}(x)a(x) + r_{j}(x) \qquad j = r-k , \dots , r-1  
+\end{align*}
+si ottengono $k$ resti nulli o di grado minore di $r-k$
+\begin{align*}
+   r_{j}(x) = r_{0,j} + r_{1,j}x^{1} + r_{2,j}x^{2} + \dots + r_{r-k,j}x^{r- k}     \qquad j = r-k , \dots , r-1  
+\end{align*}
+Considerando i polinomi $\lbrace x^j - r_{j}(x)\rbrace_{j= r-k}^{r-1}$ come le righe dei una matrice $G$, si ottiene
+\begin{align*}
+  G = 
+  \left(
+  \begin{array} {c c c c c c c c}
+  -r_{0,r-k}  & -r_{1,r-k}  & \dots & -r_{r-k-1,r-k}  &          1 & 0 & \dots & 0 \\
+  -r_{0,r-k+1}  & -r_{1,r-k+1}  & \dots & -r_{r-k-1,r-k+1}  &    0 & 1 & \dots & 0  \\
+   \vdots  &  &  & \vdots &                                      \vdots  & & \ddots  & \vdots  \\
+  -r_{0,r-1}  & -r_{1,r-1}  & \dots & -r_{r-k-1,r-1}  &           0 & \dots & 0 & 1      
+  \end{array}
+  \right)
+\end{align*}
+Rimane da dimostrare che $G$ è effettivamente una matrice generatrice del codice $\mathfrak{a}$:
+\begin{teorema}
+   La matrice $G$ precedentemente definita è una matrice generatrice del codice $\mathfrak{a}$.
+\end{teorema}
+\begin{proof}
+   Le righe sono parole del codice e la matrice $G$ ha caratteristica $k$, dato che contiene la matrice identità, quindi i vettori corrispondenti ai polinomi $\lbrace x^j - r_{j}(x)\rbrace_{j= r-k}^{r-1}$ sono linearmente indipendenti e sono generatori del codice $\mathfrak{a}$.
+\end{proof}
+
+
+% \begin{esempio}
+%    todo
+% \end{esempio}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Polinomi e matrici di controllo}
+Oltre al polinomio ed alla matrice generatrice, si può associare ad un codice ciclico un polinomio ed una matrice di controllo. Per questo scopo si utilizzerà la proprietà che il polinomio generatore $a(x)$ è un divisore di $x^r - 1$.
+\begin{definizione}
+   Sia $\mathfrak{a}$ codice ciclico di dimensione $r$ generato dal polinomio $a(x)$ di grado $r-k$. Il polinomio monico $h(x)$ di grado $k$ tale che $a(x)h(x) = x^r - 1$ è detto {\bf polinomio di controllo} del codice $\mathfrak{a}$.
+\end{definizione}
+\noindent
+Il polinomio di controllo, già introdotto precedentemente con la notazione $\hat{a}(x)$, stabilisce un criterio di appartenenza di una parola ad un codice in modo analogo alla sindrome nei codici lineari:
+\begin{teorema}\label{teo:appartenenzaCiclica}
+   Sia $\mathfrak{a}$ codice ciclico di dimensione $r$ generato dal polinomio $a(x)$ ed avente polinomio di controllo $h(x)$. Allora la parola $t(x)$ appartiene al codice $\mathfrak{a}$ se e solo se $t(x)h(x) = 0$ in $\mathcal{R}$
+\end{teorema}
+\begin{proof}
+   \begin{itemize}
+   \item[$\Rightarrow$)] Se $t(x)$ è una parola di $\mathfrak{a}$ allora può essere scritto come $t(x) = f(x)a(x)$ per qualche $f(x) \in \mathcal{R}$. Moltiplicando ambo i membri per il polinomio di controllo si ottiene la tesi:
+   \begin{align*}
+     t(x)h(x) = t(x)a(x)h(x) = 0 \in \mathcal{R} 
+   \end{align*}
+   \item[$\Leftarrow$)] Se $t(x)h(x) = 0$ allora in $\mathbb{F} \lbrack x \rbrack $ 
+   \begin{align*}
+     t(x)h(x) = q(x)(x^t - 1) =  q(x)a(x)h(x) \in \mathbb{F} \lbrack x \rbrack
+   \end{align*}
+   Dividendo primo ed ultimo membro per $h(x)$ si ottiene la tesi.
+\end{itemize}
+\end{proof}
+\noindent
+Il polinomio di controllo $h(x)$ di un codice $\mathfrak{a}$ non è in generale un generatore del codice duale $\mathfrak{a}^{\perp}$, dal fatto che se $a(x)h(x) = 0$ allora non necessariamente i vettori associati ai polinomi $a(x)$ ed $h(x)$ sono ortogonali. Però i coefficienti di $h(x)$ ed il polinomio che genera $\mathfrak{a}^{\perp}$ non sono del tutto scorrelati:
+\begin{teorema} \label{teo:poliControllo}
+  Sia $\mathfrak{a}$ un $(r,r-k)$-codice ciclico generato da $(x)$, ed avente come polinomio di controllo
+  \begin{align*}
+     h(x) = h_{0} + h_{1}x^{1} + \dots + h_{k-1}x^{k-1} + x^{k}
+  \end{align*}
+  Allora la matrice
+  \begin{align*}
+      H = 
+      \left(
+      \begin{array} {c c c c c c c c}
+      1 & h_{k-1} & \dots & h_{1} & h_{0} & 0 & \dots & 0 \\
+      0 & 1 & h_{k-1} & \dots & h_{1} & h_{0} & \dots & 0  \\
+       & \ddots &  & \ddots &  & \ddots &  &     \\
+      0 & \dots & 0 & 1 & h_{k-1} & \dots & h_{1} & h_{0}      
+      \end{array}
+      \right)
+   \end{align*}
+   è una matrice di controllo per $\mathfrak{a}$. \\
+   Inoltre il polinomio reciproco di $h(x)$, dato da
+   \begin{align*}
+     h(x)^{\perp} = 1 + h_{k-1}x^{1} + \dots + h_{1}x^{k-1} + h_{0}x^{k}
+  \end{align*}
+  genera il codice duale $\mathfrak{a}^{\perp}$.
+\end{teorema}
+\begin{proof}
+   Dal teorema \ref{teo:appartenenzaCiclica} una parola $a(x)$ è in $\mathfrak{a} = (h(x))$ se e solo se $a(x)h(x)=0 \mod{x^r-1}$ cioè se e solo se tutti i coefficienti del polinomio prodotto sono nulli. Questo accade se e solo se, per $1 = h_{k}$ valgono le equazioni
+   \begin{align*}
+      \sum_{j = 0}^{k} a_{j} h_{k-j} = 0  \\
+      \sum_{j = 0}^{k}  a_{j+1} h_{k-j} = 0  \\
+      \sum_{j = 0}^{k} a_{j+2} h_{k-j} = 0 \\
+      \vdots \\
+      \sum_{j = 0}^{k}  a_{j+r-k-1} h_{k-j} = 0 
+    \end{align*}
+    che equivale al prodotto
+    \begin{align*}
+       H
+       \left(
+	\begin{array} {c}
+	a_0   \\
+	a_1    \\
+	\vdots   \\
+	a_{r-1}
+	\end{array}
+	\right)
+    \end{align*}
+   Quindi le righe di $H$ sono ortogonali a $\mathbf{a}$ e sono quindi parole del duale di $\mathfrak{a}$.\\
+   La seconda parte del teorema segue dal fatto che, per \ref{prop:reciprocoISdivisore} $h(x)^{\perp}$ è un divisore di $x^r - 1$ e che dal teorema \ref{teo:ciclicoPrimoMetodo} $H$ è una matrice generatrice del codice $(h(x)^{\perp})$, quindi è di controllo di $\mathfrak{a}$ e generatrice di $\mathfrak{a}^{\perp}$.
+   %Vedere il rapporto con le ricorrenze lineari da \cite{sloane} pag 195. 
+\end{proof}
+%\noindent
+% Si conclude il paragrafo con un esempio che riassume quanto visto.
+% \begin{esempio}
+%    todo
+% \end{esempio}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Codifica e decodifica dei codici ciclici}
+
+Dal fatto che i codici ciclici sono particolari codici lineari, la codifica e la decodifica possono avvenire tramite i sistemi introdotti nel capitolo precedente. Ha senso chiedersi però se ci sono dei metodi di codifica e decodifica che permettano di sfruttare la struttura algebrica di cui i codici ciclici sono dotati.\\
+Sia $\mathfrak{a} \trianglelefteq \mathcal{R}_{r,q}$ un $(r,k)$-codice ciclico generato dal polinomio $a(x)$. Allora una codifica standard del messaggio $\mathbf{m}$ nella rappresentazione polinomiale $m(x)$, può essere data direttamente dalla moltiplicazione per $a(x)$, infatti $a(x)m(x)$ equivale al prodotto $G\mathbf{m}^{t}$ per $G$ matrice generatrice del codice. La decodifica invece può variare a seconda della tipologia di codice ciclico in questione (BCH, Reed-Solomon...). Nel prossimo paragrafo presentiamo i codici BCH con la decodifica Peterson-Gorenstein-Zierler.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5555
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Codici BCH
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Codici BCH}
+
+Durante la ricerca di un codice lineare che avesse una codifica ed una decodifica ottimizzate rispetto ai codici ciclici generici, si è arrivati alla creazione di diversi tipi di codici che generalmente portano i nomi dei loro scopritori. I codici BCH sono stati scoperti da Hocquenghem nel 1959, ed indipendentemente da Bose e Chaudhuri nel 1960.
+La possibilità di implementare facilmente un decodificatore e il fatto che la lunghezza delle parole dei BCH possa essere scelta fra un range abbastanza ampio li ha resi ottimali per la correzione degli errori di lettura dei CD, dei DVD, delle memorie Flash\footnote{ad esempio la SSD SandForce SF-2600.}, dei codici a barra e in passato per la comunicazione satellitare\footnote{Nell'articolo \cite{cherung} sono riportati i dati dell'utilizzo dei codici BCH in previsione di una missione su Phobos, luna di Marte, proposta nel 1988 dall'unione sovietica e mai realizzata.}.\\
+Dopo una presentazione della definizione, giustificata da alcuni importanti risultati teorici e dopo alcuni esempi, proponiamo due sistemi di decodifica. Accenniamo infine ai codici di Reed-Solomon scoperti nel 1960 ed individuati come sottoclasse dei BCH codici nel 1961 (Gorenstein e Zierler)\footnote{Per la bibliogafia dettagliata, con i riferimenti agli articoli originali si rimanda a \cite{blahut}.} \\
+L'idea di fondo è quella di costruire il generatore di un codice ciclico, facendo in modo che la distanza minima sia maggiore di un intero $\delta$ prefissato. Per fare ciò si sceglie una radice primitiva $r$-esima dell'unità $\xi$ e si considera il più piccolo divisore di $x^r-1$ che ha come radice $\delta$ potenze consecutive di $\xi$.\\
+Questo procedimento è giustificato dal seguente teorema\footnote{Da \cite{berardi} pag. $217$.}
+\begin{teorema}
+   Sia $a(x)$ polinomio generatore di un $(r,k)$-codice ciclico $\mathfrak{a}$ ideale di $\mathcal{R}_{r,q}$, e siano $\lbrace \xi_{1}, \dots,\xi_{r-k} \rbrace $ radici di $a(x)$ nel suo campo di spezzamento $\mathbb{F}_{q^m}$ per $m$ periodo di $q$ in $\mathbb{Z}_{r}^{\star}$.
+   Un polinomio $c(x)$ in $\mathbb{F}_{q}[x]$ è una parola di $\mathfrak{a}$ se e solo se $c(\xi_{j}) = 0$ per ogni $j = 1, \dots , r-k$.
+\end{teorema}
+\begin{proof}
+  \begin{itemize}
+   \item[$\Rightarrow$)] Sia $c(x) \in \mathfrak{a}$, allora è sufficiente osservare che $c(x) = q(x)a(x)$ per qualche $q(x)$ in $\mathbb{F}_{q}[x]$.
+   \item[$\Leftarrow$)] Siano $M_{j}(x)$ polinomi minimi di $\xi_{j}$ per ogni $j = 1, \dots , r-k$. Segue che ogni $M_{j}(x)$ divide $c(x)$, e quindi $a(x)$ è un divisore di $c(x)$:
+   \begin{align*}
+     c(x) = q(x) \prod_{j=1}^{r-k}M_{j}(x) =  q(x)a(x)
+   \end{align*}
+   da cui segue che $c(x) \in \mathfrak{a}$.
+\end{itemize}
+\end{proof}
+\noindent
+Il teorema appena dimostrato possiede una formulazione matriciale, nella quale le parole sono rappresentate da vettori invece che da polinomi:
+\begin{teorema}
+   Sia $a(x)$ polinomio generatore di un $(r,k)$-codice ciclico $\mathfrak{a}$ ideale di $\mathcal{R}_{r,q}$, e siano $\lbrace \xi_{1}, \dots,\xi_{r-k} \rbrace $ radici di $a(x)$ nel suo campo di spezzamento $\mathbb{F}_{q^m}$ per $m$ periodo di $q$ in $\mathbb{Z}_{r}^{\star}$.
+   Sia $K$ matrice $(r-k)\times r$ ad elementi in $\mathbb{F}_{q^m}$ definita come
+   \begin{align*}
+        K =
+ 	\left(
+ 	\begin{array} {c c c c c}
+ 	1 & \xi_1 & \xi_{1}^{2} & \dots & \xi_{1}^{r-1}   \\
+        1 & \xi_2 & \xi_{2}^{2} & \dots & \xi_{2}^{r-1}   \\
+        \vdots & \vdots & \vdots &  & \vdots   \\
+        1 & \xi_{r-k}& \xi_{r-k}^{2} & \dots & \xi_{r-k}^{r-1}         
+ 	\end{array}
+ 	\right)
+     \end{align*}
+   Un polinomio $c(x)$ avente vettore associato $\mathbf{c} = c(x) $ è una parola del codice $\mathfrak{a}$ se e solo se 
+   \begin{align*}
+      K \mathbf{c}^{t} = \mathbf{0}
+   \end{align*}
+\end{teorema}
+\begin{proof}
+   È sufficiente osservare che 
+   \begin{align*}
+        K \mathbf{c}^{t} =
+ 	\left(
+ 	\begin{array} {c }
+ 	c(\xi_1)  \\
+        c(\xi_2)   \\
+        \vdots  \\
+        c(\xi_{r-k})          
+ 	\end{array}
+ 	\right)
+   \end{align*}
+   dal fatto che $c(x) = \sum_{j=0}^{r-1} c_{j}x^{j}$.
+\end{proof}
+\noindent
+Osserviamo che le righe della matrice $K$ sono vettori in $\mathbb{F}_{q^m}$ ortogonali ad ogni parola del codice $\mathfrak{a}$ la cui definizione è sconseguenza diretta della rappresentazione polinomiale del codice. Inoltre ha un comportamento simile a quello della matrice di controllo $H$ ma è fondamentalmente differente.\\ 
+Nei teoremi precedenti siamo sempre partiti da $a(x)$ e poi abbiamo considerato le sue radici. Partiamo questa volta con il definire $a(x)$ direttamente dalle sue radici. Questa idea fornisce direttamente un limite alla distanza del codice e costituisce la base per la definizione di codice BCH\footnote{Teorema $8$, pag. 201 \cite{sloane}, Teorema $10.5$ pag $220$ \cite{berardi}.}.
+\begin{teorema}\label{teo:bchDaDelta}
+   Sia $\xi$ radice primitiva $r$-esima e siano $\lbrace \xi, \xi^{2}, \dots,\xi^{\delta -1} \rbrace $ $\delta -1$ potenze consecutive di $\xi$ distinte. Sia $a(x)$ il più piccolo polinomio in $\mathbb{F}_{q}[x]$ ad avere  $\lbrace \xi, \xi^{2}, \dots,\xi^{\delta -1} \rbrace $ come radici. Allora il codice generato da $a(x)$ ha come distanza minima al più $\delta$. 
+\end{teorema}
+\begin{proof}
+   Osserviamo che l'enunciato del teorema è sensato dato che $a(x)$, per avere $\xi^{j}$ fra le sue radici, dovrà avere $M^{(j)}(x)$ fra i suoi fattori, quindi è costituito dal minimo comune multiplo di una scelta di polinomi minimi e quindi è un divisore di $x^r - 1$. Essendo un divisore genera un ideale ed è pertanto un codice ciclico.\\
+   Sia allora $(a(x)) = \mathfrak{a}$. Sfruttando il teorema precedente, possiamo definire la matrice $K$, {\bf detta matrice estesa di controllo} sull'insieme $\lbrace \xi, \xi^{2}, \dots,\xi^{\delta -1} \rbrace $ che diventa 
+   \begin{align*}
+        K =
+ 	\left(
+ 	\begin{array} {c c c c c}
+ 	1 & \xi & \xi^{2} & \dots & \xi^{r-1}   \\
+        1 & \xi^{2} & \xi^{4} & \dots & \xi^{2(r-1)}   \\
+        \vdots & \vdots & \vdots &  & \vdots   \\
+        1 & \xi^{\delta -  1}& \xi^{2(\delta -  1)} & \dots & \xi^{(r-1)(\delta -  1)}         
+ 	\end{array}
+ 	\right)
+     \end{align*}   
+   che in una forma più compatta può essere scritta come
+   \begin{align*}
+        K = (\xi^{jk})_{j=1, k = 0 }^{\delta-1, r-1}
+    \end{align*}
+
+    Sia per assurdo $\mathbf{c}$ parola di $\mathfrak{a}$ con distanza minima strettamente inferiore a $\delta$: $w(\mathbf{c})= w < \delta$. Segue che esistono $w$ elementi di $\mathbf{c}$ diversi da zero: 
+    \begin{align*}
+       c_{j} \neq 0 \quad \forall j \in \lbrace i_{1}, \dots, i_{w} \rbrace \subseteq \lbrace 0, 1 , \dots, r-1 \rbrace
+    \end{align*}
+    Dato che $K \mathbf{c}^{t} = \mathbf{0}$ implica che:  
+    \begin{align*}
+ 	\left(
+ 	\begin{array} {c c c c}
+ 	\xi^{i_1} & \xi^{i_2} & \dots & \xi^{i_w}   \\
+        \xi^{2i_1}  & \xi^{2i_2} & \dots & \xi^{2i_w}   \\
+        \vdots &   \vdots  &  & \vdots   \\
+        \xi^{(w - 1 )i_1}&\xi^{(w-1)i_2} & \dots & \xi^{(w -1)i_w}         
+ 	\end{array}
+ 	\right)
+ 	\left(
+ 	\begin{array} {c}
+ 	c_{i_{1}} \\
+ 	c_{i_{2}}\\
+ 	\vdots \\
+ 	c_{i_{w}}
+ 	\end{array}
+ 	\right)
+ 	=
+ 	\left(
+ 	\begin{array} {c}
+ 	0 \\
+ 	0\\
+ 	\vdots \\
+ 	0
+ 	\end{array}
+ 	\right)
+     \end{align*}    
+    Quindi il determinante della matrice ricavata considerando solo le colonne di pedici $i_{1}, \dots, i_{w}$ in $K$ risulta avere determinante uguale a zero. Quindi 
+    \begin{align*}
+       & det
+ 	\left(
+ 	\begin{array} {c c c c}
+ 	\xi^{i_1} & \xi^{i_2} & \dots & \xi^{i_w}   \\
+        \xi^{2i_1}  & \xi^{2i_2} & \dots & \xi^{2i_w}   \\
+        \vdots &   \vdots  &  & \vdots   \\
+        \xi^{(w - 1 )i_1}&\xi^{(w-1)i_2} & \dots & \xi^{(w -1)i_w}         
+ 	\end{array}
+ 	\right)
+ 	= \\
+ 	& \xi^{i_1 + i_2 + \dots + i_w }
+ 	det
+ 	\left(
+ 	\begin{array} {c c c c}
+ 	1 &  1 & \dots & 1   \\
+        \xi^{2i_1} & \xi^{2i_2} & \dots & \xi^{2i_w}   \\
+        \vdots &  \vdots  &  & \vdots   \\
+        \xi^{(w - 1 )i_1}& \xi^{(w-1)i_2} & \dots & \xi^{(w-1)i_w}         
+ 	\end{array}
+ 	\right) 
+ 	= 0
+    \end{align*}
+    che è una contraddizione, dato che il determinante di una matrice di Vandermonde non può essere uguale a zero\footnote{Ad esempio lemma $17$ pag $116$ \cite{sloane}.}.
+\end{proof}
+\noindent
+La dimostrazione appena presentata equivale a dimostrare che è sempre possibile scegliere un insieme di $\delta$ o meno colonne linearmente indipendenti nella matrice $K$. 
+\\
+Avremmo potuto enunciare il teorema precedente scegliendo anziché $\xi$, già una potenza fissata di $\xi$. Può quindi essere riformulato come:  
+\begin{corollario}
+   Sia $\xi$ radice primitiva $r$-esima e sia $b$ intero positivo. Siano $\lbrace \xi^{b}, \xi^{b+1}, \dots,\xi^{b + \delta -2} \rbrace $ $\delta -1$ potenze consecutive di $\xi^{b}$ distinte. Sia $a(x)$ il più piccolo polinomio in $\mathbb{F}_{q}[x]$ ad avere  $\lbrace \xi^{b}, \xi^{b+1}, \dots,\xi^{b + \delta -2} \rbrace $ come radici. Allora il codice generato da $a(x)$ ha come distanza minima al più $\delta$.
+\end{corollario}
+\begin{proof}
+   Segue dal teorema \ref{teo:bchDaDelta} considerando la matrice $K$ definita sull'insieme $\lbrace \xi^{b}, \xi^{b+1}, \dots,\xi^{b + \delta -2} \rbrace $:
+      \begin{align*}
+        K =
+ 	\left(
+ 	\begin{array} {c c c c c}
+ 	1 & \xi^{b} & \xi^{2b} & \dots & \xi^{(r-1)b}   \\
+        1 & \xi^{b+1} & \xi^{2(b+1)} & \dots & \xi^{(r-1)(b+1)}   \\
+        \vdots & \vdots & \vdots &  & \vdots   \\
+        1 & \xi^{b + \delta -  2}& \xi^{2( b+ \delta -  2)} & \dots & \xi^{(r-1)(b + \delta -  2)}         
+ 	\end{array}
+ 	\right)
+     \end{align*} 
+     La dimostrazione prosegue in modo analogo a quella del teorema \ref{teo:bchDaDelta} già valida per $b=1$.
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+\subsection{Definizione dei codici BCH ed esempi}
+
+Con i risultati fin qui introdotti è possiamo definire i codici BCH.
+
+\begin{definizione}
+   Dato un intero positivo $\delta$ ed $\xi$ radice primitiva $r$-esima dell'unità, un codice ciclico di lunghezza $r$ sull'alfabeto $\mathbb{F}_{q}$ è detto BCH codice se il suo polinomio generatore è il minimo comune multiplo dei polinomi minimi di $\lbrace \xi^{b}, \xi^{b+1}, \dots,\xi^{b + \delta -2} \rbrace $ per $b$ intero positivo.
+\end{definizione}
+\noindent
+Come predetto inizialmente, il numero $\delta$ scelto per definire il codice BCH $\mathfrak{a}$ è la più piccola distanza minima che il codice può avere, quindi dalla scelta dell'insieme $\lbrace \xi^{b}, \xi^{b+1}, \dots,\xi^{b + \delta -2} \rbrace $ si avranno codici differenti nei quali un limite alla distanza minima può essere dato a priori. \\
+Quindi il parametro $\delta$ può essere chiamato {\bf distanza minima garantita} del codice BCH.
+Rimangono da determinare i parametri del codice
+ \begin{teorema}
+    Un BCH codice $\mathfrak{a}$ in $\mathcal{R}_{r, q}$ con distanza minima garantita $\delta$ ha dimensione pari almeno a $r - m(\delta -1)$, per $m$ periodo di $q$ in $\mathbb{Z}_{r}^{\star}$.
+ \end{teorema}
+ \begin{proof}
+    Come sottospazio vettoriale, la dimensione di $\mathfrak{a}$ può essere data da $r$ meno il numero di righe linearmente indipendenti della matrice di controllo $H$. È possibile ricavare la matrice di controllo direttamente da $K$, sostituendo ogni suo elemento, che appartiene al campo $\mathbb{F}_{q^m}$, con la $m$-upla corrispondente. In questo modo $H$ ha dimensione $m(\delta-1)\times r$ ed ha quindi $m(\delta-1)$ righe non necessariamente linearmente indipendenti. 
+ \end{proof}
+
+Dato che il codice è ciclico si può utilizzare il metodo generico per la codifica dei codici ciclici. Per la decodifica rimane sempre valido il metodo generico ma abbiamo a disposizione alcuni strumenti che la rendono più efficiente. Prima di presentarli, proponiamo alcuni esempi.
+
+\begin{esempio}
+   Consideriamo l'algebra $\mathcal{R}_{15,2}$. Il periodo di $2$ in $\mathbb{Z}_{15}^{\star}$ è $4$, quindi $\xi$ radice primitiva $r$-esima dell'unità è un generatore di $\mathbb{F}_{2^4}$. Il sottogruppo di $\mathbb{Z}_{15}^{\star}$ isomorfo al gruppo $Gal(\mathbb{F}_{2}(\xi), \mathbb{F}_{2})$, come insieme è dato da $G = \lbrace 1,2,4,8 \rbrace$ e definisce le classi ciclotomiche come orbite dell'azione di $G$ su $\mathbb{Z}_{r}$ date da:
+   \begin{align*}
+      C_{0} &= \lbrace 0 \rbrace \\
+      C_{1} &= \lbrace 1,2,4,8 \rbrace \\
+      C_{3} &= \lbrace 3,6,9,12 \rbrace \\
+      C_{5} &= \lbrace 5, 10 \rbrace \\
+      C_{7} &= \lbrace 7,11,13,14 \rbrace 
+   \end{align*}
+   L'insieme delle etichette è dato quindi da $\mathscr{L} = \lbrace 0,1,3,5,7 \rbrace $ ed $l = 5$. I polinomi minimi di $\xi^{b}$ per $b\in \mathscr{L}$ sono dati quindi da
+   \begin{align*}
+      M^{(0)}(x) &= (x - \xi^{0}) = x + 1\\
+      M^{(1)}(x) &=  (x - \xi^{1})(x - \xi^{2})(x - \xi^{4})(x - \xi^{8}) = x^4 + x + 1\\
+      M^{(3)}(x) &=  (x - \xi^{3})(x - \xi^{6})(x - \xi^{9})(x - \xi^{12}) = x^4 + x^3 + x^2 + 1 \\
+      M^{(5)}(x) &=  (x - \xi^{5})(x - \xi^{10}) = x^2 + x + 1\\
+      M^{(7)}(x) &=  (x - \xi^{7})(x - \xi^{11})(x - \xi^{13})(x - \xi^{14}) = x^4 + x^3 + 1 
+   \end{align*}
+   che costituiscono la fattorizzazione di $x^r + 1$ e il prodotto degli elementi di ciascuno dei loro $2^{l}$ sottoinsiemi determina il generatore di un ideale. \\
+   Scegliendo $\delta = 5$ come distanza minima garantita ed $\lbrace \xi, \xi^2, \xi^3, \xi^4 \rbrace$ insieme di radici consecutive, si ottiene $a(x) = M^{(1)}(x) M^{(3)}(x) $ come generatore del BCH codice. Dato che $a(x) = x^8 + x^7 + x^6 + x^4 + 1$ ha grado $8$ e peso di Hamming $5$, allora $(a(x))$ è un $(15,7)$-codice con distanza minima pari a $5$ coincidente con $\delta$.  
+\end{esempio}
+
+\begin{esempio}
+   Se nell'esempio precedente scegliamo $\delta = 7$ come distanza minima garantita ed $\lbrace \xi^{9}, \xi^{10}, \xi^{11}, \xi^{12}, \xi^{13}, \xi^{14} \rbrace$ come insieme di radici consecutive su cui costruire il BCH codice, allora 
+   \begin{align*}
+      a(x) = M^{(3)}(x) M^{(5)}(x) M^{(7)}(x) = x^{10}+ x^8 + x^7 + x^6 + x^5 + x^2 + 1
+   \end{align*}
+   quindi $(a(x))$ è un $(15,5)$-codice con distanza minima paria a $7$ coincidente con $\delta$.
+\end{esempio}
+
+\begin{esempio}
+   Consideriamo $\mathcal{R}_{8,3}$. Il periodo di $3$ in $\mathbb{Z}_{8}^{\star}$ è $2$, quindi $\xi$ radice primitiva $r$-esima dell'unità è un generatore di $\mathbb{F}_{3^2}$. Il sottogruppo di $\mathbb{Z}_{8}^{\star}$ isomorfo al gruppo $Gal(\mathbb{F}_{3}(\xi), \mathbb{F}_{3})$, come insieme è dato da $G = \lbrace 1,3 \rbrace$ e definisce le classi ciclotomiche come orbite dell'azione di $G$ su $\mathbb{Z}_{8}$ date da:
+   \begin{align*}
+      C_{0} &= \lbrace 0 \rbrace \\
+      C_{1} &= \lbrace 1,3 \rbrace \\
+      C_{2} &= \lbrace 2,6 \rbrace \\
+      C_{4} &= \lbrace 4 \rbrace \\
+      C_{5} &= \lbrace 5,7 \rbrace 
+   \end{align*}
+   L'insieme delle etichette è dato quindi da $\mathscr{L} = \lbrace 0,1,2,4,5 \rbrace $ ed $l = 5$. I polinomi minimi di $\xi^{b}$ per $b\in \mathscr{L}$ sono 
+   \begin{align*}
+      M^{(0)}(x) &= (x - \xi^{0}) \\
+      M^{(1)}(x) &=  (x - \xi^{1})(x - \xi^{3}) \\
+      M^{(2)}(x) &=  (x - \xi^{2})(x - \xi^{6})  \\
+      M^{(4)}(x) &=  (x - \xi^{4}) \\
+      M^{(5)}(x) &=  (x - \xi^{5})(x - \xi^{7})  
+   \end{align*}
+   Scegliendo $\delta = 4$ come distanza minima garantita ed $\lbrace \xi^{5}, \xi^{6}, \xi^{7} \rbrace$ come insieme di radici consecutive su cui costruire il BCH codice, allora si ottiene $a(x) = M^{(2)}(x)M^{(5)}(x)$.
+\end{esempio}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Decodifica Peterson-Gorenstein-Zierler}
+
+Sia $\mathfrak{a} \trianglelefteq  \mathcal{R}_{r,q} $ codice BCH con $\delta$ distanza minima garantita e $\lbrace \xi^{b}, \xi^{b+1}, \dots , \xi^{b + \delta - 2} \rbrace$ insieme delle radici primitive $r$-esime che lo definiscono. Sia $c(x) \in \mathfrak{a}$ messaggio inviato e $v(x)$ parola ricevuta che durante la trasmissione è stata sommata ad un errore:
+\begin{align*}
+   v(x) = c(x) + e(x) \qquad e(x) = \sum_{j \in \mathbb{Z}_{r}} e_{j} x^{j}
+\end{align*}
+Consideriamo i tutti i coefficienti di $e(x)$ nulli tranne un numero minore o uguale a $t$, dove $t$ è un intero positivo fissato, minore di $r$
+\begin{align*}
+   e_{j_{k}} \neq 0 \qquad j_{1} \leq j_{2} \leq \dots \leq j_{w} \qquad 0 \leq w \leq t 
+\end{align*}
+cioè
+\begin{align*}
+   e(x) =  \sum_{k=1}^{w} e_{j_{k}} x^{j_{k}}
+\end{align*}
+Lo scopo di un decodificatore è individuare $e(x)$ e risalire alla parola inviata sottraendo $e(x)$ alla parola ricevuta.\\
+L'informazione di partenza per raggiungere questo scopo è data dal fatto che 
+\begin{align*}
+   v(\xi^{k}) = c(\xi^{k}) + e(\xi^{k}) = e(\xi^{k})
+\end{align*}
+Da cui segue la definizione di sindrome.
+\begin{definizione}
+   L'elemento di $\mathbb{F}_{q^m}$ dato da 
+   \begin{align*}
+      S_{b+j} := e(\xi^{j+ k}) \qquad j = b+1, b+2, \dots, b + \delta - 2
+   \end{align*}
+   è detta {\bf sindrome $k$-esima} del polinomio $v(x)$.
+\end{definizione}
+Abbiamo quindi
+\begin{align*}
+   &S_{b} = e(\xi^{b}) = \sum_{k=1}^{w} e_{j_{k}} \xi^{b j_{k}} \\
+   &S_{b+1} = e(\xi^{b+ 1}) = \sum_{k=1}^{w} e_{j_{k}} \xi^{(b+1) j_{k}} \\
+   &S_{b+2} = e(\xi^{b+ 2}) = \sum_{k=1}^{w} e_{j_{k}} \xi^{(b+2) j_{k}} \\
+   & \quad \vdots \qquad \qquad \vdots \\
+   &S_{b + \delta - 2} = e(\xi^{ b +\delta - 2}) = \sum_{k=1}^{w} e_{j_{k}} \xi^{(b +\delta - 2) j_{k}}
+\end{align*}
+La scelta del nome sindrome non è casuale, infatti per $v(x) = \mathbf{v}$ e per $K$ matrice estesa di controllo di $\mathfrak{a}$ abbiamo che
+\begin{align*}
+   K \mathbf{v}^{t} &=  K (\mathbf{c} + \mathbf{e})^{t} = K \mathbf{c}^{t} + K \mathbf{e}^{t} = \\
+                    &=  K \mathbf{e}^{t} = (e(\xi^{b}), e(\xi^{b+1}), \dots , e(\xi^{b + \delta - 2}))^{t}=
+                    \\
+                    &=  (S_{b}, S_{b+1}, \dots , S_{b + \delta - 2})^{t}
+\end{align*}
+Dato che vogliamo concentrare la nostra attenzione solo sugli elementi non nulli del polinomio $e(x)$, effettuiamo una modifica nella notazione che porterà a considerare la ricerca dell'errore come la ricerca dei valori di un insieme di coppie della forma $(X_{k},Y_{k}) \in \mathbb{F}_{q^{m}} \times \mathbb{F}_{q}$ per $k=1, \dots , w$.\\
+Indichiamo
+\begin{align*}
+   X_{k} := \xi^{j_{k}} \qquad k = 1, \dots , w 
+\end{align*}
+ed
+\begin{align*}
+   Y_{k} := e_{j_{k}} \qquad k = 1, \dots , w 
+\end{align*}
+così da avere
+\begin{align*}
+   &S_{b} = e(\xi^{b}) = \sum_{k=1}^{w} e_{j_{k}} \xi^{b j_{k}} 
+           = \sum_{k=1}^{w} Y_{k}X_{k}^{b} \\
+   &S_{b+1} = \sum_{k=1}^{w} Y_{k}X_{k}^{b+1} \\
+   &S_{b+2} = \sum_{k=1}^{w} Y_{k}X_{k}^{b+2} \\
+   &  \vdots  \\
+   &S_{b + \delta - 2} = \sum_{k=1}^{w} Y_{k}X_{k}^{b + \delta - 2}
+\end{align*}
+Le $X_{k}$ forniscono la posizione dell'errore all'interno del polinomio e sono dette {\bf locatori dell'errore} mentre le $Y_{k}$ forniscono il valore dell'errore nella posizione $j_{k}$-eisma
+e sono dette {\bf magnitudini dell'errore}.\\
+Possiamo osservare che l'errore è univocamente determinato dalle coppie $(X_{k},Y_{k})$ ed in generale ogni metodo che permette di risolvere il sistema di equazioni non lineari 
+\begin{align}\label{sis:sistemaSYX}
+   S_{b+k} = \sum_{j=1}^{w}Y_{j}X_{j}^{b+k} \qquad k = 0, 1, \dots, b + \delta - 2
+\end{align}
+fornisce una decodifica per i codici BCH. In questo paragrafo presentiamo la decodifica Peterson-Gorenstein-Zierler\footnote{Per i titoli originali degli articoli nei quali è stata presentata per la prima volta si rimanda a \cite{blahut} nota di pag. $206$ e referenze di pag. $468$. } che prevede di trovare le informazioni necessarie per determinare $w$ e le $X_{k}$ mediante la definizione di un polinomio intermedio.
+\begin{definizione}
+   Si definisce {\bf polinomio locatore} degli errori il polinomio 
+   \begin{align*}
+      \lambda (x) = \prod_{k=1}^{w} (1 - X_{k}x)= \sum_{j=1}^{w}\lambda_{j}x^{j}
+   \end{align*}
+   dove $\lambda_{0} = 1$ e le cui radici sono $x = 1/X_{k}$.
+\end{definizione}
+Le radici del polinomio locatore degli errori sono i reciproci dei locatori degli errori e i cui coefficienti sono noti grazie al prossimo teorema. 
+\begin{teorema}\label{teo:poliLocatore}
+   Sia $\mathfrak{a} \trianglelefteq  \mathcal{R}_{r,q} $ codice BCH con $\delta$ distanza minima garantita e $\lbrace \xi^{b}, \xi^{b+1}, \dots , \xi^{b + \delta - 2} \rbrace$ insieme delle radici primitive $r$-esime che lo definiscono. Indicando con $\lbrace X_{1}, X_{2}, \dots , X_{w} \rbrace$ i locatori dell'errore incogniti, allora è possibile ricavare i coefficienti del polinomio locatore degli errori
+   \begin{align*}
+      \lambda (x) = \prod_{k=1}^{w} (1 - X_{k}x)= \sum_{j=1}^{w}\lambda_{j}x^{j}
+   \end{align*}
+\end{teorema}
+Prima di procedere alla dimostrazione anticipiamo un risultato\footnote{Da \cite{blahut} teorema $7.2.2$ pag. $170$.} centrale nell'algoritmo di decodifica in quanto utilizzato per determinare il grado di $\lambda (x)$ (cioè il numero di errori che entrano nella parola $c(x)$ durante la trasmissione) che non è noto a priori. 
+\begin{lemmax}\label{le:matriceSindromi}
+   La {\bf matrice delle sindromi} definita da
+   \begin{align*}
+        M =
+ 	\left(
+ 	\begin{array} {c c c c c}
+ 	S_{b} & S_{b + 1} & S_{b + 2} & \dots & S_{b + u - 1}   \\
+        S_{b + 1} & S_{b + 2} & S_{b + 3} & \dots & S_{b+u}   \\
+        S_{b + 2} & S_{b + 3} & S_{b + 4} & \dots & S_{b + u + 1}   \\
+        \vdots & \vdots & \vdots &  & \vdots   \\
+        S_{b + u - 1} & S_{b + u} & S_{b + u +1} & \dots & S_{b + 2u -1}           
+ 	\end{array}
+ 	\right)
+     \end{align*} 
+     è non-singolare se $u=w$ numero degli errori effettivamente sommati al messaggio durante la trasmissione, mentre la matrice è singolare se $u > w$.
+\end{lemmax}
+\begin{proof}(del lemma \ref{le:matriceSindromi})
+   Dato che $S_{k} = e(\xi^{k}) = \sum_{j=1}^{w}Y_{j}X_{j}^{k}$ si può verificare che $M$ è diagonalizzata dalla matrice $A$ nel seguente modo:
+   \begin{align*}
+      M = ADA^{t}
+   \end{align*}
+   dove la matrice $A$ è data da
+   \begin{align*}
+      A =
+ 	\left(
+ 	\begin{array} {c c c c c}
+ 	1 & 1 & 1 & \dots & 1   \\
+        X_{1} & X_{2} & X_{3} & \dots & X_{u}   \\
+        X_{1}^{2} & X_{2}^{2} & X_{3}^{2} & \dots & X_{u}^{2}   \\
+        \vdots & \vdots & \vdots &  & \vdots   \\
+        X_{1}^{u-1} & X_{2}^{u-1} & X_{3}^{u-1} & \dots & X_{u}^{u-1}         
+ 	\end{array}
+ 	\right)
+   \end{align*}
+   e la matrice $D$ è data da
+   \begin{align*}
+      D =
+ 	\left(
+ 	\begin{array} {c c c c c}
+ 	Y_{1}X_{1}^{b} & 0 & 0 & \dots & 0   \\
+        0 & Y_{2}X_{2}^{b} & 0 & \dots & 0   \\
+        0 & 0 & Y_{3}X_{3}^{b} & \dots & 0   \\
+        \vdots & \vdots & \vdots &  & \vdots   \\
+        0 & 0 & 0 & \dots & Y_{u}X_{u}^{b}        
+ 	\end{array}
+ 	\right)
+ 	=
+ 	(Y_{j}X_{j}^{b} \delta_{ij})_{i,j}
+   \end{align*}
+   Infatti
+   \begin{align*}
+       (ADA^{t})_{i,j} &= \sum_{k=1}^{u} X_{k}^{i-1} (\sum_{l=1}^{u} X_{k}^{b} Y_{k} \delta_{kl} X_{l}^{j-1} ) \\
+                       &= \sum_{l=1}^{u} X_{k}^{i-1} X_{k}^{b} Y_{k} X_{k}^{j-1} \\
+                       &= \sum_{l=1}^{u} Y_{k} X_{k}^{b+i+j-1} \\
+                       &= (M)_{ij} 
+   \end{align*}
+   Per il teorema di Binet $det(M) = det(A)det(D)det(A)$; il determinante di $D$ è non nullo se le coppie  $(Y_{k},X_{k})$ sono tutte composte da elementi non nulli, cosa vera per $u=w$.\\
+   $A$ è una matrice di Vandermonde che ha determinante nullo se e solo se le sue colonne sono differenti fra loro e non nulle, cosa che accade se $u=w$, mentre non accade per $u > w$.
+\end{proof}
+
+\begin{proof}(del teorema \ref{teo:poliLocatore})
+   Proponiamo una strada per ricavare i coefficienti del polinomio locatore;
+   dimostriamo cioè che $\lambda_{1}, \dots ,\lambda_{w}$ soddisfano il sistema 
+   \begin{align}\label{sist:poliLocatore}
+      S_{j+w} + S_{j+w-1}\lambda_{1} + \dots + S_{j}\lambda_{w} = 0 \qquad b \leq j \leq b+w-1
+   \end{align}
+   In conseguenza di ciò dato che \ref{sist:poliLocatore} è un sistema con $w$ equazioni e $w$ incognite, il cui determinante associato è non nullo dal lemma precedente, allora risolvendolo con qualche metodo possiamo ricavare i coefficienti del polinomio locatore e dimostrare il teorema.\\
+   Per ogni $k=1, \dots, w$ poniamo $x=1/X_{k}$ in $\lambda(x) = 0$ e moltiplichiamo ambo i membri per $Y_{k}X_{k}^{j+w}$ per ogni $j$ $b \leq j \leq b+w-1$:
+   \begin{align*}
+      Y_{k}X_{k}^{j+w} + \lambda_{1}Y_{k}X_{k}^{j+w-1} + \lambda_{2}Y_{k}X_{k}^{j+w-2} + \dots + \lambda_{w}Y_{k}X_{k}^{j} = 0
+   \end{align*}
+   Esplicitando per $k=1, \dots, w$ si ottiene
+   \begin{align*}
+      \left\{
+ 	\begin{array} {l}
+ 	Y_{1}X_{1}^{j+w} + \lambda_{1}Y_{1}X_{1}^{j+w-1} + \lambda_{2}Y_{1}X_{1}^{j+w-2} + \dots + \lambda_{w}Y_{1}X_{1}^{j} = 0 \\
+ 	Y_{2}X_{2}^{j+w} + \lambda_{1}Y_{2}X_{2}^{j+w-1} + \lambda_{2}Y_{2}X_{2}^{j+w-2} + \dots + \lambda_{w}Y_{2}X_{2}^{j} = 0 \\
+ 	Y_{3}X_{3}^{j+w} + \lambda_{1}Y_{3}X_{3}^{j+w-1} + \lambda_{2}Y_{3}X_{3}^{j+w-2} + \dots + \lambda_{w}Y_{3}X_{3}^{j} = 0 \\
+ 	\qquad \qquad \vdots \\
+ 	Y_{w}X_{w}^{j+w} + \lambda_{1}Y_{w}X_{w}^{j+w-1} + \lambda_{2}Y_{w}X_{w}^{j+w-2} + \dots + \lambda_{w}Y_{w}X_{w}^{j} = 0 \\
+ 	\end{array}
+ 	\right.
+   \end{align*}
+   dal quale otteniamo per somma
+   \begin{align*}
+      &Y_{1}X_{1}^{j+w} + Y_{2}X_{2}^{j+w} + \dots + Y_{w}X_{w}^{j+w} + \\
+      &+ \lambda_{1}( Y_{1}X_{1}^{j+w-1} + Y_{2}X_{2}^{j+w-1} + \dots + Y_{w}X_{w}^{j+w-1}) + \\
+      &+ \lambda_{2}( Y_{1}X_{1}^{j+w-2} + Y_{2}X_{2}^{j+w-2} + \dots + Y_{w}X_{w}^{j+w-2}) + \\
+      &+ \dots + \\
+      &+\lambda_{w}(Y_{1}X_{1}^{j} + Y_{2}X_{2}^{j} + \dots + Y_{w}X_{w}^{j}) = 0
+   \end{align*}
+   Cioè
+   \begin{align*}
+      \sum_{K=1}^{w} Y_{k}X_{k}^{j+w} + \lambda_{1}\sum_{K=1}^{w} Y_{k}X_{k}^{j+w-1} + \lambda_{2}\sum_{K=1}^{w} Y_{k}X_{k}^{j+w-2} + \dots + \lambda_{1}\sum_{K=1}^{w} Y_{k}X_{k}^{j} = 0
+   \end{align*}
+   Da cui ricordando che
+   \begin{align*}
+      S_{h} = \sum_{k=1}^{w} Y_{k}X_{k}^{h}
+   \end{align*}
+   segue la tesi.
+\end{proof}
+
+Sostituendo nel sistema lineare \ref{sis:sistemaSYX} le $X_{k}$ trovate risolvendo l'equazione polinomiale $\lambda(x)=0$ i cui coefficienti sono noti grazie al teorema precedente, si possono ricavare le $Y_{k}$ risolvendolo e quindi ottenere il vettore $e(x)$ e quindi la parola del codice originariamente trasmessa mediante sottrazione:
+\begin{align*}
+   c(x) = v(x) - e(x)
+\end{align*}
+Rivediamo la successione dei vari passaggi da effettuare dopo aver ricevuto $v(x)$:
+\begin{itemize}
+   \item Per prima cosa è necessario trovare il valore $w$, che corrisponde alla quantità di errori entrati durante la trasmissione del messaggio, cioè al peso di $e(x)$. Usiamo il lemma \ref{le:matriceSindromi}: poniamo come valore iniziale $w=\lfloor \delta/2 \rfloor$ e calcoliamo $det(M)$. Se $\det(M) = 0$ allora si diminuisce $w$ di $1$ e si ricalcola il determinante, finché non si trova $det(M) \neq 0$. 
+   \item Calcoliamo la matrice $M$ ed i coefficienti del polinomio locatore risolvendo:
+   \begin{align*}
+      M (1,\lambda_1, \lambda_{2}, \dots, \lambda_{w})^{t} = (0,0,0, \dots , 0)^{t}
+   \end{align*}
+   \item Risolviamo l'equazione polinomiale $\lambda(x) = 0$ alle cui soluzioni corrispondono $X_{1}, \dots , X_{w}$.
+   \item Risolviamo il sistema di equazioni non lineari \ref{sis:sistemaSYX} ottenendo così le coppie $\lbrace (Y_{k},X_{k})\rbrace_{k=1}^{w}$ che forniscono magnitudine e locazione di ciascun errore.
+\end{itemize}
+Il procedimento appena descritto non è computazionalmente efficiente, dato che bisogna risolvere un sistema di equazioni lineari per trovare i coefficienti del polinomio locatore e di equazioni non lineari per trovare $Y_{1}, \dots , Y_{w}$. Esiste una alternativa che implica l'uso dell'algoritmo di Berklmap-Massey e dell'algoritmo di Forney\footnote{Un approfondimento di questo tema si trova ad esempio in \cite{blahut} pag.$183$.}.
+

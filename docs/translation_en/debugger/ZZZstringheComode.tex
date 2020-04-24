@@ -1,0 +1,395 @@
+Comodità: (non è da implementare nella tesi, solo per copiare rapidamente le
+righe di codice che servono man mano!)
+
+\begin{align*}
+C = 
+\left(
+\begin{array} {c c c c }
+a_0 & a_1 & \dots & a_{r-1}   \\
+a_{r-1} & a_0 & \dots & a_{r-2}   \\
+\vdots & \vdots &  & \vdots   \\
+a_{1} & a_2 & \dots & a_{0}   \\       
+\end{array}
+\right)
+\end{align*}
+
+$s_{r} = circ((0,1,0, \dots, 0))$
+
+$M = circ( \mathbf{a} )
+$, per $\mathbf{a} = (a_0, a_1, \dots, a_{r-1} )$
+
+\mathcal{M}_{r,\mathbb{F} }^{c} = \lbrace \sum_{i=0}^{r-1} a_{i}s_{r}^{i} \mid
+a_{i}
+
+\begin{array} {c c c }
+a_0 & a_1 & a_2    
+\end{array}
+\right) 
+\left(
+\begin{array} {c c c}
+b_0 & b_1 & b_2   \\
+b_2 & b_0 & b_1   \\
+b_1 & b_2 & b_0        
+\end{array}
+\right)
+\end{align*}
+
+a_0 + a_1 g + a_2 g^2 + \dots + a_{r-1} g^{r-1}
+
+
+ a = a_0 + a_1 g + a_2 g^2 + \dots + a_{r-1} g^{r-1} 
+ \qquad
+ b = b_0 + b_1 g + b_2 g^2 + \dots + b_{r-1} g^{r-1}
+ 
+ 
+ a(x) = a_{0} + a_{1}x+ a_{2}x^2 = (a_{0}, a_{1},a_{2}) 
+ \qquad
+ b(x) = b_{0} + b_{1}x+ b_{2}x^2 = (b_{0}, b_{1},b_{2})
+
+\mathcal{R}_{r, \mathbb{F}} := \quotient{\mathbb{F} \lbrack x \rbrack  }{ x^{r}
+- 1} = \lbrace (a_0, a_1, \dots, a_{r-1} ) \mid a_{i} \in \mathbb{F} \rbrace
+
+È
+
+$G = Gal(\mathbb{F}(\xi), \mathbb{F}))$
+
+\begin{align*}
+\psi_{1}: \mathcal{V}_{r, \mathbb{F}}^{c}  &\longrightarrow  \mathcal{M}_{r,\mathbb{F} }^{c}  \\
+              (0,1,0,\dots , 0) &\longmapsto circ(0,1,0,\dots , 0) = s_{r}
+\end{align*}
+
+
+
+
+\obj(-20,5)[V]{$\mathcal{V}_{r, \mathbb{F}}^{c}$}
+\obj(20,5)[M]{$ \mathcal{M}_{r,\mathbb{F} }^{c} $}
+
+%sopra
+\obj(-20,30)[R]{$ \quotient{ \mathbb{F}[x] }{ (x^r -1 )} $}
+\obj(20,30)[A]{$ \mathbb{F}C_{r} $}
+
+
+\begin{align*}
+\mathfrak{X}(M) \times \mathcal{C}^{\infty}(M) & \longrightarrow 
+\mathcal{C}^{\infty}(M) &   \\
+   (X,f) &\longmapsto  Xf  : \mathcal{C}^{\infty}(M)  \longrightarrow  
+\mathbb{R} \\
+                                              & \qquad \qquad \qquad \quad p
+\longmapsto (Xf)(p) = X_{p}f
+\end{align*}
+
+
+\[
+\begindc{\commdiag}[3]
+%sotto
+\obj(0,5)[V]{$ \mathcal{V}_{r, \mathbb{F}}^{c} $}
+\obj(40,5)[M]{$\mathcal{M}_{r,\mathbb{F} }^{c}$}
+
+
+%metà
+\obj(0,30)[R]{$ \quotient{ \mathbb{F}[x] }{ (x^r -1 )} $}
+\obj(40,30)[A]{$ \mathbb{F}C_{r} $}
+\obj(-40,30)[P]{$ \prod_{v} \mathbb{F} (\xi^{v}) $}
+
+%sopra
+\obj(0,60)[Q]{$ \prod_{v} \quotient{ \mathbb{F}[x] }{ (M^{(v)}(x) )} $}
+
+%frecce orizzontali
+\mor{V}{M}{$\psi_{1}$}
+\mor{R}{A}{$\psi_{4}$}
+\mor{R}{P}{$\eta$}
+
+%frecce verticali
+\mor{R}{V}{$\psi_{2}$}
+\mor{A}{M}{$\psi_{3}$}
+\mor{R}{Q}{$\gamma$}
+
+%frecce oblique
+\mor{P}{Q}{$\mu_{1}$}
+\mor{A}{Q}{$\mu_{2}$}
+
+\enddc
+\]
+
+
+
+
+
+
+
+
+
+
+ $\arrowvert \cdot \arrowvert$ la cardinalità di un insieme
+
+H \trianglelefteq \mathbb{Z}_{r}^{\star} 
+\mathfrak{a} \trianglelefteq \mathcal{R}_{r,q} 
+$v \in \mathscr{L}$
+\mathcal{R}_{r,q} 
+$\mathbb{F}_{q}$
+
+
+\mathcal{V}_{r, q}^{c}
+
+\mathcal{V}_{m(v), q}^{c}
+
+
+\mathcal{V}_{r, q}^{\mathscr{L}}
+
+
+
+
+
+
+
+
+
+\begin{proof}
+   \begin{itemize}
+   \item[$\Rightarrow$)]
+   \begin{align*}
+     
+   \end{align*}
+   \item[$\Leftarrow$)] 
+   \begin{align*}
+     
+   \end{align*}
+\end{itemize}
+\end{proof}
+
+\llcorner d/2 \lrcorner
+
+
+    \begin{align*}
+      \sigma :S  &\longrightarrow \mathbb{P}^{\mathbb{C}} \\
+      \sigma(p) &\longmapsto  
+      \left\{ \begin{array}{l l}
+                 a & b \\
+                 c & d
+              \end{array} \right. 
+    \end{align*} 
+    
+    
+    
+    
+    
+    In parallelo alla definizione delle mappe $I$ e $V$ della geometria algebrica che agiscono fra insiemi algebrici affini dello spazio affine $n$-dimensionale e ideali dell'anello dei polinomi ad $n$ indeterminate\footnote{Presentate ad esempio in .} possiamo definire due corrispondenze nel contesto che stiamo esaminando:
+\begin{align*}
+   I: \mathcal{P}(\mathscr{L})  &\longrightarrow  
+                       \lbrace \mathfrak{a} \mid \mathfrak{a} \trianglelefteq \mathcal{R}_{r,q} \rbrace  \\
+              A &\longmapsto I(A) = (\prod_{v\in A} M^{(v)}(x)) = \mathfrak{a}_{A} \\
+   V: \lbrace \mathfrak{a} \mid \mathfrak{a} \trianglelefteq \mathcal{R}_{r,q} \rbrace  &\longrightarrow   
+	                \mathcal{P}(\mathscr{L})  \\
+              (\prod_{v\in A} M^{(v)}(x)) = \mathfrak{a}_{A}  &\longmapsto V(\mathfrak{a}_{A}) = A 
+\end{align*}
+dove con $\mathcal{P}(\mathscr{L})$ intendiamo l'insieme delle parti dell'insieme delle etichette.\\
+
+%%sequenze lineari ricorrenti!!
+
+Alla luce del precedente esempio, vogliamo presentare brevemente le sequenze lineari ricorrenti, con lo scopo di dimostrare che gli ideali di $\mathcal{R}$ sono spazi di ricorrenze lineari aventi un determinato polinomio caratteristico
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% SEZIONE    %%%%%%%%%%%%%%%%%%%%
+\section{Ricorrenze lineari}
+
+Cominciamo il paragrafo esaminando un esempio:
+\begin{esempio}\label{ese:ricorr1}
+   Dato il polinomio $s(x) = x^4 + x+ 1$ nell'algebra $\mathcal{R}_{7,2}$, indichiamo con $\mathscr{F}_{s(x)}$ un vettore di lunghezza infinita costruito ripetendo $\psi_{2}(s(x))$ senza alterazioni:
+   \begin{align*}
+      \mathscr{F}_{s(x)} = (1,1,0,0,1,0,0 | 1,1,0,0,1,0,0  | 1,1,0,0,1,0,0 | 1,1,0, \dots )
+   \end{align*}
+   Indicando con $\mathscr{F}_{s(x)}(j)$, per $j$ intero non negativo, il suo $j$-esimo elemento, allora $\mathscr{F}_{s(x)}$ è caratterizzato dall'equazione
+   \begin{align*}
+      \mathscr{F}_{s(x)} (j) = \mathscr{F}_{s(x)} (j-7) \qquad \forall j \geq 7 
+   \end{align*}
+   Variando $s(x)$ in $\mathcal{R}_{7,2}$, l'insieme costituito da tutti i vettori di lunghezza infinita $\mathscr{F}_{s(x)}$ è uno spazio vettoriale isomorfo a $\mathbb{F}_{2}^{7}$ ed è un'algebra isomorfa a $\mathcal{R}_{7,2}$ se dotata del prodotto di convoluzione in modo naturale.\\
+   Da un altro punto di vista, il vettore $\psi_{2}(s(x))$ definisce una funzione da $\mathbb{Z}_{7}$ in $\mathbb{F}_{2}$ che associa ad ogni $j$ in $\mathbb{Z}_{7}$ il $j$-esimo elemento del vettore $\psi_{2}(s(x))$, indicato con $s_j$. Tale funzione può essere considerata anche da $\mathbb{Z}$ in $\mathbb{F}_{2}$; in questo caso a $j \in \mathbb{Z}$ è associato il $j$-esimo elemento di una stringa infinita costruita ripetendo il vettore $\psi_{2}(s(x))$.\\
+   Se indichiamo tale stringa con $\mathscr{I}_{s(x)}$ ed il suo $j$-esimo elemento con $\mathscr{I}_{s(x)}(j)$ allora abbiamo
+   \begin{align*}
+      \mathscr{I}_{s(x)} &= ( \dots 0,0 | 1,1,0,0,1,0,0  | 1,1,0,0,1,0,0 | 1,1,0, \dots ) \\
+      j \longmapsto & \mathscr{I}_{s(x)}(j) = s_{j \mod{7}}
+   \end{align*}
+   Come prima, considerando l'insieme costituito da tutte le funzioni sulla stringa infinita $\mathscr{I}_{s(x)}$ al variare di $s(x)$ otteniamo uno spazio vettoriale isomorfo a $\mathbb{F}_{2}^{7}$ ed isomorfa a $\mathcal{R}_{7,2}$ come algebra se considerato con il prodotto di convoluzione sui vettori che generano le stringhe infinite. Infatti ogni funzione è univocamente determinata dal vettore $\psi_{2}(s(x))$ che ne definisce il dominio. \\
+\end{esempio}
+Giocando su vettori e stringhe, nel precedente esempio abbiamo costruito due algebre
+   \begin{align*}
+      \mathscr{F} &= \lbrace  \mathscr{F}_{s(x)} \mid s(x) \in \mathcal{R}_{7,2} \rbrace \\ 
+      \mathscr{I} &= \lbrace f:\mathbb{Z} \rightarrow  \mathbb{F}_{2} \mid f(j) = \mathscr{I}_{s(x)}(j) \rbrace
+   \end{align*}
+le quali, oltre ad essere due ulteriori varianti di $\mathcal{R}_{7,2}$, sono un caso particolare di successioni lineari ricorrenti $7$-periodiche e di funzioni lineari $7$-periodiche, che introdurremo in questo paragrafo\footnote{Per una esposizione completa delle successioni lineari ricorrenti sui campi finiti \cite{lidl} pagine 190 e seguenti.}. 
+\begin{definizione}
+   Siano $\mathbf{s} = (s_0, s_1, \dots , s_{r-1})$ vettore dei {\bf valori iniziali} ed $\mathbf{a} = (a_0, a_1, \dots , a_{r-1})$ vettore dei {\bf coefficienti}, elementi di $\mathcal{V}_{r, q}^{c}$, allora una successione $F_{j} = F_{n}(\mathbf{a},\mathbf{s})$ che soddisfa la relazione di ricorrenza
+   \begin{displaymath}
+     \left\{ 
+     \begin{array}{l c} 
+     F_{j}(\mathbf{a},\mathbf{s}) = s_{j} & 0 \leq j \leq r-1 \\
+      F_{j}(\mathbf{a},\mathbf{s}) = \sum_{k=0}^{r-1} a_{k} F_{j-r+k}(\mathbf{a},\mathbf{s})  & n \geq r 
+     \end{array}
+     \right.
+     \end{displaymath}
+   è detta {\bf sequenza lineare ricorrente} di ordine $r$.
+\end{definizione}
+Ad ogni sequenza lineare ricorrente si può associare un polinomio ed una matrice caratteristica che permettono di avere a disposizione degli strumenti in più per il loro studio.
+\begin{definizione}
+   Sia $F_{j}(\mathbf{a},\mathbf{s}) $ sequenza lineare ricorrente, allora il polinomio $c(x) \in \mathbb{F}_{q}\lbrack x \rbrack$ definito come
+   \begin{align*}
+      c(x)= x^{r} - a_{r-1}x^{r-1} - a_{r-2}x^{r-2} - \dots - a_{1}x - a_{0}
+   \end{align*}
+   è detto {\bf polinomio caratteristico} di $F_{j}$. \\
+   Mentre la matrice definita sul vettore $\mathbf{a}$ da
+   \begin{align*}
+      A =
+      \left(
+      \begin{array} {c c c c c c}
+      0 & 0 & 0 & \cdots & 0 & a_{0}    \\
+      1 & 0 & 0 & \cdots & 0 & a_{1}    \\
+      0 & 1 & 0 & \cdots & 0 & a_{2}    \\
+      0 & 0 & 1 & \cdots & 0 & a_{3}    \\
+       & \vdots  &  &  &  & \vdots    \\
+      0 & 0 & 0 & \cdots & 1 & a_{r-1}    \\
+      \end{array}
+      \right)
+    \end{align*}
+    è detta {\bf matrice caratteristica} o matrice compagna.
+\end{definizione}
+Osserviamo che per $a_{0} \neq 0$ la matrice $A$ è invertibile ed appartiene al gruppo lineare.
+La matrice caratteristica di una ricorrenza lineare genera la ricorrenza lineare, infatti definendo $v_{k} = v_{k}(\mathbf{a},\mathbf{s}) = (F_{k}, F_{k+1}, \dots , F_{k+r-1})$ il vettore costituito dagli $r$ elementi della sequenza lineare ricorrente $F_{j}$ a partire dall'elemento $k$-esimo si verifica che
+\begin{align*}
+  v_{k} = v_{0}A^{k}
+\end{align*}
+dove per definizione $v_{0}$ coincide con il vettore dei valori iniziali.\\
+Grazie alla definizione di matrice compagna si può dimostrare\footnote{Per brevità rimandiamo i dettagli al già citato \cite{lidl}. } che se la sequenza lineare ricorrente $F_{j}(\mathbf{a},\mathbf{s}) $ è omogenea, allora è periodica, cioè esiste un intero positivo $f$ tale che $F_{j+f} = F_{j}$ per ogni $j$ positivo. \\
+Il più piccolo $f$ che soddisfa l'equazione precedente è detto {\bf periodo} di $F_{n}$, e la sequenza lineare è detta {\bf $f$-periodica}.
+\begin{definizione}
+   Lo spazio vettoriale costituito dall'insieme delle ricorrenze lineari aventi $c(x)$ come polinomio caratteristico è indicato con $Rec(c(x))$:
+   \begin{align*}
+      Rec(c(x)) = \lbrace F_{j}(\psi_{2}(c(x)),\mathbf{s}) \mid \mathbf{s} \in \mathcal{V}_{r, q}^{c}   \rbrace
+   \end{align*}
+\end{definizione}
+Come presentato nell'esempio introduttivo, ogni polinomio $a(x)$ di $\mathcal{R}_{r,q}$ il cui vettore circolante associato è dato da $\psi_{2}(a(x)) = (a_{0},a_{1}, \dots, a_{r-1})$ definisce una funzione da $\mathbb{Z}_{r}$ in $\mathbb{F}_{q}$:
+\begin{align*}
+F\bigr|_{\mathbb{Z}_{r}}  : \mathbb{Z}_{r}  &\longrightarrow  \mathbb{F}_{q}  \\
+              j &\longmapsto a_{j}
+\end{align*}
+il cui dominio può essere esteso ai numeri interi, considerando la composizione con la proiezione $\pi$ da $\mathbb{Z}$ in $\mathbb{Z}_{r}$:
+      \vspace{0.2cm}
+
+      \[
+      \begindc{\commdiag}[3]
+      %insiemi
+      \obj(0,20)[Z]{$ \mathbb{Z} $}
+      \obj(25,20)[Zr]{$\mathbb{Z}_{r} $}
+      \obj(25,0)[F]{$ \mathbb{F}_{q} $}
+
+      %frecce
+      \mor{Z}{Zr}{$\pi$}[1,5]
+      \mor{Zr}{F}{$F\bigr|_{\mathbb{Z}_{r}}$}
+      \mor{Z}{F}{$ F $}
+
+      \enddc
+      \]
+
+      \vspace{0.2cm}
+
+\begin{align*}
+F = F\bigr|_{\mathbb{Z}_{r}} \circ\pi: \mathbb{Z} &\longrightarrow \mathbb{F}_{q}  \\
+              j &\longmapsto a_{j \mod{r}}
+\end{align*}
+Quindi la funzione $F(j) = F_{j}$ è $r$-periodica e può essere vista come una ricorrenza lineare con polinomio caratteristico $x^r -1$. Le due strutture si equivalgono.\\
+Nell'esempio \ref{ese:ricorr1} abbiamo considerato la ricorrenza lineare avente come polinomio caratteristico $x^7 - 1$. In generale le ricorrenze lineari aventi come polinomio caratteristico $x^r-1$ danno luogo a sequenze $r$-periodiche nelle quali il vettore $s(x)$ si ripete indefinitamente e senza variazioni. La struttura $Rec(x^r-1)$ è uno spazio vettoriale $r$-dimensionale isomorfo a $\mathbb{F}_{q}^{r}$ e considerando il prodotto di convoluzione fra i vettori dei valori iniziali è un'algebra isomorfa a $\mathcal{R}_{r,q}$:
+\begin{teorema}
+   La funzione
+   \begin{align*}
+      \psi_{2}: \mathcal{R}_{r,q}  & \longrightarrow Rec(x^r-1)   \\
+                           s(x)         &\longmapsto F_{j}(\psi_{2}(x^r-1),\psi_{2}(s(x)))
+   \end{align*}
+   è un isomorfismo di algebre
+\end{teorema}
+\begin{proof}
+   I due spazi vettoriali sono entrambi isomorfi a  $\mathbb{F}_{2}^{7}$, inoltre per $s(x)$ e $t(x)$ in $\mathcal{R}_{r,q} $ si ha che
+   \begin{align*}
+      \psi_{2} (s(x) t(x)) = \psi_{2} (s(x)) \psi_{2} (t(x))
+   \end{align*}
+   per come è stato definito il prodotto su $Rec(x^r-1)$.
+\end{proof}
+Cosa accade se anziché considerare $Rec(x^r-1)$, consideriamo $Rec(a(x))$ per $a(x)$ divisore di $\mathcal{R}$?
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% subSEZIONE    %%%%%%%%%%%%%%%%%%%%
+\subsection{Ideali di $Rec(x^r - 1)$}
+
+
+
+
+
+\[
+\begindc{\commdiag}[3]
+%sotto
+\obj(0,5)[V]{$ \mathcal{V}_{r, \mathbb{F}}^{c} $}
+\obj(40,5)[M]{$\mathcal{M}_{r,\mathbb{F} }^{c}$}
+
+
+%metà
+\obj(0,30)[R]{$ \mathcal{R}_{r,q} $}
+\obj(40,30)[A]{$ \mathcal{A}_{r,q} $}
+\obj(-40,30)[P]{$ \mathcal{P}_{r,q} $}
+
+%sopra
+\obj(0,50)[Q]{$ \mathcal{Q}_{r,q} $}
+
+%frecce orizzontali
+\mor{V}{M}{$\psi_{1}$}
+\mor{R}{A}{$\psi_{4}$}
+\mor{R}{P}{$\eta$}
+
+%frecce verticali
+\mor{R}{V}{$\psi_{2}$}
+\mor{A}{M}{$\psi_{3}$}
+\mor{R}{Q}{$\gamma$}
+
+%frecce oblique
+\mor{P}{Q}{$\mu_{1}$}
+\mor{A}{Q}{$\mu_{2}$}
+
+\enddc
+\]
+
+con 
+\begin{align*}
+  \mathcal{A}_{r,q}
+  &:=
+  \mathbb{F}_{q}C_{r} 
+\\
+  \mathcal{P}_{r,q} 
+  &=  \prod_{v \in \mathscr{L}} \mathcal{P}_{v}
+  := \prod_{v \in \mathscr{L}} \mathbb{F}_{q}(\xi^{v}) %= \mathbb{F}_{q}(\xi)
+\\
+  \mathcal{Q}_{r,q} 
+  &=  \prod_{v \in \mathscr{L}} \mathcal{Q}_{v}
+  := \prod_{v \in \mathscr{L}} \quotient{ \mathbb{F}_{q}[x] }{ M^{(v)}(x)} 
+\\
+  \mathcal{R}_{r,q}
+  &:=
+  \quotient{ \mathbb{F}_{q}[x] }{ (x^r -1 )} 
+\end{align*}
+
+
+
+
+
+
+   Seguendo una strada un po' meno comoda si può dimostrare che 
+   \begin{align*}
+      \delta :  \mathcal{V}_{r, \mathbb{F}}^{c}    
+      & \longrightarrow  
+      \mathcal{V}_{r}^{\mathscr{L}}  \\
+      %%
+      ( a_{j} )_{j = 0, \dots, r-1 } 
+      &\longmapsto  
+      ( a_{j} )_{j = 0, \dots, r-1 } 
+  \end{align*}
+  è un isomorfismo di algebre.

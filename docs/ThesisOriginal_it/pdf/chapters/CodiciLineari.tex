@@ -1,0 +1,626 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% CAPITOLI     %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Codici lineari} \label{cap:codiciLineari}
+
+La teoria dei codici correttori si basa sulla necessità di trasmettere dei vettori di informazione attraverso un canale che per motivi tecnici può alterare parte del messaggio. In ogni sistema di comunicazione infatti la ricezione può essere disturbata da segnali di interferenza chiamati genericamente \lq\lq rumore\rq\rq che si sommano all'informazione originariamente trasmessa.
+Riconoscere che un errore è entrato nel messaggio ricevuto ed eventualmente correggerlo è possibile utilizzando determinati strumenti algebrici. \\
+In questo capitolo riportiamo le definizioni e i risultati fondamentali della teoria dei codici lineari utilizzando le notazioni orientate allo sviluppo della terza parte
+\footnote{I risultati citati compaiono in \cite{berardi}, \cite{lint}, \cite{blahut} e \cite{sloane}.}
+.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Codici rivelatori e codici correttori}
+
+I messaggi inviati attraverso un sistema di comunicazione sono generalmente vettori di lunghezza $k$ appartenenti ad uno spazio metrico. Si vedrà nel corso del paragrafo che è conveniente aggiungere a tale spazio la struttura di spazio vettoriale. 
+\begin{definizione}
+   Sia $\mathbb{F} = \mathbb{F}_{q}$ campo finito di ordine $p$ e di cardinalità $q=p^n$. L'insieme delle $r$-uple ordinate ad elementi in $\mathbb{F}$ definito come
+   \begin{align*}
+      \mathbb{F}_{q}^{r} = \lbrace \mathbf{x} = (x_{0},x_{1}, \dots , x_{r-1}) \mid x_{j} \in \mathbb{F} \rbrace
+   \end{align*}
+   e considerato congiuntamente con l'operazione binaria
+   \begin{align*}
+       \rho: \mathbb{F}^{r} \times \mathbb{F}^{r}  &\longrightarrow  \mathbb{R}   \\
+              (\mathbf{x},\mathbf{y}) &\longmapsto  \rho(\mathbf{x},\mathbf{y})  
+              = \arrowvert \lbrace j \mid x_j \neq y_j \rbrace \arrowvert
+   \end{align*}
+   è detto {\bf spazio delle parole} di lunghezza $r$ e soddisfa gli assiomi di spazio metrico. I suoi elementi sono detti {\bf parole} ed $\mathbb{F}_{q}$ è detto {\bf alfabeto} dello spazio. \\
+   Un qualsiasi sottoinsieme $C$ di $\mathbb{F}^{r} $ è detto {\bf codice}, mentre i sottospazi vettoriali sono detti {\bf codici lineari}. 
+\end{definizione}   
+\begin{definizione}
+   Si definisce {\bf distanza minima} la più piccola distanza fra due parole del codice:
+   \begin{align*}
+      d(C) 
+      := min\lbrace  \rho(\mathbf{x},\mathbf{y})    \mid \mathbf{x},\mathbf{y} \in C \rbrace
+   \end{align*}   
+\end{definizione}
+\noindent
+Il vantaggio principale nel considerare i codici $C$ come sottospazi vettoriali dello spazio delle parole, consiste nel poter definire una norma e nel poter esprimere i codici in modo compatto tramite matrici.
+\begin{definizione}
+   Si definisce {\bf peso di Hamming} di una parola $\mathbf{x}$, la sua distanza dall'origine, cioè il numero delle sue componenti non nulle.
+   \begin{align*}   
+      w(\mathbf{x}) = \arrowvert \lbrace j \mid x_j \neq 0 \rbrace \arrowvert = \rho(\mathbf{x},\mathbf{0})
+   \end{align*}   
+   Si verifica che $w$ soddisfa la definizione di norma dello spazio vettoriale $\mathbb{F}^{r}$ e dei suoi sottospazi.\\
+   Il più piccolo peso delle parole di un codice è detto {\bf peso minimo} ed equivale alla distanza minima.
+\end{definizione}
+\noindent
+Si introduce la definizione di rumore, di funzione rivelatore e la pseudo-funzione correttore.
+\begin{definizione}
+   Si definisce {\bf rumore} un qualsiasi vettore $\mathbf{r} $ di $\mathbb{F}^{r}$ che viene sommato alla parola inviata durante la trasmissione. Il livello di rumore è dato dal suo peso di Hamming e si dice {\bf rumore minimo} se il suo peso di Hamming è pari ad $1$. Dato un codice $C$ con distanza minima $d$ si definisce {\bf rumore massimo riconoscibile} il vettore $\mathbf{r}$ di $\mathbb{F}^{r}$ tale che suo peso di Hamming equivale a $\llcorner d/2 \lrcorner$, cioè alla parte intera di $d/2$. \\
+   Mentre per  $\mathbf{c}$ parola di $C$ si definisce {\bf rumore critico} di $\mathbf{c}$ il vettore $\mathbf{r}$ di $\mathbb{F}^{r}$ tale che $\mathbf{c}+ \mathbf{r}$ appartenga a $C \setminus \lbrace \mathbf{c} \rbrace $.
+\end{definizione}
+
+\begin{definizione}
+   Dato il codice $C$ con distanza minima $d$, la funzione che associa ad ogni parola dello spazio $\mathbb{F}^{r}$ il simbolo $0$ se la parola non appartiene al codice ed il simbolo $1$ se la parola vi appartiene è detta funzione {\bf rivelatore}
+   \begin{align*}
+       r: \mathbb{F}^{r}   &\longrightarrow  \lbrace 0,1 \rbrace \\
+            \mathbf{v}  &\longmapsto  0 \quad if \quad \mathbf{v} \notin C  \\
+            \mathbf{v}  &\longmapsto  1 \quad if \quad  \mathbf{v} \in C 
+   \end{align*}
+\end{definizione}
+
+\begin{definizione}
+   Dato il codice $C$ con distanza minima $d$, la pseudofunzione che associa ad ogni parola dello spazio $\mathbb{F}^{r}$ la parola (o le parole) del codice ad essa più vicina è detta funzione {\bf correttore}
+   \begin{align*}
+       c: \mathbb{F}^{r}   &\longrightarrow  C \\
+            \mathbf{x} + \mathbf{r} &\longmapsto  \mathbf{x}  
+   \end{align*}
+   dove $\mathbf{x}$ è una parola del codice ed $\mathbf{r}$ è il rumore.
+\end{definizione}
+\noindent
+La funzione $c$ è una pseudofunzione se esiste un vettore di $\mathbb{F}^{r}$ avente distanza pari a $\llcorner d/2 \lrcorner$ da due parole distinte del codice $C$. Sulle definizioni appena enunciate si basano le prossime di codice rivelatore e codice correttore:
+\begin{definizione}
+   Un codice $C$ con distanza minima $d$ si dice $e$-{\bf rivelatore} se $e$ è il peso massimo del rumore che può essere sommato ad una parola del codice, senza che l'immagine del correttore di tale somma risulti essere $1$ (cioè senza che il rumore la trasformi in un'altra parola del codice). In questo caso $e+1$ è il più piccolo peso dei rumori critici delle parole del codice. 
+\end{definizione}
+\begin{definizione}
+   Un codice $C$ con distanza minima $d$ si dice {\bf $e$-correttore} se la funzione $c$ è ben definita per la restrizione del dominio ai vettori di $\mathbb{F}^{r}$ del tipo $\mathbf{v} = \mathbf{x} + \mathbf{r}$ dove $x$ è un vettore di $C$ ed $r$ ha peso di Hamming minore o uguale ad $e$.
+\end{definizione}
+\noindent
+Presentiamo tre proprietà che mettono in relazione le caratteristiche di un codice come sottospazio vettoriale alle sue capacità di correggere e rivelare gli errori.
+\begin{prop} \label{cap2_1:propcodici1}
+   Sia $C$ codice di lunghezza $r$. $C$ è $e$-rivelatore se e solo se $d(C)= e+1$.
+\end{prop}
+\begin{proof} 
+   Dimostriamo separatamente le due inclusioni.
+   \begin{itemize}
+   \item[$\Rightarrow$)] Se per assurdo $d(C) < e+1 $ allora esistono due vettori del codice $\mathbf{x}, \mathbf{y}$, la cui distanza è minore di $e$. Quindi $C$ non può essere $e$-rivelatore. 
+   \item[$\Leftarrow$)] Viceversa, siano $\mathbf{x} \in C$, $\mathbf{r} \in \mathbb{F}^{r}$ tale che $w(\mathbf{r}) \leq e$. Allora
+   \begin{align*}
+     &\rho(\mathbf{x}, \mathbf{x}+\mathbf{r}) \leq e < d(C) \\
+     &\Rightarrow \mathbf{x}+\mathbf{r} \notin C 
+   \end{align*}
+   Se invece $w(\mathbf{r}) > e + 1$ allora
+   \begin{align*}
+     \rho(\mathbf{x}, \mathbf{x}+\mathbf{r}) \geq e+1 > d(C)
+   \end{align*}
+   quindi il vettore $\mathbf{x}+\mathbf{r}$ può eventualmente appartenere al codice.
+\end{itemize}
+\end{proof}
+
+\begin{prop}\label{cap2_1:propcodici2}
+   Sia $C$ codice di lunghezza $r$. $C$ è $e$-correttore se e solo se $d(C)= 2e+1$.
+\end{prop}
+\begin{proof}
+   Dimostriamo separatamente le due inclusioni. 
+   \begin{itemize}
+   \item[$\Rightarrow$)] Se $C$ è $e$-correttore, allora per ogni coppia di parole distinte del codice $\mathbf{x}, \mathbf{y}$ e comunque scelti $\mathbf{r}_{1}$ ed $\mathbf{r}_{2}$ rumori di peso massimo $e$, $\mathbf{x}+\mathbf{r}_{1} \neq \mathbf{y}+\mathbf{r}_{2}$ cioè la funzione correttore è ancora ben definita,  quindi $\rho(\mathbf{x},\mathbf{y}) = 2e + 1$.
+   \item[$\Leftarrow$)] Viceversa se $d(C) = 2e + 1$ allora comunque scelti $\mathbf{x}, \mathbf{y} \in C$ parole distinte del codice $\rho(\mathbf{x},\mathbf{y}) \geq 2e+1$. Sia $\mathbf{r}$ rumore di peso $w(\mathbf{r}) \leq e$ allora $\rho(\mathbf{x} + \mathbf{r},\mathbf{y}) \geq e+1$, quindi la funzione correttore è ben definita per il dominio ristretto a tutti gli elementi del tipo $\mathbf{x} + \mathbf{r}$.
+\end{itemize}
+\end{proof}
+
+\begin{prop}\label{cap2_1:propcodici3}
+   Sia $C$ codice di lunghezza $r$. $C$ è $\llcorner (d-1)/2 \lrcorner$-correttore.
+\end{prop}
+\begin{proof}
+   Segue dalla proprietà \ref{cap2_1:propcodici2}, infatti se $d=2e+1$ allora $e=\llcorner (d-1)/2 \lrcorner$.
+\end{proof}
+\noindent
+Se nei casi in cui la funzione rivelatore è ben definita allora la codifica del codice è detta {\bf completa}. Abbiamo una codifica {\bf incompleta} quando c'è una parola che non appartiene al codice e che può essere decodificata indifferentemente con due parole distinte del codice.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Codici correttori perfetti e limitazione di Hamming}
+
+La metrica nello spazio delle parole $\mathbb{F}^{r}$ induce una topologia i cui chiusi sono definiti da sfere indicate con
+\begin{align*}
+   S_{t}(\mathbf{x}) := \lbrace \mathbf{y} \in \mathbb{F}^{r} \mid \rho(\mathbf{x},\mathbf{y}) \leq t \rbrace 
+\end{align*}
+la cui frontiera è una superficie sferica definita da
+\begin{align*}
+   fr(S_{t}(\mathbf{x})) = \sigma_{t}(\mathbf{x}) 
+   := \lbrace \mathbf{y} \in \mathbb{F}^{r} \mid \rho(\mathbf{x},\mathbf{y}) = t \rbrace 
+\end{align*}
+Ciascuna sfera è unione di superfici sferiche  concentriche di raggio compreso fra $0$ ed il raggio della sfera:
+\begin{align*}
+   S_{t}(\mathbf{x}) = \bigcup_{s=0}^{t} \sigma_{s}(\mathbf{x}) 
+\end{align*}
+da cui la cardinalità di una sfera è pari alla somma delle cardinalità delle superfici sferiche concentriche che lo definiscono, essendo queste fra loro disgiunte
+\begin{align*}
+   \arrowvert S_{t}(\mathbf{x})\arrowvert  = \bigcup_{s=0}^{t} \arrowvert\sigma_{s}(\mathbf{x})\arrowvert 
+\end{align*}
+Si verifica inoltre che
+\begin{align*}
+   \arrowvert\sigma_{s}(\mathbf{x})\arrowvert  = \binom{r}{s}(q-1)^{s}
+\end{align*} 
+quindi
+\begin{align*}
+   \arrowvert S_{t}(\mathbf{x})\arrowvert  = \sum_{s=0}^{t} \binom{r}{s}(q-1)^{s}
+\end{align*}
+
+\begin{prop}
+   Sia $C$ codice di lunghezza $r$. $C$ è $e$-correttore se e solo se per ogni coppia di parole distinte del codice $\mathbf{x},\mathbf{y}$, l'intersezione fra le due sfere $S_{e}(\mathbf{x}),S_{e}(\mathbf{y})$ è vuota.
+\end{prop}
+\begin{proof}
+   Dalla proprietà \ref{cap2_1:propcodici2} $C$ è $e$ correttore se e solo se $d(C)= 2e+1$, allora segue
+   \begin{align*}
+      d(C)= 2e+1 
+      &\iff \forall \mathbf{x},\mathbf{y} \in C, \mathbf{x} \neq \mathbf{y} \quad \rho(\mathbf{x},\mathbf{y}) \geq 2e + 1 \\
+      &\iff S_{e}(\mathbf{x}) \cap S_{e}(\mathbf{x}) = \emptyset
+   \end{align*}
+\end{proof}
+\noindent
+Sono stati appena visti alcuni vincoli per una scelta della distanza minima $d$ ottimale, che possono essere formalizzati nella seguente
+\begin{prop}
+   Sia $C$ codice con distanza minima $d$ pari, allora $C$ è un codice $(d/2-1)$-correttore ed è un codice $d/2$-rivelatore
+\end{prop}
+\begin{proof}
+   Sia $\mathbf{r} \in \mathbb{F}^{r}$ tale che $w(\mathbf{r}) = d/2$, allora per ogni $\mathbf{x}$ parola del codice si ha che $\mathbf{x} + \mathbf{r} \in S_{d/2}(\mathbf{x})$, ma contemporaneamente può esistere $\mathbf{y} \in C$ tale che $\mathbf{x} + \mathbf{r} \in S_{d/2}(\mathbf{y})$ senza contraddizioni dato che $\rho(\mathbf{x}, \mathbf{y}) \geq d/2+d/2 = d$.
+\end{proof}
+
+Considerando lo spazio delle parole, se esiste un raggio ed un insieme di centri tali che le sfere siano disgiunte e che non ci siano parole che non appartengano ad alcuna di queste sfere, allora i centri costituiscono un codice nello spazio delle parole di tipo particolare.
+\begin{definizione}
+   Dato un codice $C$ $e$-correttore, si definisce {\bf insieme dei punti di difetto}
+   \begin{align*}
+      set(\delta_{C}) 
+      :=  \mathbb{F}^{r} \setminus  \bigcup_{\mathbf{x} \in C} S_{e}(\mathbf{x})
+   \end{align*}
+   e si definisce {\bf difetto} il numero
+   \begin{align*}
+      \delta_{C} 
+      &:= \arrowvert \mathbb{F}^{r} \arrowvert - \arrowvert \bigcup_{\mathbf{x} \in C} S_{e}(\mathbf{x}) \arrowvert \\
+      &= \arrowvert \lbrace \mathbf{y} \in \mathbb{F}^{r} \mid \mathbf{y} \notin \cup_{\mathbf{x} \in C} S_{e}(\mathbf{x}) \rbrace \arrowvert
+   \end{align*}
+\end{definizione}
+\begin{definizione}
+   Un codice $C$ $e$-correttore si dice {\bf perfetto} se la famiglia di sfere  $\lbrace S_{e}(\mathbf{x}) \rbrace_{\mathbf{x} \in C} $ costituisce una partizione di $\mathbb{F}^{r}$, cioè se il suo difetto è pari a zero.
+\end{definizione}
+\noindent
+Dalle considerazioni sulla cardinalità delle sfere segue la dimostrazione del prossimo teorema, detto {\bf teorema di limitazione di Hamming}
+\begin{teorema}\label{cap2_1:teolimhamming}
+   Sia $C$ codice $e$-correttore di lunghezza $r$ definito sull'alfabeto $\mathbb{F}=\mathbb{F}_{q}$, allora
+   \begin{align*}
+      \arrowvert C \arrowvert  \arrowvert S_{e}(\mathbf{x})  \arrowvert  \leq \arrowvert \mathbb{F}^{r} \arrowvert
+   \end{align*}
+   per $\mathbf{x}$ generico elemento di $C$.\\
+   Se il codice $C$ è perfetto vale allora
+   \begin{align*}
+      \arrowvert C \arrowvert  \arrowvert S_{e}(\mathbf{x})  \arrowvert  = \arrowvert \mathbb{F}^{r} \arrowvert
+   \end{align*}
+\end{teorema}
+\noindent
+La tesi può essere riformulata come:
+\begin{align*}
+   \arrowvert C \arrowvert  \sum_{s=0}^{t} \binom{r}{s}(q-1)^{s} \leq q^r
+\end{align*}
+Tre conseguenze del teorema di limitazione di Hamming sono
+\begin{corollario}
+    Il codice $e$-correttore $C$ di lunghezza $r$ è perfetto se 
+    \begin{align*}
+        \arrowvert S_{e}(\mathbf{x})  \arrowvert \mid  \arrowvert \mathbb{F}^{r} \arrowvert
+     \end{align*}
+     o equivalentemente
+     \begin{align*}
+         \sum_{s=0}^{t} \binom{r}{s}(q-1)^{s} \mid q^r
+     \end{align*}
+\end{corollario}
+
+\begin{corollario}
+    Il codice $1$-correttore $C$ di lunghezza $r$ è perfetto se 
+     \begin{align*}
+         (1+r(q-1)) \mid q^r
+     \end{align*}
+\end{corollario}
+
+\begin{corollario}
+    Non esistono codici $1$-correttori perfetti di lunghezza pari.
+\end{corollario}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{(r,k)-codici e limitazione di Singleton}
+
+Presentiamo un ulteriore limite alla progettazione di codici correttori lineari, detto limitazione di Singleton. Il seguente teorema è un primo passo che conduce alla definizione di \emph{posti di informazione}, che sarà cruciale nei prossimi capitoli.
+\begin{teorema}\label{cap2_1:teolimitecodici}
+   Sia $C$ codice di lunghezza $r$ e distanza minima $d$, allora 
+   \begin{align*}
+      \arrowvert C \arrowvert \leq q^{r-d+1}
+   \end{align*}
+\end{teorema}
+\begin{proof}
+   Segue da 
+   \begin{align*}
+      \arrowvert C \arrowvert q^{d-1} \leq \arrowvert \mathbb{F}^{r} \arrowvert
+   \end{align*}
+\end{proof}
+\noindent
+Dal teorema precedente è possibile assegnare $k \leq r-d+1$ posti di ogni parola del codice che la determinano univocamente. 
+\begin{definizione}
+   Sia $C$ codice di lunghezza $r$ e distanza minima $d$. Fissati $k \leq r-d+1$ interi positivi compresi fra $1$ ed $r$ ed indicati con $j_1, \dots j_k$, si dicono {\bf posti di informazione} se comunque scelta una $k$-upla $(y_1,\dots , y_k)$ ad elementi in $\mathbb{F}$, esiste una ed una sola parola di $C$ tale che nel posto $j_i$ compaia $y_i$ per ogni $i$ compreso fra $1$ e $k$. I posti che non sono di informazione sono detti di {\bf ridondanza}.
+\end{definizione}
+\noindent
+Nel processo di codifica quindi ogni messaggio, inteso come sequenza di lettere, viene suddiviso in vettori di lunghezza $k$ e ad ogni vettore vengono aggiunti $r-k$ simboli di ridondanza. Il rapporto $r/k$ viene chiamato tasso di informazione.
+\begin{definizione}
+   Un codice $C$ di lunghezza $r$ avente $k$ posti di informazione si dice $(r,k)$-{\bf codice}. Se è necessario specificare anche la distanza minima $d$, il codice $C$ sarà detto $(r,k,d)$-codice.
+\end{definizione}
+\noindent
+La tesi del seguente teorema è nota come {\bf limitazione di Singleton}:
+\begin{teorema}
+   Sia $C$ un $(r,k,d)$-codice, allora $d\leq r-k+1$
+\end{teorema}
+\begin{proof}
+   Per la corrispondenza fra le parole del codice e i vettori di lunghezza $k$ definita per gli $(r,k)$-codici segue che $\arrowvert C \arrowvert = q^k$, mentre dal teorema segue che $\arrowvert C \arrowvert = q^{r-d+1}$.
+\end{proof}
+
+\begin{definizione}
+   Un $(r,k)$-codice $C$ è detto a {\bf massima distanza separabile} (o MDS) se comunque scelti $k$ posti di un qualsiasi vettore del codice, questi sono di informazione. 
+\end{definizione}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Matrice generatrice e matrice di controllo}
+
+Utilizzando il fatto che i codici lineari sono in particolare dei sottospazi vettoriali, possiamo scrivere gli elementi di un codice dalla matrice di passaggio dallo spazio $\mathbb{F}^{r} $ al sottospazio $C$. \\
+Sia $\lbrace \mathbf{b}_{i} \rbrace_{i=1}^{r}$ base di $\mathbb{F}^{r}$ e sia $\lbrace \mathbf{e}_{i} \rbrace_{i=1}^{k}$ base di $C$, allora è noto che ogni vettore $\mathbf{b}_{i}$ può essere scritto come combinazione lineare dei $\mathbf{e}_{i}$:
+\begin{align*}
+   \mathbf{b}_{i} = \sum_{j=1}^{r} a_{ij} \mathbf{e}_{j}  
+\end{align*}
+A tale sistema corrisponde la matrice di caratteristica $k$, indicata con $G$ e detta {\bf matrice generatrice} del codice $C$
+\begin{align*}
+  G =
+  \left(
+  \begin{array} {c c c c c}
+  a_{11} & \cdots & a_{1k} & \cdots & a_{1r} \\
+  a_{21} & \cdots & a_{2k} & \cdots & a_{2r} \\
+  \vdots &  & \vdots & & \vdots \\
+  a_{k1} & \cdots & a_{kk} & \cdots & a_{kr} 
+  \end{array}
+  \right)
+\end{align*}
+In questo caso il codice $C$ è detto generato da $G$.
+Utilizzando i risultati dell'algebra lineare
+\footnote{Ad esempio con una generalizzazione di pag. 99 \cite{stoka}.}
+è possibile scrivere la matrice $G$ in modo tale che le prime $k$ colonne coincidano con le prime $k$ colonne della matrice identità $k\times k$: 
+\begin{align*}
+   G = (I_{k} \mid E)
+\end{align*} 
+In questa forma $G$ è detta {\bf in forma standard}.
+Risulta immediato il rapporto fra gli $(r,k)$-codici sopra definiti ed i codici lineari:
+\begin{teorema}
+   Ogni matrice $k\times r$ di caratteristica $k$ definisce un $(r,k)$-codice.
+\end{teorema}
+\begin{proof}
+   Ad ogni matrice corrisponde infatti un sottospazio di dimensione $k$ dello spazio delle parole rispetto a delle basi fissate. Tutte le combinazioni lineari degli elementi della base del sottospazio sono vettori di un sottospazio $k$-dimensionale che è quindi un $(r,k)$-codice.
+\end{proof}
+\noindent
+Dato che esistono matrici generatrici diverse che definiscono lo stesso sottospazio vettoriale, non c'è una corrispondenza biunivoca fra le matrici $k\times r$ di caratteristica $k$ ed i codici lineari. I codici lineari equivalenti saranno approfonditi nei prossimi paragrafi. \\
+Fra i vantaggi della rappresentazione matriciale si annovera un modo rapido per capire (e per costruire) codici a massima distanza separabile.
+\begin{teorema} \footnote{\cite{berardi} pag. 131, teorema $6.9$.}
+   Un codice lineare $C$ $k$-dimensionale è un MDS se e solo se ogni minore di ordine $k$ di una matrice generatrice del codice è non nullo.
+\end{teorema}
+\begin{proof}
+   Dimostriamo il risultato per doppia inclusione:
+   \begin{itemize}
+   \item[$\Rightarrow$)] $C$ è MDS se $k$ posti qualsiasi sono di informazione. Se per assurdo la matrice generatrice di $C$ avesse un minore di ordine $k$ nullo, i vettori di tale matrice non sarebbero linearmente indipendenti e due parole diverse di lunghezza $k$ private dei simboli di ridondanza coinciderebbero.
+   \item[$\Leftarrow$)] Per contrapposizione: sia $C$ codice avente $G$ matrice generatrice che possiede un minore nullo di ordine $k$. Allora esistono almeno due parole diverse che private dei simboli di ridondanza risultano essere uguali. Quindi $C$ non è un codice MDS.
+\end{itemize}
+\end{proof}
+
+Si pone ora il problema di cercare un modo computazionalmente efficiente per determinare se una parola dello spazio $ \mathbb{F}^{r} $ appartiene ad un dato codice lineare $C$. Per tale scopo è necessario introdurre i codici duali definiti sull'usuale prodotto scalare fra vettori:
+\begin{definizione}
+   Sia un codice lineare $C$ di $\mathbb{F}^{r}$ si definisce {\bf spazio ortogonale} l'insieme 
+   \begin{align*}
+      C^{\perp} 
+      := \lbrace \mathbf{x} \mid \mathbf{x} \cdot \mathbf{c} = 0 \quad \forall \mathbf{c} \in C \rbrace
+   \end{align*}
+   che è a sua volta un sottospazio vettoriale di $\mathbb{F}^{r}$ detto {\bf codice ortogonale} (o codice duale).
+\end{definizione}
+\noindent
+Dato che sui campi finiti possono esserci vettori isotropi, $C$ e $C^{\perp}$ possono avere in comune vettori diversi dal vettore nullo. Nel caso in cui $C = C^{\perp}$ allora $C$ è detto codice {\bf autoduale}; gli unici codici autoduali possibili sono quelli in cui $k=n/2$. Il fatto che il codice ortogonale sia un sottospazio vettoriale di $\mathbb{F}^{r}$, porta alla seguente
+\begin{definizione}
+   Sia $C$ $(n,k)$-codice lineare, allora la matrice generatrice del codice ortogonale è detta {\bf matrice di controllo} ed è indicata con H.
+\end{definizione}
+\noindent
+I prossimi teoremi stabiliscono un modo per determinare l'appartenenza di una parola ad un codice tramite la matrice di controllo.
+\begin{teorema} \label{teorFondMatrGen}
+   Sia $C$ $(n,k)$-codice lineare generato dalla matrice $G$.\\ 
+   Allora
+   \begin{align*}
+      \mathbf{x} \in C^{\perp} \iff G \mathbf{x}^{t} = \mathbf{0}^{t}
+   \end{align*}
+\end{teorema}
+\begin{proof}
+   Dimosrtiamo per doppia inclusione:
+   \begin{itemize}
+   \item[$\Rightarrow$)] Sia $\mathbf{x} \in C^{\perp}$ allora $\mathbf{x}$ è ortogonale ad ogni parola di $C$, quinde a maggior ragione è ortogonale alle parole di ogni base di $C$, anche della base i cui vettori costituiscono la matrice $G$: $G \mathbf{x}^{t} = \mathbf{0}^{t}$.
+   \item[$\Leftarrow$)] Viceversa se $G \mathbf{x}^{t} = \mathbf{0}^{t}$, allora $\mathbf{x}$ è ortogonale a una scelta di vettori $\lbrace \mathbf{e}_{0}, \dots , \mathbf{e}_{r-1} \rbrace$ base di $C$. Dato che ogni parola del codice è definita come combinazione lineare  $\mathbf{c} = \lambda_{0} \mathbf{e}_{0} + \dots + \lambda_{r-1} \mathbf{e}_{r-1}$ allora
+   \begin{align*}
+      \mathbf{x} \cdot \mathbf{c} 
+      &= \mathbf{x} \cdot ( \lambda_{0} \mathbf{e}_{0} + \dots + \lambda_{r-1} \mathbf{e}_{r-1}) \\
+      &= \lambda_{0} (\mathbf{x} \cdot  \mathbf{e}_{0}) + \dots + \lambda_{r-1} (\mathbf{x} \cdot \mathbf{e}_{r-1})\\
+      &= 0
+   \end{align*}
+   Da cui segue che $\mathbf{x}$ è ortogonale ad ogni parola di $C$ ed appartiene quindi al codice duale.
+\end{itemize}
+\end{proof}
+\begin{corollario}
+   Se $C$ $(n,k)$-codice lineare allora $C^{\perp}$ è un $(r,r-k)$-codice lineare e la sua matrice generatrice è di dimensione $(r-k)\times r$.
+\end{corollario}
+\begin{proof}
+   Dal teorema precedente i vettori $\mathbf{x} = (x_{1}, \dots , x_{r})$ di $C^{\perp}$ sono vettori di $\mathbb{F}_{q}^{r}$ ortogonali ai vettori di una base di $C$. Sia $\lbrace \mathbf{e}_{0} \dots \mathbf{e}_{k} \rbrace $ tale base, allora $\mathbf{x}$ appartiene a $C^{\perp}$ se le sue componenti soddisfano il sistema
+   \begin{align*}
+      (\mathbf{e}_{i})_{j} x_{j} = 0 \qquad \forall i = 1, \dots , k \quad \forall j=1, \dots, r
+   \end{align*}
+   Tale sistema possiede esattamente $n-k$ soluzioni linearmente indipendenti, che costituiscono una base per $C^{\perp}$.
+\end{proof}
+
+\begin{teorema}\label{teorFondMatrContrllo}
+   Sia $C$ $(n,k)$-codice lineare generato dalla matrice $G$ ed avente $H$ come matrice di controllo.\\ 
+   Allora
+   \begin{align*}
+      \mathbf{x} \in C \iff H \mathbf{x}^{t} = \mathbf{0}^{t}
+   \end{align*}   
+\end{teorema}
+\begin{proof}
+   $\mathbf{x}\in C$ se e solo se $\mathbf{x}\cdot \mathbf{c}^{\perp} = \mathbf{0}$ $\forall \mathbf{c}^{\perp} \in C^{\perp}$. Ma questo accade in particolare per tutti i vettori della base che costituiscono le righe di $H$, e viceversa se accade per tutti i vettori della base accade per ogni altro vettore.
+\end{proof}
+\noindent
+Risulta quindi essere di importanza cruciale il valore di $H \mathbf{x}^{t}$ che prende il nome di {\bf sindrome} del vettore $\mathbf{x} \in \mathbb{F}^{r}$.
+\noindent
+È possibile ricavare la matrice di controllo $H$ costruendola a partire dalla matrice generatrice $G$, utilizzando il seguente
+\begin{teorema}[di correlazione fra $G$ ed $H$]
+   Sia $C$ $(r,k)$-codice lineare di matrice generatrice $G$ scritta in forma standard come $G = (I_{k} \mid E)$, allora la matrice di controllo risulta essere $H = (-E^{t} \mid I_{n-k})$.   
+\end{teorema}
+\begin{proof}
+   Se $G$, rispetto alla base standard di $\mathbb{F}_{q}^{r}$ e alla base $\lbrace \mathbf{e}_{0} \dots \mathbf{e}_{k} $ di $C$, è data da 
+   \begin{align*}
+      G=
+      \left(
+      \begin{array} {c c c c | c c c }
+      1 & 0 & \cdots & 0 & e_{1,k+1} & \cdots &e_{1,k+1}   \\
+      0 & 1 & \cdots & 0 & e_{1,k+1} & \cdots &e_{1,k+1}   \\
+       \vdots & &  & \vdots & \vdots  &  &  \vdots   \\
+      0 & 0 & \cdots & 1 & e_{1,k+1} & \cdots &e_{1,k+1}   
+      \end{array}
+      \right)
+   \end{align*}
+   allora un vettore $\mathbf{x}$ è una parola del codice $C$ se e solo se 
+   \begin{align*}
+      \left(
+      \begin{array} {c c c c | c c c }
+      1 & 0 & \cdots & 0 & e_{1,k+1} & \cdots &e_{1,k+1}   \\
+      0 & 1 & \cdots & 0 & e_{1,k+1} & \cdots &e_{1,k+1}   \\
+       \vdots & &  & \vdots & \vdots  &  &  \vdots   \\
+      0 & 0 & \cdots & 1 & e_{1,k+1} & \cdots &e_{1,k+1}   
+      \end{array}
+      \right)
+      \left(
+      \begin{array} {c  }
+      x_1    \\
+      \vdots    \\
+      x_{k}   \\
+      \hline 
+      x_{k + 1}   \\
+       \vdots    \\
+      x_{r}   \\  
+      \end{array}
+      \right) 
+      =
+      \left(
+      \begin{array} {c  }
+      0    \\
+      \vdots    \\
+      0   \\
+      \hline 
+      0   \\
+       \vdots    \\
+      0   \\  
+      \end{array}
+      \right)
+   \end{align*}
+   che ha esattamente $n-k$ soluzioni linearmente indipendenti. Queste possono essere costuite assegnando ai vetttori $(r-k)$-dimensionali delle incognite i vettori della base standard di $\mathbb{F}_{q}^{r-k}$ per ottenere una matrice generatrice dello spazio duale della forma $H = ( ? \mid I_{n-k})$. \\
+   Tali soluzioni sono  date da
+   \begin{align*}
+      &(-e_{1,k+1}, -e_{2,k+1}, \dots , -e_{k,k+1}, 1, 0 , \dots , 0 ) \\
+      &(-e_{1,k+2}, -e_{2,k+2}, \dots , -e_{k,k+2}, 0, 1 , \dots , 0 ) \\
+      &\vdots \qquad \qquad \qquad \qquad \vdots \\
+      &(-e_{1,r}, -e_{2,r}, \dots , -e_{k,r}, 0, 0 , \dots , 1 ) 
+   \end{align*}
+    e consentono di ricavare i vettori che occupano lo spazio che avevamo indicato con $?$:
+   \begin{align*}
+      H=
+      \left(
+      \begin{array} {c c c c | c c c c }
+      -e_{1,k+1} & -e_{2,k+1} & \dots & -e_{k,k+1} & 1 & 0 & \dots & 0   \\
+      -e_{1,k+2} & -e_{2,k+2} & \dots & -e_{k,k+2} & 0 & 1 & \dots & 0   \\
+       \vdots & & &  & \vdots & \vdots  &  &  \vdots   \\
+      -e_{1,k+r} & -e_{2,k+r} & \dots & -e_{k,k+r} & 0 & 0 & \dots & 1   \\  
+      \end{array}
+      \right)
+   \end{align*}    
+    da cui risulta la tesi.
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Codici lineari equivalenti}
+
+Come già accennato due sottospazi vettoriali isomorfi possono essere generati da basi diverse, quindi serve un criterio per distinguere i codici isomorfi da quelli non isomorfi.
+\begin{definizione}
+   Due codici lineari si dicono {\bf equivalenti} se è possibile ottenere tutte le parole di uno a partire dall'altro, applicando una successione delle seguenti operazioni
+   \begin{enumerate}
+      \item Permutare la posizione di due elementi delle parole.
+      \item Moltiplicare le lettere di una posizione all'interno di ogni parola per una lettera non nulla.
+   \end{enumerate}
+\end{definizione}
+\noindent
+Essendo possibile applicare alla matrice $G$ delle trasformazioni elementari che modificano gli elementi delle righe e delle colonne della matrice senza cambiare il sottospazio da essa generato, a meno di permutazioni sugli elementi di ogni vettore che vi appartiene, segue la dimostrazione della
+\begin{prop}
+   Due codici lineari $C$ e $C'$ sono detti equivalenti, se è possibile ottenere la matrice generatrice $G$ di $C$ dalla matrice generatrice $G'$di $C$ tramite una sequenza di trasformazioni elementari dei seguenti tipi:
+   \begin{enumerate}
+      \item Scambiare due righe.
+      \item Moltiplicare gli elementi di una riga per un elemento non nullo in $\mathbb{F}$.
+      \item Scambiare due colonne.
+      \item Moltiplicare gli elementi di una colonna per un elemento non nullo in $\mathbb{F}$.
+   \end{enumerate}
+\end{prop}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Codifica e decodifica nei codici lineari}
+
+Esistono dei procedimenti standard per la codifica e la decodifica dei codici lineari che possono essere \lq\lq raffinati\rq\rq per codici particolari. In questa sezione sono presentati un metodo di codifica ed un metodo di decodifica validi per qualsiasi codice lineare.
+
+\subsection{Codifica tramite matrice generatrice}
+
+Codificare un messaggio di un $(r,k)$-codice significa associare tramite un algoritmo ad ogni parola di $\mathbb{F}^{k}$ una parola di $\mathbb{F}^{r}$. La matrice generatrice $G$ del codice determina un modo computazionalmente efficiente per effettuare la codifica: sia $\mathbf{m} \in \mathbb{F}^{k}$ messaggio da codificare, allora $\mathbf{m}$ viene codificato nella parola del codice $\mathbf{c}$ mediante il prodotto: 
+\begin{align*}
+  \mathbf{c} = \mathbf{m}G = (m_1 ,m_2 , \dots m_{k}) 
+  \left(
+  \begin{array} {c c c c c}
+  a_{11} & \cdots & a_{1k} & \cdots & a_{1r} \\
+  a_{21} & \cdots & a_{2k} & \cdots & a_{2r} \\
+  \vdots &  & \vdots & & \vdots \\
+  a_{k1} & \cdots & a_{kk} & \cdots & a_{kr} 
+  \end{array}
+  \right)
+\end{align*}
+E quindi la parola del codice $\mathbf{c}$ generata dal messaggio $\mathbf{m}$ risulta avere componenti:
+\begin{align*}
+  \left\{
+  \begin{array} {l}
+  c_{1} = m_{1}e_{11} + m_{2}e_{21} + \dots + m_{k}e_{k1} \\
+  c_{2} = m_{2}e_{12} + m_{2}e_{22} + \dots + m_{k}e_{k2} \\
+  \quad \vdots \qquad \qquad \qquad \qquad \qquad \vdots\\
+  c_{k} = m_{1}e_{1r} + m_{2}e_{2r} + \dots + m_{k}e_{kr}
+  \end{array}
+  \right. 
+\end{align*}
+Il procedimento descritto associa ad ogni messaggio una ed una sola parola, infatti per definizione di $G$ messaggi diversi diventano parole diverse tramite il prodotto per $G$.
+
+Se la matrice generatrice è in forma standard allora il messaggio $\mathbf{m} = (m_1 ,m_2 , \dots m_{k}) $ viene trasformato tramite prodotto con $ G = (I_{k} \mid E)$ nel vettore $\mathbf{m} = (m_1 ,\dots m_{k}, c_{k+1}, \dots , c_{r})$ dove le lettere $c_{k+1}, \dots , c_{r}$ sono i simboli di controllo.
+
+% \begin{esempio}
+%     collegato all'esempio del prossimo paragrafo
+% \end{esempio}
+
+\subsection{Decodifica con la sindrome}
+
+Per la decodifica è utile considerare un $(r,k)$-codice lineare $C$ come un sottogruppo abeliano di ordine $q^k$ di $\mathbb{F}^{r}$ oltre che come sottospazio vettoriale; in questo modo il sottogruppo $C$ determina la partizione del gruppo $\mathbb{F}^{r}$ in laterali $C_{j}$. Se viene trasmessa la parola codificata $\mathbf{x}$ e viene ricevuta la parola $\mathbf{y} = \mathbf{x} + \mathbf{e}$, allora l'errore è un elemento dello stesso laterale a cui appartiene il vettore ricevuto:
+
+\begin{teorema}
+   Sia $C$ un $(r,k)$-codice, sia $\mathbf{x} \in C$ parola codificata ed inviata ed $\mathbf{y} = \mathbf{x} + \mathbf{e}$ parola ricevuta con l'errore $\mathbf{e}$, allora $\mathbf{y}$ appartiene al laterale $C_{j}$ che è lo stesso laterale al quale appartiene anche $\mathbf{e}$.
+\end{teorema}
+\begin{proof}
+   Dato che i laterali formano una partizione, esiste sempre un laterale $C_{j}$ al quale la parola trasmessa $\mathbf{y}$ appartiene. Cioè $\mathbf{y} = \mathbf{a_{j}} + \mathbf{c}$ dove $\mathbf{a_{j}}$ è il {\bf leader} di $C_{j}$, cioè l'elemento del laterale di peso minimo e $\mathbf{c}$ è una parola del codice $C$, allora
+   \begin{align*}
+      \mathbf{e} = \mathbf{y} - \mathbf{x} = \mathbf{a_{j}} + \mathbf{c} - \mathbf{x} = \mathbf{a_{j}} + \mathbf{c'}
+   \end{align*}
+   dove $\mathbf{c'} \in C$, da cui segue che $\mathbf{e} \in C_{j}$.
+\end{proof}
+\noindent
+Basandosi su questa idea ed assumendo che l'errore sia di peso minore del rumore di peso massimo riconoscibile il decodificatore che riceve $\mathbf{y}$ individua come errore il leader del laterale di $\mathbf{y}$: $\mathbf{e} = \mathbf{a_{j}}$. Determina quindi la parola corretta come $\mathbf{y} - \mathbf{a_{j}}$, che è la parola del codice più vicina alla parola trasmessa:
+\begin{teorema}
+   Sia $C$ un $(r,k)$-codice, sia $\mathbf{y} \in C_{j}$ laterale di $C$ avente leader $\mathbf{a_{j}}$. Allora 
+   \begin{align*}
+      \rho (\mathbf{y} ,\mathbf{y} -\mathbf{a_{j}} ) \leq \rho (\mathbf{y} ,\mathbf{c}) \qquad \forall \mathbf{c} \in C
+   \end{align*}
+\end{teorema}
+\begin{proof}
+    Utilizzando la notazione $\mathbf{y} = \mathbf{a_{j}} + \mathbf{c'}$ dove $\mathbf{a_{j}}$ è il leader di $C_{j}$ e $\mathbf{c'}$ è una parola del codice $C$ segue che 
+   \begin{align*}
+      \rho (\mathbf{y} ,\mathbf{c'}) = \rho ( \mathbf{a_{j}} + \mathbf{c'} ,\mathbf{c'}) 
+      = w(\mathbf{a_{j}} + \mathbf{c'} - \mathbf{c'}) = w(\mathbf{a_{j}}) 
+   \end{align*}
+   Cioé $\rho (\mathbf{y} ,\mathbf{c'}) = w(\mathbf{a_{j}})$. \\ 
+   Inoltre per ogni parola $\mathbf{c}$ appartenente al codice $C$ 
+   \begin{align*}
+      \rho (\mathbf{y} ,\mathbf{c}) = \rho ( \mathbf{a_{j}} + \mathbf{c'} ,\mathbf{c}) 
+      = w(\mathbf{a_{j}} + \mathbf{c'} - \mathbf{c})  
+   \end{align*}
+   Cioé $w(\mathbf{a_{j}} + \mathbf{c'} - \mathbf{c}) = \rho(\mathbf{y} ,\mathbf{c})$. \\
+   La tesi segue allora dal fatto che 
+   \begin{align*}
+      w(\mathbf{a_{j}}) \leq w(\mathbf{a_{j}} + \mathbf{c'} - \mathbf{c})  
+   \end{align*}
+   che è una conseguenza della definizione di leader e dal fatto che $\mathbf{a_{j}} + \mathbf{c'} - \mathbf{c} \in C_{j}$. 
+\end{proof}
+
+Il metodo che abbiamo appena esposto per la decodifica di un codice lineare non sfrutta la struttura matriciale del codice. Esiste infatti una procedura più efficiente, conseguenza del fatto che l'appartenenza di un vettore $\mathbf{x} \in \mathbb{F}^{r}$ ad un laterale di $C$ è determinato univocamente dalla sua sindrome $H \mathbf{x}^{t}$ (dove $H$ è la matrice di controllo). 
+\begin{teorema}
+   Sia $C$ codice lineare di lunghezza $r$ generato dalla matrice $G$ e di matrice di controllo $H$. Due vettori $\mathbf{x}, \mathbf{y} \in \mathbb{F}^{r}$ appartengono allo stesso laterale di $C$ se e solo se hanno la stessa sindrome. 
+\end{teorema}
+\begin{proof}
+   I vettori $\mathbf{x}$ ed $\mathbf{y}$ hanno la stessa sindrome se e solo se $H \mathbf{x}^{t} = H \mathbf{y}^{t}$, cioè se e solo se $H (\mathbf{x}-\mathbf{y})^{t} = \mathbf{0}$. Dal teorema \ref{teorFondMatrContrllo} $H (\mathbf{x}-\mathbf{y})^{t} = \mathbf{0}$ se e solo se $\mathbf{x}-\mathbf{y} \in C$ quindi se e solo se $\mathbf{x}$ ed $\mathbf{y}$ appartengono ad uno stesso laterale di $C$.
+\end{proof}
+\noindent
+Dal momento che la sindrome di un vettore appartenente al laterale $C_{j}$ equivale alla sindrome del leader $a_{j}$ di tale laterale, si ha una corrispondenza biunivoca fra i leader dei laterali e la loro sindrome. Si delinea quindi un algoritmo di decodifica suddiviso in $3$ passi da applicare al vettore $\mathbf{y}$ ricevuto nota $H$:
+\begin{enumerate}
+   \item Si calcola la sindrome $\mathbf{s} = H \mathbf{y}^{t}$, che è uguale a quella del leader del laterale al quale $\mathbf{y}$ appartiene. 
+   \item Si determina il leader $\mathbf{a_{j}}$ avente sindrome $\mathbf{s}$.
+   \item Si decodifica $\mathbf{y}$ con la parola $\mathbf{x} = \mathbf{y} - \mathbf{a_{j}}$.
+\end{enumerate}
+
+% \begin{esempio}
+%   collegato all'esempio del paragrafo prima. pirma con tabella standard (...detta tabella standard.) e poi con sindrome
+% \end{esempio}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Limitazione di Gilbert-Varshamov per i codici lineari binari}
+
+Dai limiti di Hamming e di Singleton sono determinate delle caratteristiche sui parametri del codice, ma non è garantita l'esistenza di un codice avente tali parametri. Il problema generale dell'esistenza non è affrontato in questa tesi e per una soluzione generale si rimanda alla bibliografia. Però se il codice è lineare e binario (cioè definito sull'alfabeto $GF(2)$) allora un modo per risolvere la questione è quella di fornire una condizione di esistenza della matrice di controllo, la quale determina (non univocamente) il codice. \\
+Il teorema che presentiamo, la cui tesi è nota come limitazione di Gilbert-Varshamov, procede in tale direzione.
+\begin{teorema}
+   Un $(r,k)$-codice lineare binario $C$ con distanza minima $d$ esiste se è verificata la disuguaglianza
+   \begin{align*}
+      \sum_{j=0}^{d-2} \binom{r-1}{j} < 2^{r-k}
+   \end{align*}
+\end{teorema}
+\begin{proof}
+   Dimostriamo una tesi equivalente: esiste una matrice di controllo $H$ di dimensione $(r-k)\times r$ tale che $d-1$ sue colonne siano linearmente indipendenti.\\
+   Come prima colonna possiamo considerare una qualsiasi non nulla, come seconda possiamo considerare un'altra colonna non nulla ed indipendente dalla prima, fino ad arrivare ad avere $j \leq r-1$ colonne tali che siano linearmente indipendenti da qualsiasi $d-2$ colonne scelte precedentemente. 
+   Possiamo aggiungere una $(j+1)$-esima colonna linearmente indipendente con $d-2$ qualsiasi delle precedenti se 
+   \begin{align*}
+      \binom{j}{1} + \binom{j}{2}+ \dots + \binom{j}{d-2}
+      <
+      2^{r-k} - 1
+   \end{align*}
+   infatti la possibilità di scegliere un vettore linearmente indipendente da un insiseme di $d-2$ può essere sempre fatta se la somma delle scelte possibili dei vettori precedente è inferiore al numero dei possibili vettori non nulli $(r-k)$-dimensionali.
+   Procedendo su $j$ fino alla $(r-1)$-esima si ha che $d-1$ delle colonne di $H$ sono linearmente indipendenti se vale la tesi.
+\end{proof}
+\begin{esempio}
+   Esiste un $(9,2)$-codice avente distanza minima $5$, ma non esiste a distanza minima $6$. Infatti
+   \begin{align*}
+      \sum_{j=0}^{3} \binom{8}{j} = 93 < 2^{7}
+   \end{align*}
+   mentre
+   \begin{align*}
+      \sum_{j=0}^{4} \binom{8}{j} = 163 > 2^{7}
+   \end{align*}
+\end{esempio}
+
+Il teorema precedente può essere generalizzato al caso in cui il codice non sia binario, ma sia definito sull'alfabeto $\mathbb{F}_{q}$.
+\begin{corollario}
+   Un $(r,k)$-codice lineare $C$ definito su $\mathbb{F}_{q}$ con distanza minima $d$ esiste se è verificata la disuguaglianza
+   \begin{align*}
+      \sum_{j=0}^{d-2} (q-1)^{j} \binom{r-1}{j} < q^{r-k}
+   \end{align*}
+\end{corollario}
+\begin{proof}
+   Segue dal teorema precedente e dal fatto che è possibile scegliere un insieme di $d-2$ colonne linearmente indipendenti da un insieme di $j$ colonne ad un alfabeto di ordine $q$ se 
+   \begin{align*}
+      (q-1)\binom{j}{1} + (q-1)^{2} \binom{j}{2}+ \dots + (q-1)^{d-2} \binom{j}{d-2}
+      <
+      q^{r-k} - 1
+   \end{align*}
+\end{proof}
+
+
+

@@ -1,0 +1,324 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% CAPITOLI     %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{La trasformata di Winograd nella teoria dei codici correttori} \label{cap:applicazioni}
+
+In questo capitolo presentiamo due applicazioni della trasformata di Winograd alla teoria dei codici correttori proposte nell'articolo \cite{cerruti} da pagina $43$ a pagina $46$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%% PRIMA APPLICAZIONE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Matrice $\Gamma$ come generatrice dei codici ciclici}
+
+La prima applicazione ha origine con la seguente domanda:\\
+quali informazioni possiamo ricavare dalla matrice $\Gamma$ sui codici ciclici di $\mathcal{R}_{r,q} $? Vedremo che la trasformata di Winograd è matrice generatrice e di controllo di determinati codici ciclici.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Sezione
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%555
+\subsection{Matrice $\Gamma^{(v)}$ come matrice di controllo}
+
+Sia $a(x)=\mathbf{a}$ divisore di $x^{r} - 1$ in $\mathcal{R}_{r,q} $, $\mathfrak{a}$ ideale generato da $a(x)$, quindi codice ciclico e sia $c(x) = \mathbf{c}$ una sua parola. Consideriamo in parallelo la tesi del teorema \ref{teorFondMatrContrllo} (indicata con $(1)$) e la tesi del lemma \ref{le:codiciEdGamma} (indicata con $(2)$) adattate a questo contesto:
+\begin{align*}
+  \mathbf{c} \in \mathfrak{a} &\iff H \mathbf{c}^{t} = \mathbf{0}^{t}  & & (1) \\
+  c(x) \in (M^{(v)}(x)) &\iff \Gamma^{(v)} \mathbf{c}^{t} = \mathbf{0}^{t} & & (2)
+\end{align*}
+Se il divisore $a(x)$ è irriducibile e quindi coincidente con $M^{(v)}(x)$, allora il $v$-esimo blocco della trasformata di Winograd soddisfa le caratteristiche di una matrice di controllo del codice:
+\begin{teorema}
+   Sia $v \in \mathscr{L}$, allora il codice ciclico massimale $\mathfrak{a} = (M^{(v)}(x))$ in $\mathcal{R}_{r,q}$ ha come matrice di controllo $\Gamma^{(v)} $, $v$-esimo blocco della trasformata di Winograd. 
+\end{teorema}
+\begin{proof}
+   Sia $c(x)$ parola del codice, allora dal lemma \ref{le:codiciEdGamma} segue che $\Gamma^{(v)} \mathbf{c}^{t} = \mathbf{0}^{t}$. Viceversa se vale la precedente equazione allora $c(x) \in \mathfrak{a}$. Dal teorema \ref{teorFondMatrContrllo} allora $\Gamma^{(v)}$ è matrice di controllo per il codice $(M^{(v)}(x))$
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Sezione
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%555
+\subsection{$\Gamma^{(v)}$ come matrice di generatrice}
+
+Invece di considerare il teorema \ref{teorFondMatrContrllo} sulla matrice di controllo consideriamo 
+il teorema sulla matrice generatrice \ref{teorFondMatrGen} (indicato con $(1')$):
+\begin{align*}
+   \mathbf{c} \in \mathfrak{a}^{\perp} &\iff G \mathbf{c}^{t} = \mathbf{0}^{t} & & (1') \\
+   c(x) \in (M^{(v)}(x)) &\iff \Gamma^{(v)} \mathbf{c}^{t} = \mathbf{0}^{t}  & & (2)  
+\end{align*} 
+Segue allora \footnote{Ricrodando che $(a(x))^{\perp} = (\hat{a}(x)^{\perp})$} che $\Gamma^{(v)}$ è matrice generatrice di un codice generato da un divisore particolare.
+\begin{teorema}
+   Sia $v \in \mathscr{L}$, allora il codice ciclico minimale $(\hat{M}^{(-v)}(x))$ in $\mathcal{R}_{r,q}$ ha come matrice generatrice $\Gamma^{(v)} $ $v$-esimo blocco della trasformata di Winograd.
+\end{teorema}
+\begin{proof}
+   Sia $\mathfrak{a} = (\hat{M}^{(v)}(x))$ (differente dal codice ciclico dell'ipotesi per il segno). Conseguenza del teorema \ref{teo:poliControllo} il polinomio generatore del codice $\mathfrak{a}^{\perp}$ ortogonale ad $\mathfrak{a}$ è dato da $x^{d} M^{(-v)}(x)$, quindi dalla $(2)$ vale la biimplicazione
+   \begin{align*}
+      c(x) \in (\hat{M}^{(v)}(x))^{\perp} = ( M^{(-v)}(x))  
+      &\iff 
+      \Gamma^{(-v)} \mathbf{c}^{t} = \mathbf{0}^{t}
+   \end{align*}
+   Cambiando i segni abbiamo che 
+   \begin{align*}
+      c(x) \in (\hat{M}^{(-v)}(x))^{\perp}  
+      &\iff 
+      \Gamma^{(v)} \mathbf{c}^{t} = \mathbf{0}^{t}
+   \end{align*}
+  Dalla $(1')$ quindi  $\Gamma^{(v)}$ è matrice generatrice di $(\hat{M}^{(-v)}(x))$.
+\end{proof}
+Quindi il $v$-esimo blocco di $\Gamma$ non è solo matrice di controllo del codice ciclico massimale $(M^{(v)}(x))$, ma è anche matrice generatrice del codice ciclico minimale $(\hat{M}^{(-v)}(x))$, cioè del polinomio di controllo con i segni opposti. Possiamo evitare di preoccuparci della variazione dei segni se le orbite sono autoconiugate, cioè se $-1 \in O(1)$. 
+\begin{corollario}
+   Se le orbite dell'azione di $G \cong Gal(\mathbb{F}_{q}(\xi),\mathbb{F}_{q})$, $G \trianglelefteq \mathbb{Z}_{r}^{\star} $ su $\mathbb{Z}_{r}$ sono autoconiugate allora il codice massimale $(M^{(v)}(x))$ ed il codice minimale $(\hat{M}^{(v)}(x))$ sono legate dalla matrice $\Gamma^{(v)}$ che genera il primo ed è matrice di controllo per il secondo.
+\end{corollario}
+\begin{proof}
+    È conseguenza del teorema precedente e del fatto che se le orbite sono autoconiugate allora $M^{(v)}(x) = M^{(-v)}(x)$.
+\end{proof}
+\begin{esempio}
+   In $\mathcal{R}_{9,2}$, ricordando che $ G = \mathbb{Z}_{9}^{\star}  $ e che $\mathscr{L} = \lbrace 0,1,3 \rbrace$ abbiamo la fattorizzazione
+    \begin{align*}
+      x^9 - 1 &= M^{(0)}(x) M^{(1)}(x) M^{(3)}(x) \\
+	      &= (x-1)(x^6+x^3+1)(x^2+x+1)
+    \end{align*}
+   Ci sono $6$ possibili codici non banali, $3$ minimali e $3$ massimali.
+   La trasformata di Winograd è data da:
+   \begin{align*}
+    \Gamma = 
+     \left(
+    \begin{array} { c }
+    \Gamma^{(0)} \\ \\
+    \Gamma^{(1)} \\ \\
+    \Gamma^{(3)} 
+    \end{array}
+    \right)
+    =
+    \left(
+    \begin{array} { c c c c c c c c c}
+    1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1  \\
+    \hline
+    1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0  \\
+    0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0  \\
+    0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 \\
+    0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 \\
+    \hline
+    1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1  \\
+    0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 1    
+    \end{array}
+    \right)
+    \end{align*}
+    Consideriamo la parola $c(x)$ del $(9,3)$-codice $(M^{(1)}(x))$ definita da 
+    \begin{align*}
+       c(x) &= (x^2 + 1)M^{(1)}(x) \\
+            &= 1 + x^2 + x^3 + x^5 + x^6 + x^8 \\
+            &= (1,0,1,1,0,1,1,0,1) 
+    \end{align*}
+    Possiamo verificare che 
+    \begin{align*}
+       \Gamma^{(1)} \mathbf{c}^{t} = \mathbf{0}^{t}
+    \end{align*}
+    dal fatto che $\Gamma^{(1)}$ è matrice di controllo di $(M^{(1)}(x))$. Inoltre dato che le orbite sono autoconiugate  $\Gamma^{(1)}$ è matrice generatrice di $(\hat{M}^{(1)}(x))=(M^{(0)}(x)M^{(3)}(x))$. 
+\end{esempio}
+
+Fino a qui abbiamo esaminato i codici massimali e minimali. Cosa dire dei codici generati da un divisore $a(x)$ di $x^r - 1$ generico?
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Sezione
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%555
+\subsection{Composizioni dei blocchi $\Gamma^{(v)}$}
+
+Sia $a(x)=\mathbf{a}$ divisore di $x^{r} - 1$ in $\mathcal{R}_{r,q} $ composto dal prodotto di divisori irriducibili definiti da un sottoinsiseme dell'insiseme delle etichette $A = \lbrace v_{1}, \dots, v_{k} \rbrace \subseteq \mathscr{L} $:
+\begin{align*}
+   a(x) = M^{(v_{1})}(x)\cdot \dots \cdot M^{(v_{k})}(x)
+\end{align*}
+In questo caso per costruire la matrice di controllo si dovrà prendere la matrice determinata dai blocchi ordinati\footnote{La questione dell'ordine sembra superflua di fronte alla commutatività del prodotto dei generatori. Però nel passare dal polinomio in $\mathcal{R}_{r,q}$ al vettore circolante concatenato corrispondente è necessario mantenere un ordine nei generatori che definiscono ogni sottovettore circolate. Questo ordine si dovrà rispecchiare nel comporre la matrice di controllo dai blocchi $\Gamma^{(v_{j})}$.} $\Gamma^{(v_{j})}$. Inoltre, sempre generalizzando i risultati dei paragrafi precedenti la matrice costituita dai $k$ blocchi $\Gamma^{(v_{j})}$ è matrice generatrice del codice generato dal polinomio $\hat{b}(x)$ per
+\begin{align*}
+   b(x) = \prod_{v \in \mathscr{L} \setminus A } M^{(-v)}(x)
+\end{align*}
+Abbimo quindi
+\begin{corollario}
+   Sia $k \leq l$, allora per ogni scelta di $k$ etichette ordinate $v_{1}, \dots, v_{k}$ che costituiscono il sottoinsieme $A$ di $\mathscr{L}$, la matrice costruita dai blocchi
+   \begin{align*}
+      \Gamma^{(A)}
+      =
+      \left(
+      \begin{array} { c }
+      \Gamma^{(v_{1})}  \\ \\
+      \Gamma^{(v_{2})} \\ \\
+      \vdots \\ \\
+      \Gamma^{(v_{k})} 
+      \end{array}
+      \right)
+   \end{align*}
+   è matrice di controllo del codice
+   \begin{align*}
+    \mathfrak{a} = (  M^{(v_{1})}(x)\cdot \dots \cdot M^{(v_{k})}(x) )
+  \end{align*}
+  ed è matrice generatrice del codice generato dal polinomio $\hat{b}(x)$ per
+  \begin{align*}
+    b(x) = (  M^{(-v_{1})}(x)\cdot \dots \cdot M^{(-v_{k})}(x) )
+  \end{align*}
+\end{corollario}
+\begin{proof}
+   Il polinomio $m(x)$ è isomorfo al vettore $\mathbf(m) \in \mathcal{V}_{r, q}^{\mathscr{L}}$ composto dai sottovettori circolanti corrispondenti all'immagine di $m(x) \mod M^{(v)}(x)$ tramite $\psi_{2}$ nella posizione $v$-esima.
+   \begin{align*}
+      \mathbf{m}_{v} &= \psi_{2}(m(x) \mod M^{(v)}(x)) \in  \mathcal{V}_{m(v), q}^{c} \\
+      \mathbf{m} &= concat(\mathbf{m}_{0},\mathbf{m}_{1},\dots, \mathbf{m}_{max(\mathscr{L})})
+   \end{align*}
+   Ora, $\Gamma^{(A)}\mathbf{m}^{t}$ è il vettore nullo se e solo se per ogni $j$ il blocco $\Gamma^{(v_{j})}$ annulla il vettore
+   \begin{align*}
+      concat(\mathbf{0}, \dots, \mathbf{0}, \mathbf{m}_{v_{j}},\mathbf{0},\dots, \mathbf{0})
+   \end{align*}
+   Ma questa è una conseguenza del teorema precedente.\\
+   In modo analogo si dimostra che $\Gamma^{(A)}$ è una matrice generatrice.
+\end{proof}
+Prima di passare alla seconda applicazione esaminiamo un esempio:
+\begin{esempio} \label{ese:gamma72}
+   In $\mathcal{R}_{7,2}$ abbiamo $G \trianglelefteq \mathbb{Z}_{7}^{\star}$, $G = \lbrace 1,2,4 \rbrace$, $\mathscr{L} = \lbrace 0,1,3 \rbrace$ e la seguente fattorizzazione:
+   \begin{align*}
+      x^{7} - 1 &= M^{(0)}(x) M^{(1)}(x) M^{(3)}(x) \\
+		&= (x-1)(x^3 + x + 1)(x^3 + x^2 + 1) 
+  \end{align*}
+  Consideriamo il $(7,3)$-codice $\mathfrak{a}$ generato da $M^{(0)}(x)M^{(1)}(x)$: la sua matrice di controllo è la composizione delle matrici $\Gamma^{(0)}$ e $\Gamma^{(1)}$:
+  \begin{align*}
+    \left(
+    \begin{array} { c }
+    \Gamma^{(0)}  \\ \\
+    \Gamma^{(1)} 
+    \end{array}
+    \right)
+    =
+    \left(
+    \begin{array} { c c c c c c c c}
+    1 & 1 & 1 & 1 & 1 & 1 & 1  \\
+    \hline
+    1 & 0 & 0 & 1 & 1 & 1 & 0  \\
+    0 & 1 & 0 & 0 & 1 & 1 & 1  \\
+    0 & 0 & 1 & 1 & 0 & 1 & 1  \\
+    \end{array}
+    \right)
+  \end{align*}
+  La stessa composizione è matrice generatrice del $(7,4)$-codice $(M^{(-3)}(x)) = (M^{(1)}(x))$ (in questo caso le orbite non sono autoconiugate).\\
+  Sia $m(x) = 1 + x + x^3 = (1,1,0,1)$ messaggio che vogliamo inviare usando il codice $(M^{(1)}(x))$, allora la sua codifica è:
+    \begin{align*}
+    \mathbf{c}
+    =
+    (1,1,0,1)
+    \left(
+    \begin{array} { c }
+    \Gamma^{(0)}  \\ \\
+    \Gamma^{(1)} 
+    \end{array}
+    \right) 
+  \end{align*}
+  e quindi $c(x) = x+ x^5 + x^6$. \\
+  Se invece riceviamo la parola $c(x) = 1 + x + x^2 + x^5 = (1,1,1,0,0,1,0)$ e vogliamo verificare la sua appartenenza al codice $(M^{(0)}(x)M^{(1)}(x))$ ne calcoliamo il prodotto per la sua matrice di controllo: 
+    \begin{align*}
+    \left(
+    \begin{array} { c c c c c c c c}
+    1 & 1 & 1 & 1 & 1 & 1 & 1  \\
+    \hline
+    1 & 0 & 0 & 1 & 1 & 1 & 0  \\
+    0 & 1 & 0 & 0 & 1 & 1 & 1  \\
+    0 & 0 & 1 & 1 & 0 & 1 & 1  \\
+    \end{array}
+    \right)
+    \left(
+    \begin{array} { c }
+    1 \\
+    1 \\
+    1 \\
+    0 \\
+    0 \\
+    1 \\
+    0
+    \end{array}
+    \right)
+    =
+    \left(
+    \begin{array} { c }
+    0 \\
+    0 \\
+    0 \\
+    0 \\
+    0 \\
+    0 \\
+    0
+    \end{array}
+    \right)
+  \end{align*}
+  Dato che il risultato è nullo segue che $c(x)\in (M^{(0)}(x)M^{(1)}(x))$.
+\end{esempio}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%% SECONDA APPLICAZIONE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Matrice $\Delta$ nella decodifica}
+
+In che modo possiamo usare $\Delta$ per decodificare un messaggio? \\
+Sia $\mathfrak{a}$ codice ciclico in $\mathcal{R}_{r,q}$. Il suo polinomio generatore $a(x)$ può essere rappresentato su algebre isomorfe in diversi modi equivalenti:
+\begin{enumerate}
+   \item $\gamma (a(x)) = (a(x) \mod{M^{(v)} (x)})_{v \in \mathscr{L} } \in \mathcal{Q}_{r,q}$
+   \item $\eta (a(x)) =     (a(\xi^{v}))_{v \in \mathscr{L} } \in \mathcal{P}_{r,q} $
+   \item $\psi_{2}(a(x)) = \mathbf{b} \in \mathcal{V}_{r, q}^{c}$
+   \item $\psi_{6}(\gamma (a(x))) = \mathbf{a} \in \mathcal{V}_{r, q}^{\mathscr{L}}$
+   \item $ \psi_{5}(\eta (a(x))) = \mathbf{a} \in \mathcal{V}_{r, q}^{\mathscr{L}}$
+\end{enumerate}
+dove osserviamo che $\psi_{5}(\eta (a(x))) = \psi_{6}(\gamma (a(x)))$ è il vettore circolante concatenato diverso dal vettore circolante $\mathbf{b}$. Dato che $a(x)$ è un divisore, allora nella rappresentazione in $\mathcal{V}_{r, q}^{\mathscr{L}}$ è il vettore circolante concatenato nel quale i blocchi corrispondenti alle posizioni dei generatori di $\mathfrak{a}$ sono sottovettori nulli. Possiamo quindi ridurre il numero di spazio occupato da un messaggio inviato.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Sottovettori privi di informazione}
+Sia $a(x)$ generatore di un codice ciclico definito dal prodotto di $k$ divisori di $\mathcal{R}_{r,q}$:
+\begin{align*}
+   a(x) = M^{(v_{1})}(x)\cdot ... \cdot M^{(v_{k})}(x)
+\end{align*}
+allora per $c(x)$ parola del codice, il vettore $\psi_{6}(\gamma (c(x))) = \mathbf{c}$ ha nel $v_{j}$-esimo posto un sottovettore nullo di dimensione $m(v)$:
+\begin{align*}
+   \psi_{2}(c(x)) &= (c_{0},c_{1}, \dots, c_{r-1}) \\
+   \gamma(c(x)) &= ( c(x) \mod{M^{(v)} (x)} )_{v \in \mathscr{L} } \\
+   \psi_{6}(\gamma (c(x))) &= (\psi_{2}(c(x) \mod{M^{(v)} (x)}))_{v \in \mathscr{L} } 
+\end{align*}
+Quindi $\psi_{6}(\gamma (c(x)))_{v_{j}} = \mathbf{0} \in \mathcal{V}_{m(v), q}^{c}$ per ogni $j$ compreso fra $1$ e $k$.\\
+Il messaggio $c(x)$ può essere quindi scritto ed inviato omettendo i sottovettori nulli e scrivendo solo gli $l - k$ vettori circolanti non nulli; restringendo cioè il suo dominio di appartenenza ai soli campi determinati da polinomi che non compaiono fra i fattori di $a(x)$.
+\begin{align*}
+   \mathbf{c} \in \mathcal{V}_{r, q}^{\mathscr{L}} 
+   \mapsto 
+   \mathbf{c} ~ \Bigg|~ \coprod_{v\in \mathscr{L} \setminus \lbrace v_{j}\rbrace} \mathcal{V}_{m(v), q}^{c}
+\end{align*}
+Definiamo {\bf sottovettori privi di informazione} i sottovettori nulli omessi in questo procedimento. Diamo all'algebra dei vettori concatenati di dimensione $\sum_{v\in \mathscr{L} \setminus \lbrace v_{j}\rbrace} m(v)$ senza blocchi privi di informazione
+\begin{align*}
+   \coprod_{v\in \mathscr{L} \setminus \lbrace v_{j}\rbrace} \mathcal{V}_{m(v), q}^{c}
+\end{align*}
+il nome di {\bf spazio dei sottovettori di informazione}.
+
+\begin{esempio}
+   Proseguiamo l'esempio \ref{ese:gamma72}. Vogliamo inviare la parola già codificata $c(x) = 1 + x + x^2 + x^5 = (1,1,1,0,0,1,0)$ appartenente al codice $(M^{(0)}(x)M^{(1)}(x))$, allora la scomponiamo tramite $\gamma$ nel vettore di polinomi:
+   \begin{align*}
+      \gamma(c(x)) = (0,0,x^2)
+   \end{align*}
+   che tramite $\psi_{5}$ diventa il vettore circolante a blocchi 
+   \begin{align*}
+      \psi_{5}(\gamma(c(x))) = (0|0,0,0|0,0,1)
+   \end{align*}
+   quindi possiamo inviare solo $(0,0,1)$ per comunicare la parola. Il rcevente aggiungerà i sottovettori privi di informazione, applicherà la trasformata di Winograd inversa $\Delta$ e procederà alla decodifica.
+\end{esempio}
+Nel precedente esempio la matrice $\Delta$ ha avuto un ruolo essenziale nella decodifica; vediamo alcuni dettagli nel prossimo paragrafo.  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Codifica con $\Delta$, decodifica con $\Gamma$}
+Vogliamo utilizzare l'idea dei sottovettori privi di informazione come punto di partenza per codificare e decodificare una parola di un codice in $\mathcal{R}_{r,q}$. Per fare ciò partiamo dalla struttura $\mathcal{V}_{r, q}^{\mathscr{L}}$. Per quanto detto, una volta scelto il polinomio generatore, che determina un sottoinsieme dell'insieme delle etichette $A = \lbrace v_{1}, \dots , v_{k} \rbrace $ possiamo scrivere il messaggio da inviare nei $l-k$ blocchi di $\mathcal{V}_{r, q}^{\mathscr{L}}$ che non sono sottovettori privi di informazione. Applicando la matrice $\Delta$ trasportiamo questo vettore nello spazio $\mathcal{V}_{r, q}^{c}$ al quale corrisponde tramite $\psi_{2}$ il polinomio $c(x)$ che è la parola di $\mathcal{R}_{r,q}$ che vogliamo inviare. \\
+Riassumendo
+\begin{enumerate}
+   \item Scegliamo $a(x)$ divisore di $x^r - 1$ che determina univocamente l'insieme $A=\lbrace v_{1}, \dots v_{k} \rbrace$ sottoinsieme dell'insieme delle etichette corrispondenti ai polinomi $M^{(v)}(x)$ che compaiono nella fattorizzazione di $a(x)$.
+   \item Scriviamo negli $l-k$ blocchi di dimensione complessiva $\sum_{v\in \mathscr{L} \setminus \lbrace v_{j}\rbrace} m(v)$ il messaggio da inviare. Questo è un elemento di $\coprod_{v\in \mathscr{L} \setminus \lbrace v_{j}\rbrace} \mathcal{V}_{m(v), q}^{c}$ che indichiamo con $\tilde{\mathbf{c}}$. 
+   \item Aggiungiamo ad $\tilde{\mathbf{c}} $ i $k$ blocchi privi di informazione, ottenendo $\mathbf{m} \in \mathcal{V}_{r, q}^{\mathscr{L}} $.
+   \item Calcoliamo $\Delta \mathbf{c}^{t} \in \mathcal{V}_{r, q}^{c}$ al qual corrisponde il polinomio  $c(x) \in \mathcal{R}_{r,q}$ tramite $\psi_{2}$.
+\end{enumerate}
+A questo punto la matrice $\Gamma$ può essere usata per decodificare il messaggio $c(x)$, infatti $\Gamma \mathbf{c}^{t} $ fornisce le sindromi dei codici massimali che contengono il codice $(a(x))$. Queste sindromi devono essere blocchi nulli nelle posizioni $v_{j}$ del vettore decodificato.
+
+
+
+
+
+
+
+
+
+
+

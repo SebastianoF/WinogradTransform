@@ -1,0 +1,215 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage[latin1]{inputenc}
+\usepackage{geometry}
+\geometry{left=1.15in, right=1.15in, top=.72in, bottom=.72in}
+
+%PACKAGES AGGIUNTIVI (Scusate ma senza diagrammi commutativi il riassunto diventerebbe di qualche chilometro!):
+% INIZIO:
+
+% per i diagrammi commutativi: 
+\usepackage{pictexwd,dcpic}
+% per l'ambiente align
+\usepackage{mathrsfs}
+% per il quoziente 
+\def\quotient#1#2{%
+	\raise1ex\hbox{$#1$}\Big/\lower1ex\hbox{$#2$}%
+}
+
+% FINE 
+
+\title{
+    La Trasformata di Winograd \\nella \\Teoria dei Codici Correttori
+}
+\author{Sebastiano Ferraris}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Supervisore:} Umberto Cerruti. \\
+\textbf{Unvesrsità:} Universit\`a degli studi di Torino, Facoltà di Scienze Matematiche Fisiche Naturali, Corso di Laurea in Matematica. \\
+\textbf{Date:} 17/07/2013 
+
+\medskip
+
+{\bf Breve Presentazione}\\
+Sebastiano Ferraris ha conseguito la laurea magistrale in Matematica all'università degli studi di Torino, sotto la supervisione del professor Umberto Cerruti.\\
+Durante il periodo degli studi, l'autore ha lavorato come sviluppatore di algoritmi presso l'azienda \href{www.tc-web.it}{tc-web} di Torino e di modelli di simulazione di sistemi industriali presso la \href{www.simtec-group.eu}{sim-tec} di Almese.
+Nel periodo successivo alla laurea ha deciso di cogliere l'opportunità di una borsa di studio quadriennale presso la University College London nel Regno Unito, dove sta attualmente terminando l'ultimo anno di dottorato in Medical Imaging and Bioengineering.\\
+Il punto di partenza che ha portato allo sviluppo della tesi presentata in queste pagine sono stati il contenuto di alcune lezioni di \emph{Laboratorio di Applicazioni dell'Algebra} tenuto nel 2011 dal professor Umberto Cerruti ed un suo pre-print [1] sulle relazioni fra la trasformata di Winograd sui campi finiti e la teoria dei codici correttori. \\
+
+
+{\bf Descrizione della tesi}
+
+Lo scopo principale della tesi è stato l'esplorazione delle possibilità di applicazione della trasformata di Winograd alla teoria dei codici correttori. La trasformata di Winograd consiste in una generalizzazione della trasformata di Fourier Discreta, definita come la matrice di trasformazione fra l'onnipresente algebra polinomiale $\quotient{ \mathbb{F}[x] }{ (x^r -1 )}$ ed il prodotto di campi definito dalla fattorizzazione di $x^r -1$ a cui è isomorfo [3]. 
+\\
+Questa trasformazione permette di fattorizzare l'algebra in campi, in modo analogo in cui i numeri interi si fattorizzano in numeri primi. I campi possono essere visti come particelle elementari che compongono un materiale più complesso: come esistono gli spettrometri di massa per passare dal materiale complesso alle particelle elementari, esiste una trasformazione lineare per passare dall'algebra al prodotto di campi, chiamata trasformata di Winograd.
+\\
+La tesi può essere divisa in tre parti. 
+Nella prima parte vengono introdotte le strutture algebriche a fondamento della teoria dei codici correttori, con particolare enfasi sui loro ideali e idempotenti e sulle loro trasformazioni, fra le quali compare la trasformata di Winograd. La seconda parte introduce la teoria dei codici correttori; qui le definizioni ed i risultati della prima parte vengono giustificati definendo i codici lineari, i codici ciclici ed i codici BCH [2,4] come loro applicazione. \\
+Nella terza parte si combinano le prime due, per dimostrare che i blocchi della trasformata di Winograd possono essere usati come matrici di controllo o matrici generatrici dei codici ciclici e che gli stessi blocchi possono essere utilizzati come sistema per diminuire la quantità di informazione dei messaggi, individuando in ogni parola alcuni sottovettori privi di informazioni. \\
+
+\noindent
+Per riassumere la prima parte può essere utile considerare un diagramma:
+%
+%\vspace{0.2in}
+
+\[
+\begindc{\commdiag}[40]  % CAMBIA per diminuire la dimensione del diagramma
+%sotto
+\obj(0,5)[V]{$ \mathcal{V}_{r, \mathbb{F}}^{c} $}
+\obj(40,5)[M]{$\mathcal{M}_{r,\mathbb{F} }^{c}$}
+
+
+%metà
+\obj(0,20)[R]{$ \quotient{ \mathbb{F}[x] }{ (x^r -1 )} $}
+\obj(40,20)[A]{$ \mathbb{F}C_{r} $}
+\obj(-40,20)[P]{$ \prod_{v} \mathbb{F} (\xi^{v}) $}
+
+%sopra
+\obj(0,40)[Q]{$ \prod_{v} \quotient{ \mathbb{F}[x] }{ (M^{(v)}(x) )} $}
+
+%frecce orizzontali
+\mor{V}{M}{$\psi_{1}$}
+\mor{R}{A}{$\psi_{4}$}
+\mor{R}{P}{$\eta$}
+
+%frecce verticali
+\mor{R}{V}{$\psi_{2}$}
+\mor{A}{M}{$\psi_{3}$}
+\mor{R}{Q}{$\gamma$}
+
+%frecce oblique
+\mor{P}{Q}{$\mu$}
+%\mor{A}{Q}{$\mu_{2}$}
+
+\enddc
+\]
+
+%\vspace{0.2in}
+
+\noindent
+dove $\mathcal{V}_{r, \mathbb{F}}^{c}$ e $\mathcal{M}_{r,\mathbb{F} }^{c}$ 
+sono l'algebra dei vettori circolanti e delle matrici circolanti di dimensione $r$ sul campo $\mathbb{F}$. 
+$\prod_{v} \mathbb{F} (\xi^{v})$ e $\prod_{v} \quotient{ \mathbb{F}[x] }{ (M^{(v)}(x) )}$ sono prodotti dei campi di spezzamento e tutte le frecce sono isomorfismi. \\
+Gli idempotenti e gli ideali di $\quotient{ \mathbb{F}[x] }{ (x^r -1 )}$, che giocano un ruolo fondamentale nella teoria dei codici correttori e che non sono in generale semplici da trovare, diventano facilmente accessibili con trasformata di Winograd, indicata con $\gamma$.\\
+Il diagramma mette anche in luce la forte relazione fra le matrici ed i vettori circolanti e la trasformata di Winograd, cosa che porta alla definizione di una nuova struttura chiamata \emph{vettori circolanti concatenati}. \\
+Questa permette di definire i vettori dei residui dei polinomi su ogni fattore della decomposizione di $x^r - 1$ in un vettore di vettori di dimensioni diverse, che però mantiene le setesse proprietà che aveva nella struttura originale prima della fattorizzazione. Cioè:
+\begin{align*}
+\psi_{5} :  \prod_{v\in \mathscr{L}} \quotient{\mathbb{F}_{q} \lbrack x \rbrack  }{M^{(v)}(x)}    
+& \longrightarrow  
+\coprod_{v\in \mathscr{L} } \mathcal{V}_{m(v), q}^{c}   \\
+%%
+( a(x) \mod{M^{(v)}(x)} )_{v \in \mathscr{L}} 
+&\longmapsto  
+( (a_v )_0, (a_v)_1, \dots (a_v)_{m(v)-1})_{v \in \mathscr{L}} ~,
+\end{align*}
+dove $\prod$ è il prodotto tradizionale, $\coprod$ è il prodotto concatenato ed $\mathscr{L}$ è l'insieme dei gradi dei polinomi divisori di $x^r - 1$. 
+Successivamente, viene esplorato un nuovo diagramma, dove $\gamma$ può essere identificata con $\rho$, tramite la rappresentazione dei vettori circolanti concatenati:
+%\vspace{0.3in}
+
+\[
+\begindc{\commdiag}[25]  % CAMBIA per diminuire la dimensione del diagramma
+
+% R
+\obj(0,0)[R]{$ \quotient{ \mathbb{F}[x] }{ (x^r -1 )}  $}
+%PQ
+\obj(0,30)[Q]{$\prod_{v} \quotient{ \mathbb{F}[x] }{ (M^{(v)}(x) )}$}
+\obj(-60,0)[P]{$ \prod_{v} \mathbb{F} (\xi^{v})  $}
+
+%Vc base
+\obj(30,-10)[Vc]{$ \mathcal{V}_{r, q}^{c} $}
+
+%le V
+\obj(30,-40)[Vh]{$ \coprod_{v\in \mathscr{L} } \mathcal{V}_{m(v), q}^{c} $}
+\obj(90,-10)[Vb]{$ \coprod_{v\in \mathscr{L} } \mathcal{V}_{m(v), q}^{c}$}
+
+%Vc base
+
+
+%FRECCE
+% RPQ
+\mor{R}{P}{$ \eta $}
+\mor{R}{Q}{$ \gamma $}   
+\mor{P}{Q}{$ \mu $}
+%psi_2
+\mor{R}{Vc}{$\psi_{2}$}
+%R V
+\mor{Vc}{Vb}{$\rho$}
+\mor{Vc}{Vh}{$\delta$}
+% V V altre psi
+\mor{P}{Vh}{$\psi_{6}$}
+\mor{Q}{Vb}{$\psi_{5}$}
+%id
+\mor{Vb}{Vh}{$Id_{r}$}
+
+
+\enddc
+\]
+
+\vspace{0.2in}
+
+\noindent
+Avendo in mente una tesi orientata alle applicazioni, e soprattutto nel tentativo di capire le idee esplorate e le loro relazioni, nella tesi vengono proposti diversi esempi.\\
+Se si considera $r = 7$ sul campo $\mathbb{Z}_2$, segue che:
+\begin{align*}   
+\gamma(x^0) &= (1,1,1) =  (1,1,0,0,1,0,0) \\
+\gamma(x^1) &= (1,x,x) = (1,0,1,0,0,1,0) \\
+\gamma(x^2) &= (1,x^2,x^2) = (1,0,0,1,0,0,1) \\
+\gamma(x^3) &= (1,1+x^2,1+x+x^2) = (1,1,0,1,1,1,1) \\
+\gamma(x^4) &= (1,1+x,x+x^2) = (1,1,1,0,0,1,1) \\
+\gamma(x^5) &= (1,1+x+x^2,1+x^2) = (1,1,1,1,1,0,1) \\
+\gamma(x^6) &= (1,x+x^2,1+x) = (1,0,1,1,1,1,0)~,
+\end{align*}
+dove la seconda uguaglianza di ogni riga porta alla rappresentazione del polinomio nel corrispondente vettore circolante concatenato.
+La matrice $\Gamma$ che definisce la trasformata di Winograd in questo caso risulta essere la matrice circolante a blocchi:
+\begin{align*}
+\Gamma = 
+\left(
+\begin{array} { c }
+\Gamma^{(0)}  \\ \\
+\Gamma^{(1)} \\ \\
+\Gamma^{(3)} 
+\end{array}
+\right)
+=
+\left(
+\begin{array} { c c c c c c c c}
+1 & 1 & 1 & 1 & 1 & 1 & 1  \\
+\hline
+1 & 0 & 0 & 1 & 1 & 1 & 0  \\
+0 & 1 & 0 & 0 & 1 & 1 & 1  \\
+0 & 0 & 1 & 1 & 0 & 1 & 1  \\
+\hline
+1 & 0 & 0 & 1 & 0 & 1 & 1  \\
+0 & 1 & 0 & 1 & 1 & 0 & 1  \\
+0 & 0 & 1 & 1 & 1 & 1 & 0  
+\end{array}
+\right).
+\end{align*}
+Ogni scelta dei polinomi primi nella decomposizione di $x^r - 1$ definisce un insieme di blocchi della matrice $\Gamma$, i quali possono essere composti fra loro per creare le matrici generatrici dei codici ciclici, o le matrici di controllo per i loro duali. L'inversa di $\Gamma$, indicata con $\Delta$ in letteratura, può essere usata per la decodifica di un messaggio:
+$\Delta$ può essere usata per trovare i sotto-vettori privi di informazione nei vettori circolanti concatenati, e quindi per recuperare il messaggio originale in un modo più rapido rispetto alla classica decodifica con la sindrome. \\
+Nella bibliografia della tesi ci sono 31 titoli. La fonte principale è il pre-print scritto dal relatore della tesi, assieme a tre capisaldi sulla teoria dei codici correttori e sulla trasformata di Winograd.
+
+\begin{enumerate}
+	\item U. Cerruti, F. Vaccarino \emph{From Cyclotomic Extensions to Generalized
+		Ramanuyan's Sum through the Winograd Transform}, pre-print.    
+	\item Luigia Berardi, \emph{Algebra e teoria dei codici correttori}, Franco angeli
+	Editore 1994.
+	\item Richard E. Blahut, \emph{Theory and Practice of Error Control Codes}, 
+	Addison Wesley publishing Company, 1984.
+	\item Ian F. Blake, Ronald C. Mullin, \emph{The Mathematical Theory of Coding},
+	Academic Press 1975.
+\end{enumerate}
+
+
+
+
+
+\end{document}

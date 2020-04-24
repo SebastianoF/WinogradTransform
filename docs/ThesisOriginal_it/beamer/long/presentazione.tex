@@ -1,0 +1,1034 @@
+\documentclass[mathserif]{beamer}
+
+\usepackage[italian]{babel}
+\usepackage{euscript}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, epsfig, xspace}
+%\usepackage{algorithm,algorithmic}
+\usepackage{pstricks,pst-node}
+\usepackage{multimedia}
+\usepackage[normal,tight,center]{subfigure}
+\setlength{\subfigcapskip}{-.5em}
+\usepackage{beamerthemesplit}
+\usetheme{lankton-keynote}
+
+%pacchetti come sulla tesi pdf
+\usepackage{eurosym}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+%\usepackage{makeidx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{comment}
+\usepackage{enumerate}
+
+\usepackage{mathrsfs}
+
+
+
+
+%%% per i diagrammi commutativi: 
+\usepackage{tikz}
+
+\usetikzlibrary{matrix, arrows, scopes}
+%\usepackage{tikzcd}
+
+
+%Ridefinizione per il quoziente!
+\def\quotient#1#2{%
+   \raise1ex\hbox{$#1$}\Big/\lower1ex\hbox{$#2$}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Definizione teoremi: $%%%%%
+
+\newtheorem{definizione}{Definizione}
+\newtheorem{esempio}{Esempio}
+\newtheorem{osservazione}{Osservazione}
+\newtheorem{lemmax}{Lemma}[section]
+\newtheorem{teorema}{Teorema}
+\newtheorem{prop}{Proprietà}
+\newtheorem{corollario}{Corollario}
+
+
+
+
+
+
+
+\title[nella teoria dei codici correttori]{Tesi di Laurea }
+\author[La trasformata di Winograd]{Sebastiano Ferraris}
+\subtitle{LA TRASFORMATA DI WINOGRAD \\ NELLA TEORIA DEI CODICI CORRETTORI}
+\date{}
+\institute{Università degli studi di Torino \\Facoltà di Scienze Matematiche Fisiche Naturali \\ Corso di laurea Magistrale in Matematica}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%%%%% inizio
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%TITOLO! %%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\begin{frame}
+    \pagestyle{empty}
+    \vspace{-1.5cm}
+    \maketitle
+    \vspace{-1cm}
+    \begin{figure}[!h]
+    \begin{center}
+    \resizebox{2.0 cm}{2.0 cm}{\includegraphics{unito.jpg}}
+    \end{center}
+    \end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% SECTION FATTORIZZAZIONE %%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Fattorizzazione di $x^r-1$}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DIAGRAMMA QUATTRO ALGEBRE ISOMORFE %%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\begin{frame}
+   \begin{center}
+   \begin{tikzpicture}[xscale=1.5,yscale=1.5]
+
+\path node   (V) at (0,0) {$\mathcal{V}_{r, \mathbb{F}}^{c}$}         %(-1,0) node[anchor=east] {$e_1$ \ :}       
+      node   (M) at (4,0) {$ \mathcal{M}_{r,\mathbb{F} }^{c} $}         
+      node   (R) at (0,3) {$ \quotient{ \mathbb{F}[x] }{ (x^r -1 )}$} %(-0.9,3) node[anchor=east] {$\mathcal{R}_{r, \mathbb{F}}$ \ =}
+      node   (A) at (4,3) {$\mathbb{F}C_{r}$} %(-1,1) node[anchor=east] {$e_1\times A$ \ :}
+      ;
+     { %[ thick]
+      \draw[->]   (R) -- node[above]{$\psi_4$}     (A); 
+      \draw[->]   (V) -- node[above]{$\psi_1$}     (M);
+      \draw[->]   (R) -- node[right]{$\psi_2$}     (V);  
+      \draw[->]   (A) -- node[right]{$\psi_3$}     (M);     
+      }
+\end{tikzpicture}
+   \end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% SHIFTERS DELLE QUATTRO ALGEBRE ISOMORFE 3step %%%%%%%%%%%%%%%%%%%%%%%%%%
+% \thispagestyle{empty}
+% \begin{frame}
+%       \vspace{-1.5cm}
+%       Prodotto di convoluzione dei vettori circolanti $\mathbf{a}, \mathbf{b}$: 
+%       \begin{align*}
+%       (\mathbf{a} \star \mathbf{b})_{i} = \sum_{j \in \mathbb{Z}_{r} } a_{j} b_{i-j}
+%       \qquad \forall i \in \mathbb{Z}_{r}
+%       \end{align*}
+%       \thispagestyle{empty}
+%       \pause
+%       Per $r=3$ equivale a
+%       \begin{align*}
+%       \mathbf{a} \star \mathbf{b} = 
+%       \left(
+%       \begin{array} {c c c }
+%       a_0 & a_1 & a_2    
+%       \end{array}
+%       \right) 
+%       \left(
+%       \begin{array} {c c c}
+%       b_0 & b_1 & b_2   \\
+%       b_2 & b_0 & b_1   \\
+%       b_1 & b_2 & b_0        
+%       \end{array}
+%       \right)
+%       \end{align*}
+%       \thispagestyle{empty}
+%       \pause
+%       Tutte le strutture possiedono uno Shifter:
+%       \begin{center}
+%       \begin{tabular}{ c | c c c c }
+% 	  Strutture 
+% 	  & 
+% 	  $\mathcal{V}_{r, \mathbb{F}}^{c}$ 
+% 	  & 
+% 	  $\mathcal{M}_{r,\mathbb{F} }^{c} $ 
+% 	  & 
+% 	  $\mathbb{F}C_{r} $ 
+% 	  & 
+% 	  $\quotient{ \mathbb{F}[x] }{ (x^r -1 )} $ 
+% 	  \\
+% 	  \hline
+% 	  Shifter & $(0,1,0,\dots,0)$ & $s_n$ & $g$ & $x$ 
+%       \end{tabular}
+%       \end{center}
+%       Generano il gruppo ciclico su cui le algebre sono definite e definiscono le trasformazioni.
+% \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% TEOREMA SUL GRUPPO DI GALOIS %%%%%%%%%%%%%%%%%%%%%%%%%%
+% \subsection{IL GRUPPO $Gal(\mathbb{F}(\xi), \mathbb{F})$}
+% \begin{frame}
+%    Vogliamo scomporre $x^r-1$ su $\mathbb{F}$ nel prodotto dei polinomi minimi delle sue radici.
+%    \begin{teorema}
+%       Sia $\mathbb{F}$ campo perfetto, $\xi$ radice primitiva $r$-esima
+%       dell'unità, $Gal(\mathbb{F}(\xi), \mathbb{F})$, gruppo di Galois
+%       dell'estensione $\mathbb{F}(\xi) $ su $ \mathbb{F}$, allora
+%       \begin{enumerate}
+% 	\item Per ogni $\varphi \in Gal(\mathbb{F}(\xi), \mathbb{F})$, $\xi$ e $\varphi(\xi)$ hanno lo stesso
+%       polinomio minimo.
+% 	\item Per ogni $t \in \mathbb{Z}_{r}$ e per ogni $\varphi \in Gal(\mathbb{F}(\xi), \mathbb{F})$, $\xi^{t}$ e
+%       $\varphi(\xi^{t})$ hanno lo stesso polinomio minimo.
+%       \end{enumerate}
+%    \end{teorema}
+% \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% COROLLARIO TEOREMA GRUPPO DI GALOIS 1 %%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\begin{itemize}
+   \item Per ogni $\varphi \in Gal(\mathbb{F}(\xi), \mathbb{F})$, $\xi$ e $\varphi(\xi)$ hanno lo stesso
+      polinomio minimo.
+\end{itemize}
+
+   $E^{(r)} = \lbrace \xi^{j}\rbrace_{j=0}^{r-1}\cong \mathbb{Z}_{r}  
+   \qquad \quad
+   G \trianglelefteq \mathbb{Z}_{r}^{\star} 
+   \qquad  \quad 
+   G \cong Gal(\mathbb{F}(\xi), \mathbb{F}))$
+   \vspace{0.5cm}
+   \begin{align*}
+	Gal(\mathbb{F}(\xi), \mathbb{F})) \times E^{(r)}  & \longrightarrow  E^{(r)}   \\
+		  (\varphi_{k},\xi^{l}) & \longmapsto \varphi_{k}(\xi^{l}) = \xi^{lk} 
+    \end{align*}
+    \begin{align*}	  
+	G \times \mathbb{Z}_{r} \longrightarrow  \mathbb{Z}_{r}   \\
+		  (g,l) \longmapsto gl
+    \end{align*}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% COROLLARIO TEOREMA GRUPPO DI GALOIS 2 %%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}
+%     \begin{teorema}
+% 	Sia $G$ definito come sopra. Due elementi $l_{1}$ ed $l_{2}$ di $\mathbb{Z}_{r}$ sono nella stessa orbita della azione 
+% 	\begin{align*}
+% 	G \times \mathbb{Z}_{r} &\longrightarrow  \mathbb{Z}_{r}   \\
+% 		  (g,l) &\longmapsto gl
+% 	\end{align*}
+% 	se e solo se $\xi^{l_{1}}$ e $\xi^{l_{2}}$ hanno lo stesso polinomio minimo su $\mathbb{F}$.
+%    \end{teorema} 
+%    \vspace{0.5cm}
+%   Per trovare il gruppo $G \cong Gal(\mathbb{F}(\xi), \mathbb{F})$, sottogruppo di $\mathbb{Z}_{r}^{\star}$: 
+%   \begin{align*}
+%     \mathbb{F} = \mathbb{Q} \qquad &\Longrightarrow \qquad G = \mathbb{Z}_{r}^{\star} \\
+%     \mathbb{F} = \mathbb{F}_{q} \qquad  &\Longrightarrow \qquad G \trianglelefteq \mathbb{Z}_{r}^{\star} 
+% 	\qquad \arrowvert G \arrowvert = per_{\mathbb{Z}_{r}^{\star}}(q)
+%   \end{align*}
+% \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ORBITE ED ETICHETTE  1 %%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{ORBITE ED ETICHETTE}
+\begin{frame}
+       Due elementi $l_{1}$ ed $l_{2}$ di $\mathbb{Z}_{r}$ sono nella stessa orbita della azione 
+	\begin{align*}
+	G \times \mathbb{Z}_{r} &\longrightarrow  \mathbb{Z}_{r}   \\
+		  (g,l) &\longmapsto gl
+	\end{align*}
+	se e solo se $\xi^{l_{1}}$ e $\xi^{l_{2}}$ hanno lo stesso polinomio minimo su $\mathbb{F}$
+        \begin{align*}
+           t\in \mathbb{Z} \qquad Gal(\mathbb{F}(\xi), \mathbb{F}) \cong G \trianglelefteq \mathbb{Z}_{r}^{\star}
+        \end{align*}
+        La {\bf classe ciclotomica} o {\bf $(r,\mathbb{F})$-orbita} di $t$ è definita come l'insieme
+	\begin{align*}
+	  O_{r,\mathbb{F}}(t) = O(t) = \lbrace gt \mod{r} \mid g \in G \rbrace \subseteq  \mathbb{Z}_{r}
+	\end{align*}
+	Diciamo {\bf etichetta} il più piccolo elemento di ogni orbita, e indichiamo l'{\bf insieme delle etichette} con
+	\begin{align*}
+	   \mathscr{L}_{r,\mathbb{F}} = \mathscr{L}
+	\end{align*}
+    \end{definizione}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ORBITE ED ETICHETTE 2 %%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+   \begin{center}
+      La cardinalità dell'orbita di $t$
+        \begin{align*}
+	  m_{r,\mathbb{F}}(t) = m(t) = \arrowvert O(t) \arrowvert
+	\end{align*}
+      coincide con il grado del polinomio minimo di \\
+     $\xi^{t}$
+     \vspace{0.5cm}
+     \\
+      La cardinalità dell'insieme delle etichette
+ 	\begin{align*}
+	   l_{r,\mathbb{F}} = l = \arrowvert \mathscr{L} \arrowvert
+	\end{align*}
+     coincide con il numero di fattori irriducibili di \\ 
+     $x^r-1$	
+    \end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% TEOREMA DI FATTORIZZAZIONE %%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{TEOREMA DI FATTORIZZAZIONE}
+\begin{frame}
+    \begin{teorema}
+      Sia $r$ intero positivo ed $\mathbb{F}$ campo perfetto. 
+      \begin{enumerate}
+	  \item Ad ogni orbita $O(v)$ corrisponde un polinomio irriducibile in $\mathbb{F}[x]$ definito da 
+		\begin{align*}
+		  M^{(v)}(x) =  \prod_{t \in O(v)} (x- \xi^t)
+		\end{align*}
+	  \item La decomposizione in $\mathbb{F}$ di $x^r - 1$ in fattori irriducibili è data da 
+		\begin{align*}
+		  x^r - 1 = \prod_{v \in \mathscr{L} } M^{(v)}(x)
+		\end{align*}
+      \end{enumerate}
+    \end{teorema}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% FAttorizzazione di R come prodotto di campi %%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{CARDINALITA' DI  $\mathscr{L}$ }
+\begin{frame}
+   \begin{teorema}
+	$\mathbb{F}$ campo perfetto, $r$ intero positivo coprimo con $p$,
+	\begin{align*}
+	  l_{r,\mathbb{F}} = \frac{1}{\arrowvert G \arrowvert }\sum_{g \in G} (g-1, r) 
+	\end{align*}
+    \end{teorema}
+    \begin{proof}
+	\begin{align*}
+	  l = \frac{1}{\arrowvert G \arrowvert }\sum_{g \in G}\arrowvert X_{g} \arrowvert \qquad \quad 
+ 	   X_{g} = \lbrace t \in \mathbb{Z}_{r} \mid gt = t \mod r \rbrace 
+ 	   \\
+ 	   \arrowvert X_{g} \arrowvert = \arrowvert \lbrace t \mid  gt \equiv t \mod{r} \rbrace = (g-1, r)
+	\end{align*}
+	%$\arrowvert X_{g} \arrowvert = \arrowvert \lbrace t \mid  gt \equiv t \mod{r} \rbrace = (g-1, r) $
+    \end{proof}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% FAttorizzazione di R 1 %%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{FATTORIZZAZIONE DI $\mathcal{R}_{r,\mathbb{F}}$ }
+\begin{frame}
+      \begin{teorema}
+        $\mathbb{F}$ campo perfetto, $r$ intero positivo ed 
+	\begin{align*}
+	      x^r-1 = \prod_{v\in \mathscr{L}} M^{(v)}(x) 
+	\end{align*}
+       Allora vale l'isomorfismo di algebre
+	\begin{align*}
+	    \quotient{\mathbb{F} \lbrack x \rbrack  }{(x^{r} - 1)}
+	    \cong
+	    \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}
+	\end{align*}
+      \end{teorema}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% FAttorizzazione di R 2 %%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\begin{frame}
+   \vspace{-1.2cm}
+   \begin{proof}
+      Definiamo $\gamma$ {\bf trasformata di Winograd}:
+	\begin{align*}
+	\gamma :  \quotient{\mathbb{F} \lbrack x \rbrack  }{x^{r} - 1}  
+		  & \longrightarrow  
+		  \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}   \\
+		  %%
+		  a(x) &\longmapsto  ( a(x)\mod{M^{(v)}(x)})_{v\in \mathscr{L}}
+	\end{align*}
+	\vspace{0.2cm}
+	\begin{center}
+	 \begin{tikzpicture}[xscale=1,yscale=1]	 
+	  \path node   (Dom) at (0,2.8) {$\quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^r - 1)}$}             
+		node   (Im) at (4,0) {$  \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)} $}         
+		node   (Quoz) at (6,2.8) {$ \quotient{\quotient{\mathbb{F} \lbrack x \rbrack  }{(x^r-1)} }{ \prod_{v\in \mathscr{L}} M^{(v)}(x)}$} 
+		;
+	      { %[ thick]
+		\draw[->]   (Dom)  -- node[above]{$\gamma$}     (Im); 
+		\draw[->]   (Dom)  -- node[above]{$\pi$}        (Quoz);
+		\draw[->]   (Quoz) -- node[right]{$\sim$}       (Im);       
+		}
+	 \end{tikzpicture}
+         \end{center}
+   \end{proof}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Esempio %
+\thispagestyle{empty}
+\begin{frame}
+   \vspace{-1.2cm}
+   Ad esempio: 
+   \begin{itemize}
+      \item   $r = 7 , \quad \mathbb{F} = \mathbb{Q}, \quad G = \mathbb{Z}_{7}^{\star}$ 
+	  \begin{align*}
+	      O(0)&= \lbrace 0 \rbrace \\
+	      O(1)&= \lbrace 1,2,3,4,5,6 \rbrace
+	  \end{align*}
+	    \begin{align*}
+	      x^{7} - 1 &= M^{(0)}(x) M^{(1)}(x) =  \Phi_{1}(x) \Phi_{7}(x)  \\
+			&= (x-1)(x^6 +x^5 + x^4 + x^3 +x^2 + x +1)
+	    \end{align*}  
+      \item  $r = 7 , \quad \mathbb{F} = GF(2)  \quad G =\lbrace 1,2,4 \rbrace \triangleleft \mathbb{Z}_{7}^{\star}$ 
+	  \begin{align*}
+	      O(0) &= \lbrace 0 \rbrace \\
+	      O(1) &= \lbrace 1,2,4 \rbrace \\
+	      O(3) &= \lbrace 3,5,6 \rbrace
+	  \end{align*}   
+	  \begin{align*}
+	      x^{7} - 1 &= M^{(0)}(x) M^{(1)}(x) M^{(3)}(x) \\
+			&= (x-1)(x^3 + x + 1)(x^3 + x^2 + 1) 
+	    \end{align*}
+   \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Esempio %
+\thispagestyle{empty}
+\begin{frame}
+   \vspace{-1.5cm}
+        \begin{center}
+         $x^7 - 1$ si scompone in $ \mathbb{Q} $ in due fattori irriducibili 
+	\begin{align*}
+	  \quotient{\mathbb{Q} \lbrack x \rbrack  }{(x^{7} - 1)}
+	  \cong
+	  \quotient{\mathbb{Q} \lbrack x \rbrack  }{\Phi_{1}(x)}
+	  \times
+	  \quotient{\mathbb{Q} \lbrack x \rbrack  }{\Phi_{7}(x)}
+	\end{align*}
+	\vspace{1cm}
+	
+	 $x^7 - 1$ si scompone in $ \mathbb{Z}_{2}$ in tre fattori irriducibili
+	\begin{align*}
+	  \quotient{\mathbb{Z}_{2} \lbrack x \rbrack  }{(x^{7} - 1)}
+	  \cong
+	  \quotient{\mathbb{Z}_{2} \lbrack x \rbrack  }{M^{(0)}(x)}
+	  \times
+	  \quotient{\mathbb{Z}_{2} \lbrack x \rbrack  }{M^{(1)}(x)}
+	  \times
+	  \quotient{\mathbb{Z}_{2} \lbrack x \rbrack  }{M^{(3)}(x)}
+	\end{align*}
+	\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% slide presentazione Q  1 %%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+   \begin{lemma}
+   \begin{align*}
+      \forall v \in \mathscr{L}
+      \qquad
+      \mathbb{F}(\xi^{v})
+      \cong
+      \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}
+   \end{align*}
+  \end{lemma}
+  \begin{corollario}
+     \begin{align*}
+        \quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)} 
+         \cong 
+         \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}  
+         \cong 
+         \prod_{v\in \mathscr{L}} \mathbb{F}(\xi^{v})
+     \end{align*}   
+  \end{corollario}
+   
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% slide presentazione Q 2 %%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}
+%   \begin{center}
+%     \begin{tikzpicture}[xscale=1,yscale=1]	 
+%     \path node   (R) at (3,3) {$\quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)} $}             
+% 	  node   (Q) at (6,0) {$  \prod_{v\in \mathscr{L}} \mathbb{F}(\xi^{v})$}         
+% 	  node   (P) at (0,0) {$ \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}$} 
+% 	  ;
+% 	{ [->]
+% 	  \draw           (R)  -- node[above]{$\gamma$}     (P); 
+% 	  \draw           (R)  -- node[above]{$\eta$}       (Q);
+% 	  \draw[dashed]   (Q)  -- node[above]{$\mu$}        (P);       
+% 	  }
+%     \end{tikzpicture}
+%   \end{center}
+%   \begin{align*}
+%       \mu : \prod_{v\in \mathscr{L}} \mathbb{F}(\xi^{v})   
+% 		& \longrightarrow  
+% 		\prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}   \\
+% 		%%
+% 		(a(\xi^{v}))_{v \in \mathscr{L}} &\longmapsto  ( a(x)\mod{M^{(v)}(x)})_{v \in \mathscr{L}}
+%    \end{align*}
+% \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%diagramma finale capitolo 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\begin{frame}
+   \vspace{-1.5cm}
+    \begin{center}
+    \begin{tikzpicture}[xscale=1,yscale=1]	 
+    \path node   (Q) at (-5,3) {}         
+	  node   (P) at (0,6.5) {} 
+	  node   (R) at (0,3) {$\quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)} $} 
+	  node   (V) at (0,0) {$\mathcal{V}_{r, \mathbb{F}}^{c}$}         %(-1,0) node[anchor=east] {$e_1$ \ :}       
+          node   (M) at (4,0) {$ \mathcal{M}_{r,\mathbb{F} }^{c} $}         
+          node   (A) at (4,3) {$\mathbb{F}C_{r}$} 
+	  ;
+	{ 
+	  \draw[->]   (R) -- node[above]{$\psi_4$}     (A); 
+	  \draw[->]   (V) -- node[above]{$\psi_1$}     (M);
+	  \draw[->]   (R) -- node[right]{$\psi_2$}     (V);  
+	  \draw[->]   (A) -- node[right]{$\psi_3$}     (M);     
+        }
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%diagramma finale capitolo 1 seconda parte
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\begin{frame}
+   \vspace{-1.5cm}
+    \begin{center}
+    \begin{tikzpicture}[xscale=1,yscale=1]	 
+    \path node   (Q) at (-4.5,3) {$  \prod_{v\in \mathscr{L}} \mathbb{F}(\xi^{v})$}         
+	  node   (P) at (0,6) {$ \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}$} 
+	  node   (R) at (0,3) {$\quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)} $} 
+	  node   (V) at (0,0) {$\mathcal{V}_{r, \mathbb{F}}^{c}$}         %(-1,0) node[anchor=east] {$e_1$ \ :}       
+          node   (M) at (4,0) {$ \mathcal{M}_{r,\mathbb{F} }^{c} $}         
+          node   (A) at (4,3) {$\mathbb{F}C_{r}$} 
+	  ;
+	{ [ thick]
+	  \draw[->]          (R)  -- node[right]{$\gamma$}     (P); 
+	  \draw[->]          (R)  -- node[above]{$\eta$}       (Q);
+	  \draw[->]          (Q)  -- node[above]{$\mu$}        (P);       
+	}
+	{ 
+	  \draw[->]   (R) -- node[above]{$\psi_4$}     (A); 
+	  \draw[->]   (V) -- node[above]{$\psi_1$}     (M);
+	  \draw[->]   (R) -- node[right]{$\psi_2$}     (V);  
+	  \draw[->]   (A) -- node[right]{$\psi_3$}     (M);     
+        }
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% SECTION IDEALI E IDEMPOTENTI %%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Ideali e Idempotenti}
+\subsection{COSTRUZIONE DEGLI IDEALI}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% IDEALI DI R %%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Ideali}
+   \begin{teorema}
+   \begin{center}
+      \begin{align*}
+	  \mathfrak{a}\phantom{a} \unlhd \phantom{a} \quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)} \\ 
+	  \end{align*}
+	  se e solo se
+	  \begin{align*}
+	      \exists ! \phantom{a}  a(x),   \phantom{aa} 
+	      a(x) \mid x^r - 1 \phantom{aa} monico, \phantom{aa} \mathfrak{a} = (a(x))
+	\end{align*}
+   \end{center}	
+   \end{teorema}   
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% IDEALI DI R %%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+   \begin{teorema}
+   \begin{center}
+   \begin{tikzpicture}[xscale=1,yscale=0.7]
+      \path node   (A) at (0,2) {$ \lbrace A \mid A \subseteq \mathscr{L} \rbrace $}       
+	    node   (O) at (4,4) {$ \lbrace \cup_{t \in A} O(t)  \mid A \subseteq \mathscr{L} \rbrace $}         
+	    node   (R) at (4,0) {$ \lbrace \mathfrak{a} \mid \mathfrak{a} \trianglelefteq  \quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)}  \rbrace $} 
+	    ;
+	  { %[ thick]
+	    \draw[->]   (A) -- node{}     (O); 
+	    \draw[->]   (A) -- node{}     (R);
+	    \draw[->]   (O) -- node{}     (R);     
+	    }
+    \end{tikzpicture}
+   \end{center}
+   sono biiezioni.	
+   \end{teorema}   
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ESEMPIO IDEALI %%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\begin{frame}
+   \vspace{-1.3cm}
+     Ad esempio $r = 9$, $q = 2$: $ G = \mathbb{Z}_{9}^{\star} $, $\mathscr{L} = \lbrace 0,1,3 \rbrace$:
+      \begin{align*}
+	  M^{(0)}(x) &= x+1 \\
+	  M^{(1)}(x) &= x^6+x^3+1 \\ 
+	  M^{(3)}(x) &= x^2+x+1 
+      \end{align*}
+      \begin{align*}
+	  &\mathfrak{a}_{\lbrace 0 \rbrace} = (M^{(0)}(x)) = (x-1) \\
+	  &\mathfrak{a}_{\lbrace 1 \rbrace} = (M^{(1)}(x)) = (x^6+x^3+1) \\
+	  &\mathfrak{a}_{\lbrace 3 \rbrace} = (M^{(3)}(x)) = (x^2+x+1) \\
+	  &\mathfrak{a}_{\lbrace 0,1 \rbrace} = (M^{(0)}(x)M^{(1)}(x)) = (x^3 -1) \\
+	  &\mathfrak{a}_{\lbrace 0,3 \rbrace} = (M^{(0)}(x)M^{(3)}(x)) = (x^7 + x^6 + x^4 + x^3 + x + 1) \\
+	  &\mathfrak{a}_{\lbrace 1,3 \rbrace} 
+			= (M^{(1)}(x)M^{(3)}(x)) = (x^8 + x^7 + \dots + x + 1) \\
+	  &\mathfrak{a}_{\lbrace 0,1,3 \rbrace} = (M^{(0)}(x)M^{(1)}(x)M^{(3)}(x)) = (x^9 -1) = (0) \\
+	  &\mathfrak{a}_{\emptyset} = (1) 
+      \end{align*}
+\end{frame}
+
+
+\subsection{COSTRUZIONE DEGLI IDEMPOTENTI}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% IDEMPOTENTI %%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Idempotenti}
+  \begin{definizione}
+     $ $  %{\bf idempotente} se 
+     \begin{align*}
+        a(x) \in \quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)} \qquad \qquad a(x)^2 = a(x)
+     \end{align*}
+  \end{definizione}
+    \begin{prop}
+      In $  \prod_{v\in \mathscr{L}} \mathbb{F}(\xi^{v})$ sono tutti e soli i vettori $l$-dimensionali di polinomi costituiti da $1$ e da $0$.
+    \end{prop}
+    {\bf Idempotente minimale}: $  \mathbf{e}_{j} = (0, \dots, 0,1,0, \dots, 0)$ \\
+    {\bf Idempotente minimale}: $  \mathbf{\hat{e}}_{j} = (1, \dots, 1,0,1, \dots, 1)$ 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% TEROREMI %%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\begin{teorema}
+   \begin{enumerate}
+      \item L'intero $l$, cardinalità dei fattori di $x^r-1$ in $\mathbb{F}_{q}$ coincide con il numero degli idempotenti minimali e con il numero degli idempotenti massimali.
+      \item Gli idempotenti sono ortogonali: $\mathbf{e}_{i}\mathbf{e}_{j}  = \mathfrak{0}$ per $i \neq j$.
+      \item Gli idempotenti decompongono l'unità: $\sum_{i \in \mathscr{L}}\mathbf{e}_{i}  = \mathfrak{1}$.
+      \item Le combinazioni lineari di idempotenti generano tutti gli ideali.
+      \item Ogni elemento di $ \prod_{v\in \mathscr{L}} \mathbb{F}(\xi^{v})$ si decompone come combinazione lineare a coefficienti in $\mathbb{F}_{q}$ degli idempotenti minimali.
+      \item $(\mathbf{e}_{j})$ è un ideale minimale, $(\mathbf{\hat{e}}_{j})$ un ideale massimale.
+   \end{enumerate}
+\end{teorema}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% SECTION TRASFORMATA DI WINOGRAD %%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Trasformata di Winograd}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% esempio 1
+\thispagestyle{empty}
+\begin{frame}
+   \vspace{-1.2cm}
+    Le immagini tramite $\gamma$ degli elementi della base di $ \quotient{\mathbb{F}_{2} \lbrack x \rbrack  }{ (x^{7} - 1)}$ sono
+    \begin{align*}   
+      \gamma(x^0) &= (1,1,1)  \\
+      \gamma(x^1) &= (1,x,x) \\
+      \gamma(x^2) &= (1,x^2,x^2)  \\
+      \gamma(x^3) &= (1,1+x^2,1+x+x^2)  \\
+      \gamma(x^4) &= (1,1+x,x+x^2)  \\
+      \gamma(x^5) &= (1,1+x+x^2,1+x^2)  \\
+      \gamma(x^6) &= (1,x+x^2,1+x) 
+    \end{align*}
+    per 
+    \begin{align*}
+      x^{7} + 1 &= M^{(0)}(x) M^{(1)}(x) M^{(3)}(x) \\
+		&= (x+1)(x^3 + x + 1)(x^3 + x^2 + 1) 
+    \end{align*}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% esempio 2
+\thispagestyle{empty}
+\begin{frame}
+   \vspace{-1.2cm}
+    Le immagini tramite $\gamma$ degli elementi della base di $ \quotient{\mathbb{F}_{2} \lbrack x \rbrack  }{ (x^{7} - 1)}$ sono
+    \begin{align*}   
+	\Gamma(1,0,0,0,0,0,0)^{t}  = \gamma(x^0) &= (1,1,1) =  (1|1,0,0|1,0,0)^{t}           \\
+	\Gamma(0,1,0,0,0,0,0)^{t}  = \gamma(x^1) &= (1,x,x) = (1|0,1,0|0,1,0)^{t}            \\
+	\Gamma(0,0,1,0,0,0,0)^{t}  = \gamma(x^2) &= (1,x^2,x^2) = (1|0,0,1|0,0,1)^{t}        \\
+	\Gamma(0,0,0,1,0,0,0)^{t}  = \gamma(x^3) &= (1,1+x^2,1+x+x^2) = (1|1,0,1|1,1,1)^{t}  \\
+	\Gamma(0,0,0,0,1,0,0)^{t}  = \gamma(x^4) &= (1,1+x,x+x^2) = (1|1,1,0|0,1,1)^{t}      \\
+	\Gamma(0,0,0,0,0,1,0)^{t}  = \gamma(x^5) &= (1,1+x+x^2,1+x^2) = (1|1,1,1|1,0,1)^{t}  \\
+	\Gamma(0,0,0,0,0,0,1)^{t}  = \gamma(x^6) &= (1,x+x^2,1+x) = (1|0,1,1|1,1,0)^{t} 
+    \end{align*}
+    per 
+    \begin{align*}
+      x^{7} + 1 &= M^{(0)}(x) M^{(1)}(x) M^{(3)}(x) \\
+		&= (x+1)(x^3 + x + 1)(x^3 + x^2 + 1) 
+    \end{align*}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%% UVETTORI CIRCOLANT CONCATENATI %%%%%%%%%%%%%%%%%%%%%%%%%%
+% \subsection{ALGEBRA DEI VETTORI CIRCOLANTI CONCATENATI}
+% \begin{frame}
+%   \frametitle{Algebra dei vettori circolanti concatenati}
+%     \begin{align*}
+%       u,v \in \mathscr{L}
+%       \qquad  
+%       \mathbf{u} \in \mathcal{V}_{m(u), \mathbb{F}_{q}}^{c} , \mathbf{v} \in \mathcal{V}_{m(v), \mathbb{F}_{q}}^{c} 
+%       \\
+%       concat(\mathbf{u},\mathbf{v}) = (u_0,\dots,u_{d_{1} - 1}, v_0,\dots, v_{d_{2} - 1} ) 
+%     \end{align*}
+%     %\begin{definzione}
+%        Algebra dei vettori circolanti concatenati:
+% 	\begin{align*}
+% 	  \mathcal{V}_{r,\mathbb{F}_{q}}^{\mathscr{L}} = \coprod_{j \in \mathscr{L}} \mathcal{V}_{m(v), \mathbb{F}_{q}}^{c} 
+% 	  = \lbrace \mathbf{u} = concat(\mathbf{u}_{0}, \dots , \mathbf{u}_{max(\mathscr{L})}) 
+% 	  \mid 
+% 	  \mathbf{u}_{v} \in \mathcal{V}_{m(v), \mathbb{F}_{q}}^{c} \rbrace
+%       \end{align*}
+%    %\end{definizione}
+% \end{frame}
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% teorema di isomorfismo dell'algebra dei vettori circolanti concatenati
+% \begin{frame}
+%    \begin{teorema}
+%       Siano $r$ e $q$ fissati, $\mathscr{L}_{r,q}$ insieme delle etichette determinato dalla fattorizzazione di $x^r-1$, allora
+%       \begin{enumerate}
+% 	  \item $\mathcal{V}_{r,q}^{\mathscr{L}}$ è un'algebra isomorfa a $\mathcal{Q}_{r,q}$.
+% 	  \item $\mathcal{V}_{r,q}^{\mathscr{L}}$ è un'algebra isomorfa a $\mathcal{P}_{r,q}$.
+%       \end{enumerate} 
+%     \end{teorema}    
+%     \begin{corollario}
+% 	Per ogni $v \in \mathscr{L}_{r,q} $ etichetta,  $\mathcal{V}_{m(v),q}^{c}$ è un campo. 
+%       \end{corollario}
+%     \begin{corollario}
+%       Il prodotto di campi $\mathcal{V}_{r,q}^{\mathscr{L} } $ è un'algebra isomorfa a $\mathcal{V}_{r,q}^{c} $.
+%     \end{corollario}
+% \end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% VDEFINIZIONE FONDAMENTALE %%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{TDW, DEFINIZIONE}
+\begin{frame}
+    \begin{definizione}
+      La matrice della trasformazione $\gamma$ fra le algebre
+      \begin{align*}
+         \quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)} 
+         \quad 
+         e 
+         \quad 
+         \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}
+      \end{align*}
+      nelle rispettive rappresentazioni vettoriali 
+      \begin{align*}
+         \mathcal{V}_{r, q}^{c} \quad e \quad \mathcal{V}_{r,q}^{\mathscr{L}}
+      \end{align*}      
+      è detta {\bf trasformata di Winograd} \\
+      È indicata con $\Gamma$, e la sua inversa è indicata con $\Delta$.
+    \end{definizione}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% esempio 3
+\thispagestyle{empty}
+\begin{frame}
+   \vspace{-1.2cm}
+      \begin{align*}
+	  \Gamma = 
+	  \left(
+	    \begin{array} { c }
+	    \Gamma^{(0)}  \\ \\
+	    \Gamma^{(1)} \\ \\
+	    \Gamma^{(3)} 
+	    \end{array}
+	  \right)
+	  =
+	  \left(
+	    \begin{array} { c c c c c c c c}
+	    1 & 1 & 1 & 1 & 1 & 1 & 1  \\
+	    \hline
+	    1 & 0 & 0 & 1 & 1 & 1 & 0  \\
+	    0 & 1 & 0 & 0 & 1 & 1 & 1  \\
+	    0 & 0 & 1 & 1 & 0 & 1 & 1  \\
+	    \hline
+	    1 & 0 & 0 & 1 & 0 & 1 & 1  \\
+	    0 & 1 & 0 & 1 & 1 & 0 & 1  \\
+	    0 & 0 & 1 & 1 & 1 & 1 & 0  
+	    \end{array}
+	  \right)
+      \end{align*}
+      \begin{align*}
+	  \Delta = 
+	  \left(
+	  \begin{array} { c | c | c }
+	  \Delta^{(0)} & \Delta^{(1)} & \Delta^{(3)}   
+	  \end{array}
+	  \right)
+	  =
+	  \left(
+	  \begin{array} { c | c c c | c c c c}
+	  1 & 1 & 1 & 1 & 1 & 0 & 0  \\
+	  1 & 0 & 1 & 1 & 1 & 1 & 0  \\
+	  1 & 0 & 0 & 1 & 1 & 1 & 1  \\
+	  1 & 1 & 0 & 0 & 0 & 1 & 1  \\
+	  1 & 0 & 1 & 0 & 1 & 0 & 1  \\
+	  1 & 1 & 0 & 1 & 0 & 1 & 0  \\
+	  1 & 1 & 1 & 0 & 0 & 0 & 1  
+	  \end{array}
+	  \right)
+      \end{align*}      
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% PROPRIETà GAMMA %%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{PROPRIETA' DI $\Gamma$}
+\begin{frame}
+    \begin{lemmax}
+      Il divisore $M^{(v)}(x)$ soddisfa l'eqazione
+      \begin{align*}
+	  M^{(v)}(x) = x^{m(v)} - \sum_{j=1}^{m(v)} \Gamma_{m(v) - j, m(v)}^{(v)}  x^{m(v) - j}
+      \end{align*}
+    \end{lemmax}
+    \begin{teorema} \label{teo:winogradRicorrenza}
+	Sia $v$ appartenente all'insieme delle etichette $\mathscr{L}_{r,q}$, allora per ogni $i \in \lbrace  0,1, \dots, m(v) - 1 \rbrace$ segue che
+	\begin{align*} \label{eq:winogradRicorrenza}
+	    \Gamma_{i,j}^{(v)} &= \delta_{i,j}  \qquad j \in \lbrace  0,1, \dots, m(v) - 1 \rbrace \\
+	    \Gamma_{i,n}^{(v)} &= \sum_{k=1}^{m(v)} \Gamma_{m(v) - k, m(v)}^{(v)} \Gamma_{i,n-k}^{(v)} \qquad \forall n \in \mathbb{Z}
+	  \end{align*}
+      \end{teorema}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% PROPRIETà GAMMA %%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \begin{lemmax}
+    \begin{center}
+      $c(x) \in (M^{(v)}(x))$ se e solo se  $\Gamma^{(v)} \mathbf{c}^{t} = 0$.
+    \end{center}
+    \end{lemmax}
+    \begin{proof}
+      Dato che
+      \begin{enumerate}
+	  \item $\eta^{(v)}(x^{j}) = \xi^{vj} = \sum_{i=0}^{m(v)-1}\Gamma_{i,j}^{(v)}\xi^{iv}$ per $j \in \mathbb{Z}_{r}$.
+	  \item Per $H^{(v)}$ matrice dell'epimorfismo $\eta^{(v)}$ si ha $\eta^{(v)}m(x) = H^{(v)}\mathbf{m}^{t}$.
+	  \item $H=\Gamma$ per $H$ e $\Gamma$ matrici di trasformazione di $\eta$ e $\gamma$.
+      \end{enumerate}
+      allora vale la catena di biimplicazioni:\\
+      $m(x)\in (M^{(v)}(x))$ $\iff$ $(M^{(v)}(x))$ divide $m(x)$ $\iff$ $m(\xi^{v}) = 0$ $\iff$ $\eta^{(v)}m(x) = H^{(v)}\mathbf{m}^{t} = 0$ $\iff$ $ \Gamma^{(v)}\mathbf{m}^{t} = 0$.
+    \end{proof}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% PROPRIETà DELTA %%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{PROPRIETA' DI $\Delta$}
+% \begin{frame}
+%     Come determinare l'inversa di $\gamma$?
+%     \begin{align*}
+%       \gamma^{-1} :  \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}    
+%       & \longrightarrow  
+%       \quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)}
+%       \\
+%       %%
+%       (a_{v}(x) \mod{M^{(v)}(x)})_{v \in \mathscr{L}  }
+%       &\longmapsto  
+%       a(x) 
+%     \end{align*}
+%     $a(x)$ è il risultato del sistema di congruenze $a(x) \equiv a_{v}(x) \mod{M^{(v)} (x) }$ ottenuto con il teorema cinese dei resti.
+% \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% PROPRIETà DELTA %%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \begin{prop}[di $\Delta$]
+    \begin{enumerate}
+      \item  La prima colonna di ogni blocco $\Delta^{(v)}$ di $\Delta$ è l'idempotente miminale $\mathbf{e}_{v}$ che genera l'ideale minimale 
+      \begin{align*}
+	  (\hat{M}^{(v)}(x)) = \Big(\frac{1-x^r}{M^{(v)}(x)} \Big)
+      \end{align*}
+      \item L'insieme $\lbrace \Delta_{\sim, 0}^{(v)} \rbrace_{v\in \mathscr{L}}$ delle prime colonne di tutti i blocchi di $\Delta$ costituisce l'insieme di tutti gli idempotenti minimali che generano tutti gli ideali minimali.
+      \item  $v \in \mathscr{L}$, $j \in \lbrace 0, 1 \dots , m(v)-1 \rbrace$:
+      \begin{align*}
+      \big( \Delta_{\sim, j}^{(v)} \big)^{t} \in \mathcal{V}_{m(v), q}^{c} 
+      \qquad \qquad 
+      \big( \Delta_{\sim, j}^{(v)} \big)^{t}  =  (0,1,0,\dots,0)^{j} \star \big( \Delta_{\sim, 0}^{(v)} \big)^{t}  
+      \end{align*}
+    \end{enumerate}  
+    \end{prop}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% PROPRIETà DELTA %%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \begin{prop}
+      L'insieme dei vettori colonna $\lbrace \Delta_{\sim, j}^{(v)} \rbrace_{j=0}^{m(v)-1}$ determina una base dell'ideale $(M^{(v)}(x))$.
+    \end{prop}
+    \begin{prop}
+	Esiste un altro modo per ricavare $\Delta$, senza utilizzare il teorema cinese dei resti: 
+	\begin{align*}
+	  \Delta_{i,j} = \frac{1}{r} \sum_{k=1}^{m(v)-1} \Gamma_{k,j-i+k}^{(v)}
+	\end{align*}
+    \end{prop}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% SECTION APPLICAZIOCODICI CORRETTORI %%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Codici correttori}
+\begin{frame}
+  \frametitle{Coici Ciclici} 
+    \begin{definizione}
+    Un codice lineare $C$ di lunghezza $r$ (cioè sottospazio vettoriale di $\mathbb{F}^{r}$) si dice {\bf ciclico} se è chiuso rispetto alla permutazione ciclica dei suoi elementi verso destra:
+    \begin{align*}
+	\mathbf{c} = (c_{0},c_{1}, \dots , c_{r-1}) \in C \Longrightarrow (c_{r-1},c_{0}, \dots , c_{r-2}) \in C 
+    \end{align*}
+    \end{definizione}
+    \begin{teorema}
+      Un codice lineare $C$ di lunghezza $r$ sull'alfabeto $\mathbb{F}_{q}$ è ciclico se e solo se è un ideale di $\quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)}$. 
+    \end{teorema}
+\end{frame}
+
+%a voce cosa è il polinomio generatore
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  La matrice di trasformazione fra lo spazio $\mathbb{F}^{r}$ ed il codice ciclico $(a(x))$ è chiamata matrice generatrice ed è indicata con $G$. 
+  La matrice di trasformazione fra lo spazio $\mathbb{F}^{r}$ ed il codice duale $(\hat{a}(x))$ è chiamata matrice di controllo ed è indicata con $H$.
+  \begin{teorema}
+     Sia $\mathfrak{a} $ codice ciclico 
+     \begin{align*}
+	c(x) \in \mathfrak{a} &\iff H \mathbf{c}^{t} = \mathbf{0}^{t}  \\
+	c(x) \in \mathfrak{a}^{\perp} &\iff G \mathbf{c}^{t} = \mathbf{0}^{t} 
+      \end{align*}
+  \end{teorema}
+\end{frame}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%%%%%%%%%% APPLICAZIONI
+\section{Applicazioni}
+\subsection{$\Gamma$ COME MATRICE GENERATRICE E DI CONTROLLO}
+\begin{frame}
+  Consideriamo i risultati:
+      \begin{align*}
+      c(x) \in \mathfrak{a} &\iff H \mathbf{c}^{t} = \mathbf{0}^{t}  \\
+      c(x) \in \mathfrak{a}^{\perp} &\iff G \mathbf{c}^{t} = \mathbf{0}^{t} \\
+      c(x) \in (M^{(v)}(x)) &\iff \Gamma^{(v)} \mathbf{c}^{t} = \mathbf{0}^{t}
+    \end{align*}
+   \begin{teorema}
+      Sia $v \in \mathscr{L}$, allora il codice ciclico massimale $\mathfrak{a} = (M^{(v)}(x))$ ha come matrice di controllo $\Gamma^{(v)} $, $v$-esimo blocco della trasformata di Winograd. 
+    \end{teorema}
+    \begin{teorema}
+      Sia $v \in \mathscr{L}$, allora il codice ciclico minimale $(\hat{M}^{(-v)}(x))$ ha come matrice generatrice $\Gamma^{(v)} $ $v$-esimo blocco della trasformata di Winograd.
+    \end{teorema}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%%%%%%%%%% APPLICAZIONI
+\begin{frame}
+    \begin{corollario}
+      Se le orbite dell'azione di $G \cong Gal(\mathbb{F}_{q}(\xi),\mathbb{F}_{q})$, $G \trianglelefteq \mathbb{Z}_{r}^{\star} $ su $\mathbb{Z}_{r}$ sono autoconiugate (quindi $M^{(v)}(x) = M^{(-v)}(x)$) allora il codice massimale $(M^{(v)}(x))$ ed il codice minimale $(\hat{M}^{(v)}(x))$ sono legate dalla matrice $\Gamma^{(v)}$ che genera il primo ed è matrice di controllo per il secondo.
+    \end{corollario}
+    \vspace{1cm}
+    Possiamo generalizzare il risultato precedente considerando il codice ciclico generato da 
+    \begin{align*}
+      a(x) = M^{(v_{1})}(x)\cdot \dots \cdot M^{(v_{k})}(x)
+    \end{align*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%%%%%%%%%% APPLICAZIONI
+\begin{frame}
+    \begin{corollario}
+      $A=(v_{1}, \dots, v_{k}) \subseteq \mathscr{L}$, allora
+      \begin{align*}
+	  \Gamma^{(A)}
+	  =
+	  \left(
+	  \begin{array} { c }
+	  \Gamma^{(v_{1})}  \\ \\
+	  \vdots \\ \\
+	  \Gamma^{(v_{k})} 
+	  \end{array}
+	  \right)
+      \end{align*}
+      è matrice di controllo del codice $\mathfrak{a} = (  M^{(v_{1})}(x)\cdot \dots \cdot M^{(v_{k})}(x) )$
+      ed è matrice generatrice del codice $(  M^{(-v_{1})}(x)\cdot \dots \cdot M^{(-v_{k})}(x) )^{\perp}$.
+    \end{corollario}
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%%%%%%%%%% APPLICAZIONI
+\subsection{$\Delta$ NELLA DECODIFICA}
+\begin{frame}
+   $A=(v_{1}, \dots, v_{k}) \subseteq \mathscr{L}$, $\mathfrak{a} = (  M^{(v_{1})}(x)\cdot \dots \cdot M^{(v_{k})}(x) )$.
+   L'immagine della parola $c(x)$ di $\mathfrak{a}$ tramite $\gamma$ è costituita da sottovettori circolanti nulli nei posti $v_{1}, \dots, v_{k}$. Definiamo questi sottovettori {\bf privi di informazione}.
+    \begin{align*}
+      \mathbf{c} \in \mathcal{V}_{r, q}^{\mathscr{L}} 
+      \mapsto 
+      \mathbf{c} ~ \Bigg|~ \coprod_{v\in \mathscr{L} \setminus A} \mathcal{V}_{m(v), q}^{c}
+    \end{align*}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%%%%%%%%%% APPLICAZIONI
+\begin{frame}
+    \begin{esempio}
+      $c(x) = 1 + x + x^2 + x^5 = (1,1,1,0,0,1,0)\in (M^{(0)}(x)M^{(1)}(x))$.\\ Tramite $\gamma$ diventa:
+      \begin{align*}
+	  \gamma(c(x)) = (0,0,x^2) = (0|0,0,0|0,0,1)
+      \end{align*}
+      Sarà sufficiente inviare il terzo blocco $(0,0,1)$ invece della parola $(1,1,1,0,0,1,0)$. In fase di decodifica si aggiungeranno i sottovettori privi di informazione e si applicherà $\Delta$ per ottenere $(1,1,1,0,0,1,0)$.
+    \end{esempio}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%%%%%%%%%% BIBLIOGRAFIA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+\begin{frame}
+Fonti principali:
+    \begin{itemize}
+      \item U. Cerruti, F. Vaccarino \emph{From Cyclotomic Extensions to Generalized
+	    Ramanuyan's Sum through the Winograd Transform}, pre-print.    
+      \item Luigia Berardi, \emph{Algebra e teoria dei codici correttori}, Franco angeli
+	    Editore 1994.
+      \item Richard E. Blahut, \emph{Theory and Practice of Error Control Codes}, 
+	    Addison Wesley publishing Company, 1984.
+      \item Ian F. Blake, Ronald C. Mullin, \emph{The Mathematical Theory of Coding},
+	    Academic Press 1975.
+      
+    \end{itemize}
+\end{frame}
+
+
+
+
+\end{document}

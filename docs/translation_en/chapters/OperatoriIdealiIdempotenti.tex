@@ -1,0 +1,809 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% CAPITOLI     %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Operatori, ideali e idempotenti minimali}
+
+Fino a qui abbiamo portato avanti in parallelo il discorso della
+fattorizzazione di $x^r - 1$ sia sul campo dei razionali che sui campi finiti
+per l'analogia significativa che si svela nel calcolo dei polinomi minimi. 
+Dato che lo scopo della tesi
+riguarda le applicazioni alla teoria dei codici correttori, procederemo solo sui campi di caratteristica $p$, tenendo presente che molti dei risultati possono essere generalizzati anche ai campi perfetti di caratteristica zero. \\
+Ogni campo finito con $q = p^{n}$ elementi è definito in modo unico a meno di isomorfismi, quindi nei pedici delle algebre introdotte, non indichiamo più $\mathbb{F}_{q}$, ma semplicemente $q$. Matrici e vettori circolanti saranno indicati rispettivamente con $\mathcal{V}_{r, q}^{c}$ ed $\mathcal{M}_{r,q }^{c}$; l'algebra $\mathbb{F}_{q}C_{r}$ e l'algebra dei polinomi modulo $x^r-1$ saranno indicati con $\mathcal{A}_{r, q} $ ed $\mathcal{R}_{r,q} $ rispettivamente e le fattorizzazioni in prodotto di campi delle algebre saranno indicati con $\mathcal{P}_{r, q} $ e $\mathcal{Q}_{r, q} $.
+
+\[
+\begindc{\commdiag}[3]
+%sotto
+\obj(0,0)[V]{$ \mathcal{V}_{r, q}^{c} $}
+\obj(40,0)[M]{$\mathcal{M}_{r,q }^{c}$}
+
+
+%metà
+\obj(0,20)[R]{$ \mathcal{R}_{r,q } $}
+\obj(40,20)[A]{$ \mathcal{A}_{r,q } $}
+\obj(-40,20)[P]{$ \mathcal{P}_{r,q } $}
+
+%sopra
+\obj(0,40)[Q]{$ \mathcal{Q}_{r,q } $}
+
+%frecce orizzontali
+\mor{V}{M}{$\psi_{1}$}
+\mor{R}{A}{$\psi_{4}$}
+\mor{R}{P}{$\eta$}
+
+%frecce verticali
+\mor{R}{V}{$\psi_{2}$}
+\mor{A}{M}{$\psi_{3}$}
+\mor{R}{Q}{$\gamma$}
+
+%frecce oblique
+\mor{P}{Q}{$\mu$}
+%\mor{A}{Q}{$\mu_{2}$}
+
+\enddc
+\]
+
+\noindent
+Il capitolo che state per leggere ha tre scopi principali: definire cinque operatori che ci permetteranno di maneggiare più agevolmente i polinomi modulo $x^r-1$ ed analizzare alcune delle loro principali conseguenze; studiare la forma degli ideali di $\mathcal{R}$, che avranno un ruolo particolare nello studio di $\mathcal{Q}$; infine usare $\gamma$ per trovare gli idempotenti di $\mathcal{R}$ ed utilizzarli come generatori dei suoi ideali. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% SEZIONI    %%%%%%%%%%%%%%%%%%%%
+\section{Operatori su $\mathcal{R}$}
+Sia $r$ intero positivo, $\mathbb{F}_{q}$ campo finito di ordine $q=p^n$ con $(r,p)=1$, e sia $G \trianglelefteq \mathbb{Z}_{r}^{\star}$ isomorfo a $ Gal(\mathbb{F}_{q}(\xi), \mathbb{F}_{q})$ per $\xi$ radice primitiva $r$-esima dell'unità.
+\begin{definizione}
+   Dato $a(x) \in \mathcal{R}_{r,q}$ si definisce {\bf k-shift} di $a(x)$ il polinomio $x^{k}a(x)$ modulo $x^r - 1$, per $k \in \mathbb{Z}$.
+   I k-shift sono indicati con $\sigma_{k}$:
+   \begin{align*}
+     \sigma_{k} : \mathcal{R} &\longrightarrow  \mathcal{R}  \\
+                         a(x) &\longmapsto x^k a(x)
+   \end{align*}
+   Si definisce {\bf g-coniugato} di $a(x)$ il polinomio $a(x^g)$ modulo $x^r-1$ per $g \in G$, e si indica con $\tau_{g}$:
+   \begin{align*}
+     \tau_{g} : \mathcal{R} &\longrightarrow  \mathcal{R}  \\
+                         a(x) &\longmapsto a(x^g)
+   \end{align*}
+\end{definizione}
+
+Come primo risultato abbiamo la 
+\begin{prop}
+   Con le notazioni precedenti, per $a(x) = \sum_{j \in \mathbb{Z}_{r}} a_{j} x^j$
+   \begin{align*}
+     & \sigma_{k} (a(x)) = \sum_{j \in \mathbb{Z}_{r}} a_{j-k} x^j \\
+     & \tau_{g} (a(x)) = \sum_{j \in \mathbb{Z}_{r}} a_{j}x^{gj}
+   \end{align*}
+   inoltre per ogni $g$ nel gruppo $G$, $\tau_{g}$ è un isomorfismo di algebre.
+\end{prop}
+\begin{proof}
+   Le prime due equazioni sono conseguenza diretta della definizione. 
+   L'operatore $\tau_{g}$ è lineare ed è definito sull'automorfismo del gruppo ciclico generato da $x$ in $\mathcal{R}$. Il fatto di elevare $x$ per un elemento del gruppo $G$ mantiene le eventuali radici che $a(x)$ ha in comune con $x^r - 1$ nella stessa orbita.
+\end{proof}
+\begin{definizione}
+   Sia dato $a(x) \in \mathcal{R}$ il cui vettore circolante associato è dato da 
+   \begin{align*}
+      \psi_{2}(a(x))=(a_0 , a_1 , \dots, a_{r-1})
+   \end{align*}
+   allora si definisce {\bf riflesso} di $a(x)$ il polinomio $a(x)^{R}$ il cui vettore circolante associato è definito come 
+   \begin{align*}
+      \psi_{2}(a(x)^{R})=(a_{r-1} , a_{r-2} , \dots, a_{0})
+   \end{align*}
+\end{definizione}
+\noindent
+Vale la seguente
+\begin{prop}
+   Con le notazioni precedenti
+   \begin{align*}
+     a(x)^{R}  = \sum_{j \in \mathbb{Z}_{r}} a_{r-1-j}x^{j}
+   \end{align*}
+\end{prop}
+\noindent
+Con la prossima definizione concludiamo l'elenco degli operatori su $\mathcal{R}$ presentati in questa ricerca.
+\begin{definizione}
+   Dato $a(x) \in \mathcal{R}$ si definisce {\bf trasposto} di $a(x)$ il polinomio $a(x)^{T}$ il cui vettore circolante associato è dato da 
+   \begin{align*}
+   \psi_{2}(a(x)^{T})=(a_{0} , a_{r-1} , a_{r-2} \dots, a_{2}, a_{1})
+   \end{align*}
+   Si definisce {\bf reciproco} del polinomio $a(x)$ il polinomio 
+   \begin{align*}
+      a(x)^{\perp} = x^d a(x^{-1})
+   \end{align*}
+   dove $d$ è il grado di $a(x)$.
+\end{definizione}
+\noindent
+Il trasposto di $a(x)$ è il polinomio determinato dalla prima riga della trasposta della matrice determinata da $a(x)$. Volendo rendere le cose comode da implementare (ma meno leggibili), possiamo definire il trasposto di $a(x)$ come
+\begin{align*}
+   a(x)^{T} = \psi_{2}^{-1} ( \psi_{1}^{-1} \Big( \psi_{1} ( \psi_{2}(a(x))) \Big)^{t}    )
+\end{align*}
+mentre il reciproco di $a(x)$ può essere definito come il polinomio riflesso, considerato però su uno spazio vettoriale di dimensione ridotta, pari al grado di $a(x)$ e poi riportato nello spazio originale di dimensione $r$. Per gli operatori trasposto e reciproco, abbiamo la 
+\begin{prop}
+   Sia $a(x) \in \mathcal{R}$, allora 
+   \begin{align*}
+     & a(x)^{T} = a_{0} + \sum_{j \in \mathbb{Z}_{r} \setminus \lbrace 0 \rbrace } a_{r-j} x^j 
+                 = \sum_{j \in \mathbb{Z}_{r} } a_{r-j} x^j \\
+     & a(x)^{\perp} = \sum_{j \in \mathbb{Z}_{r}} a_{d-j}x^{j}
+   \end{align*}
+\end{prop}
+\begin{proof}
+   La prima è conseguenza immediata della definizione. Si dimostra la seconda:
+   \begin{align*}
+     a(x)^{\perp}  &=  x^d a(x^{-1}) =  x^d \sum_{i \in \mathbb{Z}_{r}} a_{i}(x^{-1})^{i} \\
+       &= x^d \sum_{i \in \mathbb{Z}_{r}} a_{i}x^{-i} = \sum_{i \in \mathbb{Z}_{r}} a_{i}x^{d-i}  \\
+       &= \sum_{j \in \mathbb{Z}_{r}} a_{d-j}x^{j}
+   \end{align*}
+   Avendo posto nell'ultimo passaggio $i=d-j$. 
+\end{proof}
+\noindent
+Possiamo esplorare alcune relazioni fra gli operatori di $\mathcal{R}$ appena definiti:
+\begin{prop}
+  Sia $a(x) \in \mathcal{R}$ di grado $d$, allora 
+  \begin{align*}
+     & a(x)^{R} = x^{-(d+1)} a(x)^{\perp} \\
+     & a(x)^{T} = x^{-d} a(x)^{\perp}
+   \end{align*}
+\end{prop}
+\begin{proof}
+   La prima equazione segue da:
+   \begin{align*}
+     x^{-(d+1)}a(x)^{\perp}  &= x^{-1} \sum_{i \in \mathbb{Z}_{r}} a_{i}x^{r-i} = \sum_{i \in \mathbb{Z}_{r}} a_{i}x^{r-i-1} = \sum_{i \in \mathbb{Z}_{r}} a_{r-j-1}x^{j}  = a(x)^{R}
+   \end{align*}
+   Mentre la seconda segue applicando la definizione di $a(x)^{\perp} =  x^d a(x^{-1}) $:
+   \begin{align*}
+     x^{-d} a(x)^{\perp}  &= x^{d-d}  a(x^{-1}) = a(x^{-1}) = a(x)^{T}
+   \end{align*}
+\end{proof}
+%%%%%%%%%%%
+\begin{prop}
+   Se $deg(a(x)) = r-1$ allora il reciproco coincide con il riflesso
+   \begin{align*}
+      a(x)^{\perp}=a(x)^{R}
+   \end{align*}
+\end{prop}
+\begin{proof}
+    \begin{align*}
+     a(x)^{\perp}  &= \sum_{j \in \mathbb{Z}_{r}} a_{j}x^{d-j} = \sum_{j \in \mathbb{Z}_{r}} a_{j}x^{r-1-j} = \\ 
+                   &= \sum_{j \in \mathbb{Z}_{r}} a_{r-j-1}x^{j}  = a(x)^{R}
+   \end{align*}
+\end{proof}
+Se $a(x)$ è un divisore di $x^r - 1$ (quindi un prodotto dei suoi fattori irriducibili $M^{(v)}(x)$) allora abbiamo alcune proprietà:
+
+\begin{prop}\label{prop:reciprocoISdivisore}
+   Se $a(x)\in \mathcal{R}$ è un divisore di $x^r - 1$ allora anche il suo reciproco $a(x)^{\perp}$ è un divisore di $x^r-1$ in $\mathcal{R}$.
+\end{prop}
+\begin{proof}
+   Se $a(x) = a_{0} + a_{1}x + \dots + a_{d-1}x^{d-1} + a_{d}x^{d}$ allora abbiamo che, per definizione $a(x)^{\perp} = a_{d} + a_{d-1}x + \dots +  a_{1} x^{d-1} + a_{0}x^{d} = x^{d} a(1/d)$.\\
+   Indichiamo con $\hat{a}(x)$ il polinomio di grado $r-d$ dato da 
+   \begin{align*}
+      \hat{a}(x) = (x^r - 1)/a(x)
+   \end{align*}
+   ben definito dal fatto che $a(x)$ è divisore di $x^r - 1$. Allora
+   \begin{align*}
+       \hat{a}(x)a(x) &= x^r - 1 \\
+       \hat{a}(1/x)a(1/x) &= (1/x)^r - 1 \\
+       x^{r} \hat{a}(1/x)a(1/x) &= 1-x^r \\
+       x^{r-d} \hat{a}(1/x)x^{d} a(1/x) &= 1-x^r \\
+       -x^{r-d} \hat{a}(1/x) a(x)^{\perp} &= x^r - 1 
+   \end{align*}
+   ed essendo $-x^{r-d} \hat{a}(1/x)$ polinomio di grado positivo o uguale a zero, segue che $a(x)^{\perp}$ è un divisore di $x^r - 1$.
+\end{proof}
+La prossima proprietà\footnote{\cite{cerruti} proprietà $1.11$ pag $11$.} come la precedente
+caratterizza gli operatori introdotti quando agiscono sui divisori di $x^r - 1$
+\begin{prop} \label{prop:multiplaOperatori} 
+    Con le notazioni introdotte si verificano i seguenti risultati:
+   \begin{enumerate} 
+      \item \label{cap3:punto2} Per ogni $g \in G$, $k \in \mathbb{Z}$ le radici che $a(x)$, $\sigma_{k}(a(x))$, $\tau_{g}(a(x))$ hanno in comune con $x^r -1$ coincidono fra loro. 
+      \item \label{cap3:punto3} Le radici che $a(x)^{\perp}$ ha in comune con $x^r -1$ coincidono con i reciproci delle radici che $a(x)$ ha in comune con $x^r - 1$.
+      \item \label{cap3:punto4} Le radici che $a(x)^{R}$, $a(x)^{T}$ hanno in comune con $x^r -1$ coincidono fra loro.
+      \item \label{cap3:punto5} Per ogni $v\in \mathscr{L}$, $M^{(v)}(x)^{\perp} = \lambda M^{(-v)}(x)$, dove $\lambda$ è il termine noto di $M^{(v)}(x)$, indicato con $M_{0}^{(v)}$.
+      \item \label{cap3:punto6} Se le orbite sono autoconiugate e $v\neq 0$ allora $\lambda = 1$ ed $M^{(v)}(x)^{\perp} = M^{(-v)}(x)$. 
+   \end{enumerate}
+\end{prop}
+\begin{proof}
+   Dimostriamo i diversi punti separatamente:
+   \begin{enumerate} 
+      \item Sia $\lbrace \xi^{t} \mid t \in O(v) \rbrace$ insieme delle radici del polinomio minimo $M^{(v)}(x)$ cioè l'insieme delle radici coniugate ad $\xi^{v}$, allora
+      \begin{align*}
+         a(\xi^{v}) = 0 \iff a(\xi^{vg}) = 0 \qquad \forall g \in G
+      \end{align*}
+      quindi $a(x)$ e $\tau_{g}(a(x))$ hanno le stesse radici in comune con $x^r-1$. \\
+      Inoltre $\sigma_{k}(a(x)) = x^ka(x)$ modulo $x^r-1$, cioè in $\mathbb{F}_{q}\lbrack x \rbrack$:
+      \begin{align*}
+         \sigma_{k}(a(x)) = x^ka(x) + b(x)(x^r-1)  \qquad b(x)\in \mathbb{F}_{q}\lbrack x \rbrack
+      \end{align*}     
+      Ogni $\xi^{t}$ che annulla $a(x)$ ed $x^r-1$ annulla anche $\sigma_{k}(a(x))$.
+      \item Se $\xi^{v}$ è radice di $a(x)$ allora $\xi^{-v}$ è radice di $a(x^{-1})$ ed in particolare di $x^{d}a(x^{-1}) = a(x)^{\perp}$. Viceversa se $\xi^{v}$ è radice di $ a(x)^{\perp}$ allora $\xi^{-v}$ è radice di $a(x)$. 
+      \item Dal fatto che 
+        \begin{align*}
+	  & a(x)^{R} = x^{-(d+1)} a(x)^{\perp} = x^{-1}a(x^{-1}) \\
+	  & a(x)^{T} = x^{-d} a(x)^{\perp} = a(x^{-1})
+	\end{align*}
+      e dal punto precedente segue che almeno le radici che $a(x)^{R}$ ed $a(x)^{T}$ hanno in comune con $x^r -1$ coincidono fra loro.
+      
+      
+      
+      
+      
+      \item Le radici di $M^{(v)}(x)$ sono i reciproci delle radici di $M^{(v)}(x)^{\perp}$ e da quanto visto $M^{(v)}(x)^{\perp}$ è divisore di $x^r - 1$. Questi due polinomi hanno lo stesso grado e l'insieme delle radici di $M^{(v)}(x)^{\perp}$ è dato da 
+      \begin{align*}
+	 \lbrace \xi^{-t} \mid t \in O(v) \rbrace 
+       \end{align*}     
+      quindi 
+      \begin{align*}
+	 M^{(v)}(x)^{\perp} = \lambda (\prod_{t \in O(v)}(x-\xi^{-t}) ) = \lambda M^{(-v)}(x)
+       \end{align*}  
+      Dato che $M_{0}^{(v)}$ è il coefficiente direttivo di $M^{(v)}(x)^{\perp}$, allora $\lambda = M_{0}^{(v)}$. 
+      \item Se le orbite sono autoconiugate allora $M^{(v)}(x)^{\perp} = M_{0}^{(v)} M^{(v)}(x)$. Osservando che
+      \begin{align*}
+	 M_{0}^{(v)}  = (-1)^{m(v)} \prod_{t \in O(v)}\xi^{t} 
+       \end{align*}  
+       ed applicando il lemma \ref{cap2:lemma110} per $r$ dispari e $v\neq 0$, $m(v)$ è pari ed
+       \begin{align*}
+	 M_{0}^{(v)}  = (-1)^{m(v)} \prod \xi^{t} \xi^{-t} = 1
+       \end{align*} 
+       Mentre per $r$ pari e $v\neq 0$ allora si considera solo il caso $v=r/2$:
+       \begin{align*}
+	 M_{0}^{(r/2)}  = (-1)^{m(v)}  \xi^{r/2}  = (-1)(-1) = 1
+       \end{align*} 
+   \end{enumerate}
+\end{proof}
+\noindent
+In considerazione della proprietà precedente risulta ragionevole distinguere le radici del generico polinomio $a(x)$ in $\mathcal{R}$ dalle radici che tale polinomio condivide con $x^r - 1$. 
+\begin{definizione}
+   Sia $a(x) \in \mathcal{R}$, allora le radici che $a(x)$ possiede in comune con $x^r - 1$ sono dette {\bf radici principali} (o zeri \footnote{Così definite in \cite{cerruti} pag. 8}).
+\end{definizione}
+\noindent
+La distinzione fra radici e radici principali è anche conseguenza del fatto che le radici di $a(x)$ non sono in generale radici di $a(x)b(x) \mod{x^r-1}$ comunque scelto $b(x)$ in $\mathcal{R}$. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% SEZIONI    %%%%%%%%%%%%%%%%%%%%
+\section{Ideali di $\mathcal{R}$ e sottospazi}
+Gli ideali dell'algebra $\mathcal{R}$ sono generati da polinomi monici particolari ed hanno un ruolo interessante nel determinare il prodotto di campi $\mathcal{Q}$.
+
+\begin{teorema} \label{teo:genDiIdeali}
+   Sia $\mathfrak{a}$ ideale di $\mathcal{R}$, allora $\mathfrak{a}$ è principale ed è generato da un unico polinomio monico che divide $x^r - 1$.
+\end{teorema}
+\begin{proof}
+   In generale gli anelli di polinomi a coefficienti in un campo sono ad ideali principali\footnote{Ad esempio \cite{berardi}, pag. 64.}. Riportiamo qui la dimostrazione per il caso specifico. \\
+   Sia $\mathfrak{a} \unlhd \mathcal{R}$ ed $a(x)$ polinomio monico, di grado minimo, appartenente ad $\mathfrak{a}$. Dunque per definizione segue che
+   \begin{align*}
+      \mathfrak{a} \supseteq (a(x))
+   \end{align*}
+   Verifichiamo che vale anche l'inclusione inversa (tesi intermedia: $\mathfrak{a} \subseteq (a(x))$):
+   sia $f(x) \in \mathfrak{a}$, allora
+   \begin{align*}
+      f(x) = a(x)q(x) + r(x)
+   \end{align*}
+   con $r(x)$ nullo o di grado strettamente inferiore al grado di $a(x)$. Inoltre $r(x) \in \mathfrak{a}$ dal fatto che
+   \begin{align*}
+      r(x) = f(x) - a(x)q(x)
+   \end{align*}
+   Allora se $r(x)$ non fosse nullo, avremmo trovato un polinomio in $\mathfrak{a}$ di grado superiore ad $a(x)$ in contraddizione con l'ipotesi di minimalità del suo grado.\\
+   Quindi ora ogni ideale è generato da un polinomio monico. Dimostriamo che è un divisore di $x^r-1$ :
+   con una strategia simile alla precedente consideriamo
+   \begin{align*}
+      x^r - 1 = a(x)q(x) + r(x)
+   \end{align*}
+   dove $q(x)$ ed $r(x)$ sono diversi da prima e con $r(x)$ nullo o di grado strettamente inferiore al grado di $a(x)$. Se quozientiamo l'equazione precedente per $x^r - 1$ otteniamo
+   \begin{align*}
+      0 \equiv a(x)q(x) + r(x) \qquad \mod{x^r - 1}
+   \end{align*}
+   e quindi $r(x) \in \mathfrak{a}$; ma dato che il suo grado non può essere inferiore a quello di $a(x)$, analogamente a prima abbiamo che $r(x)\equiv 0 \mod{x^r - 1}$ ed avendo grado minore del grado di $a(x)$ possiamo dire che è identicamente nullo. Dunque
+   \begin{align*}
+      x^r - 1 = a(x)q(x) + r(x)
+   \end{align*}
+   cioè 
+   \begin{align*}
+      a(x) \mid x^r - 1 
+   \end{align*}
+   Ora ogni ideale è generato da un polinomio monico che divide $x^r-1$. Rimane da dimostrare che è unico.
+   Sia $\mathfrak{a} = (a_{1}(x)) = (a_{2}(x))$ allora possiamo calcolare due polinomi $q(x)$ ed $r(x)$ tali che
+   \begin{align*}
+      a_{1}(x) = a_{2}(x)q(x) + r(x)(x^r - 1)
+   \end{align*}
+   ma dato che per, quanto dimostrato prima, anche $a_{2}(x)$ è un divisore di $x^r-1$ esiste $k(x)$ tale che
+   \begin{align*}
+      a_{1}(x) = a_{2}(x)q(x) + r(x)a_{2}(x)k(x)
+   \end{align*}
+   quindi $a_{1}(x) \in (a_{2}(x))$. In modo analogo si dimostra che $a_{2}(x) \in (a_{1}(x))$ e quindi 
+   $a_{1}(x) = a_{2}(x) $.
+\end{proof}
+\noindent
+Riassumendo
+\begin{align*}
+   \mathfrak{a} \unlhd \mathcal{R} \Leftrightarrow 
+      \exists ! \phantom{a}  a(x) \in \mathcal{R} \phantom{a} monico, a(x) \mid x^r - 1 , \mathfrak{a} = (a(x))
+\end{align*}
+A questo punto ci poniamo due problemi: dato il polinomio $f(x)$ come possiamo stabilire qual è il più piccolo ideale $\mathfrak{a}$ in $\mathcal{R}$ che lo contiene? Dato $\mathcal{R}$, quanti sono i suoi ideali?
+\begin{corollario}
+   Sia $f(x) \in \mathfrak{a} \unlhd \mathcal{R}$ allora $\mathfrak{a}$ è generato da $a(x)$ ricavato come il minimo comune multiplo fra $f(x)$ ed $x^r - 1$.
+\end{corollario}
+\begin{proof}
+   Se $f(x) \in \mathfrak{a}$, allora per definizione di ideale $a(x) \mid f(x)$, cioè $f(x) = a(x)k(x)$ per qualche $k(x)$ in $\mathbb{F}[x]$. Inoltre, dal teorema precedente $a(x)$ è divisore di $x^r-1$, quindi $a(x) \mid x^r - 1$.\\ $\Longrightarrow$ $a(x)$ è divisore comune di $f(x)$ e di $x^r-1$, e se per assurdo non fosse il massimo dei divisori possibili avremmo una contraddizione con la sua minimalità postulata nel teorema precedente.
+\end{proof}
+\begin{corollario} \label{coroll:cardIdealiDiR}
+   L'algebra $\mathcal{R}_{r,q}$ possiede sono esattamente $2^{l}$ ideali, per $l$ cardinalità dell'insieme delle etichette $\mathscr{L}$. 
+\end{corollario}
+\begin{proof}
+   Dal capitolo dedicato alla fattorizzazione di $x^r-1$ sappiamo che ci sono $l$ polinomi monici irriducibili che dividono $x^r-1$ e dal teorema precedente sappiamo che ogni ideale è generato da un divisore monico di $x^r - 1$.
+   Inoltre per l'ipotesi $(r,q) = 1$ i fattori di $x^r-1$ sono tutti distinti.
+   Dunque il generatore di un ideale è un prodotto di polinomi monici irriducibili che dividono $x^r-1$ ciascuno dei quali può essere scelto da un insieme di $l$ elementi.   
+\end{proof}
+
+In un'algebra la dimensione di un ideale $\mathfrak{a}$ è la dimensione di $\mathfrak{a}$ come sottospazio vettoriale.
+Il prossimo corollario\footnote{Proprietà $3.2.5$ \cite{montabone}.} lega la dimensione di $\mathfrak{a}$ con il grado del suo polinomio generatore.
+\begin{corollario} \label{cor:baseDellIdeale}
+   Sia $(a(x)) = \mathfrak{a} \unlhd \mathcal{R}$ e sia $deg(a(x)) = d = r-k$. Allora $dim(\mathfrak{a}) = r-d = k $. 
+\end{corollario}
+\begin{proof}
+   Partiamo dall'insieme $\lbrace \sigma_{j}(a(x)) = a(x)x^{j} \rbrace_{j=0}^{k-1}$. Questo costituisce una base di $\mathfrak{a}$; che sia un insieme di generatori per l'ideale generato da $a(x)$ è evidente. Dimostriamo che è un insieme di elementi linearmente indipendenti: \\
+   la combinazione lineare
+   \begin{align*}
+      \lambda_{0} a(x)x^{0} + \lambda_{1} a(x)x^{1}+ \cdots \lambda_{k-1} a(x)x^{k-1}
+   \end{align*}
+   si annulla se e solo se
+   \begin{align*}
+      \lambda(x)a(x) = 0
+   \end{align*}
+   dove $\lambda(x) = \sum_{j=0}^{k-1}\lambda_{j}x^{j}$. Il polinomio $\lambda(x)a(x)$ ha al più grado $r-1$ ed appartiene all'ideale $\mathfrak{a}$. Per questo motivo si può annullare solo se $\lambda(x)$ è identicamente nullo, cioè se e solo se $\lambda_{j} = 0 $ per ogni $j$. 
+\end{proof}
+\noindent
+Aumentando quindi il grado del generatore diminuisce la dimensione dello spazio vettoriale e viceversa. 
+\begin{align*}
+   deg(a(x)) + dim(\mathfrak{a}) = r
+\end{align*}
+
+Vogliamo ora sfruttare il fatto che ogni ideale, in quanto sottospazio vettoriale, può essere determinato da una matrice. Cominciamo col ricordare che in generale un sottospazio $U$ di uno spazio vettoriale $E$ è generato dalla matrice $G_{U}$ se le sue righe sono costituite dai vettori della base di $E$. Essa non è unica così come non è unica la scelta dei vettori che definiscono la base di $U$. Tuttavia, fissata una base per $E$ ogni elemento della base di $U$ si scrive in modo unico come combinazione lineare degli elementi della base di $E$.\\
+La matrice generatrice di $U$, per $\lbrace \mathbf{e}_{j} \rbrace_{j=0}^{r-1}$ base di $E$ e per $\lbrace \mathbf{u}_{j} \rbrace_{j=0}^{r-1}$ base di $U$, è data da 
+\begin{align*}
+G_{U}
+=  
+\left(
+\begin{array} {c}
+  \mathbf{u}_{0} \\
+  \mathbf{u}_{1} \\
+  \vdots \\
+  \mathbf{u}_{k-1}
+\end{array}
+\right)
+= 
+\left(
+\begin{array} {c c c c}
+u_{0,0} & u_{0,1} & & u_{0,r-1}  \\
+u_{1,0} & u_{1,1} & & u_{1,r-1}  \\
+\vdots &  & & \vdots  \\
+u_{k-1,0} & u_{k-1,1} & & u_{k-1,r-1}  
+\end{array}
+\right)
+\end{align*}
+Un generico vettore $\mathbf{a}$ di $E$ appartiene al sottospazio $U$ se può essere scritto come 
+\begin{align*}
+\mathbf{a}
+=
+(\lambda_{0}, \lambda_{1}, \dots , \lambda_{k-1})
+\left(
+\begin{array} {c}
+  \mathbf{u}_{0} \\
+  \mathbf{u}_{1} \\
+  \vdots \\
+  \mathbf{u}_{k-1}
+\end{array}
+\right)
+\end{align*}
+infatti ad ogni $k$-upla $(\lambda_{0}, \lambda_{1}, \dots , \lambda_{k-1})$ corrisponde biunivocamente un vettore del sottospazio $U$.
+\\
+Torniamo ora al nostro ideale $\mathfrak{a} \unlhd \mathcal{R}$ generato dal polinomio $a(x)$; come appena visto ammette $\lbrace a(x)x^{j} \rbrace_{j=0}^{k-1}$ come sua base e dall'interludio sulle matrici generatrici dei sottospazi vettoriali possiamo dedurre immediatamente la dimostrazione del seguente
+\begin{corollario} \label{teo:matGenId}
+   Una matrice generatrice dell'ideale $\mathfrak{a} = (a(x)) \unlhd \mathcal{R}$ può essere scritta come 
+   \begin{align*}
+  G_{\mathfrak{a}}
+  =  
+  \left(
+  \begin{array} {c}
+    a(x) \\
+    a(x)x^{1} \\
+    \vdots \\
+    a(x)x^{k-1}
+  \end{array}
+  \right)
+  = 
+  \left(
+  \begin{array} {c c c c c c c c }
+  a_{0} & & \cdots & & a_{r-k} & 0 & \cdots & 0   \\
+  0 & a_{0} & & \cdots& a_{r-k - 1} & a_{r-k} & 0 \cdots & 0   \\
+   & \vdots & &  &  &  & \vdots &    \\
+  0 & \cdots & 0 & a_{0} &  \cdots &  & \cdots & a_{r-k} 
+  \end{array}
+  \right)
+  \end{align*}
+  che è una matrice circolante non quadrata.
+\end{corollario}
+
+Da quanto visto i mattoni fondamentali per costruire gli ideali di $\mathcal{R}$ sono i fattori irriducibili di $x^r-1$ il cui prodotto ne determina i divisori; nella prossima definizione daremo loro un nome. Tuttavia anche il prodotto dei mattoni che vengono scartati nella costruzione di $\mathfrak{a}$ assumeranno un significato (e quindi un nome) particolare, la cui scelta sarà chiarita nel corso del capitolo sui codici lineari.  
+\begin{definizione}
+   I divisori monici di $x^r - 1$ in $\mathcal{R}$ sono detti {\bf divisori di} $\mathcal{R}$. Sia $\mathfrak{a}$ ideale generato da $a(x)$ determinato da un prodotto di divisori di $\mathcal{R}$, allora il prodotto dei divisori monici di $x^r - 1$ che non dividono $a(x)$ è un polinomio indicato come 
+   \begin{align*}
+      \hat{a}(x) = (x^r-1)/a(x) 
+   \end{align*}
+   ed è detto {\bf polinomio di controllo}. Convenzionalmente se $\mathfrak{a}$ è generato dal polinomio $a(x)$ allora l'ideale generato dal polinomio $\hat{a}(x)$ è indicato con $\hat{\mathfrak{a}}$. 
+\end{definizione} 
+\noindent
+Ogni divisore di $\mathcal{R}$ è determinato univocamente dall'insieme delle sue radici $r$-esime dell'unità (sottoinsieme di tutte le radici di $x^r -1$), al quale corrisponde univocamente l'insieme dei loro esponenti.
+\begin{definizione} 
+   Si definiscono {\bf radici principali} dell'ideale $\mathfrak{a}$ le radici principali del divisore che lo genera. L'insieme degli esponenti delle radici principali di $\mathfrak{a} = (a(x))$ si denotano con $Esp(\mathfrak{a})$:
+   \begin{align*}
+      Esp(\mathfrak{a}) := \lbrace t \mid 0\leq t \leq r-1, a(\xi^{t}) = 0 \rbrace \subseteq \mathbb{Z}_{r}
+   \end{align*}
+\end{definizione}
+\noindent
+Chiaramente se $v \in Esp(\mathfrak{a})$ allora ogni altro intero dell'orbita $O(v)$ deve appartenere a $Esp(\mathfrak{a})$.
+\\
+Presentiamo due proprietà sull'insieme $Esp(\mathfrak{a})$ appena definito. 
+
+\begin{prop}
+   Sia $a(x)$ divisore in $\mathcal{R}_{r,q}$, generatore dell'ideale $\mathfrak{a}$ allora
+   \begin{align*}
+      Esp(\mathfrak{a}) = \mathbb{Z}_{r} \setminus Esp(\hat{\mathfrak{a}}) 
+   \end{align*}
+\end{prop}
+\begin{proof}
+   Per definizione abbiamo che
+   \begin{align*}
+      a(x) = \prod_{ t \in Esp(\mathfrak{a}) } (x - \xi^{t}) 
+      & &
+      \hat{a}(x) = \prod_{ t \in Esp(\hat{\mathfrak{a}}) } (x - \xi^{t}) 
+   \end{align*}
+   inoltre $a(x) \hat{a}(x) = x^r-1$, da cui $Esp(\mathfrak{a})$ e $Esp(\hat{\mathfrak{a}}) $ formano una partizione di $\mathbb{Z}_{r}$.
+\end{proof}
+%%
+\begin{prop}
+   Siano $\mathfrak{a}, \mathfrak{b}$ ideali di $\mathcal{R}_{r,q}$, $\mathfrak{a} \subset \mathfrak{b}$, allora 
+   $Esp(\mathfrak{a}) \supset Esp(\mathfrak{b})$.
+\end{prop}
+\begin{proof}
+   Se $\mathfrak{a} = (a(x))$ e $\mathfrak{b} = (b(x))$ allora per definizione
+   \begin{align*}
+      (a(x)) 
+      = \lbrace h(x)\prod_{ t \in Esp(\mathfrak{a}) } (x - \xi^{t}) \mid h(x) \in \mathcal{R} \rbrace
+      \\
+      (b(x)) 
+      = \lbrace h(x)\prod_{ t \in Esp(\mathfrak{b}) } (x - \xi^{t}) \mid h(x) \in \mathcal{R} \rbrace
+   \end{align*}
+   Dato che $\mathfrak{a} \subset \mathfrak{b}$ allora esiste almeno un indice $t_{0}$ tale che $(x - \xi^{t_{0}}) $ è un divisore di $a(x)$ ma non divide $b(x)$, quindi
+   \begin{align*}
+      Esp(\mathfrak{b}) \subset Esp(\mathfrak{a}) 
+   \end{align*}
+   dato che $t_{0}$ appartiene ad $Esp(\mathfrak{a})$ ma non ad $Esp(\mathfrak{b})$.
+\end{proof}
+
+\begin{osservazione}
+$Esp$ può dare lo spunto per definire, in parallelo alla definizione delle mappe $I$ e $V$ della geometria algebrica che agiscono fra insiemi algebrici affini dello spazio affine $n$-dimensionale e ideali dell'anello dei polinomi ad $n$ indeterminate\footnote{Presentate ad esempio in \cite{perrin}.} altre due corrispondenze nel contesto che stiamo esaminando:
+\begin{align*}
+   I: \mathcal{P}(\mathscr{L})  &\longrightarrow  
+                       \lbrace \mathfrak{a} \mid \mathfrak{a} \trianglelefteq \mathcal{R}_{r,q} \rbrace  \\
+              A &\longmapsto I(A) = (\prod_{v\in A} M^{(v)}(x)) = \mathfrak{a}_{A} \\
+   V: \lbrace \mathfrak{a} \mid \mathfrak{a} \trianglelefteq \mathcal{R}_{r,q} \rbrace  &\longrightarrow   
+	                \mathcal{P}(\mathscr{L})  \\
+              (\prod_{v\in A} M^{(v)}(x)) = \mathfrak{a}_{A}  &\longmapsto V(\mathfrak{a}_{A}) = A 
+\end{align*}
+dove con $\mathcal{P}(\mathscr{L})$ intendiamo l'insieme delle parti dell'insieme delle etichette. Con queste notazioni
+\begin{align*}
+   Esp(\mathfrak{a}) = \bigcup_{v \in \mathfrak{a}_{A}} O(v)
+\end{align*}
+
+\end{osservazione}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% subSEZIONI    %%%%%%%%%%%%%%%%%%%%
+\subsection{Ideali massimali e minimali}
+
+Ora lo scopo è quello di definire formalmente la corrispondenza biunivoca fra gli ideali ed i sottoinsiemi dell'insieme delle etichette $\mathscr{L}_{r,q}$.\\
+Verificheremo quindi che le corrispondenze del seguente diagramma sono biiezioni e determineremo gli ideali massimali e gli ideali minimali scegliendo sottoinsiemi di  $\mathscr{L}$ opportuni.
+
+\vspace{0.2cm}
+
+\[
+\begindc{\commdiag}[3]
+%insiemi
+\obj(0,12)[A]{$ \lbrace A \mid A \subseteq \mathscr{L} \rbrace $}
+%[R]{$ \lbrace \mathfrak{a} \mid \mathfrak{a} \trianglelefteq \mathcal{R}_{r,q} \rbrace $}
+\obj(50,24)[O]{$ \lbrace \cup_{t \in A} O(t)  \mid A \subseteq \mathscr{L} \rbrace $}
+%[A]{$ \lbrace A \mid A \subseteq \mathscr{L} \rbrace $}
+\obj(50,0)[R]{$ \lbrace \mathfrak{a} \mid \mathfrak{a} \trianglelefteq \mathcal{R}_{r,q} \rbrace $}
+%[O]{$ \lbrace \cup_{t \in A} O(t)  \mid A \subseteq \mathscr{L} \rbrace $}
+
+
+%frecce
+\mor{A}{R}{}
+\mor{A}{O}{}
+\mor{O}{R}{}
+
+\enddc
+\]
+
+\vspace{0.6cm}
+
+\noindent
+La prima parte della corrispondenza che vogliamo determinare è conseguenza del seguente
+\begin{teorema}\label{teo:corrispEtiIde1}
+   Per ogni sottoinsieme $A$ dell'insieme delle etichette $\mathscr{L}$ esiste un ideale $\mathfrak{a}$ di $\mathcal{R}_{r,q}$ generato dal prodotto dei fattori irriducibili $M^{(v)}(x)$ per $v\in A$.
+\end{teorema}
+\begin{proof}
+   Segue dal che ogni elemento del sottoinsieme $A$ di $\mathscr{L}$ è il rappresentante di un'orbita i cui elementi determinano le radici di un divisore irriducibile di $x^r - 1$ come esponenti della radice primitiva $r$-esima dell'unità.\\
+   In altre e più comprensibili parole, per ciascun elemento $v$ di $A$ possiamo determinare in modo unico un insieme e un polinomio fra loro correlati:
+   \begin{align*}
+      \lbrace \xi^{t} \rbrace_{t \in O(v)} \qquad \qquad \prod_{t \in O(v)} (x - \xi^{t}) = M^{(v)}(x)
+   \end{align*}
+   Quindi $A$ determina un polinomio come prodotto dei $M^{(v)}(x)$ per $v$ in $A$
+   \begin{align*}
+      a(x) = \prod_{v\in A} M^{(v)}(x) = \prod_{v\in A} (  \prod_{t \in O(v)} (x - \xi^{t}) )
+   \end{align*}
+   che è un divisore in $\mathcal{R}_{r,q} $ e, per il teorema \ref{teo:genDiIdeali}, determina univocamente un ideale di $\mathfrak{a}$ di $\mathcal{R}_{r,q}$. 
+\end{proof}
+\noindent
+La seconda parte della corrispondenza che vogliamo ottenere è data dal seguente teorema:
+\begin{teorema}\label{teo:corrispEtiIde2}
+   Per ogni ideale $\mathfrak{a} = (a(x))$ di $\mathcal{R}_{r,q}$ esiste un unico sottoinsieme dell'insieme delle etichette $\mathscr{L}$ determinato dagli indici $v$ dei fattori irriducibili $M^{(v)}(x)$ che costituiscono il generatore $a(x)$.
+\end{teorema}
+\begin{proof}
+   Da quanto visto nel teorema sui generatori degli ideali, $a(x)$ è il prodotto di un insieme di divisori monici irriducibili di $x^r - 1$:
+   \begin{align*}
+      a(x) =  M^{(v_{1})}(x) M^{(v_{2})}(x) \cdots M^{(v_{m})}(x) = \prod_{j=1}^{m} (  \prod_{t \in O(v_{j})} (x - \xi^{t}) )
+   \end{align*}
+   Allora l'insieme $ \lbrace v_{1}, \dots , v_{m} \rbrace$ costituisce un sottoinsieme di $\mathscr{L}$ unicamente determinato da $a(x) $, che è proprio l'insieme cercato.
+\end{proof}
+\noindent
+Per entrambe le dimostrazioni siamo passati per l'unione delle orbite determinate dalle etichette $\lbrace \xi^{t} \rbrace_{t \in O(v)}$, come indicato in modo schematico nel diagramma iniziale. Ogni ideale è unione di polinomi ciascuno dei quali corrisponde ad un'orbita rappresentata da un elemento dell'insieme delle etichette. E viceversa. 
+
+\begin{esempio}
+   Sia $r = 9$ e $q = 2$, allora come visto in \ref{ese:fattor2_9} sappiamo che $ G = \mathbb{Z}_{9}^{\star} $ e che $\mathscr{L} = \lbrace 0,1,3 \rbrace$. I possibili ideali di $\mathcal{R}_{9,2} $ sono generati dai possibili prodotti dei divisori irriducibili di $x^9-1$, cioè da 
+   \begin{align*}
+      M^{(0)}(x)&= x+1\\
+      M^{(1)}(x) &= x^6+x^3+1\\
+      M^{(3)}(x) &= x^2+x+1
+   \end{align*}
+   Volendo elencare gli ideali definiti dal sottoinsieme $A$ di $\mathscr{L} $ con la notazione $\mathfrak{a}_{A}$, si ottiene
+   \begin{align*}
+      &\mathfrak{a}_{\lbrace 0 \rbrace} = (M^{(0)}(x)) = (x-1) \\
+      &\mathfrak{a}_{\lbrace 1 \rbrace} = (M^{(1)}(x)) = (x^6+x^3+1) \\
+      &\mathfrak{a}_{\lbrace 3 \rbrace} = (M^{(3)}(x)) = (x^2+x+1) \\
+      &\mathfrak{a}_{\lbrace 0,1 \rbrace} = (M^{(0)}(x)M^{(1)}(x)) = (x^3 -1) \\
+      &\mathfrak{a}_{\lbrace 0,3 \rbrace} = (M^{(0)}(x)M^{(3)}(x)) = (x^7 + x^6 + x^4 + x^3 + x + 1) \\
+      &\mathfrak{a}_{\lbrace 1,3 \rbrace} 
+                    = (M^{(1)}(x)M^{(3)}(x)) = (x^8 +x^7 +x^6 + x^5 + x^4 + x^3 + x^2 + x + 1) \\
+      &\mathfrak{a}_{\lbrace 0,1,3 \rbrace} = (M^{(0)}(x)M^{(1)}(x)M^{(3)}(x)) = (x^9 -1) = (0) \\
+      &\mathfrak{a}_{\emptyset} = (1) 
+   \end{align*}
+   che sono, come ci aspettavamo $8$ ideali, contando l'ideale improprio e l'ideale banale.
+\end{esempio}
+Ricordando che un ideale $\mathfrak{a}$ è massimale se fra $\mathfrak{a}$ ed $(1)$ non ci sono ideali intermedi ed è minimale se non ci sono ideali intermedi fra $\mathfrak{a}$ ed $(0)$, vogliamo esaminare quali sono gli ideali massimali e quali gli ideali minimali in $\mathcal{R}$. Come già osservato nel precedente esempio, scegliendo $A = \mathscr{L}$, allora l'ideale definito da $A$ è l'ideale triviale. Se invece scegliamo $A = \emptyset$ l'ideale definito da $A$ è l'ideale improprio. \\
+Scegliendo invece $A = \lbrace v \rbrace$ allora l'ideale corrispondente è $(M^{(v)}(x))$. Inoltre $deg(M^{(v)}(x)) = \arrowvert O(v) \arrowvert$ ed $dim(\mathfrak{a}_{\lbrace v \rbrace}) = r - \arrowvert O(v) \arrowvert$. È facile verificare che gli ideali determinati da sottoinsiemi di $\mathscr{L}$ con un solo elemento sono ideali {\bf massimali}, e che sono gli unici ideali massimali in $\mathcal{R}$.\\
+Se invece $A = \mathscr{L} \setminus \lbrace v \rbrace$, cioè il complementare del sottoinsieme esaminato nel caso precedente, allora 
+$deg(\hat{M}^{(v)}(x) ) = r - \arrowvert O(v) \arrowvert$ ed $dim(\mathfrak{a}_{\mathscr{L} \setminus \lbrace v \rbrace}) = \arrowvert O(v) \arrowvert$. Si può verificare in analogia con il caso precedente, che gli ideali determinati da sottoinsiemi di $\mathscr{L}$ di questo tipo sono {\bf minimali}, e che sono gli unici minimali in $\mathcal{R}$.\\
+Possiamo allora aggiungere un pezzo al corollario \ref{coroll:cardIdealiDiR} che oltre alla quantità fornisce informazioni sulla qualità degli ideali.
+
+\begin{corollario}\label{cor:cardIdealiDiR}
+   In $\mathcal{R}_{r,q}$ ci sono esattamente $2^{l}$ ideali, $l$ dei quali massimali ed $l$ dei quali minimali.
+\end{corollario}
+\begin{proof}
+   Il sottoinsieme $A$ di $\mathscr{L}$ può essere scelto come singleton esattamente in $l$ modi, al quale corrispondono $l$ possibili ideali massimali; può essere scelto come complementare di un singleton in $l$ modi diversi al quale corrispondono $l$ ideali minimali.
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% subSEZIONI    %%%%%%%%%%%%%%%%%%%%
+\subsection{Ideali ortogonali}
+
+Definiamo l'ortogonalità geometrica di due polinomi in $\mathcal{R}_{r,q}$ a partire dal prodotto scalare usuale nell'algebra dei vettori $\mathcal{V}_{r, q}^{c}$ che viene ereditata da $\mathcal{R}$ grazie all'isomorfismo $\psi_{2}$.
+
+
+\begin{definizione}
+   Dati $a(x)$ e $b(x)$ in $\mathcal{R}$ si definisce loro {\bf prodotto scalare} l'elemento del campo $\mathbb{F}_{q}$ determinato da 
+   \begin{align*}
+      \langle a(x), b(x) \rangle = \sum_{k \in \mathbb{Z}_{r} } a_{k}b_{k}
+   \end{align*}   
+   che corrisponde all'usuale prodotto scalare dei vettori circolanti  $\psi_{2}(a(x)), \psi_{2}(b(x))$ corrispondenti.
+\end{definizione}
+\begin{definizione}
+   Si dice che i polinomi $a(x)$ e $b(x)$ di $\mathcal{R}$ sono geometricamente ortogonali, o {\bf g-ortogonali}, se il loro prodotto scalare è nullo.
+   Mentre si dice che sono algebricamente ortogonali, o {\bf a-ortogonali}, se il loro prodotto in $\mathcal{R}$ è nullo.
+\end{definizione}
+\begin{osservazione} \label{oss:aOrtogonali}
+   Possiamo osservare che $a(x)$ e $b(x)$ sono g-ortogonali se
+   \begin{align*}
+      \sum_{k \in \mathbb{Z}_{r} } a_{k}b_{k} = 0
+   \end{align*} 
+   Mentre sono a-ortogonali se per ogni $j$ in $\mathbb{Z}_{r}$
+   \begin{align*}
+      \sum_{k \in \mathbb{Z}_{r}} a_{k}b_{j-k} = 0 
+   \end{align*} 
+\end{osservazione}
+
+Con la definizione precedente possiamo considerare i sottospazi ortogonali e gli ideali ortogonali di $\mathcal{R}$.
+\begin{definizione}
+   sia $S\subseteq \mathcal{R}$ sottoinsieme, allora si definisce {\bf sottospazio a-ortogonale} generato da $S$ l'insieme
+   \begin{align*}
+      S_{a}^{\perp} := \lbrace f(x) \in \mathcal{R} \mid f(x)g(x) = 0 \quad \forall g(x) \in S \rbrace
+   \end{align*}
+   e si definisce {\bf sottospazio g-ortogonale} generato da $S$ l'insieme
+   \begin{align*}
+      S_{g}^{\perp} := \lbrace f(x) \in \mathcal{R} \mid \langle f(x), g(x)\rangle = 0 \quad \forall g(x) \in S \rbrace
+   \end{align*}
+   Se $S = \mathfrak{a}$ ideale di $\mathcal{R}$ allora $\mathfrak{a}_{a}^{\perp}$ è ancora un ideale, detto {\bf ideale a-ortogonale}.
+\end{definizione}
+\begin{esempio} \label{ese:ortogonali1}
+   In  $\mathcal{R}_{5,2}$ i polinomi $x^3 + 1$ ed $x^2+x$ sono g-ortogonali ma non sono a-ortogonali. 
+\end{esempio}
+
+Si può trovare una correlazione fra la a-ortogonalità e la g-ortogonalità\footnote{\cite{cerruti} proprietà 1.14 pag. 17.}:
+\begin{osservazione} \label{oss:aOrtogonali2}
+   Dati i polinomi $a(x)$ e $b(x)$, segue, dall'osservazione \ref{oss:aOrtogonali} e dalle definizioni, che 
+   \begin{align*}
+      b(x^{-1}) = \sum_{k \in \mathbb{Z}_{r}} b_{-k}x^{k} = 0 \\
+      a(x)b(x) = 0 \iff \forall j \in \mathbb{Z}_{r}  \sum_{k \in \mathbb{Z}_{r}} a_{k}b_{j-k} = 0 \\
+      \langle a(x), x^{j}b(x^{-1}) \rangle = \sum_{k \in \mathbb{Z}_{r} } a_{k}b_{j-k}
+   \end{align*}
+   Da cui risulta immediato verificare che $a(x)$ e $b(x)$ sono a-ortogonali se e solo se $a(x)$ è g-ortogonale a $b(x^{-1})$ e ad ogni suo shift.
+\end{osservazione}
+Sapendo che tutti gli ideali in $\mathcal{R}$ sono generati da un divisore, dato $\mathfrak{a} = (a(x))$, qual è il divisore che genera $\mathfrak{a}_{a}^{\perp}$?
+\begin{lemmax} \label{lemma:idOrtogonali}
+   Sia $\mathfrak{a} $ ideale di $\mathcal{R}$ generato da $a(x)$, allora
+   \begin{enumerate}
+      \item $\mathfrak{a}_{a}^{\perp} = (\hat{a}(x))$
+      \item $\mathfrak{a}_{g}^{\perp} $ non è in generale un ideale.
+   \end{enumerate}
+\end{lemmax}
+\begin{proof}
+   \begin{enumerate}
+      \item Tutti i polinomi $a$-ortogonali ad $a(x)$ sono quelli il cui prodotto con $a(x)$ risulta essere $0$ modulo $x^r - 1$. Il più piccolo polinomio con tale proprietà è il polinomio di controllo
+      \begin{align*}
+         \hat{a}(x) = (x^r-1)/a(x) 
+      \end{align*}
+      e quindi $\mathfrak{a}_{a}^{\perp} = (\hat{a}(x))$.
+      \item $\mathfrak{a}_{g}^{\perp} $ è chiuso per la somma grazie alla linearità del prodotto scalare, ma all'esempio \ref{ese:ortogonali1} in $\mathcal{R}_{5,2}$ per $a(x) = x^2+x$ e $b(x) = x^3 + 1$ si ha che $b(x) \in \mathfrak{a}_{g}^{\perp}$, ma $x^{2}b(x) \notin \mathfrak{a}_{g}^{\perp}$:
+      \begin{align*}
+         \langle x^3 + 1, x^2+x \rangle = 0\\
+         \langle x^2 + 1, x^2+x \rangle \neq 0
+      \end{align*}    
+   \end{enumerate}
+\end{proof}
+L'ideale a-ortogonale può essere semplicemente detto {\bf ideale ortogonale}, senza che sorgano ambiguità. \\
+La prossima definizione permette di riformulare il lemma in una proprietà nella quale si esamina una nuova relazione fra ideali ortogonali e spazi g-ortogonali.
+\begin{definizione}
+   sia $\mathfrak{a} \trianglelefteq \mathcal{R}$ allora l'ideale $\bar{\mathfrak{a}}$ le cui radici principali sono le inverse delle radici principali di $\mathfrak{a}$ è detto {\bf ideale coniugato}.
+\end{definizione}
+\begin{osservazione}
+   Si verifica che 
+   \begin{align*}
+      Esp(\bar{\mathfrak{a}}) = \cup_{v \in Esp(\mathfrak{a}) } O(-v)
+   \end{align*}
+   Inoltre se $a(x)$ è il divisore che genera l'ideale $\mathfrak{a}$, allora $\bar{\mathfrak{a}} = (a(x^{-1}))$.
+\end{osservazione}
+%%%%% prop finale ideali ortogonali.
+\begin{prop}\label{prop:IdOrtogonali}
+   Con le notazioni che abbiamo introdotto valgono le seguenti proprietà:
+   \begin{enumerate}
+      \item Sia $\mathfrak{a} = (a(x))$ ideale di $\mathcal{R}$, allora 
+      \begin{align*}
+         \mathfrak{a}_{a}^{\perp} = (\hat{a}(x)) \qquad  \mathfrak{a}_{a}^{\perp} = \bar{\mathfrak{a}}_{g}^{\perp}
+      \end{align*}
+      \item Per $v \in \mathscr{L}$ segue che
+      \begin{align*}
+           (M^{(v)}(x))_{a}^{\perp} = (\hat{M}^{(v)}(x)) = (M^{(-v)}(x))_{g}^{\perp}
+      \end{align*}
+   \end{enumerate}
+\end{prop}
+\begin{proof}
+   Il secondo punto è conseguenza del primo, mentre per il primo punto la prima equazione è conseguenza del lemma \ref{lemma:idOrtogonali}.
+   Rimane da dimostrare per doppia inclusione che 
+   \begin{align*}
+        \mathfrak{a}_{a}^{\perp} = \bar{\mathfrak{a}}_{g}^{\perp}
+    \end{align*}
+    Se $f(x) \in \mathfrak{a}_{a}^{\perp}$ allora $f(x)a(x) = 0$ modulo $x^r - 1$, e dall'osservazione \ref{oss:aOrtogonali2} segue che per ogni $j$ in $\mathbb{Z}_{r}$
+    \begin{align*}
+       \langle f(x), x^{j}a(x^{-1}) \rangle = 0
+    \end{align*}
+    Ma dato che dal corollario \ref{cor:baseDellIdeale} $\lbrace a(x^{-1})x^{j} \rbrace_{j=0}^{k-1}$ è un sistema di generatori di  $\bar{\mathfrak{a}}$, segue che $f(x) \in \bar{\mathfrak{a}}_{g}^{\perp}$. \\
+    Viceversa se $f(x) \in \bar{\mathfrak{a}}_{g}^{\perp}$, allora segue che $f(x)$ è ortogonale ad ogni elemento della base di $\bar{\mathfrak{a}}$, quindi come prima, per ogni $j$ in $\mathbb{Z}_{r}$
+    \begin{align*}
+       \langle f(x), x^{j}a(x^{-1}) \rangle = 0
+    \end{align*}
+    da cui dall'osservazione \ref{oss:aOrtogonali2} $f(x) \in \mathfrak{a}_{a}^{\perp}$.
+\end{proof}
+
+
+% \begin{esempio}
+%    Primo dubbio: come è possibile $\mathfrak{a}_{a}^{\perp} = \bar{\mathfrak{a}}_{g}^{\perp}$ se $\mathfrak{a}_{g}^{\perp}$ non è in generale un ideale?
+% \end{esempio}
+
+In questo paragrafo abbiamo potuto osservare come gli isomorfismi presentati nel capitolo \ref{cap:algebreisomorfe} non siano solo un esercizio di stile. Consentono ad $\mathcal{R}_{r,q}$ di ereditare il prodotto scalare da cui l'ortogonalità geometrica\footnote{L'isomorfismo di $\mathcal{R}_{r,q}$ con l'algebra delle matrici circolanti consente di definire sull'algebra dei polinomi una forma $r$-lineare alternante che ad ogni matrice corrispondente associa il suo determinante. Una ricerca in questa direzione è stata seguita in \cite{montabone} e da \cite{wynjones}. Altre strade possono dirigersi verso lo studio degli ideali e degli idempotenti nella rappresentazione di $\mathcal{R}_{r,q}$ come algebra di matrici circolanti e di vettori circolanti.}. Nel prossimo paragrafo continuiamo ad analizzare i polinomi nella loro rappresentazione vettoriale, passando però da $\mathcal{Q}_{r,q}$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% subSEZIONI    %%%%%%%%%%%%%%%%%%%%
+\section{Elementi idempotenti}
+
+Gli elementi idempotenti giocano un ruolo particolare sia nella teoria dei codici correttori che nello studio degli ideali dell'algebra $\mathcal{R}_{r,q}$. \\
+Ricordiamo che la fattorizzazione di $\mathcal{R}$ come prodotto di campi è indicata con
+\begin{align*}
+    \mathcal{Q}_{r,q}
+    :=
+    \prod_{v\in \mathscr{L}} \quotient{\mathbb{F}_{q} \lbrack x \rbrack  }{(M^{(v)}(x))}
+    =
+    \prod_{v\in \mathscr{L}} \mathcal{Q}_{r,q}^{(v)}
+\end{align*}
+dove il singolo campo appartenente al prodotto del secondo membro è indicato con 
+\begin{align*}
+    \mathcal{Q}_{r,q}^{(v)}
+    :=
+    \quotient{\mathbb{F}_{q} \lbrack x \rbrack  }{(M^{(v)}(x))}
+\end{align*}
+per $v\in \mathscr{L}$.\\
+La funzione $\gamma$, isomorfismo fra le due strutture $\mathcal{R}$ e $\mathcal{Q}$ è stata definita nel teorema \ref{teo:teoremaGamma} come
+\begin{align*}
+\gamma :  \mathcal{R}_{r,q}  & \longrightarrow  \prod_{v\in \mathscr{L}} \mathcal{Q}_{r,q}^{(v)}   \\
+                        a(x) &\longmapsto (a(x)\mod{M^{(v)}(x)})_{v\in \mathscr{L}}
+\end{align*}
+che composta con $\mu_{1}^{-1}$ consente di passare da $\mathcal{R}$ al prodotto di campi $\mathcal{P} = \prod_{v\in \mathscr{L}} \mathcal{P}^{(v)}$, dove $\mathcal{P}^{(v)} := \mathbb{F}_{q}(\xi^{v})$.
+\begin{definizione}
+   Un polinomio $a(x)$ appartenente all'algebra $\mathcal{R}_{r,q}$ è detto {\bf idempotente} se $a(x)^2 = a(x)$.
+\end{definizione}
+\noindent
+In generale non è un problema semplice trovare gli idempotenti in $\mathcal{R}$, senza sfruttare la sua fattorizzazione in campi. Infatti in $\mathcal{Q}$, i cui elementi sono vettori di lunghezza $m(v)$ costituiti da elementi appartenenti ai campi $\mathcal{Q}^{(v)}$, gli idempotenti sono solo i vettori che contengono $1$ o $0$ in ogni posizione. 
+\begin{prop}
+   Gli idempotenti in $\mathcal{Q}$ sono tutti e soli i vettori costituiti da $1$ e da $0$.
+\end{prop}
+\begin{proof}
+   È conseguenza della definizione di campo: gli unici idempotenti nel campo $\mathcal{Q}^{(v)}$ sono l'unità e lo zero, quindi il prodotto di due vettori uguali di $\mathcal{Q}$ dà se stesso se e solo se è costituito da zeri e da unità
+\end{proof}
+\noindent
+% Segue immediatamente il
+% \begin{corollario}
+%    In $\mathcal{Q}$ ci sono esattamente $2^l$ idempotenti.
+% \end{corollario}
+\begin{osservazione}
+   Si possono considerare in modo equivalente gli idempotenti in $\mathcal{P}$. Ricordando che 
+   \begin{align*}
+      \eta:  \mathcal{R} &\longrightarrow \mathcal{P} =  \prod_{v\in \mathscr{L}} \mathbb{F}(\xi^{v}) \\
+	a(x) &\longmapsto  (a(\xi^{v}))_{v\in \mathscr{L}}
+    \end{align*}
+    analogamente a prima gli unici idempotenti del campo $\mathbb{F}(\xi^{v})$ sono l'unità e lo zero.
+\end{osservazione}
+
+Possiamo notare una stretta correlazione fra idempotenti ed ideali, dato che ogni ideale è generato da un idempotente di $\mathcal{Q}$: in un campo gli unici idempotenti sono $0$ ed $1$ e gli unici ideali sono $(0)$ ed $(1)$, inoltre ci sono $2^{l}$ idempotenti, esattamente quanti sono gli ideali. Quali idempotenti generano ideali massimali e quali generano ideali minimali?
+\begin{definizione}
+   Il vettore $l$-dimensionale {\bf a} di $\mathcal{Q}$ è detto {\bf idempotente minimale} (o primitivo) se è costituito da un vettore di $l-1$ zeri ed ha un solo $1$.
+\end{definizione}
+\noindent
+Gli idempotenti minimali sono evidentemente idempotenti e la loro somma genera tutti gli altri idempotenti. Il \lq\lq complementare\rq\rq di un idempotente minimale, cioé il vettore di $\mathcal{Q}$ che contiene $1$ in ogni posizione tranne in una che contiene $0$ è detto {\bf idempotente massimale}.\\
+Indichiamo con con $\mathbf{e}_{v}$ il $v$-esimo idempotente minimale, dove $v$ non corrisponde propriamente alla posizione dell'unità nel vettore ma è un pedice dell'insieme $\mathscr{L}$. Si indica invece con $\mathbf{e}_{v}(x)$ il polinomio in $\mathcal{R}$ la cui immagine tramite $\gamma$ coincide con $\mathbf{e}_{v}$. \\
+Dimostriamo quanto detto fino ad ora:
+\begin{teorema}
+   Sia $\mathbf{e}_{i}$ l'$i$-esimo idempotente minimale, $\mathfrak{1}$ il vettore nel quale ogni elemento è un $1$ ed $\mathfrak{0}$ il vettore nel quale ogni elemento è uno zero in $\mathcal{Q}_{r,q}$. Allora valgono le seguenti proprietà
+   \begin{enumerate}
+      \item Il numero dei fattori di $x^r-1$ in $\mathbb{F}_{q}$ coincide con il numero degli idempotenti primitivi e con il numero degli idempotenti massimali.
+      \item Gli idempotenti sono ortogonali: $\mathbf{e}_{i}\mathbf{e}_{j}  = \mathfrak{0}$ per $i \neq j$.
+      \item Gli idempotenti decompongono l'unità: $\sum_{i \in \mathscr{L}}\mathbf{e}_{i}  = \mathfrak{1}$.
+      \item Le combinazioni lineari di idempotenti generano tutti gli ideali.
+      \item Ogni elemento di $\mathcal{Q}$ si decompone come combinazione lineare a coefficienti in $\mathbb{F}_{q}$ degli idempotenti primitivi.
+   \end{enumerate}
+\end{teorema}
+\begin{proof}
+   \begin{enumerate}
+      \item Infatti la lunghezza dei vettori di $\mathcal{Q}$ coincide con il numero dei fattori di $x^r-1$. 
+      \item L'ortogonalità degli idempotenti è una conseguenza della definizione di prodotto nell'algebra $\mathcal{Q}$.
+      \item Per definizione di somma in $\mathcal{Q}$ si ha che: $\sum_{j \in \mathscr{L}}\mathbf{e}_{j}  = \mathfrak{1}$.
+      \item Si verifica facilmente che $\mathbf{e}_{i} $ è un ideale in $\mathcal{Q}$, così come lo è la somma $\mathbf{e}_{i} + \mathbf{e}_{j}$. Per induzione si ha la tesi.
+      \item Sia $(q_{v}(x))_{v \in \mathscr{L}} \in \mathcal{Q}$, allora per la linearità dell'algebra $\mathcal{Q}$ posso scrivere
+      \begin{align*}
+         (q_{v}(x))_{v \in \mathscr{L}} = \sum_{j \in \mathscr{L}} q_{v}(x) \mathbf{e}_{j} 
+      \end{align*}
+   \end{enumerate}
+\end{proof}
+
+\begin{corollario}\label{coroll:idempotentiMinimali}
+   Ogni idempotente minimale genera un ideale minimale, ogni idempotente massimale genera un ideale massimale.
+\end{corollario}
+\begin{proof}
+   È immediato verificare che non ci sono ideali fra $\mathbf{e}_{j}$ e $(0)$ e fra il suo complementare e $(1)$.
+\end{proof}

@@ -1,0 +1,789 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% CAPITOLo 1    %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Quattro algebre isomorfe} \label{cap:algebreisomorfe}
+
+Il tema principale della prima parte della tesi riguarda lo studio di alcune strutture algebriche e delle trasformazioni che si possono definire fra loro. In questo capitolo vediamo la struttura algebrica dei polinomi modulo $x^r -1$, delle matrici circolanti, dei vettori circolanti  e delle combinazioni lineari di elementi nel gruppo
+ciclico $C_{r}$ definite sul campo $\mathbb{F}$. Lo scopo di questo capitolo è dimostrare che le algebre sopra elencate sono fra di loro isomorfe.
+
+\[
+\begindc{\commdiag}[30]
+%sotto
+\obj(-20,5)[V]{$\mathcal{V}_{r, \mathbb{F}}^{c}$}
+\obj(20,5)[M]{$ \mathcal{M}_{r,\mathbb{F} }^{c} $}
+
+%sopra
+\obj(-20,30)[R]{$ \quotient{ \mathbb{F}[x] }{ (x^r -1 )} $}
+\obj(20,30)[A]{$ \mathbb{F}C_{r} $}
+
+
+%frecce orizzontali
+\mor{V}{M}{$\psi_{1}$}
+\mor{R}{A}{$\psi_{4}$}
+%frecce verticali
+\mor{R}{V}{$\psi_{2}$}
+\mor{A}{M}{$\psi_{3}$}
+
+
+\enddc
+\]
+
+\noindent
+Nel prossimo capitolo amplieremo il diagramma rappresentando
+$\quotient{ \mathbb{F}[x] }{ (x^r -1 )}$ come prodotto di campi tramite la fattorizzazione di $x^r - 1$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Paragrafo  %%%%%%%%%%%%%%%%%%%%
+\section{Strutture algebriche} \label{se:struttalg}
+
+%%%%%%%%%%%%%%%%%%%%%% Paragrafo  %%%%%%%%%%%%%%%%%%%%
+\subsubsection{Algebra delle matrici circolanti}
+
+Una matrice quadrata è detta circolante se, fissata la prima riga, ogni riga successiva è il risultato di una permutazione ciclica di un posto verso destra della riga precedente.  
+\begin{align*}
+C = 
+\left(
+\begin{array} {c c c c }
+a_0 & a_1 & \dots & a_{r-1}   \\
+a_{r-1} & a_0 & \dots & a_{r-2}   \\
+\vdots & \vdots &  & \vdots   \\
+a_{1} & a_2 & \dots & a_{0}   \\       
+\end{array}
+\right)
+\end{align*}
+L'insieme delle matrici circolanti $r\times r$ a coefficienti nel campo $\mathbb{F}$ è indicato con $\mathcal{M}_{r,\mathbb{F} }^{c}$ e la permutazione ciclica è chiamata {\bf shift}.
+\begin{definizione}
+Sia $A$ matrice $r \times r$ i cui elementi in $\mathbb{F}$ sono indicati con $(A)_{i,j} = a_{i,j}$. $A$ è
+detta {\bf matrice circolante} se  $a_{i,j} = a_{k,l}$ quando 
+\begin{align*}
+   j-i \equiv l-k \mod{r}
+\end{align*}
+Sia $\mathbf{a} \in \mathbb{F}^{r}$ vettore corrispondente alla
+prima riga di una matrice circolante, allora $\mathbf{a}$ prende il nome di {\bf
+vettore circolante} e la matrice circolante completamente determinata da tale
+vettore viene indicata con $circ(\mathbf{a})$.  
+\end{definizione}
+
+\noindent
+Possiamo considerare le matrici circolanti con la struttura algebrica
+ereditata
+dalle matrici quadrate a coefficienti in $\mathbb{F}$,
+quindi $\mathcal{M}_{r,\mathbb{F} }^{c}$ ha struttura di spazio vettoriale di
+dimensione $r$ su $\mathbb{F}$ essendo chiusa per la somma ed il prodotto scalare. 
+
+Ciascuna delle strutture algebriche presentate in questo capitolo possiede un
+elemento particolare detto {\bf shifter}. Lo shifter delle matrici circolanti è
+definito da $s_r$ come:
+\begin{align*}
+s_r = 
+\left(
+\begin{array} {c c c c c }
+0 & 1 & 0 & \dots & 0   \\
+0 & 0 & 1 & \dots & 0   \\
+\vdots & \vdots &  & & \vdots   \\
+0 & 0 & 0 & \dots & 1   \\
+1 & 0 & 0 & \dots & 0   \\     
+\end{array}
+\right)
+&
+&
+(s_r)_{i,j} =  
+\left\lbrace
+\begin{array} {c l}
+1 & i \equiv j+1 \mod{r}  \\
+0 & altrimenti       
+\end{array}
+\right.
+\end{align*}
+
+\noindent
+Osserviamo che $s_{r} = circ((0,1,0, \dots, 0))$ e che l'insieme delle potenze
+di $s_{r}$ forma un gruppo ciclico di ordine $r$. \\
+Ad esempio per $r=3$ si ha
+\begin{align*}
+s_3 = 
+\left(
+\begin{array} {c c c  }
+0 & 1 &  0   \\
+0 & 0 & 1   \\
+1 & 0 & 0   \\     
+\end{array}
+\right)
+%%%%%
+\qquad
+s_3^2 = 
+\left(
+\begin{array} {c c c  }
+0 & 0 & 1   \\
+1 & 0 & 0   \\
+0 & 1 & 0   \\     
+\end{array}
+\right)
+\qquad
+s_3^3 = 
+\left(
+\begin{array} {c c c  }
+1 & 0 & 0   \\
+0 & 1 & 0   \\
+0 & 0 & 1   \\     
+\end{array}
+\right)
+\end{align*}
+
+\noindent
+Quindi ogni matrice circolante è esprimibile
+come combinazione lineare degli elementi del gruppo delle potenze di $s_r$:
+indicata con $M$ la generica matrice circolante, $M = circ( \mathbf{a} )
+$, dove $\mathbf{a} = (a_0, a_1, \dots, a_{r-1} )$, allora
+\begin{align*}
+M &= a_0  s_{r}^{r} + a_1  s_{r}^{1} + \dots + a_{r-1} s_{r}^{r-1} \\
+&= a_0  I_{r} + a_1  s_{r}^{1} + \dots + a_{r-1}  s_{r}^{r-1}
+\end{align*}
+Possiamo vedere ogni matrice circolante come un
+polinomio a coefficienti in $\mathbb{F}$ la cui indeterminata è $s_{r}$
+\begin{align*}
+\mathcal{M}_{r,\mathbb{F} }^{c} = \lbrace \sum_{j=0}^{r-1} a_{j}s_{r}^{j} \mid
+a_{j}
+\in \mathbb{F} \rbrace
+\end{align*}
+
+\noindent
+Alla somma ed al prodotto scalare ereditati dalla struttura matriciale,
+aggiungiamo il prodotto fra matrici circolanti, che risulta
+ben definito e compatibile con il prodotto scalare dalla possibilità di esprimere
+ogni matrice circolante come un polinomio ad indeterminate appartenenti ad un
+gruppo ciclico.
+Quindi $\mathcal{M}_{r,\mathbb{F}}^{c}$ ha la struttura di algebra.
+
+%%%%%%%%%%%%%%%%%%%%%% Paragrafo  %%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Algebra dei vettori circolanti}
+
+Dato lo spazio vettoriale $r$-dimensionale sul campo $\mathbb{F}$, i cui
+elementi vettoriali hanno convenzionalmente i pedici numerati da $0$ ad $r-1$,
+vogliamo definire un prodotto che ne determini la struttura di algebra. Indichiamo con $(\mathbf{a})_{i} = a_{i}$
+l'elemento dell'$i$-esimo posto nel vettore, allora per $\mathbf{a}$, $\mathbf{b}$ vettori, definiamo il vettore $\mathbf{a} \star \mathbf{b}$, i cui
+elementi sono determinati dalla sommatoria
+\begin{align*}
+(\mathbf{a} \star \mathbf{b})_{i} = \sum_{j \in \mathbb{Z}_{r} } a_{j} b_{i-j}
+\qquad \forall i \in \mathbb{Z}_{r}
+\end{align*}
+che chiameremo {\bf prodotto di convoluzione} di $\mathbf{a}$ per $\mathbf{b}$.
+Possiamo anche definirlo come il prodotto del vettore $\mathbf{a}$ per la matrice
+circolante definita da $\mathbf{b}$. Ad esempio per $r = 3$
+\begin{align*}
+\mathbf{a} \star \mathbf{b} = 
+\left(
+\begin{array} {c c c }
+a_0 & a_1 & a_2    
+\end{array}
+\right) 
+\left(
+\begin{array} {c c c}
+b_0 & b_1 & b_2   \\
+b_2 & b_0 & b_1   \\
+b_1 & b_2 & b_0        
+\end{array}
+\right)
+\end{align*}
+In questa struttura lo {\bf shifter} è dato dal vettore $(0,1,0,\dots, 0)$,
+infatti si verifica immediatamente che 
+\begin{align*}
+\mathbf{a} \star (0,1,0,\dots, 0) =  (0,1,0,\dots, 0) \star \mathbf{a} = 
+(a_{r-1}, a_0,  \dots , a_{r-2} )
+\end{align*}
+Possiamo verificare che con il prodotto di convoluzione
+l'insieme dei vettori non nulli formano un semigruppo, quindi
+l'insieme $\mathcal{V}_{r,\mathbb{F} }^{c}$ è un'algebra
+detta algebra dei vettori circolanti.
+
+%%%%%%%%%%%%%%%%%%%%%% Paragrafo  %%%%%%%%%%%%%%%%%%%%
+\subsubsection{Algebra $\mathbb{F}C_{r}$}
+% \begin{center}
+%  \fbox{\phantom{  } $\mathbb{K}C_{n}$  \phantom{  } }
+% \end{center}
+Consideriamo la struttura definita sul gruppo ciclico di ordine
+$r$ generato da $g$, indicato con $C_{r} = < g >$, su quale agisce il campo
+$\mathbb{F}$. 
+Si tratta dell'algebra i cui elementi sono i polinomi di grado
+inferiore ad $r$ e la cui indeterminata è il generatore del gruppo ciclico.
+\begin{align*}
+\mathbb{F}C_{r} = \lbrace
+a_0 + a_1 g + a_2 g^2 + \dots + a_{r-1} g^{r-1}
+\mid a_{i} \in \mathbb{F}
+\rbrace
+\end{align*}
+%\sum_{i=0}^{r-1} a_{i}g^{i}
+Osserviamo che, rappresentando i polinomi come vettori i cui
+termini sono i coefficienti delle indeterminate ordinati, la
+struttura introdotta può essere scritta come
+\begin{align*}
+\mathbb{F}C_r = \lbrace (a_0, a_1, \dots, a_{r-1} ) \mid a_{i} \in \mathbb{F}
+\rbrace
+\end{align*}
+Lo {\bf shifter} dell'algebra $\mathbb{F}C_{r}$ è dato dal prodotto per $g$, infatti 
+\begin{align*}
+g(a_0 + a_1 g + a_2 g^2 + \dots + a_{r-1} g^{r-1} ) 
+&= a_0 g + a_1 g^2 + a_2 g^3 + \dots + a_{r-1} g^{r} 
+\\
+&= a_{r-1} + a_0 g + a_1 g^2 + \dots + a_{r-2} g^{r-1}
+\end{align*}
+E' noto che la struttura $\mathbb{F}C_{r}$ con il prodotto scalare, la somma
+ed il prodotto usuale è un'algebra\footnote{Ad esempio in \cite{jacobson} pag $408$.}.
+
+Nei prossimi capitoli l'algebra $\mathbb{F}C_{r}$ sarà indicato con 
+$\mathcal{A}_{r, \mathbb{F}}$ o con $\mathcal{A} $ quando non ci sono
+ambiguità su $r$ ed $\mathbb{F}$.
+
+%%%%%%%%%%%%%%%%%%%%%% Paragrafo  %%%%%%%%%%%%%%%%%%%%
+\subsubsection{Algebra dei polinomi modulo $x^{r} -1$}
+
+Dato il campo $\mathbb{F}$ definiamo il campo campo quoziente
+\begin{align*}
+\mathcal{R}_{r, \mathbb{F}} := \quotient{\mathbb{F} \lbrack x \rbrack  }{ x^{r}
+- 1} = \lbrace a_0 + a_1 x + a_2 x^2 + \dots + a_{r-1} x^{r-1} \mid a_{j} \in \mathbb{F} \rbrace
+\end{align*}
+i cui elementi sono polinomi di grado inferiore ad
+$r$ e la cui indeterminata soddisfa la relazione 
+\begin{align*}
+x^r = 1
+\end{align*}
+Moltiplicando ambo i membri della relazione precedente per $x$ risulta evidente
+che l'insieme delle potenze dell'indeterminata è isomorfa al gruppo ciclico di
+ordine $r$. La struttura è un'algebra per l'usuale somma e prodotto di
+polinomi modulo $x^{r} - 1$. 
+
+Nella prossima sezione vedremo gli isomorfismi fra le algebre appena introdotte. 
+Quando non ci saranno ambiguità su $r$ ed $\mathbb{F}$, l'algebra dei polinomi
+modulo $x^{r} -1$ sarà indicata con $\mathcal{R}$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Paragrafo  %%%%%%%%%%%%%%%%%%%%
+
+\section{Isomorfismi}
+
+In questa sezione dimostriamo che ogni freccia del diagramma presentato
+all'inizio del capitolo è un isomorfismo di algebre, cominciando con il seguente lemma la cui verifica è immediata:
+\begin{lemmax}
+Ciascuna delle strutture algebriche presentate nel paragrafo precedente è
+isomorfa come spazio vettoriale ad $\mathbb{F}^r$.
+\end{lemmax}
+\noindent
+Inoltre ogni omomorfismo di algebre $\psi_{i}$ è completamente determinato
+dall'immagine dello shifter. Quindi è sufficiente dimostrare che sono
+omomorfismi per il prodotto
+affinché risultino isomorfismi di algebre.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%psi1
+\begin{prop}
+La funzione
+\begin{align*}
+\psi_{1}: \mathcal{V}_{r, \mathbb{F}}^{c} 
+          &\longrightarrow  
+          \mathcal{M}_{r,\mathbb{F} }^{c}  \\
+              (0,1,0,\dots , 0) 
+              &\longmapsto 
+              circ(0,1,0,\dots , 0) = s_{r}
+\end{align*}
+è un isomorfismo di algebre.
+\end{prop}
+
+\begin{proof}
+Siano $\mathbf{a}$ e $\mathbf{b}$ elementi di 
+$\mathcal{V}_{r,\mathbb{F}}^{c}$. L'immagine del loro prodotto tramite
+$\psi_{1}$ è definita come
+\begin{align*}
+\psi_{1}(\mathbf{a} \star \mathbf{b}) 
+&= \psi_{1}( 
+\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{-j}, 
+\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{1-j}, 
+\dots ,
+\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{r-1-j}) \\
+&=circ(
+\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{-j}, 
+\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{1-j}, 
+\dots ,
+\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{r-1-j}
+) 
+\end{align*}
+Da cui segue che
+\begin{align*}
+\psi_{1}(\mathbf{a} \star \mathbf{b}) 
+&=
+\left(
+\begin{array} {c c c c}
+\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{-j} 
+& 
+\sum_{j \in \mathbb{Z}_{r} } a_{j}b_{1-j} 
+&  
+\dots 
+& 
+\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{r-1-j} \\
+\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{r-1-j} 
+& 
+\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{-j} 
+& 
+\dots 
+&   
+\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{r-2-j} \\
+\vdots &  &  & \vdots   \\
+\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{1-j} 
+& 
+\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{2-j} 
+& 
+\dots 
+& 
+\sum_{j \in\mathbb{Z}_{r} } a_{j} b_{-j}   
+\end{array}
+\right)
+\\
+&=
+\left(
+\begin{array} {c c c c}
+a_{0} 
+& 
+a_{1}
+&  
+\dots 
+& 
+a_{r-1} \\
+a_{r-1} 
+& 
+a_{0} 
+& 
+\dots 
+&   
+a_{r-2}  \\
+\vdots &  &  & \vdots   \\
+a_{1}  
+& 
+a_{2}  
+& 
+\dots 
+& 
+a_{0}   
+\end{array}
+\right)
+\left(
+\begin{array} {c c c c}
+b_{0} 
+& 
+b_{1}
+&  
+\dots 
+& 
+b_{r-1} \\
+b_{r-1} 
+& 
+b_{0} 
+& 
+\dots 
+&   
+b_{r-2}  \\
+\vdots &  &  & \vdots   \\
+b_{1}  
+& 
+b_{2}  
+& 
+\dots 
+& 
+b_{0}   
+\end{array}
+\right)    \\
+&= circ(\mathbf{a}) circ(\mathbf{b})  
+\\
+&= \psi_{1}(\mathbf{a})\psi_{1}(\mathbf{b}) 
+\end{align*}
+Quindi le algebre $\mathcal{V}_{r, \mathbb{F}}^{c}$ e $\mathcal{M}_{r,\mathbb{F}
+}^{c} $ sono isomorfe.
+         
+\end{proof}
+
+         
+
+%%%%%%%%%%%%%%%%%%%%%%%%%psi2
+\begin{prop}
+La funzione
+\begin{align*}
+\psi_{2}: \quotient{ \mathbb{F}[x] }{ (x^r -1 )} 
+          &\longrightarrow  
+          \mathcal{V}_{r,\mathbb{F} }^{c}  \\
+              x 
+              &\longmapsto 
+              (0,1,0,\dots , 0) 
+\end{align*}
+è un isomorfismo di algebre.
+\end{prop}
+
+\begin{proof}
+Siano $a(x) = \sum_{j \in \mathbb{Z}_{r} }a_{j} x^{j}$ e $b(x)= \sum_{j \in
+\mathbb{Z}_{r} } b_{j} x^{j}$ elementi di $\mathcal{R}_{r, \mathbb{F}} $.
+Esaminiamo l'immagine del loro prodotto
+\begin{align*}
+\psi_{2}(a(x)b(x)) 
+&= \psi_{2}( 
+a_{0}(\sum_{j \in \mathbb{Z}_{r} } b_{j} x^{j}) +   
+%(b_{0} + b_{1}x + \dots + b_{r-1}x^{r-1}) +
+a_{1}x(\sum_{j \in \mathbb{Z}_{r} } b_{j} x^{j}) +
+%(b_{0} + b_{1}x + \dots + b_{r-1}x^{r-1}) +
+\dots
+a_{r-1}x^{r-1}(\sum_{j \in \mathbb{Z}_{r} } b_{j} x^{j})
+%(b_{0} + b_{1}x + \dots + b_{r-1}x^{r-1}) 
+)
+\end{align*}
+come visto nella sezione precedente, moltiplicare un polinomio di
+$\mathcal{R}_{r, \mathbb{F}}$ per $x^k$ equivale ad effettuare uno shift sui
+suoi coefficienti
+di $k$ posti verso destra. Quindi
+\begin{align*}
+\psi_{2}(a(x)b(x)) 
+&= \psi_{2}( 
+a_{0}(\sum_{j \in \mathbb{Z}_{r} } b_{j} x^{j}) +   
+%(b_{0} + b_{1}x + \dots + b_{r-1}x^{r-1}) +
+a_{1}(\sum_{j \in \mathbb{Z}_{r} } b_{j+1} x^{j}) +
+%(b_{0} + b_{1}x + \dots + b_{r-1}x^{r-1}) +
+\dots
+a_{r-1}(\sum_{j \in \mathbb{Z}_{r} } b_{j+r-1} x^{j})
+%(b_{0} + b_{1}x + \dots + b_{r-1}x^{r-1}) 
+) 
+\\
+&=
+\psi_{2}(
+\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{-j} +
+(\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{1-j})x +
+\dots +
+(\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{r-1-j})x^{r-1}) \\
+&=\psi_{2}(a(x)) \star \psi_{2}(b(x))
+\end{align*}
+Quindi le algebre $\mathcal{R}_{r, \mathbb{F}}$ e $\mathcal{V}_{r,
+\mathbb{F}}^{c}$ sono isomorfe.
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% esempio
+Ad esempio per $r = 3$, rappresentando i polinomi di $\mathcal{R}_{3,
+\mathbb{F}} $ come vettori
+\begin{align*}
+ a(x) = a_{0} + a_{1}x+ a_{2}x^2 = (a_{0}, a_{1},a_{2}) 
+ \\
+ b(x) = b_{0} + b_{1}x+ b_{2}x^2 = (b_{0}, b_{1},b_{2})
+\end{align*}
+si può considerare il prodotto convolutivo di $\psi_{2}(a(x))$
+per $\psi_{2}(b(x))$ come
+\begin{align*}
+&\psi_{2}(a(x)) \star \psi_{2}(b(x)) 
+=
+\left(
+\begin{array} {c c c }
+a_0 & a_1 & a_2    
+\end{array}
+\right) 
+\left(
+\begin{array} {c c c}
+b_0 & b_1 & b_2   \\
+b_2 & b_0 & b_1   \\
+b_1 & b_2 & b_0        
+\end{array}
+\right) 
+\\
+&=
+(
+a_{0}b_{0} + a_{1}b_{2} + a_{2}b_{1}, 
+a_{0}b_{1} + a_{1}b_{0} + a_{2}b_{2},
+%\\
+%&
+a_{0}b_{2} + a_{1}b_{1} + a_{2}b_{0}
+)
+\\
+&=
+\psi_{2}
+( 
+a_{0}b_{0} + a_{1}b_{2} + a_{2}b_{1} +  
+(a_{0}b_{1} + a_{1}b_{0} + a_{2}b_{2})x +
+(a_{0}b_{2} + a_{1}b_{1} + a_{2}b_{0})x^2
+) 
+\\
+&=
+\psi_{2}((a_{0} + a_{1}x+ a_{2}x^2)(b_{0} + b_{1}x+ b_{2}x^2)) 
+\\
+&=
+\psi_{2}(a(x)b(x))
+\end{align*}
+
+
+Proseguiamo nel dimostrare che $\psi_{3}$ e $\psi_{4}$ sono isomorfismi di
+algebre.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%psi3
+\begin{prop}
+La funzione
+\begin{align*}
+\psi_{3}: \mathbb{F}C_{r}
+          &\longrightarrow  
+          \mathcal{M}_{r,\mathbb{F} }^{c}  \\
+              g 
+              &\longmapsto 
+              s_{r}
+\end{align*}
+è un isomorfismo di algebre.
+\end{prop}
+
+\begin{proof}
+Siano $a$, $b$ elementi del algebra $\mathbb{F}C_{r}$ della forma
+\begin{align*}
+ a = a_0 + a_1 g + a_2 g^2 + \dots + a_{r-1} g^{r-1} 
+\\
+ b = b_0 + b_1 g + b_2 g^2 + \dots + b_{r-1} g^{r-1}
+\end{align*}
+Allora l'immagine del loro prodotto tramite $\psi_{3}$ è data da
+\begin{align*}
+\psi_{3}(ab) 
+&= \psi_{3}( 
+\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{-j} + 
+(\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{1-j})g + 
+\dots +
+(\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{r-1-j})g^{r-1} )
+\\
+&= circ
+(
+\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{-j} + 
+(\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{1-j})g + 
+\dots +
+(\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{r-1-j})g^{r-1}
+) 
+\\
+&=
+circ(a_0, a_1, a_2, \dots , a_{r-1})
+circ( b_0, b_1, b_2 , \dots , b_{r-1} )
+\\
+&= \psi_{3}(a) \psi_{3}(b) 
+\end{align*}
+Quindi le algebre $\mathbb{F}C_{r}$ e 
+$\mathcal{M}_{r,\mathbb{F} }^{c}$ sono
+isomorfe.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%psi4
+\begin{prop}
+La funzione
+\begin{align*}
+\psi_{4}: \quotient{ \mathbb{F}[x] }{ (x^r -1 )} 
+          &\longrightarrow  
+          \mathbb{F}C_{r} \\
+              x 
+              &\longmapsto 
+              g
+\end{align*}
+è un isomorfismo di algebre.
+\end{prop}
+
+\begin{proof}
+Siano $a(x) = \sum_{j \in \mathbb{Z}_{r} }a_{j} x^{j}$ e $b(x)= \sum_{j \in
+\mathbb{Z}_{r} } b_{j} x^{j}$ elementi di $\mathcal{R}_{r, \mathbb{F}} $.
+Esaminiamo allora l'immagine del loro prodotto tramite $\psi_{4}$:
+\begin{align*}
+\psi_{4}(a(x)b(x)) 
+&= \psi_{4}( 
+a_{0}(\sum_{j \in \mathbb{Z}_{r} } b_{j} x^{j}) +  
+a_{1}x(\sum_{j \in \mathbb{Z}_{r} } b_{j} x^{j}) +
+\dots
+a_{r-1}x^{r-1}(\sum_{j \in \mathbb{Z}_{r} } b_{j} x^{j})
+)
+\\
+&= 
+\psi_{4}( 
+a_{0}(\sum_{j \in \mathbb{Z}_{r} } b_{j} x^{j}) +  
+a_{1}(\sum_{j \in \mathbb{Z}_{r} } b_{j+1} x^{j}) +
+\dots
+a_{r-1}(\sum_{j \in \mathbb{Z}_{r} } b_{j+r-1} x^{j})
+) 
+\\
+&=
+\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{-j} +
+(\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{1-j})g +
+\dots +
+(\sum_{j \in \mathbb{Z}_{r} } a_{j} b_{r-1-j})g^{r-1}
+\\
+&=
+\psi_{4}(a(x))\psi_{4}(b(x))
+\end{align*}
+\end{proof}
+
+Abbiamo quindi quattro algebre isomorfe ciascuna delle quali possiede un
+elemento particolare, che genera il gruppo su cui le algebre sono definite e il
+cui prodotto con uno degli elementi della sua algebra è uno shift dei coefficienti sugli elementi della base.
+\begin{center}
+\begin{tabular}{ c | c c c c }
+Strutture 
+& 
+$\mathcal{V}_{r, \mathbb{F}}^{c}$ 
+& 
+$\mathcal{M}_{r,\mathbb{F} }^{c} $ 
+& 
+$\mathbb{F}C_{r} $ 
+& 
+$\mathcal{R}_{r, \mathbb{F}} $ 
+\\
+\hline
+Shifter & $(0,1,0,\dots,0)$ & $s_n$ & $g$ & $x$ 
+\end{tabular}
+\end{center}
+Per $r$ ed $\mathbb{F}$ generici $\mathcal{R}_{r, \mathbb{F}} $ non è un campo,
+quindi non tutti i suoi elementi possiedono inverso. È possibile scomporre
+tale struttura in un prodotto di campi? 
+Affrontiamo il problema nel prossimo capitolo.
+
+
+% 
+% 
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LEMMA
+% \begin{lemmax}
+% Sia $\omega = e^{\frac{2\pi i}{n}}$ radice primitiva $n-$esima dell'unità,
+% $C_{n}$ gruppo ciclico generato da $g$, allora 
+% $$
+%  \mathbb{K}\lbrack \omega \rbrack   \cong \mathbb{K} C_{n} 
+% $$
+% \end{lemmax}
+% 
+% \begin{proof}
+% La funzione
+% \begin{align*}
+% \delta:\mathbb{K} \lbrack \omega \rbrack  &\longrightarrow  \mathbb{K} C_{n}  
+% \\
+% a_0 + a_1\omega + a_2\omega^2 + \dots + a_{n-1}\omega^{n-1}    &\longmapsto a_0
+% + a_1 g + a_2 g^2 + \dots + a_{n-1} g^{n-1}
+% \end{align*}
+% è un isomorfismo di algebre, infatti è ben definito, è isomorfismo di spazi
+% vettoriali e per il prodotto, i gruppi soggiacenti sono isomorfi e l'immagine di
+% un generatore è un generatore.
+% \end{proof}
+% 
+% 
+% %%%%%%%%%%%%%%%%%%%
+% \begin{prop}
+% $$
+%  circ_{n}(\mathbb{K}) \cong \mathfrak{C}_{\mathbb{K},n} 
+% $$
+% \end{prop}
+% 
+% \begin{proof}
+% Sia 
+% \begin{align*}
+% \alpha: circ_{n}(\mathbb{K}) &\longrightarrow   \mathfrak{C}_{\mathbb{K},n}   \\
+%    \mathbf{a} &\longmapsto circ(\mathbf{a})
+% \end{align*}
+% funzione che manda il vettore circolante nella matrice circolante
+% corrispondente. E' un isomorfismo di spazi vettoriali dato che sia il dominio
+% che il codominio sono isomorfi a $\mathbb{K}^{n}$ come spazi vettoriali.
+% Inoltre si verifica facilmente
+% \begin{align*}
+% \alpha(\mathbf{a} \star \mathbf{b} ) = \alpha(\mathbf{a}) \alpha(\mathbf{b})
+% \end{align*}
+% dato che il prodotto di convoluzione coincide con la prima riga del prodotto
+% delle due matrici circolanti corrispondenti.
+% \end{proof}
+% 
+% 
+% 
+% %%%%%%%%%%%%%%%
+% \begin{prop}
+%  $$
+%  \mathfrak{C}_{\mathbb{K},n} \cong  \mathbb{K}C_{n} 
+% $$
+% \end{prop}
+% 
+% \begin{proof}
+% Sia $C_{n} = <g>$:
+% \begin{align*}
+% \beta: \mathfrak{C}_{\mathbb{K},n} &\longrightarrow   \mathbb{K}C_{n}    \\
+%    circ(a_0, a_1, \dots , a_{n-1}) &\longmapsto a_0 + a_1 g + \dots + a_{n-1}
+% g^{n-1}
+% \end{align*}
+% funzione che manda la matrice circolante nel polinomio a coefficienti
+% corrispondenti sull'indeterminata che genera $C_{n}$. E' ben definita dato che
+% $g^{0}, g^{1} , \dots , g^{n-1}$ sono distinti; come nel caso precedente è un
+% isomorfismo di spazi vettoriali dato che sia il dominio che il codominio sono
+% isomorfi a $\mathbb{K}^{n}$ come spazi vettoriali.
+% Per il prodotto si può procedere in due modi: calcolando direttamente $\beta(
+% circ(\mathbf{a})circ(\mathbf{b}))$ oppure considerando gli elementi di
+% $\mathfrak{C}_{\mathbb{K},n}$ come polinomi di $\mathbb{K} \lbrack s_n \rbrack$
+% ed applicando il lemma.
+% \end{proof}
+% 
+% %%%%%%%%%%%%%%%%%%
+% \begin{prop}
+% $$
+% \mathbb{K}C_{n}  \cong  \mathcal{R}_{\mathbb{K},n}  
+% $$
+% \end{prop}
+% 
+% \begin{proof}
+%  Sia $C_{n} = <g>$:
+% \begin{align*}
+% \gamma: \mathbb{K}C_{n} &\longrightarrow  \mathcal{R}_{\mathbb{K},n}    \\
+%      a_0 + a_1 g + \dots + a_{n-1} g^{n-1} &\longmapsto a_0 + a_1 x + \dots +
+% a_{n-1} x^{n-1}
+% \end{align*}
+% funzione che manda il polinomio nell'indeterminata $g$ nel corrispondente ad
+% indeterminata $x$. Osservando che in $\mathcal{R}_{\mathbb{K},n}$ le
+% indeterminate formano un gruppo ciclico di ordine $n$, dato che $x^n = 1$ allora
+% $gamma$ è un isomorfismo di algebre. Inftti è ben definito, è isomorfismo di
+% spazi vettoriali, per il prodotto i gruppi soggiacenti che ne determinano la
+% base sono isomorfi e l'immagine di un generatore è un generatore.
+% \end{proof}
+% 
+% 
+% %%%%%%%%%%%%%%%%%
+% \begin{corollario}
+% $$
+% \mathcal{R}_{\mathbb{K},n}   \cong  circ_{n}(\mathbb{K})
+% $$
+% \end{corollario}
+% 
+% \begin{proof}
+%  Conseguenza del diagramma presentato all'inizio del paragrafo e delle ultime
+% proprietà.
+% \end{proof}
+% 
+% 
+% \subsubsection{Shifters} 
+% Ciascuna delle strutture precedentemente esaminate possiede un elemento
+% particolare, detto {\bf shift} il cui prodotto corrisponde allo spostamento di
+% un posto verso destra degli elementi del vettore o della prima riga della
+% matrice circolante o dei coefficienti del polinomio. La situazione è riassunta
+% dalla seguente tabella: \\
+% 
+% \begin{center}
+% \begin{tabular}{ c | c c c c }
+% Strutture & $circ_{n}(\mathbb{K})$ & $\mathfrak{C}_{\mathbb{K},n} $ & $
+% \mathbb{K}C_{n}  $ & $\mathcal{R}_{\mathbb{K},n}$ \\
+% \hline
+% Shifter & $(0,1,0,\dots,0)$ & $s_n$ & $g$ & $x$ 
+% \end{tabular}
+% \end{center}
+% 
+% 
+% 
+% 
+% 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% CAPITOLI     %%%%%%%%%%%%%%%%%%%%
+
+
+
+
+% pre riassumere, usiamo gli shifters
+%ovviamente l'immagine dello shifter è uno shifter.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Paragrafo  %%%%%%%%%%%%%%%%%%%%
+
+
+
+
+

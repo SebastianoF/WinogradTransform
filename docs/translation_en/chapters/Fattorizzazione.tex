@@ -1,0 +1,973 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% CAPITOLo 2   %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Fattorizzazione di $x^r - 1$} \label{cap:fattorizzazione}
+
+Possiamo ampliare il diagramma del capitolo precedente con altre due
+strutture algebriche definite dalla fattorizzazione dell'algebra
+$\mathcal{R}_{r, \mathbb{F}} $ in un prodotto di campi:
+
+\[
+\begindc{\commdiag}[3]
+%sotto
+\obj(0,5)[V]{$ \mathcal{V}_{r, \mathbb{F}}^{c} $}
+\obj(40,5)[M]{$\mathcal{M}_{r,\mathbb{F} }^{c}$}
+
+
+%metà
+\obj(0,30)[R]{$ \quotient{ \mathbb{F}[x] }{ (x^r -1 )} $}
+\obj(40,30)[A]{$ \mathbb{F}C_{r} $}
+\obj(-40,30)[P]{$ \prod_{v} \mathbb{F} (\xi^{v}) $}
+
+%sopra
+\obj(0,60)[Q]{$ \prod_{v} \quotient{ \mathbb{F}[x] }{ (M^{(v)}(x) )} $}
+
+%frecce orizzontali
+\mor{V}{M}{$\psi_{1}$}
+\mor{R}{A}{$\psi_{4}$}
+\mor{R}{P}{$\eta$}
+
+%frecce verticali
+\mor{R}{V}{$\psi_{2}$}
+\mor{A}{M}{$\psi_{3}$}
+\mor{R}{Q}{$\gamma$}
+
+%frecce oblique
+\mor{P}{Q}{$\mu$}
+%\mor{A}{Q}{$\mu_{2}$}
+
+\enddc
+\]
+
+
+\noindent
+Per questo scopo è necessario fattorizzare $x^{r} - 1$ nel prodotto
+di polinomi irriducibili su $\mathbb{F}$. Proponiamo inizialmente tre esempi sui
+quali sarà articolata la teoria:
+
+\begin{esempio}
+   Per $\mathbb{F} = \mathbb{Q}$ ed $r = 6$ allora
+   \begin{align*}
+      \mathcal{R}_{6, \mathbb{Q}} 
+       := \quotient{\mathbb{Q} \lbrack x \rbrack  }{(x^{6} - 1)} 
+   \end{align*}
+  ed $x^{6}-1$ si scompone\footnote{Vedere \emph{ricerca dei polinomi minimi sui campi finiti} in appendice.} nel prodotto dei polinomi ciclotomici irriducibili:
+\begin{align*}
+  x^{6} - 1 =   \prod_{d \mid r} \Phi_{d}(x) =
+  \Phi_{1}(x)\Phi_{2}(x)\Phi_{3}(x)\Phi_{6}(x) \\
+  x^{6} - 1 = (x-1)(x+1)(x^2+x+1)(x^2-x-1)
+\end{align*}
+In conseguenza del fatto che ci sono radici seste dell'unità
+distinte aventi lo stesso polinomio minimo,  il polinomio $x^{6} - 1$ non si
+scompone esclusivamente in polinomi di primo grado. Sia $\xi_{6}$ radice
+primitiva sesta:\\
+$\xi_{6}^{0} = 1$ è radice di $x-1$.\\
+$\xi_{6}^{3} = -1$ è radice di $x + 1$.\\
+$\xi_{6}^{2}, \xi_{6}^{4} $ sono radici di $x^2+x+1$.\\
+$\xi_{6}^{1}, \xi_{6}^{5}$ sono radici di $x^2-x-1$.\\
+Osserivamo che le radici di uno stesso polinomio ciclotomico espresse come potenze della radice primitiva sesta $\xi_{6}$ hanno esponenti raggruppati nelle orbite dell'azione di
+$\mathbb{Z}_{6}^{\star}$ su $\mathbb{Z}_{6}$: \\
+$O(0)= \lbrace 0 \rbrace$.\\
+$O(1)= \lbrace 1,5 \rbrace$.\\
+$O(2)= \lbrace 2,4 \rbrace$.\\
+$O(3)= \lbrace 3 \rbrace$.\\
+Questo fatto sarà dimostrato in generale nel corso del capitolo, così come si
+dimostrerà che esiste un isomorfismo fra
+$\mathcal{R}_{6, \mathbb{Q}} $ ed il prodotto dei quozienti sui singoli
+polinomi:
+\begin{align*}
+\quotient{\mathbb{Q} \lbrack x \rbrack  }{(x^{6} - 1)} =
+\quotient{\mathbb{Q} \lbrack x \rbrack  }{ \prod_{d\mid r} \Phi_{d}(x)} \cong
+\prod_{d\mid r} \quotient{\mathbb{Q} \lbrack x \rbrack  }{\Phi_{d}(x)}
+\end{align*}
+Dato che i polinomi ciclotomici sono irriducibili, i fattori in cui si scompone
+$ \mathcal{R}_{6, \mathbb{Q}} $ sono campi.
+\end{esempio}
+
+\begin{esempio} \label{ese:fattor2_9}
+Se scegliamo invece il campo finito,
+$\mathbb{F} = \mathbb{Z}_{2} = GF(2)$ campo di Galois di ordine $2$, ed
+$r = 9$ allora
+\begin{align*}
+  \mathcal{R}_{9, \mathbb{Z}_{2}} 
+       := \quotient{\mathbb{Z}_{2} \lbrack x \rbrack  }{(x^{9} - 1)} 
+\end{align*}
+ed $x^{9}-1$ si scompone nel prodotto di polinomi irriducibili:
+\begin{align*}
+  x^9 - 1 &= M^{(0)}(x) M^{(1)}(x) M^{(3)}(x) \\
+          &= (x-1)(x^6+x^3+1)(x^2+x+1)
+\end{align*}
+Sia $\xi_{9}$ radice primitiva nona:\\
+$\xi_{9}^{0} = 1$ è radice di $M^{(0)}(x)= x-1$.\\
+$\xi_{9}^{1},\xi_{9}^{2}, \xi_{6}^{4}, \xi_{9}^{8}, \xi_{9}^{7},\xi_{9}^{5} $
+sono radici di $M^{(1)}(x) = x^6+x^3+1$.\\
+$\xi_{9}^{3}, \xi_{9}^{6}$ sono radici di $M^{(3)}(x) = x^2+x+1$.\\
+In questo caso, gli esponenti di $\xi_{9}$ che soddisfano lo
+stesso polinomio ciclotomico sono raggruppate nelle orbite dell'azione di
+$\mathbb{Z}_{9}^{\star}$ su $\mathbb{Z}_{9}$: \\
+$O(0)= \lbrace 0 \rbrace$.\\
+$O(1)= \lbrace 1,2,4,8,7,5 \rbrace$.\\
+$O(3)= \lbrace 3,6 \rbrace$.\\
+e vale l'isomorfismo
+\begin{align*}
+\quotient{\mathbb{Z}_{2} \lbrack x \rbrack  }{(x^{9} - 1)}
+\cong
+\prod_{v = 0,1,3} \quotient{\mathbb{Q} \lbrack x \rbrack  }{M^{(v)}(x)}
+\end{align*}
+\end{esempio}
+
+I polinomi $M^{(v)}(x)$ della fattorizzazione dell'esempio precedente coincidono
+con i polinomi ciclotomici definiti dalla fattorizzazione di $x^9 - 1$ nel
+campo dei razionali. Possiamo scrivere impropriamente
+\begin{align*}
+   M^{(0)}(x) = \Phi_{1}(x) \qquad M^{(1)}(x) = \Phi_{9}(x) 
+                            \qquad M^{(3)}(x) = \Phi_{3}(x)
+\end{align*}
+quindi abbiamo la stessa
+fattorizzazione che si avrebbe avuto
+scegliendo $\mathbb{F} = \mathbb{Q}$ anziché $\mathbb{F} = \mathbb{Z}_{2}$. \\
+Questo non accade in generale; ad esempio per la fattorizzazione $x^7 - 1$,
+dove i polinomi della fattorizzazione sul campo finito sono di più di quelli
+nel caso della fattorizzazione sui razionali.
+
+\begin{esempio} \label{ese:fattorQ_7}
+Sia $\mathbb{F} = \mathbb{Q}$ ed $r = 7$ allora
+\begin{align*}
+  x^{7} - 1 &= \Phi_{1}(x) \Phi_{7}(x) \\
+            &= (x-1)(x^6 +x^5 + x^4 + x^3 +x^2 + x +1)
+\end{align*}
+Sia $\xi_{7}$ radice primitiva settima:\\
+$\xi_{7}^{0} = 1$ è radice di $x-1$.\\
+$\xi_{7}^{j}$ è radice di $\Phi_{7}(x)$ per $j = 1, \dots ,6 $.\\
+Come prima gli esponenti delle radici primitive settime che soddisfano lo
+stesso polinomio ciclotomico sono raggruppate nelle orbite dell'azione di
+$\mathbb{Z}_{7}^{\star}$ su $\mathbb{Z}_{7}$: \\
+$O(0)= \lbrace 0 \rbrace$.\\
+$O(1)= \lbrace 1,2,3,4,5,6 \rbrace$.\\
+Mentre se fattorizziamo $ x^{7} - 1$ sul campo $\mathbb{F} = \mathbb{Z}_{2}$,
+otteniamo il prodotto
+\begin{align*}
+  x^{7} - 1 &= M^{(0)}(x) M^{(1)}(x) M^{(3)}(x) \\
+            &= (x-1)(x^3 + x + 1)(x^3 + x^2 + 1) 
+\end{align*}
+Le radici primitive settime si distribuiscono nel modo seguente: \\
+$\xi_{7}^{0} = 1$ è radice di $M^{(0)}(x) = x-1$.\\
+$\xi_{7}^{1}, \xi_{7}^{2}, \xi_{7}^{4}$ sono radici di $M^{(1)}(x) = x^3 + x +
+1$.\\
+$\xi_{7}^{3}, \xi_{7}^{5}, \xi_{6}^{1}$ sono radici di $M^{(3)}(x)= x^3 + x^2 +
+1$.\\
+A differenza del caso sui razionali gli esponenti delle radici primitive settime
+che soddisfano lo
+stesso polinomio irriducibile della fattorizzazione sono raggruppate nelle
+orbite dell'azione di un {\bf sottogruppo} di
+$\mathbb{Z}_{7}^{\star}$ (precisamente quello costituito dagli elementi che
+coincidono con gli elementi dell'orbita O(1)), su $\mathbb{Z}_{7}$: \\
+$O(0)= \lbrace 0 \rbrace$.\\
+$O(1)= \lbrace 1,2,4 \rbrace$.\\
+$O(3)= \lbrace 3,5,6 \rbrace$.\\
+Quindi $ \mathcal{R}_{7, \mathbb{Q}} $ si scompone nel prodotto di due
+campi, 
+\begin{align*}
+\quotient{\mathbb{Q} \lbrack x \rbrack  }{(x^{7} - 1)}
+\cong
+\quotient{\mathbb{Q} \lbrack x \rbrack  }{\Phi_{1}(x)}
+\times
+\quotient{\mathbb{Q} \lbrack x \rbrack  }{\Phi_{7}(x)}
+\end{align*}
+mentre $\mathcal{R}_{7, \mathbb{Z}_{2}}$ si scompone in tre campi.
+\begin{align*}
+\quotient{\mathbb{Z}_{2} \lbrack x \rbrack  }{(x^{7} - 1)}
+\cong
+\quotient{\mathbb{Z}_{2} \lbrack x \rbrack  }{M^{(0)}(x)}
+\times
+\quotient{\mathbb{Z}_{2} \lbrack x \rbrack  }{M^{(1)}(x)}
+\times
+\quotient{\mathbb{Z}_{2} \lbrack x \rbrack  }{M^{(3)}(x)}
+\end{align*}
+\end{esempio}
+
+\noindent
+È interessante notare come le algebre $\mathcal{R}_{r, \mathbb{F}}$ si
+decompongono in campi, in modo simile a come gli interi si fattorizzano in
+numeri primi. A determinare la decomposizione in campi è la fattorizzazione del
+polinomio $x^r - 1$ alla quale è dedicato questo capitolo.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% SEZIONI    %%%%%%%%%%%%%%%%%%%%
+\section{Classi ciclotomiche}
+
+Scopo del paragrafo è scomporre il polinomio $x^r-1$ in un prodotto di polinomi minimi. Esaminiamo il caso generale per poi proseguire nel caso in cui $x^r-1$ è definito sul campo dei razionali e sui campi finiti. Ricordiamo inizialmente la definizione di polinomio minimo e dimostriamo la sua irriducibilità mediante il seguente lemma\footnote{Variante del teorema $6.1.16$ pag. $314$ \cite{cattaneo}.}.
+\begin{lemmax}\label{le:poliMinimo}
+   Sia $\mathbb{F}$ campo perfetto, $\xi$ radice (non necessariamente primitiva!) $r$-esima dell'unità,  $\mathbb{F}(\xi)$ estensione di  $\mathbb{F}$ e sia $v_{\xi}$ l'omomorfismo di valutazione:
+   \begin{align*}
+      v_{\xi}: \mathbb{F}[x]  &\longrightarrow  \mathbb{F}[\xi]  \\
+		    f(x) &\longmapsto f(\xi)
+   \end{align*}
+   Allora valgono le seguenti proprietà: 
+   \begin{enumerate}
+      \item $ker(v_{\xi}) = (p(x))$ dove $p(x)$ è un polinomio irriducibile monico detto {\bf polinomio minimo} di $\xi $ su $\mathbb{F}$.
+      \item Sia $f(x) \in \mathbb{F}[x]$ allora $f(\xi) = 0 \iff p(x) \mid f(x)$.
+      \item $\mathbb{F}[\xi]=\mathbb{F}(\xi)$ ed inoltre vale l'isomorfismo
+        \begin{align*}
+           \mathbb{F}(\xi) \cong \quotient{\mathbb{F}[x]}{(p(x))}
+        \end{align*}
+       \item Se $deg(p(x)) = m$ allora $[\mathbb{F}(\xi): \mathbb{F}] = m$ ed $\mathbb{F}(\xi)$ ha come base $\lbrace1, \xi, \xi^2, \dots, \xi^{m-1} \rbrace$.
+   \end{enumerate}
+\end{lemmax}
+\begin{proof}
+   Dimostriamo i $4$ punti separatamente:
+   \begin{enumerate}
+      \item Dal teorema fondamentale degli isomorfismi di anelli segue che 
+      
+      \vspace{0.2cm}
+
+      \[
+      \begindc{\commdiag}[3]
+      %insiemi
+      \obj(0,25)[Fx]{$ \mathbb{F}[x] $}
+      \obj(40,25)[Quoz]{$ \quotient{\mathbb{F}[x]}{ker(v_{\xi})} $}
+      \obj(35,0)[Fxi]{$ \mathbb{F}[\xi] $}
+
+      %frecce
+      \mor{Fx}{Quoz}{$\pi$}
+      \mor{Fx}{Fxi}{$ v_{\xi}$}
+      \mor{Quoz}{Fxi}{$ \cong $}
+
+      \enddc
+      \]
+
+      \vspace{0.2cm}
+
+      Quindi 
+      \begin{align*}
+         \mathbb{F}[\xi] \cong \quotient{\mathbb{F}[x]}{ker(v_{\xi})}
+      \end{align*}
+      Ma $\mathbb{F}[\xi]$ è sottoanello del campo $\mathbb{F}(\xi)$ ed  è quindi dominio di integrità. Quindi lo è $\quotient{\mathbb{F}[x]}{ker(v_{\xi})}$ e da una nota proprietà $ker(v_{\xi})$ è un ideale primo. Quindi abbiamo che è generato da un polinomio irriducibile. Esiste allora un polinomio monico $p(x)$ (o riconducibile ad un polinomio monico dividendo per il coefficiente direttivo) tale che $ker(v_{\xi}) = (p(x))$.
+      
+      \item Sia $f(\xi) = 0$ allora $f(x) \in ker(v_{\xi})$ e viceversa. Essendo $ker(v_{\xi}) = (p(x))$ dal punto precedente, allora segue la tesi.
+      
+      \item Dall'irriducibilità di $p(x)$ si ha che $\quotient{\mathbb{F}[x]}{(p(x))}$ è un campo e dal teorema fondamentale degli isomorfismi di anelli segue che anche $\mathbb{F}[\xi]$ è un campo. Quindi $\mathbb{F}[\xi]= \mathbb{F}(\xi)$ ed 
+      \begin{align*}
+           \mathbb{F}(\xi) \cong \quotient{\mathbb{F}[x]}{(p(x))}
+      \end{align*}
+      
+      \item Sia $m$ il grado di $p(x)$, allora si dimostra che $\Xi = \lbrace1, \xi, \xi^2, \dots, \xi^{m-1} \rbrace$ è una base di $\mathbb{F}[\xi] = \mathbb{F}(\xi)$. \\
+      \emph{Linearmente indipendenti}: sia 
+      \begin{align*}
+         \sum_{j=0}^{m-1} a_{j}\xi^{j} = 0 \qquad \qquad a_{j} \in \mathbb{F}
+      \end{align*}
+      e sia $f(x) = \sum_{j=0}^{m-1} a_{j}\xi^{j}$ polinomio associato alla combinazione lineare precedente. Dato che $f(x)$ si annulla in $\xi$ allora appartiene al nucleo dell'omomorfismo di valutazione $ker(v_{\xi})$ ed è un quindi un multiplo di $p(x)$. Dato che la differenza fra il grado di $p(x)$ ed il grado di $f(x)$ è $1$ allora $f(x)$ deve essere necessariamente il polinomio nullo. \\
+      \emph{Generatori}: sia $a \in \mathbb{F}(\xi)$ elemento generico allora esiste un polinomio $f(x)$ che calcolato in $\xi$ risulta valere $a$:
+      \begin{align*}
+         a = f(\xi) = v_{\xi}(f(x))
+      \end{align*}
+      Considerando la divisione di $f(x)$ per $p(x)$ si ottiene
+      \begin{align*}
+         f(x) = p(x)q(x) + r(x) \qquad \qquad 0 \leq deg(r(x)) \le deg(p(x))
+      \end{align*}
+      da cui, calcolando $f(x)$ in $\xi$:
+      \begin{align*}
+         f(\xi) = 0 + r(\xi) = a
+      \end{align*}
+      e quindi $r(\xi) = a$ è una combinazione lineare ad elementi in $\mathbb{F}$ di $\Xi$. 
+   \end{enumerate}
+\end{proof}
+
+\begin{osservazione}
+   Se $\xi$ è una radice \emph{primitiva} $r$-esima dell'unità, allora possiamo applicare il lemma \ref{le:poliMinimo} precedente ad $\xi^{t}$ con $t \in \mathbb{Z}_{r}^{\star}$ ed ottenere così l'estensione $\mathbb{F}(\xi^{t})$ del campo $\mathbb{F}$ con base su $\mathbb{F}$ data da $\lbrace 1, \xi^{t}, \xi^{2t}, \dots, \xi^{m_{t} - 1} \rbrace$ per $m_{t}$ grado del polinomio minimo di $\xi^{t}$.
+\end{osservazione}
+
+Nella fattorizzazione di $x^r - 1$ possono esistere delle radici distinte
+aventi lo stesso polinomio minimo, come affermato nel caso dei campi finiti dal
+seguente lemma:
+\begin{lemmax} \label{le:lemmaGalois}
+   Sia $\beta$ elemento del campo finito $\mathbb{F}_{q}$ di
+caratteristica $p$ e di ordine $p^n=q$, allora $\beta$ e $\beta^{p}$ hanno lo
+stesso polinomio minimo su $\mathbb{F}$.
+\end{lemmax}
+\begin{proof}
+   Sia $a(x) = \sum_{j=0}^{m} a_{j}x^j$ il polinomio minimo di $\beta$
+   allora 
+   \begin{align*}
+      a(\beta^p ) = \sum_{j=0}^{m} a_{j} (\beta^p)^j 
+                  = \sum_{j=0}^{m} a_{j}^p (\beta^j)^p 
+                  = (\sum_{j=0}^{m} a_{j} \beta^j )^p 
+                  = 0
+   \end{align*}
+\end{proof}
+\noindent
+Anche per i campi a caratteristica zero accade che radici distinte
+dell'unità abbiano lo stesso polinomio minimo. Per esempio in $\mathbb{Q}$ tutte
+le radici primitive $r$-esime di ordine $d$, dove $d \mid r$, appartengono allo stesso polinomio ciclotomico $\Phi_{d}(x)$ irriducibile\footnote{\cite{cattaneo}
+pag. 133 per una presentazione generale. \cite{milne} pag. 40 per 
+l'irriducibilità. Per ricavare il $d$-esimo polinomio ciclotomico usando la formula di inversione di Moebius \cite{sivarama} pag. 198.}.
+Le radici distinte di un polinomio che hanno lo
+stesso polinomio minimo nella sua fattorizzazione sono dette {\bf radici coniugate}.
+Esiste un modo per determinare quali sono le radici coniugate di un polinomio
+se osserviamo che sono legate fra di loro dagli automorfismi del gruppo di Galois
+dell'estensione che le contiene\footnote{Variante della
+proposizione $7.2.3$ \cite{cattaneo} pag. 349.}.
+\begin{teorema}\label{teo:stesseRadici}
+Sia $\mathbb{F}$ campo perfetto, $\xi$ radice primitiva $r$-esima
+dell'unità, $Gal(\mathbb{F}(\xi), \mathbb{F})$, gruppo di Galois
+dell'estensione $\mathbb{F}(\xi) $ su $ \mathbb{F}$, allora
+\begin{enumerate}
+   \item Per ogni $\varphi \in Gal(\mathbb{F}(\xi), \mathbb{F})$, $\xi$ e $\varphi(\xi)$ hanno lo stesso
+polinomio minimo.
+   \item Per ogni $t \in \mathbb{Z}_{r}$ e per ogni $\varphi \in Gal(\mathbb{F}(\xi), \mathbb{F})$, $\xi^{t}$ e
+$\varphi(\xi^{t})$ hanno lo stesso polinomio minimo.
+\end{enumerate}
+\end{teorema}
+\begin{proof}
+È sufficiente dimostrare il secondo punto, essendo il primo un suo caso
+particolare per $t = 1$. \\
+Sia $a(x) = \sum_{j=0}^{m} a_{j}x^j$ polinomio minimo di $\xi^{t}$
+allora 
+\begin{align*}
+      a(\varphi(\xi^t) ) &= \sum_{j=0}^{m} a_{j} (\varphi(\xi^t) )^j
+                  = \sum_{j=0}^{m} \varphi(a_{j}) \varphi(\xi^t)^j  
+                  = \sum_{j=0}^{m} \varphi(a_{j}) \varphi((\xi^t )^j) \\ 
+                  &= \sum_{j=0}^{m} \varphi(a_{j}(\xi^t)^j)
+                  = \varphi( \sum_{j=0}^{m} a_{j} (\xi^t )^j ) 
+                  = \varphi(0) = 0
+\end{align*}
+\end{proof}
+Il teorema precedente ci fornisce tutte le informazioni utili per calcolare i
+polinomi della fattorizzazione $x^r - 1$, svelando il rapporto che intercorre
+fra due radici coniugate e due radici non coniugate.\\
+Indicando con $E^{(r)} = \lbrace \xi^{j}\rbrace_{j=0}^{r-1}$ il gruppo delle
+radici $r$-esime dell'unità, riformuliamo nei prossimi due paragrafi, sul campo dei
+razionali e sui campi finiti, il teorema precedente
+identificando il generico elemento $\xi^{j}$ di $E^{(r)}$ con il suo esponente
+$j$ e ridefinendo $Gal(\mathbb{F}(\xi), \mathbb{F})$ come gruppo che agisce su $\mathbb{Z}_{r}$ invece che su
+$E^{(r)}$. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% subSEZIONI    %%%%%%%%%%%%%%%%%%%%
+\subsection{Il gruppo $Gal(\mathbb{Q}(\xi), \mathbb{Q}))$} \label{cap2:Grazionali}
+
+Sia $Gal(\mathbb{Q}(\xi), \mathbb{Q}))$ per $\xi$ radice primitiva $r$-esima
+dell'unità. L'estensione $\lbrack \mathbb{Q}(\xi), \mathbb{Q} \rbrack$ ha grado
+$\varphi(r)$ in conseguenza del fatto\footnote{\cite{cattaneo} pag. 133.} che il grado dell'$r$-esimo polinomio
+ciclotomico ha come radici tutte le potenze $\xi^{k}$ per $(r,k) = 1$.
+Dal teorema \ref{teo:stesseRadici} ogni elemento di $Gal(\mathbb{Q}(\xi), \mathbb{Q}))$ manda $\xi$ in un'altra radice
+di $\Phi_{r}(x)$:  \\
+per ogni $\varphi \in Gal(\mathbb{Q}(\xi), \mathbb{Q}))$ esiste $k$ intero, $(k,r) = 1$ tale che 
+$\varphi(\xi) = \xi^k $.  \\
+Viceversa per ogni $k$ intero, $(k,r) = 1$ allora l'applicazione $\varphi_{k}$
+che manda $\xi$ in $\xi^{k}$ è un automorfismo. \\
+Esiste quindi una corrispondenza fra il gruppo degli elementi invertibili di
+$\mathbb{Z}_{n}$ e gli elementi di $Gal(\mathbb{Q}(\xi), \mathbb{Q}))$.
+
+\begin{teorema}
+Sia $\xi$ radice primitiva $r$-esima dell'unità, allora la corrispondenza
+\begin{align*}
+\psi: \mathbb{Z}_{r}^{\star} & \longrightarrow  Gal(\mathbb{Q}(\xi), \mathbb{Q})) &   \\
+                           k &\longmapsto  \varphi_{k} : \mathbb{Q}(\xi)  \longrightarrow  \mathbb{Q}(\xi) \\
+                                              & \qquad \qquad \qquad \xi \longmapsto \varphi_{k}(\xi) = \xi^{k}
+\end{align*}
+è un isomorfismo di gruppi.
+\end{teorema}
+\begin{proof}
+$\psi$ è biunivoca considerando che la cardinalità dei due insiemi è $\varphi(r)$ e dato che tutte le $\xi^k$ sono distinte per $(r,k)=1$.\\
+Si verifica che $\psi$ è un omomorfismo di gruppi:
+siano $i,j$ elementi di $\mathbb{Z}_{r}^{\star}$ tali che $ij \equiv k \mod{r}$ allora $\varphi_{i}\varphi_{j} = \varphi_{k}$, infatti
+\begin{align*}
+   \varphi_{i}\varphi_{j}(\xi) = \varphi_{i}(\xi^{j}) = \xi^{ji} = \xi^{k} = \varphi_{k}(\xi)
+\end{align*}
+segue quindi
+\begin{align*}
+   \mathbb{Z}_{r}^{\star} \cong  Gal(\mathbb{Q}(\xi), \mathbb{Q})) 
+\end{align*}
+\end{proof}
+
+Osserviamo che gli elementi $\varphi_{k}$ del gruppo di Galois analizzati nel precedente teorema, oltre ad agire sul sottogruppo moltiplicativo delle radici primitive $r$-esime dell'unità, possono anche agire su ogni altra radice $r$-esima. Sia $\xi^{l}$ radice di ordine $l$, allora $\varphi_{k}(\xi^{l})$ manda $\xi^{l}$ in un'altra radice dello stesso polinomio minimo di $\xi^{l}$.\\
+È dunque possibile concentrare l'attenzione solo sugli esponenti degli elementi di $E^{(r)} = \lbrace \xi^{j}\rbrace_{j=0}^{r-1} \cong \mathbb{Z}_{r}$, rappresentando l'azione delle $\varphi_{k}$ di $Gal(\mathbb{Q}(\xi), \mathbb{Q}))$ come l'azione del gruppo $\mathbb{Z}_{r}^{\star}$ su $\mathbb{Z}_{r}$ in virtù del teorema precedente.\\
+Riassumendo, l'automorfismo
+\begin{align*}
+\varphi_{k}: E^{(r)}  &\longrightarrow  E^{(r)}   \\
+               \xi^{l} &\longmapsto \varphi_{k}(\xi^{l}) = \xi^{lk}
+\end{align*}
+definisce l'azione di gruppi
+\begin{align*}
+ Gal(\mathbb{Q}(\xi), \mathbb{Q})) \times E^{(r)}  &\longrightarrow  E^{(r)}   \\
+           (\varphi_{k},\xi^{l}) &\longmapsto \varphi_{k}(\xi^{l}) = \xi^{lk}
+\end{align*}
+che grazie all'isomorfismo di gruppi appena ricavato ed alla corrispondenza fra gli elementi di $E^{(r)}$ e gli esponenti di $\xi$ che lo definiscono, mantiene le stesse caratteristiche di 
+\begin{align*}
+ \mathbb{Z}_{r}^{\star} \times \mathbb{Z}_{r} \longrightarrow  \mathbb{Z}_{r}   \\
+           (k,l) \longmapsto kl
+\end{align*}
+Risulta quindi essere dimostrato il teorema:
+\begin{teorema} \label{teo:iffPoliMinimoQ}
+Due elementi $l_{1}$ ed $l_{2}$ di $\mathbb{Z}_{r}$ sono nella stessa orbita della azione 
+\begin{align*}
+ \mathbb{Z}_{r}^{\star} \times \mathbb{Z}_{r} &\longrightarrow  \mathbb{Z}_{r}   \\
+           (k,l) &\longmapsto kl
+\end{align*}
+se e solo se $\xi^{l_{1}}$ e $\xi^{l_{2}}$ hanno lo stesso polinomio minimo su $\mathbb{Q}$.
+\end{teorema}
+
+\begin{definizione}\label{cap2:orbiteq}
+   Le orbite dell'azione definita nel teorema precedente, ciascuna delle quali definisce l'insieme di potenze di $\xi$ che soddisfano lo stesso polinomio minimo, sono dette {\bf classi ciclotomiche}. Due elementi appartenenti ad una stessa classe ciclotomica sono detti {\bf coniugati}. 
+\end{definizione}
+
+Negli esempi proposti all'inizio del capitolo, abbiamo osservato che il teorema \ref{teo:iffPoliMinimoQ} non può essere generalizzato per un campo qualsiasi, mantenendo l'isomorfismo $Gal(\mathbb{F}(\xi), \mathbb{F}) \cong  \mathbb{Z}_{r}^{\star}$ il quale si verifica nel caso specifico dei razionali. Infatti passando da $\mathbb{Q}$ al campo $\mathbb{Z}_{2}$ nell'esempio \ref{ese:fattorQ_7}, il gruppo $Gal(\mathbb{F}(\xi), \mathbb{F})$, da essere isomorfo a $\mathbb{Z}_{r}^{\star}$ si restringe ad un suo sottogruppo. \\
+Purtroppo neppure tutti i campi a caratteristica zero hanno corrispondente gruppo di Galois isomorfo a $\mathbb{Z}_{r}^{\star}$, come si verifica esplorando un caso sul campo dei reali.
+\begin{esempio}
+Sia $\mathbb{F}=\mathbb{R}$, ed $r$ generico: 
+\begin{align*}
+  \mathcal{R}_{r, \mathbb{R}} 
+       := \quotient{\mathbb{R} \lbrack x \rbrack  }{(x^{r} - 1)} 
+\end{align*}
+Sia $\xi$ radice primitiva di $x^r-1$, allora $Gal(\mathbb{R}(\xi), \mathbb{R})) = \lbrace \varphi_{1}, \varphi_{-1} \rbrace $ e quindi $Gal(\mathbb{R}(\xi), \mathbb{R})) \cong \mathbb{Z}_{2}$.
+\end{esempio}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% subSEZIONI    %%%%%%%%%%%%%%%%%%%%
+\subsection{Il gruppo $Gal(\mathbb{F}_{q}(\xi), \mathbb{F}_{q})$} \label{cap2:Gfiniti}
+
+Nel caso finito, la prima informazione utile che si può ottenere è il campo di spezzamento del polinomio $x^r-1$ che sarà estensione di $\mathbb{F}_{q}$, ma prima di cominciare la sua ricerca dobbiamo fare una
+\begin{osservazione}\label{cap2:osservaziorp}
+Sia $\mathbb{F}_{q} = GF(q)$ campo di Galois di caratteristica $p$ e di ordine $q=p^n$. Se $r$ e $q$ non sono primi fra loro, cioè se esiste un $d = (p,r) \neq 1$ allora $r = \rho p^n$ con $(\rho,p) = 1$. Il polinomio $x^r-1$ può essere scomposto come
+\begin{align*}
+x^r-1 =  x^{\rho p^n} - 1^{p^{n}} = (x^{\rho}-1)^{p^n} 
+\end{align*}
+quindi le radici di $x^r-1$ coincidono con le radici di $x^{\rho}-1$ con molteplicità $p^n$.
+Quindi per evitare casi ridondanti, da questo punto in poi della tesi $p$ ed $r$ saranno sempre considerati coprimi. 
+\end{osservazione}
+Il prossimo lemma determina il campo di spezzamento di $x^r-1$ ricordando che il {\bf periodo} di un elemento $x$ di un gruppo $X$ è il più piccolo intero positivo $t$ tale che $x^t = 1_{X}$.
+\begin{lemmax} \label{le:campoDiSpezzamento}
+Sia $\mathbb{K}$ campo di spezzamento di $x^r-1$ in $\mathbb{F}_{q}$, allora il grado dell'estensione di $\mathbb{K}$ su $\mathbb{F}_{q}$ coincide con il periodo di $q$ in $\mathbb{Z}_{r}^{\star}$
+\end{lemmax}
+\begin{proof}
+Dato che $\mathbb{K}$ estende $\mathbb{F}_{q} \supseteq \mathbb{F}_{p}$ la sua caratteristica è $p$.
+Sia $m = \lbrack \mathbb{K} : \mathbb{F}_{q} \rbrack$, cioè
+\begin{align*}
+   \mathbb{F}_{p} \subseteq \mathbb{F}_{p^n} =  \mathbb{F}_{q}\subseteq \mathbb{F}_{q^m} = \mathbb{K}
+\end{align*}
+Allora, indicando con $\arrowvert \cdot \arrowvert$ la cardinalità di un insieme, si osserva che 
+\begin{enumerate}
+   \item $\arrowvert \mathbb{K}^{\star} \arrowvert = q^m -1$, dato che $\arrowvert \mathbb{K} \arrowvert = q^m$ e $\mathbb{K}$ è un campo.
+   \item $E^{(r)} := \lbrace \xi \in \mathbb{K}^{\star} \mid \xi^{r} = 1 \rbrace$ gruppo delle radici $r$-esime dell'unità è sottogruppo moltiplicativo di $\mathbb{K}^{\star}$ ha cardinalità $r$. 
+\end{enumerate}
+Dato che l'ordine dei sottogruppi deve dividere l'ordine del gruppo che lo contiene
+\footnote{Ad esempio \cite{herstein} pag 43, \cite{cattaneo} pag. 240.}
+allora 
+\begin{align*}
+   \arrowvert E^{(r)} \arrowvert \mid \arrowvert \mathbb{K}^{\star} \arrowvert \\
+   r \mid q^m - 1
+\end{align*}
+Quindi $q^m \equiv 1 \mod{r}$: il periodo di $q$ in $\mathbb{Z}_{r}^{\star}$, indicato con 
+$per_{\mathbb{Z}_{r}^{\star}}(q)$ è uguale ad $m$, grado dell'estensione $\lbrack \mathbb{K} : \mathbb{F}_{q} \rbrack$.
+\end{proof}
+
+\begin{esempio}
+   Riprendendo l'esempio \ref{ese:fattorQ_7} , dove $r=7$ e $\mathbb{F} = \mathbb{Z}_{2}$, il campo di spezzamento di $x^7 -1$ è $\mathbb{F}_{2^3}$, essendo $3$ il periodo di $2$ in $\mathbb{Z}_{7}^{\star}$. Notiamo che il grado dell'estensione è pari alla cardinalità dell'orbita dell'azione che contiene $1$.
+\end{esempio}
+
+Sia $\xi$ radice primitiva $r$-esima dell'unità sul campo finito $\mathbb{F}_{q}$, allora la corrispondenza
+\begin{align*}
+\psi: \mathbb{Z}_{r}^{\star} & \longrightarrow  Gal(\mathbb{F}_{q}(\xi), \mathbb{F}_{q}) &   \\
+                         k &\longmapsto  \varphi_{k} : \mathbb{F}_{q}(\xi)\longrightarrow  \mathbb{F}_{q}(\xi)\\
+                                    & \quad \qquad \qquad \quad \xi^{l} \longmapsto \varphi_{k}(\xi^{l}) = \xi^{kl}
+\end{align*}
+come si può verificare, non è una corrispondenza biunivoca per ogni valore di $r$ e di $q$
+\footnote{Si consideri $q=2$ ed $r= 7,15$.}
+. Però è possibile trovare un sottogruppo di $\mathbb{Z}_{r}^{\star}$ da sostituire al dominio in modo che $\psi$ diventi un isomorfismo.
+\begin{teorema} \label{teo:HsuGF}
+Sia $\xi$ radice primitiva $r$-esima dell'unità sul campo finito $\mathbb{F}_{q}$, allora esiste un sottogruppo di $\mathbb{Z}_{r}^{\star}$ indicato con $G$ tale che la corrispondenza
+\begin{align*}
+\psi: G & \longrightarrow  Gal(\mathbb{F}_{q}(\xi), \mathbb{F}_{q}) &   \\
+      k &\longmapsto \varphi_{k}
+\end{align*}
+è un isomorfismo di gruppi.
+\end{teorema}
+\begin{proof}
+   \emph{Parte 1: analisi di $Gal(\mathbb{F}_{q}(\xi), \mathbb{F}_{q})$}. Sia $\varphi \in  Gal(\mathbb{F}_{q}(\xi), \mathbb{F}_{q})$,
+   \begin{align*}
+      \varphi: \mathbb{F}_{q}(\xi) & \longrightarrow  \mathbb{F}_{q}(\xi)&   \\
+	    \xi^l &\longmapsto \varphi(\xi^l)
+    \end{align*}
+   Dal teorema \ref{teo:stesseRadici} $\xi^l$ e $\varphi(\xi^l)$ devono avere lo stesso polinomio minimo, quindi ogni elemento di $Gal(\mathbb{F}_{q}(\xi), \mathbb{F}_{q})$ permuta le radici dei polinomi minimi. Dal lemma \ref{le:campoDiSpezzamento} precedente, il campo di spezzamento $\mathbb{F}_{q}(\xi)$ di $x^r - 1$ su $\mathbb{F}_{q}$ possiede $q^{m}$ elementi per $m = per_{\mathbb{Z}_{r}^{\star}}(q)$. Inoltre\footnote{\cite{cattaneo} teorema $7.3.5$ pag. 361.}
+   \begin{align*}
+       \arrowvert Gal(\mathbb{F}_{q}(\xi), \mathbb{F}_{q}) \arrowvert = [\mathbb{F}_{q}(\xi): \mathbb{F}_{q}] = per_{\mathbb{Z}_{r}^{\star}}(q) = m
+   \end{align*}
+   Quindi il polinomio minimo di $\xi$ è di grado $m-1$ ed il sottogruppo di $\mathbb{Z}_{r}^{\star}$ cercato, da mettere in corrispondenza con un sottogruppo di $Gal(\mathbb{F}_{q}(\xi), \mathbb{F}_{q})$ è di ordine $m$.\\
+   \emph{Parte 2: esistenza ed unicità di $G$}. Dato che il periodo di un elemento di un gruppo deve dividere l'ordine del gruppo in cui è contenuto, esiste (ed è unico) un sottogruppo di $\mathbb{Z}_{r}^{\star}$ di ordine $per_{\mathbb{Z}_{r}^{\star}}(q) = m$. \\
+   \emph{Parte 3: $\phi$ è un isomorfismo}. Le informazioni note a questo punto della dimostrazione sono:
+   \begin{itemize}
+      \item Esiste $G$ sottogruppo di $\mathbb{Z}_{r}^{\star}$.
+      \item $\arrowvert G \arrowvert = m $ periodo di $q$ in $\mathbb{Z}_{r}^{\star}$.
+      \item Se $g \in G$ allora $\varphi_{g}(\xi^t) = \xi^{gt}$ è ancora una radice del polinomio minimo di $\xi^{t}$ per $t \in \mathbb{Z}_{r}$.
+   \end{itemize}
+   Si verifica che
+   \begin{align*}
+      \psi: G & \longrightarrow  Gal(\mathbb{F}_{q}(\xi), \mathbb{F}_{q}) &   \\
+			      g &\longmapsto  \varphi_{g} : \mathbb{F}_{q}(\xi)\longrightarrow  \mathbb{F}_{q}(\xi)\\
+					  & \quad \qquad \qquad \quad \xi^{t} \longmapsto \varphi_{g}(\xi^{t}) = \xi^{gt}
+      \end{align*}
+   è un isomorfismo:\\
+   L'iniettività segue dal fatto che se $\psi(g_{1})=\psi(g_{2})$ allora $\xi^{g_{1}} = \xi^{g_{2}}$, cioè $g_{1} = g_{2}$ modulo $r$ e quindi $g_{1} = g_{2}$.\\
+   La suriettività è conseguenza del fatto che la cardinalità del dominio è uguale a quella del codominio e dell'iniettività.\\
+   È inoltre un omomorfismo di gruppi: siano $g_{1}, g_{2} \in G$ tali che 
+   \begin{align*}
+      g_{1} g_{2} \equiv k \mod{r}, \quad (k \in G)
+   \end{align*}
+   Allora 
+   \begin{align*}
+      \varphi_{g_{1}} \varphi_{g_{2}}(\eta) = \varphi_{g_{1}}(\eta^{g_{2}}) = \eta^{g_{1}g_{2}} = \eta^{k} = \varphi_{k}(\eta) 
+   \end{align*}
+\end{proof}
+\noindent
+Riportiamo in un corollario una delle conseguenze della dimostrazione precedente:
+\begin{corollario}
+   La cardinalità di $G$ coincide con $m = per_{\mathbb{Z}_{r}^{\star}}(q)$.
+\end{corollario}
+
+Analogamente a quanto visto nel caso razionale, segue che l'azione definita da
+\begin{align*}
+ Gal(\mathbb{F}_{q}(\xi), \mathbb{F}_{q})) \times E^{(r)}  & \longrightarrow  E^{(r)}   \\
+           (\varphi_{k},\xi^{l}) & \longmapsto \varphi_{k}(\xi^{l}) = \xi^{lk}
+\end{align*}
+può essere vista come l'azione
+\begin{align*}
+ G \times \mathbb{Z}_{r} \longrightarrow  \mathbb{Z}_{r}   \\
+           (g,l) \longmapsto gl
+\end{align*}
+semplicemente concentrandosi sugli esponenti delle radici $r$-esime dell'unità che determinano univocamente gli elementi di $E^{(r)}$.
+
+Si può quindi formulare un analogo del teorema \ref{teo:iffPoliMinimoQ} sui campi finiti, la cui dimostrazione è conseguenza di quanto detto precedentemente: 
+\begin{teorema} \label{teo:iffPoliMinimoGF}
+Sia $G$ definito come sopra. Due elementi $l_{1}$ ed $l_{2}$ di $\mathbb{Z}_{r}$ sono nella stessa orbita della azione 
+\begin{align*}
+ G \times \mathbb{Z}_{r} &\longrightarrow  \mathbb{Z}_{r}   \\
+           (g,l) &\longmapsto gl
+\end{align*}
+se e solo se $\xi^{l_{1}}$ e $\xi^{l_{2}}$ hanno lo stesso polinomio minimo su $\mathbb{F}$.
+\end{teorema}
+
+In generale non è banale trovare il gruppo $G \cong Gal(\mathbb{F}(\xi), \mathbb{F})$ come sottogruppo di $\mathbb{Z}_{r}^{\star}$, ma da quanto visto in precedenza, sappiamo che 
+\begin{align*}
+   \mathbb{F} = \mathbb{Q} \qquad &\Longrightarrow \qquad G = \mathbb{Z}_{r}^{\star} \\
+   \mathbb{F} = \mathbb{F}_{q} \qquad  &\Longrightarrow \qquad G \trianglelefteq \mathbb{Z}_{r}^{\star} 
+      \qquad \arrowvert G \arrowvert = m = per_{\mathbb{Z}_{r}^{\star}}(q)
+\end{align*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% subSEZIONI    %%%%%%%%%%%%%%%%%%%%
+\subsection{La fattorizzazione di $x^r - 1$} \label{cap2:fattorizzazione}
+Questo paragrafo utilizza quanto visto fino ad ora con lo scopo di fattorizzare
+%%%
+\footnote{Nel 1967 è stato pubblicato un algoritmo per fattorizzare un polinomio sui campi finti detto algoritmo di Berkelamp\cite{berkelamp}. Questo è ancora utilizzato nell'implementazione di alcuni software, come ad esempio PARI/Gp, sebbene sia stato rimpiazzato nel 1981 dall'algoritmo di Cantor-Zassenhaus \cite{cantor}.}
+%%%
+il polinomio $x^r - 1$, noto $G \trianglelefteq \mathbb{Z}_{r}^{\star}$ isomorfo a $Gal(\mathbb{F}(\xi), \mathbb{F})$. 
+I fattori di $x^r - 1$ sono polinomi minimi di radici $r$-esime coniugate i cui esponenti sono quindi nella stessa orbita dell'azione di $G$ su $\mathbb{Z}_{r}$. Fattorizzare $x^r-1$ equivale a stabilire tali orbite.\\
+Completiamo la definizione di orbite già data in \ref{cap2:orbiteq}, nel caso dei razionali, poi dimostriamo il teorema di fattorizzazione di $x^r - 1$. 
+\begin{definizione}
+Sia $t\in \mathbb{Z}$, $Gal(\mathbb{F}(\xi), \mathbb{F}) \cong G \trianglelefteq \mathbb{Z}_{r}^{\star}$, allora si definisce {\bf $(r,\mathbb{F})$-orbita} di $t$ l'insieme
+\begin{align*}
+   O_{r,\mathbb{F}}(t) = O(t) = \lbrace gt \mod{r} \mid g \in G \rbrace \subseteq  \mathbb{Z}_{r}
+\end{align*}
+Le $(r,\mathbb{F})$-orbite sono talvolta dette classi ciclotomiche o impropriamente laterali ciclotomici. Il più piccolo elemento di ogni orbita è detto {\bf etichetta} dell'orbita. \\
+Indichiamo con $\mathscr{L}_{r,\mathbb{F}} = \mathscr{L}$ l'insieme delle etichette, e indichiamo con $l_{r,\mathbb{F}} = l = \arrowvert \mathscr{L} \arrowvert$ la sua cardinalità.
+Definiamo
+\begin{align*}
+   m_{r,\mathbb{F}}(t) = m(t) = \arrowvert O(t) \arrowvert
+\end{align*}
+la cardinalità dell'orbita di $t$, che coincide con il grado del polinomio minimo di $\xi^{t}$.
+\end{definizione}
+
+Nei prossimi paragrafi capiterà di considerare vettori, o prodotti di polinomi, o di strutture algebriche i cui elementi (ordinati) hanno una corrispondenza con le etichette contenute nell'insieme $\mathscr{L}$ (non ordinato). Per evitare confusione sull'ordine degli elementi di tali vettori considereremo quando necessario gli elementi di $\mathscr{L}$ ordinati in modo crescente.\\
+La notazione
+\begin{align*}
+   (f_{v})_{v \in \mathscr{L}}
+\end{align*}
+rappresenta quindi il vettore
+\begin{align*}
+   (f_{0},f_{1}, \dots , f_{t}, \dots)
+\end{align*}
+nel quale $f_{t}$ non è necessariamente al $t$-esimo posto per $t$ diverso da $0$ e da $1$, ma corrisponde alla posizione di $t$ in $\mathscr{L}$ ordinato in modo crescente.
+
+\begin{teorema}
+   Sia $r$ intero positivo ed $\mathbb{F}$ campo perfetto. 
+   \begin{enumerate}
+      \item Ad ogni orbita $O(v)$ corrisponde un polinomio irriducibile in $\mathbb{F}[x]$ definito da 
+            \begin{align*}
+               M^{(v)}(x) =  \prod_{t \in O(v)} (x- \xi^t)
+            \end{align*}
+      \item La decomposizione in $\mathbb{F}$ di $x^r - 1$ in fattori irriducibili è data da 
+            \begin{align*}
+               x^r - 1 = \prod_{v \in \mathscr{L} } M^{(v)}(x)
+            \end{align*}
+   \end{enumerate}
+\end{teorema}
+\begin{proof}
+Il secondo punto è conseguenza del primo, considerando la definizione di fattorizzazione; è allora sufficiente dimostrare il secondo punto.\\
+Dato che le orbite sono definite dall'azione del gruppo $G$ su $\mathbb{Z}_{r}$ è noto che sono una partizione di $\mathbb{Z}_{r}$.
+Quindi è possibile scrivere
+\begin{align*}
+   \prod_{t= 0}^{r-1} (x - \xi^{t})  
+   = \prod_{v \in \mathscr{L} } \prod_{t \in O(v)} (x - \xi^{t}) 
+   = \prod_{v \in \mathscr{L} } M^{(v)}(x)
+   =  x^r - 1
+\end{align*}
+Dal teorema \ref{teo:iffPoliMinimoGF} abbiamo che $M^{(v)}(x)$ è il polinomio minimo che contiene tutti i coniugati di $\xi^{v}$. Quindi è il polinomio minimo di $\xi^{v}$ ed è irriducibile dal lemma \ref{le:poliMinimo}. 
+\end{proof}
+
+\begin{osservazione}
+   Nel caso particolare di $\mathbb{F} = \mathbb{Q}$, segue che $M^{(0)}(x) = \Phi_{1}(x) = x-1$, ed $M^{(t)}(x) = \Phi_{r/t}(x)$ per ogni $t\mid r$. Infatti $\Phi_{r/t}(x)$ è definito come il polinomio minimo che contiene tutte le radici $r$-esime dell'unità di periodo $t$. 
+\end{osservazione}
+\begin{esempio}
+   Il polinomio $x^8 - 1$ si scompone in $\mathbb{Q}$ come
+   \begin{align*}
+      x^8 - 1 &= (x-1)(x+1)(x^2 + 1) (x^4+1)\\  
+      \Phi_{1}(x) &= (x-1)  = M^{(0)}(x) \\
+      \Phi_{2}(x) &= (x+1)= M^{(4)}(x)  \\
+      \Phi_{4}(x) &= (x^2 + 1) = M^{(2)}(x) \\
+      \Phi_{8}(x) &= (x^4 + 1)  = M^{(1)}(x)
+   \end{align*}
+\end{esempio}
+\noindent
+Noti i fattori irriducibili di $x^r-1$ possiamo costruire i suoi divisori come prodotto dei polinomi $M^{(v)}(x)$ per qualche $v \in \mathscr{L}$.
+Prima di approfondire questo tema vogliamo rispondere ad una domanda: \\
+dati l'intero positivo $r$ ed il campo perfetto $\mathbb{F}$, quante sono le orbite $O_{r,\mathbb{F}}(t)$?
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% SEZIONI    %%%%%%%%%%%%%%%%%%%%
+\section{Cardinalità dell'insieme di orbite}
+
+Presentiamo alcune proprietà\footnote{\cite{cerruti} pag. 4 e seguenti. }
+sulle orbite dell'azione di $G$ su $\mathbb{Z}_{r}$ (che valgono anche per $Gal(\mathbb{F}(\xi), \mathbb{F})$ su $E^{(r)}$ grazie agli isomorfismi introdotti).
+\begin{definizione}
+Dato $v$ intero, l'orbita $O(-v)$ è detta {\bf coniugata} ad $O(v)$. Se $O(v) = O(-v)$, allora l'orbita è detta {\bf autoconiugata}.
+\end{definizione}
+\begin{prop}\label{cap2:5proporbite}
+Valgono le seguenti proprietà:
+\begin{enumerate}
+   \item $O(1) = G$ come insieme.
+   \item $m(t) \mid m(1)$ per ogni $t$ in $\mathbb{Z}_{r}$.
+   \item $m(t) = m(-t)$ per ogni $t$ in $\mathbb{Z}_{r}$.
+   \item $\sum_{t\in \mathscr{L} } m(t) = r$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+Dimostriamo i vari punti dell'asserto separatamente.
+\begin{enumerate}
+   \item Segue dalla definizione: 
+         \begin{align*}
+            O(1) = \lbrace g \mod{r} \mid g \in G \rbrace = G \subseteq  \mathbb{Z}_{r}
+         \end{align*}
+    \item Ricordando la definizione di stabilizzatore dell'elemento $t$
+          \begin{align*}
+            Stab(t) = \lbrace g \in G \mid gt = t \mod r \rbrace
+          \end{align*}
+          ed il teorema sulla cardinalità dell'orbita di $t$ rispetto allo stabilizzatore dello stesso elemento
+          \footnote{ \cite{cattaneo} Corollario $5.1.17$ pag. 269.}
+          \begin{align*}
+            \arrowvert O(t)\arrowvert \cdot \arrowvert Stab(t) \arrowvert = \arrowvert G \arrowvert 
+          \end{align*}
+          segue che 
+          \begin{align*}
+            \arrowvert O(t)\arrowvert \mid \arrowvert G \arrowvert 
+          \end{align*}
+          quindi $m(1)$ è multiplo di $m(t)$.
+    \item La cardinalità dello stabilizzatore di $t$ è uguale alla cardinalità dello stabilizzatore
+          di $-t$, dal fatto che risultano essere lo stesso insieme: 
+          \begin{align*}
+            Stab(t) &= \lbrace g \in G \mid gt = t \mod r \rbrace   \\
+                    &= \lbrace g \in G \mid -gt = -t \mod r \rbrace \\
+                    &= \lbrace g \in G \mid g(-t) = -t \mod r \rbrace \\ 
+                    &= Stab(-t)
+          \end{align*}
+          allora dal punto precedente segue che
+          \begin{align*}
+            \arrowvert Stab(t)\arrowvert \cdot m(t) = m(1) 
+            \qquad \qquad
+            \arrowvert Stab(-t)\arrowvert \cdot m(-t) = m(1)
+          \end{align*}
+          Quindi la cardinalità di due orbite coniugate è la stessa:
+          \begin{align*}
+            m(t) = \frac{m(1)}{\arrowvert Stab(t)\arrowvert} 
+            = \frac{m(1)}{\arrowvert Stab(-t)\arrowvert} = m(-t)
+          \end{align*}
+      \item Le orbite sono a due a due disgiunte e la loro unione costituisce $\mathbb{Z}_{r}$. Formano quindi una partizione di $\mathbb{Z}_{r}$.
+\end{enumerate}
+\end{proof}
+
+La seguente proprietà caratterizza le orbite autoconiugate:
+\begin{prop}
+Con le notazioni precedentemente definite, sono equivalenti le seguenti condizioni:
+\begin{enumerate}[(a)]
+   \item \label{cap2:puntoa} $-1 \in G$.
+   \item \label{cap2:puntob} $ O(1)$ è autoconiugata.
+   \item \label{cap2:puntoc} Ogni $O(t)$ è autoconiugata.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+\ref{cap2:puntoc} $\Rightarrow$ \ref{cap2:puntob}) Se ogni orbita è autoconiugata, allora a fortiori lo è anche $O(1)$. \\
+\ref{cap2:puntob} $\Rightarrow$ \ref{cap2:puntoa}) Sia $O(1)$ autoconiugata, allora 
+          \begin{align*}
+            -1 \in O(-1) = O(1)
+          \end{align*}
+          Allora dalla proprietà \ref{cap2:5proporbite} $-1 \in O(1) = G$.\\
+\ref{cap2:puntoa} $\Rightarrow$ \ref{cap2:puntoc}) Se $-1$ appartiene ad $G$, allora per ogni $t$ in $\mathbb{Z}_{r}$ 
+          \begin{align*}
+            -1t \in O(t) = \lbrace ht \mod{r} \mid h \in G \rbrace
+          \end{align*}
+          Ma questo implica che $-t \in O(t)$ e quindi $O(t) = O(-t)$. 
+\end{proof}
+\begin{osservazione}
+   Dal paragrafo \ref{cap2:Grazionali} segue che per $\mathbb{F}=\mathbb{Q}$, allora $G=\mathbb{Z}_{r}^{\star}$, quindi $-1 \in G$ e quindi ogni orbita è autoconiugata. Inoltre l'ordine di $O(t)$ definito come $m(t)$ è dato dal grado dell'$r/t$-esimo polinomio ciclotomico, per $t$ divisore di $r$ e coincide con $\varphi(r/t)$ per $\varphi$ funzione di Eulero. \\
+   Quindi la proprietà \ref{cap2:5proporbite} verifica la nota formula $\sum_{t \mid r} \varphi(t) = r$.
+\end{osservazione}
+
+Un'interessante applicazione del lemma di Burnside
+\footnote{\cite{artin} pag. 196, \cite{cattaneo} pag. 271. }
+si esprime nel seguente teorema sulla cardinalità dell'insieme delle orbite
+\footnote{\cite{cerruti} pag. 4. }:
+\begin{teorema}
+Sia $\mathbb{F}$ campo perfetto ed $r$ intero positivo coprimo con la caratteristica di $\mathbb{F}$,
+\begin{align*}
+   l_{r,\mathbb{F}} = \frac{1}{\arrowvert G \arrowvert }\sum_{g \in G} (g-1, r) 
+\end{align*}
+\end{teorema}
+\begin{proof}
+Il lemma di Burnside applicato a questo caso particolare afferma che il numero delle orbite dell'azione del gruppo $G$ sull'insieme $ \mathbb{Z}_{r}$ è dato da 
+\begin{align*}
+   l = \frac{1}{\arrowvert G \arrowvert }\sum_{g \in G}\arrowvert X_{g} \arrowvert
+\end{align*}
+dove con $X_{g}$ si indica l'insieme
+\begin{align*}
+   X_{g} = \lbrace t \in \mathbb{Z}_{r} \mid gt = t \mod r \rbrace 
+\end{align*}
+La cardinalità di tale insieme equivale al numero di soluzioni della congruenza lineare $ gt \equiv t \mod{r}$, che è proprio il massimo comune divisore fra $g-1$ e $r$.
+\end{proof}
+
+\begin{corollario}
+Sia $\mathbb{F}= \mathbb{Q}$ ed $r$ intero positivo. Se $d(r)$ rappresenta il numero dei divisori di $r$, allora
+\begin{align*}
+   \frac{1}{\varphi(r) }\sum_{(g,r) = 1} (g-1, r) = d(r) 
+\end{align*}
+\end{corollario}
+\begin{proof}
+Per $\mathbb{F}= \mathbb{Q}$ abbiamo che $G =\mathbb{Z}_{r}^{\star}$, quindi si ha un'orbita per ogni divisore di $r$: $\arrowvert G \arrowvert = \varphi(r)$ e $g \in G$ se e solo se $(g,r) = 1$. Inoltre 
+\begin{align*}
+   \mathscr{L} = \lbrace g \in \mathbb{Z}_{r}^{\star} : g\mid r \rbrace
+   \qquad 
+   \arrowvert  \mathscr{L} \arrowvert = d(r)
+\end{align*}
+da cui segue l'implicazione
+\begin{align*}
+   l = \frac{1}{\arrowvert G \arrowvert }\sum_{g \in G} (g-1, r) 
+   \quad
+   \Longrightarrow
+   \quad
+   d(r) = \frac{1}{\varphi(r) }\sum_{(g,r) = 1} (g-1, r) 
+\end{align*}
+\end{proof}
+
+Terminiamo il paragrafo, con la dimostrazione di un lemma che sarà utile nel prossimo capitolo.
+\begin{lemmax} \label{cap2:lemma110}
+Sia $\mathbb{F}$ campo perfetto, $r$ intero positivo e sia $O_{r,\mathbb{F}}(1)$ orbita autoconiugata, allora 
+\begin{enumerate}
+   \item Se r è dispari
+      \begin{align*}
+         m(v) = 1 \iff v = 0
+      \end{align*}
+      e per $v \neq 0$ allora $m(v)$ è pari.
+   \item Se r è pari
+      \begin{align*}
+         m(v) = 1 \iff v = 0 \lor v = r/2
+      \end{align*}
+      e per $v \neq 0, r/2$ allora $m(v)$ è pari.
+\end{enumerate}
+\end{lemmax}
+
+\begin{proof}
+Dall'ipotesi $O(1)$ autoconiugato segue che ogni orbita è autoconiugata (proprietà \ref{cap2:5proporbite}), quindi per ogni $t$ appartenente a $O(v)$ anche $-t$ appartiene ad $O(v)$. \\ 
+Sia $r$ dispari:
+\begin{itemize}
+   \item[$\Rightarrow$)] Per ipotesi $m(v)=1$. Sia per assurdo $v\neq 0$ e $t\in O(v)$ per $t \in \lbrace 1,2,\dots, r-1\rbrace$, allora 
+   \begin{align*}
+     t \equiv -t \mod{r} \qquad \qquad 2t \equiv 0 \mod{r}   
+   \end{align*}
+   in contraddizione con $r$ dispari.\\
+   Inoltre $m(v)$ è pari, dato che per ogni $t\neq 0$, $O(v)$ se contiene $t$ contiene anche $-t $ che non è congruo a  $t$ modulo $r$.
+   \item[$\Leftarrow$)] Viceversa se $v=0$ allora $O(v) = \lbrace 0 \rbrace$ per definizione.
+\end{itemize}
+Sia $r$ pari:
+\begin{itemize} 
+   \item[$\Rightarrow$)] Per ipotesi $m(v)=1$. Sia per assurdo $v\neq 0$ e $t\in O(v)$ per $t \in \lbrace 1,2,\dots, r-1\rbrace$, allora come prima $r\mid 2t$, che accade solo per $t=0$ o per $t=t/2$. Analogamente a prima, per ogni altro valore di $t$, $O(t)$ contiene un numero pari di elementi.
+   \item[$\Leftarrow$)] Se $v=0$ allora $m(v)=1$ come già dimostrato, mentre per $v=r/2$ $O(v)$ contiene solo $r/2$.
+\end{itemize}
+\end{proof}
+Conoscere la fattorizzazione di $x^r - 1$ può fornire delle informazioni sull'algebra $\mathcal{R}_{r,\mathbb{F}} = \quotient{\mathbb{F} \lbrack x \rbrack  }{(x^{r} - 1)}$ ? 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% SEZIONI    %%%%%%%%%%%%%%%%%%%%
+\section{Fattorizzazione di $\mathcal{R}$ come prodotto di campi}
+
+Il paragrafo precedente è stato dedicato alla fattorizzazione di $x^r - 1$. Ora analizziamo una delle conseguenze di tale fattorizzazione: la possibilità di esprimere l'algebra $\mathcal{R}_{r,\mathbb{F}}$ come prodotto di campi.
+\begin{teorema}\label{teo:teoremaGamma}
+   Sia $\mathbb{F}$ campo perfetto ed $r$ intero positivo. Sia 
+   \begin{align*}
+        x^r-1 = \prod_{v\in \mathscr{L}} M^{(v)}(x) 
+   \end{align*}
+   per $M^{(v)}(x)$ polinomi irriducibili in $\mathbb{F}$. Allora vale l'isomorfismo di algebre
+   \begin{align*}
+      \quotient{\mathbb{F} \lbrack x \rbrack  }{(x^{r} - 1)}
+      \cong
+      \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}
+   \end{align*}
+\end{teorema}
+\begin{proof}
+  La chiave della dimostrazione consiste nel considerare la funzione $\gamma$, che definiamo come {\bf trasformata di Winograd} e che sarà approfondita nei capitoli successivi:
+  \begin{align*}
+  \gamma :  \quotient{\mathbb{F} \lbrack x \rbrack  }{x^{r} - 1}  
+	    & \longrightarrow  
+	    \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}   \\
+	    %%
+	    a(x) &\longmapsto  ( a(x)\mod{M^{(v)}(x)})_{v\in \mathscr{L}}
+  \end{align*}
+  È una funzione suriettiva: per il teorema cinese dei resti il sistema $a_{v}(x)\mod{M^{(v)}(x)}$ per $v\in \mathscr{L}$  ammette un'unica soluzione modulo $x^r - 1$ che è la controimmagine cercata.\\
+  Si verifica facilmente che è un isomorfismo di spazi vettoriali considerando il codominio come spazio $l$-dimensionale di vettori di polinomi, con il prodotto scalare e la somma usuali.
+  Rimane da verificare che è un isomorfismo di anelli.\\
+  L'ideale costituito dal nucleo di tale funzione è costituito da tutte le combinazioni di polinomi i cui addendi appartengono a $\lbrace M^{(v)}(x) \rbrace_{v\in \mathscr{L}}$. Quindi è definito da
+  \begin{align*}
+    ker(\gamma) = \lbrace a(x) \mid a(x) \equiv 0 \mod M^{(v)}(x) \quad \forall v \in \mathscr{L} \rbrace 
+    = (\prod_{v\in \mathscr{L}}M^{(v)}(x) )
+  \end{align*}
+  Osservato questo, la tesi è conseguenza del teorema fondamentale degli isomorfismi di anelli:
+  
+      \vspace{0.2cm}
+
+      \[
+      \begindc{\commdiag}[3]
+      %insiemi
+      \obj(0,25)[Dom]{$ \quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^r - 1)} $}
+      \obj(50,25)[Quoz]{$ \quotient{\quotient{\mathbb{F} \lbrack x \rbrack  }{(x^r-1)} }{ \prod_{v\in \mathscr{L}} M^{(v)}(x)}  $}
+      \obj(35,0)[Im]{$ \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)} $}
+
+      %frecce
+      \mor{Dom}{Quoz}{$\pi$}
+      \mor{Dom}{Im}{$ \gamma$}
+      \mor{Quoz}{Im}{$ \cong $}
+
+      \enddc
+      \]
+
+      \vspace{0.2cm}
+      
+    Da otteniamo la tesi osservando che 
+    \begin{align*}
+       \quotient{\quotient{\mathbb{F} \lbrack x \rbrack  }{(x^r-1)} }{ \prod_{v\in \mathscr{L}} M^{(v)}(x)} =  \quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^r - 1)}
+    \end{align*}
+    e che $\pi$ è la funzione identità.
+\end{proof}
+\begin{osservazione}
+   Grazie all'aiuto fornito dal teorema cinese dei resti è possibile determinare un'inversa della trasformata di Winograd utilizzando la dimostrazione della suriettività nel teorema precedente. Questo tema sarà approfondita nel capitolo \ref{cap:trasformataWinograd}.
+\end{osservazione}
+\begin{esempio}
+   Consideriamo il polinomio $x^7+x^2+1$ in $\mathcal{R}_{r, \mathbb{F}_q }$, allora
+   \begin{align*}
+      \gamma(x^7+x^2+1) = (1, x^4 + x^2 + x + 1, 0)
+   \end{align*}
+   dal fatto che 
+   \begin{align*}
+      x^9 - 1 &= (x-1)(x^6 + x^3 + 1)(x^2 + x + 1) \\  
+       M^{(0)}(x) &= x+1  \\
+       M^{(1)}(x) &= x^6 + x^3 + 1 \\
+       M^{(3)}(x) &= x^2 + x + 1
+   \end{align*}
+   e da
+   \begin{align*}
+    x^7+x^2+1 &\equiv 1 \mod{x+1}  \\
+    x^7+x^2+1 &\equiv x^4 + x^2 + x + 1 \mod{x^6 + x^3 + 1} \\
+    x^7+x^2+1 &\equiv 0 \mod{x^2 + x + 1}     
+   \end{align*}
+   La controimmagine del vettore di polinomi $(1, x^4 + x^2 + x + 1, 0)$ si calcola applicando il teorema cinese dei resti al sistema
+   \begin{align*}
+      a(x) &\equiv 1 \mod{x+1} \\
+      a(x) &\equiv x^4 + x^2 + x + 1 \mod{x^6 + x^3 + 1} \\
+      a(x) &\equiv 0 \mod{x^2 + x + 1}
+   \end{align*}
+   da cui si ottiene $a(x) = x^7+x^2+1 $.
+\end{esempio}
+
+Il prodotto di campi definito nel teorema precedente sarà indicato, per non appesantire le notazioni con $\mathcal{Q}_{r,\mathbb{F}}$, quindi 
+   \begin{align*}
+      \mathcal{Q}_{r,\mathbb{F}}
+      :=
+      \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}
+   \end{align*}
+o semplicemente con $\mathcal{Q}$ quando non ci sia bisogno di specificare $r$ ed $\mathbb{F}$. I singoli campi che definiscono il prodotto saranno indicati con $\mathcal{Q}_{r,\mathbb{F}}^{(v)}$ per $v\in \mathscr{L}$:
+   \begin{align*}
+      \mathcal{Q}_{r,\mathbb{F}}
+      =
+      \prod_{v\in \mathscr{L}} \mathcal{Q}_{r,\mathbb{F}}^{(v)}
+   \end{align*}
+\begin{lemmax} \label{le:lemmaIsoMu}
+   Sia $\mathbb{F}$ campo perfetto, $r$ intero positivo e $\xi$ radice primitiva $r$-esima dell'unità. Allora per $v \in \mathscr{L}$, l'estensione semplice $\mathbb{F}(\xi^{v})$ è un campo che soddisfa l'isomorfismo 
+      \begin{align*}
+      \mathbb{F}(\xi^{v})
+      \cong
+      \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}
+   \end{align*}
+\end{lemmax}
+\begin{proof}
+   Come già osservato, il quoziente di $\mathbb{F} \lbrack x \rbrack $ su $M^{(v)}(x)$ è un campo dal fatto che $M^{(v)}(x)$ è un polinomio irriducibile. L'isomorfismo è conseguenza immediata del lemma \ref{le:poliMinimo} e del fatto che $M^{(v)}(x)$ è il polinomio minimo di $\xi^{v}$ (e dei suoi coniugati).
+\end{proof}
+Il lemma appena concluso può rendere interessante l'oggetto definito dal prodotto dei campi $\mathbb{F}(\xi^{v})$ per $v \in \mathscr{L}$. Sarà indicato, per non appesantire la notazione, con $\mathcal{P}_{r,\mathbb{F}}$ o semplicemente con $\mathcal{P}$ se non ci sono ambiguità su $r$ e sul campo $\mathbb{F}$ sui quali è definito:
+\begin{align*}
+   \mathcal{P}_{r,\mathbb{F}} :=  \prod_{v\in \mathscr{L}} \mathbb{F}(\xi^{v})
+\end{align*}
+I singoli campi che definiscono il prodotto saranno indicati con $\mathcal{P}_{r,\mathbb{F}}^{(v)}$ per $v\in \mathscr{L}$:
+   \begin{align*}
+      \mathcal{P}_{r,\mathbb{F}}
+      =
+      \prod_{v\in \mathscr{L}} \mathcal{P}_{r,\mathbb{F}}^{(v)}
+   \end{align*}
+   
+Proseguiamo il capitolo con un corollario del teorema \ref{teo:teoremaGamma} e del lemma \ref{le:lemmaIsoMu} che specifica la funzione $\mu$ indicata nel diagramma presentato all'inizio del capitolo.
+\begin{corollario}
+  Con le notazioni precedenti, vale la seguente catena di isomorfismi:
+  \begin{align*}
+      \mathcal{R}_{r, \mathbb{F}} & := \quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)} \\
+            & = \quotient{\mathbb{F} \lbrack x \rbrack  }{ \prod_{v\in \mathscr{L}} M^{(v)}(x)} \\
+            &\cong \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}  \\ 
+            &\cong \prod_{v\in \mathscr{L}} \mathbb{F}(\xi^{v}) =: \mathcal{P}_{r,\mathbb{F}}
+   \end{align*}
+\end{corollario}
+\begin{proof}
+   Il primo isomorfismo è quello indotto da $\gamma$ nel diagramma costruito dal teorema fondamentale degli isomorfismi nella dimostrazione del teorema \ref{teo:teoremaGamma}. Il secondo isomorfismo è conseguenza del lemma \ref{le:lemmaIsoMu}: la mappa 
+   \begin{align*}
+   \mu : \prod_{v\in \mathscr{L}} \mathbb{F}(\xi^{v})   
+	    & \longrightarrow  
+	    \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}   \\
+	    %%
+	    (a(\xi^{v}))_{v \in \mathscr{L}} &\longmapsto  ( a(x)\mod{M^{(v)}(x)})_{v \in \mathscr{L}}
+   \end{align*}
+   è un isomorfismo di spazi vettoriali ed è un isomorfismo di algebre dato che ogni sua componente 
+   \begin{align*}
+   \mu^{(v)} :  \mathbb{F}(\xi^{v})   
+	    & \longrightarrow  
+	    \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}   \\
+	    %%
+	    a(\xi^{v}) &\longmapsto  a(x)\mod{M^{(v)}(x)}
+   \end{align*}   
+   è indipendente dalle altre ed è un isomorfismo di campi.
+\end{proof}
+
+Tornando al diagramma presentato all'inizio del capitolo, anche $\eta$ è un isomorfismo di algebre perché composizione di isomorfismi:
+\begin{align*}
+\eta : \quotient{\mathbb{F} \lbrack x \rbrack  }{(x^r - 1)}   
+	& \longrightarrow  
+	 \prod_{v\in \mathscr{L}} \mathbb{F}(\xi^{v})   \\
+	%%
+	a(x) &\longmapsto  (a(\xi^{v}))_{v\in \mathscr{L}}
+\end{align*}
+Esiste una struttura algebrica soggiacente a $\mathcal{P}_{r,\mathbb{F}}$ e $\mathcal{Q}_{r,\mathbb{F}}$, sempre isomorfa ad $\mathcal{R}_{r,\mathbb{F}}$ che chiamiamo algebra dei vettori circolanti concatenati. Sarà presentata nel capitolo \ref{cap:trasformataWinograd} con lo scopo di analizzare $\gamma$ come trasformazione lineare nella rappresentazione vettoriale e quindi come matrice di trasformazione.
+
+

@@ -1,0 +1,913 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% CAPITOLI     %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Trasformata di Winograd} \label{cap:trasformataWinograd}
+Nei capitoli precedenti abbiamo introdotto l'algebra dei polinomi $\mathcal{R}_{r,q}$, che dal teorema \ref{teo:teoremaGamma} risulta essere isomorfa al prodotto dei campi $\mathcal{Q}_{r,q}^{(v)}$ e dei campi $\mathcal{R}_{r,q}^{(v)}$ per $v\in \mathscr{L}$.
+\begin{align*}
+   \mathcal{R}_{r,q}
+   %=
+  %\quotient{\mathbb{F}_{q} \lbrack x \rbrack  }{x^{r} - 1}
+  \cong
+  %\prod_{v\in \mathscr{L}} \quotient{\mathbb{F}_{q} \lbrack x \rbrack  }{M^{(v)}(x)}
+  %=
+  \prod_{v\in \mathscr{L}} \mathcal{Q}_{r,q}^{(v)}
+  \cong
+  %\prod_{v\in \mathscr{L}} \mathbb{F}_{q} (\xi^{v})
+  %=
+  \prod_{v\in \mathscr{L}} \mathcal{P}_{r,q}^{(v)}
+\end{align*}
+ricordando che
+\begin{align*}
+  \mathcal{R}_{r,q}
+  &:=
+  \quotient{ \mathbb{F}_{q}[x] }{ (x^r -1 )} 
+\\  
+  \mathcal{Q}_{r,q} 
+  &=  \prod_{v \in \mathscr{L}} \mathcal{Q}_{r,q}^{(v)}
+  := \prod_{v \in \mathscr{L}} \quotient{ \mathbb{F}_{q}[x] }{ M^{(v)}(x)} 
+\\  
+  \mathcal{P}_{r,q} 
+  &=  \prod_{v \in \mathscr{L}} \mathcal{P}_{r,q}^{(v)}
+  := \prod_{v \in \mathscr{L}}  \mathbb{F}_{q}(\xi^{v})  
+\end{align*}
+e che $ \mathcal{V}_{r, q}^{c}$ è lo spazio dei vettori circolanti.\\
+In questo capitolo presentiamo l'isomorfismo $\gamma$ studiandolo come trasformazione lineare. 
+Dato che per questo scopo è più efficace rappresentare gli elementi di uno spazio vettoriale come $r$-uple e non come vettori di polinomi ciascuno dei quali considerato modulo $M^{(v)}(x)$ (come fatto fino ad ora per rappresentare $\mathcal{Q}$) costruiremo una nuova rappresentazione, nella quale gli elementi sono vettori di $l$ vettori circolanti: ad ogni polinomio modulo $M^{(v)}(x)$ di posto corrispondente alla posizione di $v$ in $\mathscr{L}$ faremo corrispondere un vettore di dimensione $m(v)$.\\
+Quindi accanto al diagramma presentato nell'introduzione del secondo capitolo, considereremo i diagrammi
+
+\[
+\begindc{\commdiag}[3]
+
+%%%%%%%SINISTRO
+%sotto
+\obj(0,5)[Vs]{$ \mathcal{V}_{r, \mathbb{F}}^{c} $}
+\obj(30,5)[VVs]{$\mathcal{V}_{r,q}^{\mathscr{L}} $}
+
+%sopra
+\obj(0,25)[Rs]{$ \mathcal{R}_{r,q} $}
+\obj(30,25)[Qs]{$ \mathcal{Q}_{r,q} $}
+
+%frecce orizzontali
+
+\mor{Vs}{VVs}{$\delta$}
+\mor{Rs}{Qs}{$\gamma$}
+
+%frecce verticali
+\mor{Rs}{Vs}{$\psi_{2}$}
+\mor{Qs}{VVs}{$\psi_{5}$}
+
+%%%%%%%DESTRO
+%sotto
+\obj(60,5)[Vd]{$ \mathcal{V}_{r, \mathbb{F}}^{c} $}
+\obj(90,5)[VVd]{$\mathcal{V}_{r,q}^{\mathscr{L}} $}
+
+%sopra
+\obj(60,25)[Rd]{$ \mathcal{R}_{r,q} $}
+\obj(90,25)[Pd]{$ \mathcal{P}_{r,q} $}
+
+%frecce orizzontali
+
+\mor{Vd}{VVd}{$\rho$}
+\mor{Rd}{Pd}{$\eta$}
+
+%frecce verticali
+\mor{Rd}{Vd}{$\psi_{2}$}
+\mor{Pd}{VVd}{$\psi_{6}$}
+
+\enddc
+\]
+
+Con la notazione
+\begin{align*}
+  \mathcal{V}_{r,q}^{\mathscr{L}}
+  &:=
+    \coprod_{v \in \mathscr{L} } \mathcal{V}_{m(v), q}^{c}
+\end{align*}
+indicheremo lo spazio dei vettori circolanti concatenati, che sarà definito in questo capitolo.
+Ricaveremo poi le matrici di trasformazione corrispondenti a $\gamma$ ed $\eta$, ed esaminando i loro blocchi, che determinano una scomposizione naturale di $\gamma$ ed $\eta$ in componenti.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% SEZIONI    %%%%%%%%%%%%%%%%%%%%
+\section{Algebra dei vettori circolanti concatenati}
+Fissati $r$ e $q$ le immagini degli elementi della base di $\mathcal{R}_{r,q}$ tramite la trasformata di Winograd
+\begin{align*}
+  \gamma :  \quotient{\mathbb{F} \lbrack x \rbrack  }{x^{r} - 1}  
+      & \longrightarrow  
+      \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}   \\
+      %%
+      a(x) &\longmapsto  ( a(x)\mod{M^{(v)}(x)})_{v\in \mathscr{L}}
+  \end{align*}
+dipendono fortemente dalla fattorizzazione di $x^r-1$. L'immagine di $1 \in \mathcal{R}$ è un vettore lungo $l$ costituito dalle unità di ogni campo: $\gamma(1) = (1,1,\dots ,1)$ dato che $1 \equiv 1 \mod M^{(v)}(x)$ comunque scelto $v$ nell'insieme delle etichette $\mathscr{L}$. Stessa cosa non si può dire per l'immagine di $x$, che risulta essere $x \equiv 1 \mod M^{(0)}(x)$.
+%%%%%%%%%%%%%%%esempio 1
+\begin{esempio} \label{ese:primoSuTrasf}
+   Per $\mathcal{R}_{2,7}$, con $m = 3$ e con campo di spezzamento $\mathbb{F}_{2^3}$ abbiamo:
+\begin{align*}   
+  \gamma(x^0) &= (1,1,1)  \\
+  \gamma(x^1) &= (1,x,x) \\
+  \gamma(x^2) &= (1,x^2,x^2)  \\
+  \gamma(x^3) &= (1,1+x^2,1+x+x^2)  \\
+  \gamma(x^4) &= (1,1+x,x+x^2)  \\
+  \gamma(x^5) &= (1,1+x+x^2,1+x^2)  \\
+  \gamma(x^6) &= (1,x+x^2,1+x) 
+\end{align*}
+Le immagini degli elementi della base sono quindi vettori di polinomi definiti dai loro resti per i divisori di $x^r-1$. 
+\end{esempio}
+
+Ricordando che la matrice di trasformazione risulta essere determinata dalle immagini degli elementi della base come vettori colonna, risulta più efficace considerare gli elementi di $\mathcal{Q}$ non come vettori di polinomi, ma come vettori di vettori i cui coefficienti sono quelli dei polinomi corrispondenti. \\
+Per ottenere questa rappresentazione, senza che sia persa la struttura algebrica originale abbiamo bisogno di definire una nuova struttura.\\
+Da due vettori circolanti $\mathbf{u} \in \mathcal{V}_{d_{1}, q}^{c} $, $\mathbf{v} \in \mathcal{V}_{d_{2}, q}^{c} $ di dimensioni differenti sullo stesso campo $\mathbb{F}_{q}$, è possibile definire un terzo vettore concatenandoli:
+\begin{align*}
+   concat(\mathbf{u},\mathbf{v}) = (u_0,\dots,u_{d_{1} - 1}, v_0,\dots, v_{d_{2} - 1} ) 
+\end{align*}
+L'insieme degli elementi di questo tipo potrebbe coincidere con $\mathcal{V}_{d_{1}+d_{2}, q}^{c} $ se ci limitassimo a considerarlo con le operazioni di somma e di prodotto per scalari. Volendo considerare invece anche il prodotto di convoluzione per creare una nuova struttura di algebra bisogna mantenere separati i prodotti.
+\begin{definizione}
+   Date due algebre di vettori circolanti $\mathcal{V}_{d_{1}, q}^{c} , \mathcal{V}_{d_{2}, q}^{c} $ di dimensioni diverse tali che $d_{1} + d_{2} = r$, si definisce {\bf algebra dei vettori circolanti concatenati} la struttura 
+   \begin{align*}
+      \mathcal{V}_{r,q}^{(d_{1},d_{2})} = \mathcal{V}_{d_{1}, q}^{c} \coprod \mathcal{V}_{d_{2}, q}^{c}
+      = \lbrace concat(\mathbf{u},\mathbf{v}) \mid \mathbf{u} \in \mathcal{V}_{d_{1}, q}^{c},  \mathbf{v} \in \mathcal{V}_{d_{2}, q}^{c} \rbrace
+   \end{align*}
+   considerata con la somma ed il prodotto per scalari usuali e con il prodotto di convoluzione sui singoli vettori. Indicando tale prodotto con $\star$ segue che
+   \begin{align*}
+      concat(\mathbf{u}_{1},\mathbf{v}_{1}) \star concat(\mathbf{u}_{2},\mathbf{v}_{2}) 
+          = concat(\mathbf{u}_{1} \star \mathbf{u}_{2},\mathbf{v}_{1}\star \mathbf{v}_{2} ) 
+   \end{align*}
+\end{definizione}
+\noindent
+Risulta immediato verificare che $\mathcal{V}_{r,q}^{(d_{1},d_{2})}$ è un'algebra. \\
+L'operazione di concatenazione fra due vettori non è commutativa e può possedere un elemento neutro dato dal vettore triviale zerodimensionale $\epsilon \in \mathcal{V}_{0, q}^{c} $. Più interessante notare che è associativa: siano  $\mathbf{u} \in \mathcal{V}_{d_{1}, q}^{c} $  $\mathbf{v} \in \mathcal{V}_{d_{2}, q}^{c} $  $\mathbf{w} \in \mathcal{V}_{d_{3}, q}^{c} $, allora
+\begin{align*}
+      concat( concat(\mathbf{u},\mathbf{v}),\mathbf{w} ) 
+      = concat( \mathbf{u},concat( \mathbf{v},\mathbf{w} )) =: concat(\mathbf{u}, \mathbf{v},\mathbf{w}) 
+\end{align*}
+Questo ci permette di definire l'operazione di concatenazione di più vettori circolanti e di costruire un'algebra concatenando più di due strutture:
+\begin{definizione}
+   Date $m$ algebre di vettori circolanti $\mathcal{V}_{d_{0}, q}^{c} ,\dots , \mathcal{V}_{d_{m-1}, q}^{c} $ di dimensioni diverse la cui somma sia $r$, si definisce {\bf algebra dei vettori circolanti concatenati} la struttura 
+   \begin{align*}
+      \mathcal{V}_{r,q}^{(0,\dots , m-1)} =  \coprod_{j=0}^{m-1} \mathcal{V}_{d_{j}, q}^{c} 
+      = \lbrace \mathbf{u} = concat(\mathbf{u}_{0}, \dots , \mathbf{u}_{m-1}) \mid \mathbf{u}_{j} \in \mathcal{V}_{d_{j}, q}^{c} \rbrace
+   \end{align*}
+   considerata con la somma ed il prodotto scalare elemento per elemento e con il prodotto di convoluzione sui singoli vettori che ne costituiscono gli elementi per concatenazione. Il vettore $\mathbf{u}_{j} \in \mathcal{V}_{d_{j},q}$ che appartiene ad $\mathbf{u} = concat(\mathbf{u}_{0}, \dots , \mathbf{u}_{m-1}) $ è detto {\bf $j$-esimo sottovettore} di $\mathbf{u}$. 
+\end{definizione}
+\noindent
+Per induzione si verifica facilmente che anche $\mathcal{V}_{r,q}^{(0,\dots , m-1)}$ è un'algebra\footnote{Sempre per induzione è possibile costruire $\mathcal{V}_{r,q}^{A}$ per $A$ (insieme di indici delle dimensioni delle algebre di vettori circolanti concatenati) di cardinalità numerabile. Ad esempio si può considerare una variante dell'operatore della teoria dei linguaggi formali chiamato stella di Kleene applicata a questo contesto:
+\begin{align*}
+   \mathcal{V}_{q}^{\star} 
+   = \mathcal{V}_{0, q}^{c} \coprod \mathcal{V}_{1, q}^{c} \coprod \mathcal{V}_{2, q}^{c}\coprod \dots 
+   = \coprod_{j =0 }^{\infty} \mathcal{V}_{j, q}^{c} 
+\end{align*}
+insieme dei vettori infinito-dimensionali ottenuti concatenando in successione i vettori circolanti di tutte le dimensioni possibili. A meno di un riordinamento di indici ogni algebra del tipo $\mathcal{V}_{r,q}^{A}$ è un sottoinsieme della stella di Kleene \cite{difebbraro}.
+}.\\
+È di particolare interesse l'algebra $\mathcal{V}_{r,q}^{\mathscr{L}}$ costituita dalla concatenazione delle 
+sottoalgebre $\mathcal{V}_{m(v), q}^{c}$. Nel prossimo teorema verificheremo che questa algebra è proprio quello che ci serve per poter ridefinire $\gamma$ ed $\eta$ come trasformazioni lineari fra vettori e quindi ricavarne le matrici corrispondenti.
+\begin{teorema}
+   Siano $r$ e $q$ fissati, $\mathscr{L}_{r,q}$ insieme delle etichette determinato dalla fattorizzazione di $x^r-1$, allora
+   \begin{enumerate}
+      \item $\mathcal{V}_{r,q}^{\mathscr{L}}$ è un'algebra isomorfa a $\mathcal{Q}_{r,q}$.
+      \item $\mathcal{V}_{r,q}^{\mathscr{L}}$ è un'algebra isomorfa a $\mathcal{P}_{r,q}$.
+   \end{enumerate} 
+\end{teorema}
+\begin{proof}
+   Per il primo punto la chiave della dimostrazione è la definizione di $\psi_{5}$:
+   \begin{align*}
+  \psi_{5} :  \prod_{v\in \mathscr{L}} \quotient{\mathbb{F}_{q} \lbrack x \rbrack  }{M^{(v)}(x)}    
+      & \longrightarrow  
+      \coprod_{v\in \mathscr{L} } \mathcal{V}_{m(v), q}^{c}   \\
+      %%
+      ( a(x) \mod{M^{(v)}(x)} )_{v \in \mathscr{L}} 
+      &\longmapsto  
+      ( (a_v )_0, (a_v)_1, \dots (a)_{m(v)-1})_{v \in \mathscr{L}} 
+  \end{align*}
+  dove $(a_v)_{j}$ è il coefficiente di $x^j$ del polinomio $a(x) \mod{M^{(v)}(x)}$.\\
+  Per la restrizione ai sottocampi $\psi_{5}$ è un isomorfismo di algebre
+  \begin{align*}
+  \psi_{5}^{(v)} :  \mathcal{Q}_{r,q}^{(v)}    
+      & \longrightarrow  
+     \mathcal{V}_{m(v), q}^{c}   
+  \end{align*}
+  e dato che il prodotto fra vettori circolanti concatenati è definito sui singoli elementi delle sottoalgebre, abbiamo che l'isomorfismo si mantiene anche per il prodotto:
+  \begin{align*}
+     \prod_{v \in \mathscr{L} } \mathcal{Q}_{r,q}^{(v)} 
+     \cong  
+     \coprod_{v \in \mathscr{L} } \mathcal{V}_{m(v),q}^{c}
+  \end{align*}  
+  Per il secondo punto potremmo ricorrere all'isomorfismo $\mu$ fra $\mathcal{Q}_{r,q}$ e $\mathcal{P}_{r,q}$, ma dato che vogliamo esplicitare l'isomorfismo fra $\mathcal{V}_{r,q}^{\mathscr{L}}$ è $\mathcal{P}_{r,q}$ evitiamo questa scorciatoia.\\
+  Definiamo $\psi_{6}$ come
+   \begin{align*}
+  \psi_{6} :  \prod_{v\in \mathscr{L}} \mathbb{F}_{q} (\xi^{v})  
+      & \longrightarrow  
+      \coprod_{v\in \mathscr{L} } \mathcal{V}_{m(v), q}^{c}   \\
+      %%
+      ( a(x) \mod{M^{(v)}(x)} )_{v \in \mathscr{L}} 
+      &\longmapsto  
+      ( (a_v )_0, (a_v)_1, \dots (a)_{m(v)-1})_{v \in \mathscr{L}} 
+  \end{align*}
+  dove $(a_v)_{j}$ è il coefficiente di $\xi^{jv}$ dell'elemento $a(\xi^{v})$.\\  
+  Come prima $\psi_{6}$ è un isomorfismo di algebre, dato che è un isomorfismo per ciascuna delle sue componenti:
+  \begin{align*}
+     \mathcal{P}_{r,q}^{(v)} \cong \mathcal{V}_{m(v),q}^{c}
+  \end{align*}
+  e quindi abbiamo anche la tesi del secondo punto
+  \begin{align*}
+     \prod_{v \in \mathscr{L} } \mathcal{P}_{r,q}^{(v)} 
+     \cong  
+     \prod_{v \in \mathscr{L} } \mathcal{V}_{m(v),q}^{c}
+  \end{align*}
+\end{proof}
+\begin{corollario}
+   Per ogni $v$ etichetta di $\mathscr{L}_{r,q} $  $\mathcal{V}_{m(v),q}^{c}$ è un campo. 
+\end{corollario}
+\begin{proof}
+   Dal teorema precedente
+     \begin{align*}
+     \mathcal{V}_{m(v),q}^{c} 
+     \cong  
+     \mathcal{Q}_{r,q}^{(v)}
+  \end{align*}
+  e $\mathcal{Q}_{r,q}^{(v)}$ è un campo per l'irriducibilità di $M^{(v)}(x)$.
+\end{proof}
+
+Nel teorema precedente abbiamo determinato gli isomorfismi $\psi_{5}$ e $\psi_{6}$ che agiscono entrambi fra prodotti di campi.
+Costituiscono semplicemente un cambiamento di notazione dove gli stessi coefficienti vengono scritti non come elementi dell'estensione di un campo ma come elementi di un vettore di vettori. Lo stesso accadeva per gli isomorfismi $\psi_{j}, j=1,\dots , 4$ che riposizionavano i coefficienti in strutture diverse, senza cambiare il loro valore.\\
+Gli isomorfismi $\gamma$ ed $\eta$ sono di natura diversa. Con loro passiamo da un'algebra di polinomi ad un prodotto di campi. Li riformuliamo come trasformazioni dall'algebra dei vettori circolanti $\mathcal{V}_{r,q}^{c} $ all'algebra dei vettori circolanti concatenati $\mathcal{V}_{r,q}^{\mathscr{L} } $.
+\begin{corollario}
+   Il prodotto di campi $\mathcal{V}_{r,q}^{\mathscr{L} } $ è un'algebra isomorfa a $\mathcal{V}_{r,q}^{c} $.
+\end{corollario}
+\begin{proof}
+   Affrontiamo la dimostrazione in due modi diversi con lo scopo di definire isomorfismi $\delta$ e $\rho$ analoghi di $\gamma$ ed $\eta$.
+   \begin{enumerate}
+   %%%%%%%%%%%%%% ITEM
+	\item Definiamo $\delta$ come composizione di $3$ isomorfismi di algebre:
+	
+	\[
+	\begindc{\commdiag}[30]
+
+	%sotto
+	\obj(0,5)[V]{$ \mathcal{V}_{r, q}^{c} $}
+	\obj(40,5)[VV]{$\mathcal{V}_{r,q}^{\mathscr{L}} $}
+
+	%sopra
+	\obj(0,30)[R]{$ \mathcal{R}_{r,q} $}
+	\obj(40,30)[Q]{$ \mathcal{Q}_{r,q} $}
+
+	%frecce orizzontali
+
+	\mor{V}{VV}{$\delta$}
+	\mor{R}{Q}{$\gamma$}
+
+	%frecce verticali
+	\mor{R}{V}{$\psi_{2}$}
+	\mor{Q}{VV}{$\psi_{5}$}
+
+
+	\enddc
+	\]
+	\noindent
+	Quindi $\delta = \psi_{5} \circ \gamma \circ \psi_{2}^{-1}$ è un isomorfismo perché composizione di isomorfismi.
+%%%%%%%%%%%%%% ITEM
+	\item Definiamo $\rho$ come composizione di $3$ isomorfismi di algebre:
+	
+	\[
+	\begindc{\commdiag}[30]
+
+	%sotto
+	\obj(0,5)[V]{$ \mathcal{V}_{r, q}^{c} $}
+	\obj(40,5)[VV]{$\mathcal{V}_{r,q}^{\mathscr{L}} $}
+
+	%sopra
+	\obj(0,30)[R]{$ \mathcal{R}_{r,q} $}
+	\obj(40,30)[P]{$ \mathcal{P}_{r,q} $}
+
+	%frecce orizzontali
+
+	\mor{V}{VV}{$\rho$}
+	\mor{R}{P}{$\eta$}
+
+	%frecce verticali
+	\mor{R}{V}{$\psi_{2}$}
+	\mor{P}{VV}{$\psi_{6}$}
+
+
+	\enddc
+	\]
+	\noindent
+	Quindi $\rho = \psi_{6} \circ \eta \circ \psi_{2}^{-1}$ è un isomorfismo perché composizione di isomorfismi.	
+   \end{enumerate}
+
+\end{proof}
+
+Abbiamo due classi di algebre: la classe delle algebre scomposte in campi\footnote{Alla quale appartengono $\mathcal{V}_{r,q}^{\mathscr{L}} , \mathcal{P}_{r,q} , \mathcal{Q}_{r,q}$.} il cui rappresentante privilegiato per questo capitolo è $\mathcal{V}_{r,q}^{\mathscr{L}} $ e la classe delle algebre non scomposte in campi\footnote{Alla quale appartengono $\mathcal{V}_{r,q}^{c}  , \mathcal{M}_{r,q }^{c}, \mathbb{F}_{q}C_{r}, \mathcal{R}_{r,q} $.} il cui rappresentante privilegiato è  $\mathcal{V}_{r,q}^{c} $.
+\\
+Per concentrare l'attenzione solo sugli isomorfismi $\gamma$ ed $\eta$ e per rendere la notazione meno pesante ometteremo gli altri $\psi_{j}$ per $j =1, \dots, 6 $.\\
+Ad esempio per $a(x) =  1 + 2x^2 \in \mathcal{R}_{3,5} $ \footnote{$x^3-1 = (x+1)(x^2+4x+1)$ in $\mathbb{F}_{5}$.} scriveremo 
+\begin{align*}
+   (1,0,2) = circ((1,0,2)) = 1+2g^2 = 1 + 2x^2 
+\end{align*}
+e per $\gamma(a(x)) = (3, 4 + 2x )$ elemento di $\mathcal{Q}_{3,5}$ scriveremo
+\begin{align*}
+   (3,4,2)  = (3 , 4 + 2\xi) = (3 , 4 + 2x )
+\end{align*}
+
+Abbiamo tutti gli ingredienti per definire formalmente la trasformata di Winograd:
+\begin{definizione}
+   La matrice della trasformazione $\delta$ fra le algebre $\mathcal{R}_{r,q} $ e $ \mathcal{Q}_{r,q} $ nelle rispettive rappresentazioni vettoriali $ \mathcal{V}_{r, q}^{c} $ e $\mathcal{V}_{r,q}^{\mathscr{L}} $ è detta {\bf matrice di Winograd} ed è indicata con $\Gamma$.\\
+   Mentre la matrice della trasformazione $\rho$ fra le algebre $\mathcal{R}_{r,q} $ e $ \mathcal{P}_{r,q} $ nelle rispettive rappresentazioni vettoriali $ \mathcal{V}_{r, q}^{c} $ e $\mathcal{V}_{r,q}^{\mathscr{L}} $ è indicata con $H$.
+\end{definizione}
+
+
+%%%%%%%%% esempio 2
+\begin{esempio} \label{ese:secondoSuTrasf}
+Tornando all'esempio \ref{ese:primoSuTrasf}, con la nuova struttura dei vettori circolanti concatenati possiamo costruire la matrice di trasformazione. Abbiamo:
+\begin{align*}   
+  \gamma(x^0) &= (1,1,1) =  (1,1,0,0,1,0,0) \\
+  \gamma(x^1) &= (1,x,x) = (1,0,1,0,0,1,0) \\
+  \gamma(x^2) &= (1,x^2,x^2) = (1,0,0,1,0,0,1) \\
+  \gamma(x^3) &= (1,1+x^2,1+x+x^2) = (1,1,0,1,1,1,1) \\
+  \gamma(x^4) &= (1,1+x,x+x^2) = (1,1,1,0,0,1,1) \\
+  \gamma(x^5) &= (1,1+x+x^2,1+x^2) = (1,1,1,1,1,0,1) \\
+  \gamma(x^6) &= (1,x+x^2,1+x) = (1,0,1,1,1,1,0) 
+\end{align*}
+da cui segue che la matrice $\Gamma$ è definita come:
+\begin{align*}
+\Gamma = 
+\left(
+\begin{array} { c }
+\Gamma^{(0)}  \\ \\
+\Gamma^{(1)} \\ \\
+\Gamma^{(3)} 
+\end{array}
+\right)
+=
+\left(
+\begin{array} { c c c c c c c c}
+1 & 1 & 1 & 1 & 1 & 1 & 1  \\
+\hline
+1 & 0 & 0 & 1 & 1 & 1 & 0  \\
+0 & 1 & 0 & 0 & 1 & 1 & 1  \\
+0 & 0 & 1 & 1 & 0 & 1 & 1  \\
+\hline
+1 & 0 & 0 & 1 & 0 & 1 & 1  \\
+0 & 1 & 0 & 1 & 1 & 0 & 1  \\
+0 & 0 & 1 & 1 & 1 & 1 & 0  
+\end{array}
+\right)
+\end{align*}
+nella quale abbiamo mantenuto la suddivisione in blocchi ereditata dalla struttura $\mathcal{Q}$. 
+Possiamo inoltre osservare che è una matrice circolante a blocchi.\\
+La sua inversa, i cui dettagli saranno visti nei prossimi paragrafi, è data da
+\begin{align*}
+\Delta = 
+\left(
+\begin{array} { c | c c c | c c c c}
+1 & 1 & 1 & 1 & 1 & 0 & 0  \\
+1 & 0 & 1 & 1 & 1 & 1 & 0  \\
+1 & 0 & 0 & 1 & 1 & 1 & 1  \\
+1 & 1 & 0 & 0 & 0 & 1 & 1  \\
+1 & 0 & 1 & 0 & 1 & 0 & 1  \\
+1 & 1 & 0 & 1 & 0 & 1 & 0  \\
+1 & 1 & 1 & 0 & 0 & 0 & 1  
+\end{array}
+\right)
+\end{align*}
+Osserviamo che la dimensione dei blocchi $\Gamma^{(i)}$ è data dai gradi dei divisori $M^{(v)}(x)$ cosa che si accorda con il fatto che che la somma dei gradi è uguale ad $r$.
+\end{esempio}
+
+\begin{esempio}
+   Sia $a(x) = x^5 + x^3 + 1 = (1,0,0,1,0,1,0)$ elemento di $\mathcal{R}_{2,7} $. La sua immagine mediante la trasformata di Winograd è data da $\gamma(a(x)) = \Gamma (a(x))^{t}$ per $(a(x))^{t}$ trasposto del vettore $a(x)$:  
+   \begin{align*}
+    \gamma(1,0,0,1,0,1,0) = 
+    \left(
+    \begin{array} { c c c c c c c c}
+    1 & 1 & 1 & 1 & 1 & 1 & 1  \\
+    \hline
+    1 & 0 & 0 & 1 & 1 & 1 & 0  \\
+    0 & 1 & 0 & 0 & 1 & 1 & 1  \\
+    0 & 0 & 1 & 1 & 0 & 1 & 1  \\
+    \hline
+    1 & 0 & 0 & 1 & 0 & 1 & 1  \\
+    0 & 1 & 0 & 1 & 1 & 0 & 1  \\
+    0 & 0 & 1 & 1 & 1 & 1 & 0  
+    \end{array}
+    \right)
+    %%%
+    \left(
+    \begin{array} { c }
+    1  \\
+    \hline
+    0   \\
+    0  \\
+    1   \\
+    \hline
+    0   \\
+    1   \\
+    0  
+    \end{array}
+    \right)
+    =
+    (1,1,1,0,1,1,0)
+    \end{align*}
+   Quindi $\gamma(a(x)) = (1,1,1,0,1,1,0)$. 
+\end{esempio}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% SEZIONI    %%%%%%%%%%%%%%%%%%%%
+\section{Scomposizione di $\gamma$ e di $\eta$}
+
+La suddivisione in blocchi della matrice $\gamma$ suggerisce una naturale suddivisione dell'isomorfismo $\gamma$ in $l$ epimorfismi, che può fornire un modo per calcolare i singoli blocchi separatamente:
+\begin{align*}
+  \gamma^{(v)} :  \mathcal{R}_{r,q}    
+  & \longrightarrow  
+  \mathcal{Q}_{r,q}^{(v)}  \\
+  %%
+  a(x) 
+  &\longmapsto  
+  a(x) \mod{M^{(v)}(x)}
+\end{align*}
+o considerando la rappresentazione sulle algebre dei vettori circolanti e circolanti concatenati
+\begin{align*}
+  \delta^{(v)} :  \mathcal{V}_{r, q}^{c}     
+  & \longrightarrow  
+  \mathcal{V}_{m(v), q}^{c}   \\
+  %%
+  ( a_0, \dots , a_{r-1} ) 
+  &\longmapsto  
+  \psi_{5} ( \gamma ( \psi_{2}^{-1} ( a_0, \dots , a_{r-1} )))  
+\end{align*}
+La matrice $\Gamma^{(v)}$ è la matrice $(m(v)-1)\times r$ dell'epimorfismo $\gamma^{(v)}$ come matrice di trasformazione fra $\mathcal{R}_{r,q}$ con base canonica $\lbrace 1,x,x^2, \dots , x^{r-1}\rbrace$ ed $\mathcal{Q}_{r,q}^{(v)}$ con base canonica $\lbrace 1,x,x^2, \dots , x^{m(v)-1}\rbrace$. Le colonne di $\Gamma^{(v)}$ sono le immagini degli elementi della base di $\mathcal{R}_{r,q}$ tramite $\gamma$. \\
+Allo stesso modo suddividiamo in $l$ epimorfismi $\eta$:
+\begin{align*}
+  \eta^{(v)} :  \mathcal{R}_{r,q}    
+  & \longrightarrow  
+  \mathcal{Q}_{r,q}^{(v)} =  \mathbb{F} (\xi^{v})  \\
+  %%
+  a(x) 
+  &\longmapsto  
+  a(\xi^{v}) \\
+  x^{j}
+  &\longmapsto  
+  \xi^{jv} 
+\end{align*}
+e quindi abbiamo la rappresentazione sulle algebre dei vettori circolanti e circolanti concatenati
+\begin{align*}
+  \rho^{(v)} :  \mathcal{V}_{r, q}^{c}     
+  & \longrightarrow  
+  \mathcal{V}_{m(v), q}^{c}   \\
+  %%
+  ( a_0, \dots , a_{r-1} ) 
+  &\longmapsto  
+  \psi_{6} ( \eta ( \psi_{2}^{-1} ( a_0, \dots , a_{r-1} )))  
+\end{align*}
+La matrice $H^{(v)}$ è la matrice $(m(v)-1)\times r$ dell'epimorfismo $\eta^{(v)}$ come matrice di trasformazione fra $\mathcal{R}_{r,q}$ con base canonica $\lbrace 1,x,x^2, \dots , x^{r-1}\rbrace$ ed $\mathcal{Q}_{r,q}^{(v)}$ con base canonica $\lbrace 1,x,x^2, \dots , x^{m(v)-1}\rbrace$. Le colonne di $H^{(v)}$ sono le immagini degli elementi della base di $\mathcal{R}_{r,q}$ tramite $\eta$. \\
+Gli epimorfismi commutano il diagramma seguente dove $\mu$ a dominio e codominio opportunamente ristretti è un isomorfismo:
+
+
+\[
+\begindc{\commdiag}[30]
+
+
+%metà
+\obj(0,30)[R]{$ \quotient{ \mathbb{F}[x] }{ (x^r -1 )} $}
+\obj(-40,30)[P]{$ \mathbb{F} (\xi^{v}) $}
+
+%sopra
+\obj(0,60)[Q]{$ \quotient{ \mathbb{F}[x] }{ (M^{(v)}(x) )} $}
+
+%frecce orizzontali
+
+\mor{R}{P}{$\eta^{(v)}$}
+
+%frecce verticali
+\mor{R}{Q}{$\gamma^{(v)}$}
+
+%frecce oblique
+\mor{P}{Q}{$\mu^{(v)}$}
+
+\enddc
+\]
+
+
+Conseguenza diretta della definizione di $\Gamma$ ed $H$ sono le seguenti proprietà\footnote{Proprietà $2.3$ pag. 23 e variante della $1.13$ pag. 15 \cite{cerruti}.}:
+\begin{prop} \label{prop:lemmaCerruti2_5}
+   Sia $0 \leq k \leq r-1$ allora il polinomio
+   \begin{align*}
+      \sum_{j = 0}^{ m(v) - 1} \Gamma_{j,k}^{(v)}x^{j}
+   \end{align*}
+   è il resto della divisione di $x^k$ per $M^{(v)}(x)$ in $\mathbb{F}_{q}$.
+\end{prop}
+\begin{proof}
+   I coefficienti del polinomio in questione si trovano sulla colonna $k$-esima di $\Gamma^{(v)}$, blocco di $\Gamma$, le cui colonne sono le immagini degli elementi della base di $\mathcal{R}_{r,q}$. Alla $k$-esima colonna del blocco $\Gamma^{(v)}$ troviamo $x^k \mod{M^{(v)}(x) }$.
+\end{proof}
+
+\begin{prop}
+   Sia $\gamma$ trasformata di Winograd fra $\mathcal{R}_{r,q}$ ed $\mathcal{Q}_{r,q}$ e sia $\mathbf{e}_{v}$ il $v$-esimo idempotente minimale di $\mathcal{Q}_{r,q}$, allora
+   \begin{enumerate}
+      \item $ ker(\gamma^{(v)}) = (M^{(v)}(x))$
+      \item $\gamma^{-1}((\mathbf{e}_{v})) = (\hat{M}^{(v)}(x))$
+   \end{enumerate}
+\end{prop}
+\begin{proof}
+   Il primo punto è una conseguenza immediata della definizione:
+   \begin{align*}
+      ker(\gamma^{(v)}) = \lbrace a(x) \mid a(x)\equiv 0 \mod{M^{(v)}(x)} \rbrace = (M^{(v)}(x))
+   \end{align*}
+   Dimostriamo il secondo punto: \\
+   $\gamma^{-1}((\mathbf{e}_{v}))$ è ancora un ideale in $\mathcal{R}_{r,q}$ dato che è controimmagine di un ideale tramite isomorfismo. La controimmagine del generatore, che genera l'ideale controimmagine, è
+   \begin{align*}
+      \gamma^{-1}(0,\dots,0 |1,0, \dots , 0 |0,\dots,0) = ?(x)
+   \end{align*}
+   dove $?(x)$ è quel polinomio di $\mathcal{R}_{r,q}$ il cui resto modulo $M^{(v)}(x)$ dà come risultato $1$ e modulo $M^{(u)}(x)$ dà come risultato $0$ per ogni $u$ diverso da $v$. Pertanto $?(x) = \hat{M}^{(v)}(x)$.
+\end{proof}
+
+Dimostriamo finalmente che $H$ coincide con $\Gamma$:
+\begin{teorema} \label{teo:winogradH}
+    Sia $v$ elemento dell'insieme delle etichette $\mathscr{L}_{r,q}$, $\Gamma$ ed $H$ definite come sopra, allora per ogni $i = 0, \dots, m(v) - 1$ e $j = 0, \dots, r$, segue che
+    \begin{align*}
+       \Gamma_{i,j}^{(v)} = H_{i,j}^{(v)}
+    \end{align*}
+\end{teorema}
+\begin{proof}
+   Ricordiamo inizialmente che per definizione abbiamo 
+   \begin{align*}
+      \gamma^{(v)}(a(x)) &= a(x) \mod{M^{(v)}(x)} 
+      \\ 
+      \eta^{(v)}(a(x)) &= a(\xi^{v})
+   \end{align*}
+   quindi le immagini degli elementi della base, che nella corrispondente rappresentazione dei vettori circolanti determinano le colonne delle matrici di trasformazione $\Gamma$ e $H$ sono date da
+   \begin{align*}
+      \gamma^{(v)}(x^{k}) &= x^{k} \mod(M^{(v)}(x)) 
+      \\ 
+      \eta^{(v)}(x^{k}) &= \xi^{vk}
+   \end{align*}
+   Dall'isomorfismo fra le strutture $\mathcal{P}_{r,q}^{(v)}$ e $\mathcal{Q}_{r,q}^{(v)}$ presentato nel lemma \ref{le:poliMinimo} abbiamo
+   \begin{align*}
+      \forall a(x) \in \mathcal{R}_{r,q} 
+      \quad 
+      \psi_{5}( \gamma^{(v)}( a(x) ) ) = \psi_{6}( \eta^{(v)} ( a(x) ) )
+   \end{align*}
+   dal fatto che i coefficienti di $ \gamma^{(v)}( a(x) )$ coincidono con i coefficienti di  $\eta^{(v)} ( a(x) )$ sulle basi delle rispettive strutture.\\
+   In altre parole, dal diagramma seguente
+    \[
+    \begindc{\commdiag}[3]
+
+    %le V
+    \obj(0,50)[Vh]{$\mathcal{Q}_{r,q}^{(v)} $}
+    \obj(-30,20)[Vb]{$ \mathcal{P}_{r,q}^{(v)}  $}
+
+    %Vc base
+    \obj(0,20)[Vc]{$ \mathcal{R}_{r,q}  $}
+    
+    %frecce 
+    \mor{Vc}{Vb}{$\eta^{(v)}$}
+    \mor{Vc}{Vh}{$\gamma^{(v)}$}
+    
+    \mor{Vb}{Vh}{$\mu^{(v)}$}
+
+
+    \enddc
+    \]
+    
+    siamo passati alle algebre di vettori circolanti concatenati isomorfe:
+    
+    \[
+    \begindc{\commdiag}[3]
+
+    %le V
+    \obj(0,50)[Vh1]{$ \mathcal{V}_{m(v), q}^{c} $}
+    \obj(-30,20)[Vb1]{$ \mathcal{V}_{m(v), q}^{c} $}
+
+    %Vc base
+    \obj(0,20)[Vc1]{$ \mathcal{V}_{r, q}^{c} $}
+    
+    %frecce 
+    \mor{Vc1}{Vb1}{$\rho^{(v)}$}
+    \mor{Vc1}{Vh1}{$\delta^{(v)}$}
+    
+    \mor{Vb1}{Vh1}{$Id$}
+
+
+    \enddc
+    \]
+    
+    
+    Dato che $\mu^{(v)}$ nel passaggio alla nuova rappresentazione risulta essere l'identità, le trasformazioni $\gamma^{v}$ ed $\eta^{v}$ coincidono e quindi anche le rispettive trasformazioni lineari $H^{(v)}$ e $\Gamma^{(v)}$ coincidono.
+\end{proof}
+
+Possiamo riassumere il teorema precedente con un diagramma che contiene tutti gli isomorfismi che abbiamo utilizzato:
+%mega diagramma algebre:
+
+    \[
+    \begindc{\commdiag}[3]
+    
+   % R
+   \obj(0,0)[R]{$ \mathcal{R}_{r,q}  $}
+    %PQ
+    \obj(0,30)[Q]{$\mathcal{Q}_{r,q}$}
+    \obj(-40,0)[P]{$ \mathcal{P}_{r,q}  $}
+
+    %Vc base
+    \obj(10,-10)[Vc]{$ \mathcal{V}_{r, q}^{c} $}
+
+    %le V
+    \obj(10,-40)[Vh]{$ \mathcal{V}_{r, q}^{\mathscr{L}} $}
+    \obj(50,-10)[Vb]{$ \mathcal{V}_{r, q}^{\mathscr{L}} $}
+
+    %Vc base
+    
+    
+    %FRECCE
+    % RPQ
+    \mor{R}{P}{$ \eta $}
+    \mor{R}{Q}{$ \gamma $}   
+    \mor{P}{Q}{$ \mu $}
+    %psi_2
+    \mor{R}{Vc}{$\psi_{2}$}
+    %R V
+    \mor{Vc}{Vb}{$\rho$}
+    \mor{Vc}{Vh}{$\delta$}
+    % V V altre psi
+    \mor{P}{Vh}{$\psi_{6}$}
+    \mor{Q}{Vb}{$\psi_{5}$}
+    %id
+    \mor{Vb}{Vh}{$Id_{r}$}
+
+
+    \enddc
+    \]
+
+Il diagramma degli epimorfismi corrispondenti per $v\in \mathscr{L}$ risulta essere: 
+%mega diagramma campi:
+
+    \[
+    \begindc{\commdiag}[3]
+    
+   % R
+   \obj(0,0)[R]{$ \mathcal{R}_{r,q}  $}
+    %PQ
+    \obj(0,30)[Q]{$\mathcal{Q}_{r,q}^{(v)} $}
+    \obj(-40,0)[P]{$ \mathcal{P}_{r,q}^{(v)}  $}
+
+    %Vc base
+    \obj(10,-10)[Vc]{$ \mathcal{V}_{r, q}^{c} $}
+
+    %le V
+    \obj(10,-40)[Vh]{$ \mathcal{V}_{m(v), q}^{c} $}
+    \obj(50,-10)[Vb]{$ \mathcal{V}_{m(v), q}^{c} $}
+
+    %Vc base
+    
+    
+    %FRECCE
+    % RPQ
+    \mor{R}{P}{$ \eta^{(v)} $}
+    \mor{R}{Q}{$ \gamma^{(v)} $}   
+    \mor{P}{Q}{$ \mu^{(v)} $}
+    %psi_2
+    \mor{R}{Vc}{$\psi_{2}$}
+    %R V
+    \mor{Vc}{Vb}{$\rho^{(v)}$}
+    \mor{Vc}{Vh}{$\delta^{(v)}$}
+    % V V altre psi
+    \mor{P}{Vh}{$\psi_{6}^{(v)}$}
+    \mor{Q}{Vb}{$\psi_{5}^{(v)}$}
+    %id
+    \mor{Vb}{Vh}{$Id_{m(v)}$}
+
+
+    \enddc
+    \]
+
+Una conseguenza del teorema precedente è il fatto che 
+\begin{align*}
+   \gamma^{(v)}(x^{k}) = \sum_{j=0}^{r} \Gamma_{k,j}^{(v)} x^{j} 
+   \qquad 
+   \eta^{(v)}(x^{k}) = \sum_{j=0}^{r} H_{k,j}^{(v)} \xi^{vj}
+   \qquad\qquad 
+   k = 0,\dots , m(v)-1
+\end{align*}
+e quindi (a meno di isomorfismi), dato che $H$ e $\Gamma$ coincidono
+\begin{align*}
+   \gamma^{(v)}(x^{k}) = \sum_{j=0}^{r} \Gamma_{k,j}^{(v)} x^{j} = \sum_{j=0}^{r} \Gamma_{k,j}^{(v)} \xi^{vj}
+\end{align*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% SEZIONI    %%%%%%%%%%%%%%%%%%%%
+\section{Proprietà strutturali di $\Gamma$}
+
+In questo paragrafo esaminiamo alcune proprietà di $\Gamma$.
+\begin{lemmax}
+  Sia
+  \begin{align*}
+      M^{(v)}(x) = x^{m(v)} - \sum_{j=1}^{m(v)} a_{j}^{(v)} x^{m(v) - j}
+  \end{align*}
+  il $v$-esimo polinomio minimo nella fattorizzazione di $x^r - 1$ per $v$ appartenente all'insieme delle etichette. Allora i suoi coefficienti soddisfano l'equazione
+  \begin{align*}
+     a_{j}^{(v)} = \Gamma_{m(v) - j, m(v)}^{(v)}
+  \end{align*}
+\end{lemmax}
+\begin{proof}
+   Dalla proprietà \ref{prop:lemmaCerruti2_5} abbiamo che 
+   \begin{align*}
+      x^{m(v)}  = \sum_{j = 0}^{ m(v) - 1} \Gamma_{j,m(v)}^{(v)}x^{j}
+   \end{align*}
+   quindi 
+   \begin{align*}
+      x^{m(v)}  \equiv \sum_{j = 0}^{ m(v) - 1} \Gamma_{j,m(v)}^{(v)}x^{j} \mod{M^{(v)}(x)}
+   \end{align*}
+   che con una sostituzione opportuna degli indici ci dà
+   \begin{align*}
+      x^{m(v)}  \equiv \sum_{j = 0}^{ m(v) - 1} \Gamma_{m(v) - j,m(v)}^{(v)}x^{m(v) - j} \mod{M^{(v)}(x)}
+   \end{align*}  
+   e quindi 
+   \begin{align*}
+      M^{(v)}(x) = x^{m(v)} - \sum_{j = 0}^{ m(v) - 1} \Gamma_{m(v) - j,m(v)}^{(v)}x^{m(v) - j}
+   \end{align*}
+
+\end{proof}
+\begin{teorema} \label{teo:winogradRicorrenza}
+   Sia $v$ appartenente all'insieme delle etichette $\mathscr{L}_{r,q}$, allora per ogni $i \in \lbrace  0,1, \dots, m(v) - 1 \rbrace$ segue che
+   \begin{align} \label{eq:winogradRicorrenza}
+      \Gamma_{i,j}^{(v)} &= \delta_{i,j}  \qquad j \in \lbrace  0,1, \dots, m(v) - 1 \rbrace \\
+      \Gamma_{i,n}^{(v)} &= \sum_{k=1}^{m(v)} a_{k}^{(v)} \Gamma_{i,n-k}^{(v)} \qquad \forall n \in \mathbb{Z}
+   \end{align}
+\end{teorema}
+\begin{proof}
+   Sia $\xi$ radice primitiva $r$-esima dell'unità, allora $\xi^{v}$ è radice di $M^{(v)}(x)$ e soddisfa quindi la relazione di ricorrenza
+   \begin{align*}
+      \xi^{v(n+1)} = a_{1}^{(v)}\xi^{vn} + a_{2}^{(v)}\xi^{v(n-1)} + \dots  + a_{m(v)}^{(v)}\xi^{v(n-m(v)+1)}
+      \qquad
+      \forall n \in \mathbb{Z}
+   \end{align*}
+   Considerando l'isomorfismo $\eta$ ed il conseguente epimorfismo $\eta^{(v)}$ analogo di $\gamma^{(v)}$, si ottiene per $j \in \lbrace  0,1, \dots, r \rbrace$
+   \begin{align*}
+        \eta^{(v)} :  \quotient{\mathbb{F} \lbrack x \rbrack  }{x^{r} - 1}  
+      & \longrightarrow  
+       \mathbb{F} (\xi^{v})   \\
+      %%
+      x^{j} &\longmapsto  \xi^{jv} = \sum_{i=1}^{m(v)} \Gamma_{i,j}^{(v)}\xi^{iv}
+   \end{align*}
+   Quindi appoggiandoci a questa rappresentazione
+   \begin{align*}
+      \eta^{(v)}(x^n) = \xi^{vn} = \sum_{k=1}^{m(v)}a_{k}^{(v)}\xi^{v(j-k)}
+   \end{align*}
+   e dato che $(\gamma^{(v)}(x^{n}))_{i} = \Gamma_{i,n}^{(v)}$ e tramite $\eta$ al coefficiente dell'elemento $(\xi^{v(j-k)})_{i}$ della base corrisponde $\Gamma_{i,j-k}^{(v)}$ segue la tesi.
+\end{proof}
+
+\begin{corollario}
+   Con le condizioni precedenti
+   \begin{align} 
+      a_{h}^{(v)} = \sum_{k=0}^{m(v)-1} a_{k}^{(v)} \Gamma_{m(v) - h, m(v) - k}^{(v)}
+   \end{align}
+\end{corollario}
+\begin{proof}
+   Dal lemma segue che
+   \begin{align*}
+      a_{h}^{(v)} = \Gamma_{m(v) - h, m(v)}^{(v)}
+   \end{align*}
+   che sostituita nella seconda equazione della tesi del teorema \ref{teo:winogradRicorrenza} determina la tesi cercata.
+\end{proof}
+\noindent
+Il teorema precedente\footnote{\cite{cerruti} pag. 25.} mette a disposizione un sistema per definire la matrice $\Gamma$ per ricorrenza. Possiamo quindi calcolare la matrice senza effettuare divisioni ma semplicemente applicando le equazioni \ref{eq:winogradRicorrenza} e possiamo osservare che il primo blocco di dimensione $m(v) \times m(v)$ (con righe e colonne sempre numerate partendo da zero) di $\Gamma$ è sempre la matrice identità da $\Gamma_{i,j}^{(v)} = \delta_{i,j}$ e che il blocco successivo al primo è un blocco circolante da $\Gamma_{i,n}^{(v)} = \sum_{k=1}^{m(v)} a_{k}^{(v)} \Gamma_{i,n-k}^{(v)} $. \\
+Terminiamo il paragrafo con un lemma che, oltre a servire nelle dimostrazioni del prossimo paragrafo, avrà una interessante conseguenza\footnote{\cite{cerruti} pag. 33 e successive.} presentata nel capitolo sulle applicazioni:
+\begin{lemmax} \label{le:codiciEdGamma}
+   Sia $m(x)$ polinomio di $\mathcal{R}_{r,q}$ e sia $v \in \mathscr{L}$, allora $m(x) \in (M^{(v)}(x))$ se e solo se $\Gamma^{(v)} \mathbf{m}^{t} = 0$.
+\end{lemmax}
+\begin{proof}
+   Ricordando che
+   \begin{enumerate}
+      \item $\eta^{(v)}(x^{j}) = \xi^{vj} = \sum_{i=0}^{m(v)-1}\Gamma_{i,j}^{(v)}\xi^{iv}$ per $j \in \mathbb{Z}_{r}$.
+      \item Per $H^{(v)}$ matrice dell'epimorfismo $\eta^{(v)}$ si ha $\eta^{(v)}m(x) = H^{(v)}\mathbf{m}^{t}$.
+      \item $H=\Gamma$ per $H$ e $\Gamma$ matrici di trasformazione di $\eta$ e $\gamma$.
+   \end{enumerate}
+   allora vale la catena di biimplicazioni:\\
+   $m(x)\in (M^{(v)}(x))$ se e solo se $(M^{(v)}(x))$ divide $m(x)$ se e solo se $m(\xi^{v}) = 0$ se e solo se $\eta^{(v)}m(x) = H^{(v)}\mathbf{m}^{t} = 0$ se e solo se $ \Gamma^{(v)}\mathbf{m}^{t} = 0$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% SEZIONI    %%%%%%%%%%%%%%%%%%%%
+\section{Matrice inversa $\Delta$}
+Indichiamo con $\Delta$ la matrice inversa della matrice di Winograd $\Gamma$. Possiamo suddividere $\Delta$ in componenti verticali $\Delta^{(v)}$ in modo analogo a quanto fatto per $\Gamma$:
+\begin{align*}
+  (\gamma^{(v)})^{-1} :  \mathcal{Q}_{r,q}^{(v)}    
+  & \longrightarrow  
+  \mathcal{R}_{r,q}
+   \\
+  %%
+  a(x) \mod{M^{(v)}(x)}
+  &\longmapsto  
+  b(x) 
+\end{align*}
+dove $b(x)$ è il risultato del sistema di congruenze $b(x) \equiv a(x) \mod{M^{(v)} (x) }$ ricavato con il teorema cinese dei resti polinomiale. \\
+La matrice di trasformazione corrispondente $\Delta^{(v)}$ è una matrice $r\times m(v)$; indicheremo la sua colonna $j$-esima con $\Delta_{\sim, j}^{(v)}$ e la sua riga $i$-esima con $\Delta_{i, \sim}^{(v)}$.\\
+Presentiamo alcune proprietà che avranno delle applicazioni nella teoria dei codici correttori:
+%%prorprietà
+\begin{prop} \label{prop:idempotGeneratori}
+   Sia $v \in \mathscr{L}_{r,q}$ elemento dell'insieme delle etichette. La prima colonna di ogni blocco $\Delta^{(v)}$ di $\Delta$ è l'idempotente miminale $\mathbf{e}_{v}$ che genera l'ideale minimale 
+   \begin{align*}
+      (\hat{M}^{(v)}(x)) = \Big(\frac{1-x^r}{M^{^(v)}(x)} \Big)
+   \end{align*}
+    nell'algebra isomorfa $\mathcal{R}_{r,q}$.
+\end{prop}
+\begin{proof}
+   $\Delta$ è la matrice dell'isomorfismo fra le due strutture isomorfe $\mathcal{V}_{r, q}^{\mathscr{L}}$ e $\mathcal{V}_{r, q}^{c}$, quindi manda idempotenti minimali in idempotenti minimali: l'immagine tramite $\Delta$ della rappresentazione vettoriale dell'idempotente minimale $e_{v}(x) \in (\hat{M}^{(v)}(x))$ è un idempotente minimale.\\
+   Dobbiamo dimostrare che ad $\mathbf{e}_{v}$ corrisponde proprio l'idempotente dell'ideale $(\hat{M}^{(v)}(x))$ e non di qualche altro ideale.\\
+   Osserviamo che
+   \begin{align*}
+      \mathbf{e}_{v} = (0,0,\dots, 0, 1, 0 , \dots, 0) 
+                     = concat(\mathbf{0}, \dots ,\mathbf{0},(1,0,\dots,0), \mathbf{0}, \dots ,\mathbf{0})   
+   \end{align*}
+   che corrisponde al vettore circolante $(1,0,\dots,0) \in \mathcal{V}_{m(v), q}^{c}$ concatenato in un vettore di $\mathcal{V}_{r, q}^{\mathscr{L}}$ alla posizione contrassegnata dall'etichetta $v$, nel quale tutti gli altri vettori sono nulli. 
+   Quindi a meno di isomorfismi sulle algebre $\mathcal{V}_{r, q}^{\mathscr{L}}$ e $\mathcal{R}_{r,q}$:
+   \begin{align*}
+      \Delta \mathbf{e}_{v}^{t} = 
+      \Delta
+      \left(
+      \begin{array} { c }
+      0  \\
+      \hline
+      0   \\
+      \vdots  \\
+      0   \\
+      \hline
+      \vdots \\
+      \hline
+      1   \\
+      0   \\
+      0  \\
+      \hline
+      \vdots \\
+      \hline
+      0   \\
+      \vdots  \\
+      0   \\
+      \end{array}
+      \right)
+      \cong
+      \sum_{i=0}^{r-1} \Delta_{i,0}^{(v)} x^{i} = a(x)
+   \end{align*}
+    per $a(x) \in \mathcal{R}_{r,q}$ polinomio i cui elementi sono definiti dalla prima colonna del blocco $\Gamma^{(v)}$. Dato che $\Gamma$ è la matrice inversa di $\Delta$, $a(x)\cong \mathbf{a}$ soddisfa la seguente condizione:
+    \begin{align*}
+       \Gamma \mathbf{a}^{t} = \mathbf{e}_{v}^{t}
+    \end{align*}
+    e considerandone i blocchi, per ogni $u \in \mathscr{L}$, $u \neq v$, si ottiene
+    \begin{align*}
+       \Gamma^{(u)} \mathbf{a}^{t} = \mathbf{0}
+    \end{align*}
+    Pertanto dal lemma \ref{le:codiciEdGamma} segue che $a(x) \in (\hat{M}^{(v)}(x))$ ed essendo un idempotente primitivo, è proprio quello che genera $ (\hat{M}^{(v)}(x))$
+\end{proof}
+
+%PROPRIETAA
+\begin{prop}
+  L'insieme $\lbrace \Delta_{\sim, 0}^{(v)} \rbrace_{v\in \mathscr{L}}$ delle prime colonne di tutti i blocchi di $\Delta$ costituisce l'insieme di tutti gli idempotenti minimali che generano tutti gli ideali minimali dell'algebra 
+  $\mathcal{V}_{r, q}^{\mathscr{L}}$ isomorfa a  $\mathcal{R}_{r,q} $.
+\end{prop}
+\begin{proof}
+    È una generalizzazione della proprietà precedente: ogni prima colonna dei blocchi di $\Delta$ è un idempotente minimale in $\mathcal{V}_{r, q}^{\mathscr{L}}$, e dal corollario \ref{coroll:idempotentiMinimali} segue che ogni idempotente genera un ideale minimale.
+\end{proof}
+
+La seguente proprietà fornisce un metodo per costruire in modo ricorrente i blocchi di $\Delta$.
+\begin{prop}
+   Sia $v \in \mathscr{L}$ e $j \in \lbrace 0, 1 \dots , m(v)-1 \rbrace$ . La $j$-esima colonna del $v$-esimo blocco di $\Delta$, indicata con $\Delta_{\sim, j}^{(v)}$ è uno shift circolare verso il basso di $j$ posti di $\Delta_{\sim, 0}^{(v)}$:
+   \begin{align*}
+      \big( \Delta_{\sim, j}^{(v)} \big)^{t} \in \mathcal{V}_{m(v), q}^{c} 
+      \qquad \qquad 
+      \big( \Delta_{\sim, j}^{(v)} \big)^{t}  =  (0,1,0,\dots,0)^{j} \star \big( \Delta_{\sim, 0}^{(v)} \big)^{t} 
+   \end{align*}
+\end{prop}
+\begin{proof}
+   Consideriamo la rappresentazione polinomiale di $\mathcal{V}_{r, q}^{\mathscr{L}}$ e l'idempotente minimale $\mathbf{e}_{v}$ in questa rappresentazione:
+   \begin{align*}
+      d(x) &= \psi_{2}^{-1} \big( (\Delta_{\sim, j}^{(v)})^{t} \big) \qquad d(x) \in \mathcal{R}_{r,q} \\
+      e_{v}(x) &= \psi_{2}^{-1} \big( (\Delta_{\sim, 0}^{(v)})^{t} \big)
+   \end{align*}
+   L'immagine del $v$-esimo epimorfismo $\eta^{v}$ di $x^{j}e_{v}(x)$ cioè del $j$-esimo shift dell'idempotente minimale $e_{v}(x)$ risulta essere
+   \begin{align*}
+      \eta^{(v)}(x^{j}e_{v}(x)) = \eta^{(v)}(x^{j}) \eta^{(v)}(e_{v}(x)) = \xi^{vj} e_{v}(\xi^{v}) \in \mathcal{P}_{r,q} 
+   \end{align*}
+   che rappresenta $e_{v}(x)$ shiftato di $j$ posti.\\
+   La sua immagine tramite $\psi_{5}^{(v)}$ nello spazio dei vettori circolanti $\mathcal{V}_{m(v), q}^{c}$ è costituita dal vettore che ha $1$ al $j$-esimo posto e tutti gli altri nulli.
+   Anche considerando la sua immagine al codominio esteso $\mathcal{V}_{r, q}^{\mathscr{L}}$ si ottiene un vettore che ha $1$ al $j$-esimo posto del blocco $v$-esimo e zero in tutti gli altri, infatti per $u \in \mathscr{L}$ diverso da $v$ segue che
+   \begin{align*}
+      \eta^{(u)}(x^{j}e_{v}(x)) = 0 \qquad \qquad \forall j =0, \dots, m(u) - 1
+   \end{align*}
+   Quindi la proprietà vale per tutti gli idempotenti minimali, e dato che ogni idempotente è somma di idempotenti, per la linearità degli isomorfismi utilizzati, vale in generale.
+\end{proof}
+
+In $\mathcal{V}_{m(v), q}^{c}$ ogni shift dell'idempotente minimale $e_{v}(x) = (1,0,\dots , 0)$ determina l'elemento successivo della base canonica come spazio vettoriale. A meno di isomorfismi $x^{j}e_{v}(x) = (0,\dots 0,1,0,\dots , 0)$ dove l'1 si trova al $j$-esimo posto. Le colonne $\Delta_{\sim, j}^{(v)}$ per $j=0, \dots , m(v)-1$ determinano una base di $\mathcal{V}_{m(v), q}^{c}$. Abbiamo quindi
+%COROLLARIO
+\begin{prop}
+   L'insieme dei vettori colonna $\lbrace \Delta_{\sim, j}^{(v)} \rbrace_{j=0}^{m(v)-1}$ determina una base dell'ideale $(M^{(v)}(x))$.
+\end{prop}
+\begin{proof}
+   La tesi segue da quanto osservato: le colonne $\Delta_{\sim, j}^{(v)}$ per $j=0, \dots , m(v)-1$ definiscono una base di $\mathcal{V}_{m(v), q}^{c}$ ed inoltre dalla proprietà \ref{prop:idempotGeneratori} ogni colonna è uno shift dell'idempotente che genera l'ideale minimale $(M^{(v)}(x))$.  
+\end{proof}
+% Se si ha tempo aggiungere, segugiata numero 1.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% SEZIONI    %%%%%%%%%%%%%%%%%%%%
+%\section{Relazioni fra $\Gamma$ e $\Delta$}
+
+Concludiamo il capitolo proponendo, senza dimostrazione, una formula\footnote{\cite{cerruti} pag. 28 e successive, oppure usando i risultati del . capitolo \ref{cap:applicazioni} di questa tesi ed il teorema $6.23$ di pag $145$ di \cite{berardi}.} che lega la matrice $\Gamma$ alla sua inversa $\Delta$:
+\begin{align*}
+   \Delta_{i,j} = \frac{1}{r} \sum_{k=1}^{m(v)-1} \Gamma_{k,j-i+k}^{(v)}
+\end{align*}
+
+Dalle proprietà di questo capitolo abbiamo visto che i blocchi di $\Gamma$ determinano gli ideali e che le prime colonne di $\Delta$ determinano gli idempotenti minimali di $\mathcal{R}_{r,q}$; questo fatto sarà una delle basi delle applicazioni della trasformata di Winograd alla teoria dei codici correttori proposte nell'ultimo capitolo.

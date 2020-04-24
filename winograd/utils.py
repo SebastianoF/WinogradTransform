@@ -43,7 +43,7 @@ def _worms2ints(list_of_worms):
 def _worm2int(worm):
     number = 0
     for q, n in enumerate(worm):
-        number += q * len(ALPHABET) + number
+        number += q * len(ALPHABET) + n
     return number
 
 
@@ -62,9 +62,9 @@ def _int2worm(num, wl):
     """From integer to corresponding worm"""
     worm = []
     for n in range(wl):
-        r = num % len(ALPHABET)
+        r = n % len(ALPHABET)
         worm.append(r)
-        num = (num - r)/ len(ALPHABET)
+        num = (n - r)/ len(ALPHABET)
     return worm
         
 
@@ -84,5 +84,9 @@ def _trim(v):
 
 def _list2string(list_of_numbers):
     """From a list of numbers to corresponding letters """
-    return [ALPHABET[number] for number in list_of_numbers]
+    list_of_letters = [ALPHABET[number] for number in list_of_numbers]
+    result = ""
+    for s in list_of_letters:
+        result += s
+    return result
 

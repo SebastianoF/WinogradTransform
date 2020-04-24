@@ -90,7 +90,8 @@ def _list2string(list_of_numbers):
 
 
 def list2binary(list_of_integers):
-    return  ["{0:b}".format(k).zfill(len(ALPHABET) + 1) for k in list_of_integers] 
+    max_len = len(ALPHABET) + 1  # TODO not so simple!
+    return  ["{0:b}".format(k).zfill(max_len) for k in list_of_integers] 
 
 
 def list2decimals(list_of_binaries):

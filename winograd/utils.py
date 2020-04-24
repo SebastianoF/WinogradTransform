@@ -8,8 +8,9 @@ alphabet1 = [" ","A","B","C","D","E",
 "T","U","V","W", "X","Y","Z",
 ":", ".", "'"]
 
+alphabet_ascii = [chr(i) for i in range(256)]
 
-ALPHABET = alphabet1
+ALPHABET = alphabet_ascii
 
 
 
@@ -87,3 +88,10 @@ def _list2string(list_of_numbers):
         result += s
     return result
 
+
+def list2binary(list_of_integers):
+    return  ["{0:b}".format(k).zfill(len(ALPHABET) + 1) for k in list_of_integers] 
+
+
+def list2decimals(list_of_binaries):
+    return [int(k, 2) for k in list_of_binaries]

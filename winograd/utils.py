@@ -41,10 +41,7 @@ def _worms2ints(list_of_worms):
 
 
 def _worm2int(worm):
-    number = 0
-    for q, n in enumerate(worm):
-        number += q * len(ALPHABET) + n
-    return number
+    return sum([w*len(ALPHABET)**(len(worm)- i - 1) for i, w in enumerate(worm)])
 
 
 def N2S(v, lw):
@@ -60,11 +57,11 @@ def _ints2worms(list_of_ints, wl):
 
 def _int2worm(num, wl):
     """From integer to corresponding worm"""
-    worm = []
-    for n in range(wl):
-        r = n % len(ALPHABET)
-        worm.append(r)
-        num = (n - r)/ len(ALPHABET)
+    worm = [0] * wl
+    worm[-1] = num % len(ALPHABET)
+    for i in range(wl-2, -1, -1):
+        num = (num - worm[i + 1]) / len(ALPHABET)
+        worm[i] = int(num % len(ALPHABET))
     return worm
         
 

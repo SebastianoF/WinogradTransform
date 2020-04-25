@@ -2,11 +2,38 @@
 Methods to convert strings to numbers and vice versa.
 """
 
-alphabet_custom = [" ","A","B","C","D","E",
-"F","G","H","I","J","K","L",
-"M","N","O","P","Q","R","S",
-"T","U","V","W", "X","Y","Z",
-":", ".", "'"]
+alphabet_custom = [
+    " ",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+    ":",
+    ".",
+    "'",
+]
 
 alphabet_ascii = [chr(i) for i in range(256)]
 
@@ -21,7 +48,7 @@ def S2N(s):
     """String to list of numbers of worm length w"""
     worms = _subdivide_list(_zero_padding(_string2list(s)))
     return _worms2ints(worms)
-    
+
 
 def _string2list(string):
     """From string to corresponding letters in the alphabet"""
@@ -36,7 +63,7 @@ def _zero_padding(v):
 
 def _subdivide_list(lis):
     """From a list of number to a list of lists of len wl. """
-    return [lis[j*WL:(j+1)*WL] for j in range(int(len(lis)/WL))]
+    return [lis[j * WL : (j + 1) * WL] for j in range(int(len(lis) / WL))]
 
 
 def _worms2ints(list_of_worms):
@@ -45,14 +72,14 @@ def _worms2ints(list_of_worms):
 
 
 def _worm2int(worm):
-    return sum([w*len(ALPHABET)**(len(worm)- i - 1) for i, w in enumerate(worm)])
+    return sum([w * len(ALPHABET) ** (len(worm) - i - 1) for i, w in enumerate(worm)])
 
 
 def N2S(v):
     """ From a list of integers to the corresponding word"""
     list_nums = _trim(_lifter(_ints2worms(v)))
     return _list2string(list_nums)
-    
+
 
 def _ints2worms(list_of_ints):
     """From list of integers to list of worms"""
@@ -63,16 +90,18 @@ def _int2worm(num):
     """From integer to corresponding worm"""
     worm = [0] * WL
     worm[-1] = num % len(ALPHABET)
-    for i in range(WL-2, -1, -1):
+    for i in range(WL - 2, -1, -1):
         num = (num - worm[i + 1]) / len(ALPHABET)
         worm[i] = int(num % len(ALPHABET))
     return worm
-        
+
 
 def _lifter(li):
     """From list of lists to single list with all their elements"""
     return (
-        _lifter(li[0]) + (_lifter(li[1:]) if len(li) > 1 else []) if type(li) is list else [li]
+        _lifter(li[0]) + (_lifter(li[1:]) if len(li) > 1 else [])
+        if type(li) is list
+        else [li]
     )
 
 
@@ -93,7 +122,7 @@ def _list2string(list_of_numbers):
 
 
 def listTen2ListBin(list_of_integers_base_ten):
-    return  ["{0:b}".format(k).zfill(MAX_INT_BIN) for k in list_of_integers_base_ten]
+    return ["{0:b}".format(k).zfill(MAX_INT_BIN) for k in list_of_integers_base_ten]
 
 
 def listBin2ListDec(list_of_base_two):

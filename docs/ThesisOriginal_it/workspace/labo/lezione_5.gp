@@ -64,7 +64,7 @@ write(nomefile,a)
 
 \\ Lez 1 Es2 ter: Euclide Mullin. Stampa dei passaggi fino a niter.
 \\ Input: riceve vettore (a_i) di interi e il numero di iterazioni desiderate.
-\\ Output: no. Stampa i vettori concatenati con il fattore minimo primo di Y = prod(a_i) + 1  
+\\ Output: no. Stampa i vettori concatenati con il fattore minimo primo di Y = prod(a_i) + 1
 {
 euc1seq(V,niter) =  local();
 print(V);
@@ -467,8 +467,8 @@ ris;
 \\ lezione 5 esercizio 1
 \\
 
-\\ Lez 5 Es 1 parte 1: trova h tale che kronecker(h^2 - 4*a,p)=-1 
-\\ ...si va per tentativi... 
+\\ Lez 5 Es 1 parte 1: trova h tale che kronecker(h^2 - 4*a,p)=-1
+\\ ...si va per tentativi...
 \\ Input: a, p tali che kronecker(a,p) = 1
 \\ Output: restituisce l'h tale che kronecker(h^2 - 4*a,p)= -1
 {
@@ -498,7 +498,7 @@ if(kronecker(a,p)!=1 ,print("No soluzioni"), sol1 = (1/2)*ric(2,hh,hh,a,(p+1)/2)
 \\ lezione 5 esercizio 2
 \\
 
-\\ Lez 5 Es 2: parte 1 fibonacci generalizzata ricorsione 
+\\ Lez 5 Es 2: parte 1 fibonacci generalizzata ricorsione
 \\ Input: (a,b,h,k,n)
 \\ Output: W_n(a,b,h,k)
 {
@@ -508,7 +508,7 @@ if(n == 1, return(b));
 if(n > 1, return( h*fibgen(a,b,h,k,n-1) - k*fibgen(a,b,h,k,n-2)) );
 }
 
-\\ Lez 5 Es 2: parte 2 fibonacci generalizzata vettore 
+\\ Lez 5 Es 2: parte 2 fibonacci generalizzata vettore
 \\ Input: (a,b,h,k,n)
 \\ Output: il vettore di tutti gli elementi W_i(a,b,h,k) i <= n
 {
@@ -528,7 +528,7 @@ fibgenvett(0,1,h,k,n);
 
 \\ Lez 5 Es 2: parte 3 apparizione che restituisce il rango di apparizione di n in U_m(h,k)
 \\ Input: h,k,n che permette di calcolare la sequenza U_i(h,k), i<=m
-\\ Output: rango di apparizione di n, cioè il più piccolo m tale che 
+\\ Output: rango di apparizione di n, cioè il più piccolo m tale che
 \\         n divide U_i(h,k)
 {
 apparizione(h,k,n)=local(Uvett,m);
@@ -546,11 +546,11 @@ m;
 calcolare alcuni elementi della successione apparizione(1,-1,p^n), con n = 1,2,...,s
 e con p primo dispari, e formulare una congettura!
 */
-\\ Lez 5 Es 3: congettura sul rango di apparizione di p^n in U_m(h,k) 
+\\ Lez 5 Es 3: congettura sul rango di apparizione di p^n in U_m(h,k)
 \\ Input: (h,k,p,s)
 \\ Output: calcola apparizione(1,-1,p^n), con n = 1,2,...,s e con p primo dispari
 
-\\ Tempo di calcolo di apparizione(1,-1,3^3) maggiore di 30 sec. 
+\\ Tempo di calcolo di apparizione(1,-1,3^3) maggiore di 30 sec.
 {
 congettapparizione(h,k,p,s)=local(vett);
 vett=[];
@@ -559,7 +559,7 @@ vett;
 }
 
 /*
-Per poter formulare una congettura serve un algorimo più efficiente... 
+Per poter formulare una congettura serve un algorimo più efficiente...
 TENTATIVO:
 
 [  n|F_m <=> n|m && m|F_m ]
@@ -573,7 +573,7 @@ if(fibgen(0,1,1,-1,m)%m == 0, return(1), return(0));
 }
 
 \\ Input: n e mettere m=1 (ricorsione)!
-\\ Output: m tale che n|F_m 
+\\ Output: m tale che n|F_m
 {
 apparizione1(n,m)=local();
 if(divfib(m)==1 && m%n == 0, return(m), apparizione1(n,m+1));

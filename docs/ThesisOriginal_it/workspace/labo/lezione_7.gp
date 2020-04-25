@@ -465,7 +465,7 @@ if(gcd(Polrev(a[1,]),x^n-1)==1,1,0);
 {
 apparizione(h,k,n)=local(delta,u,t,v);
 delta=h^2-4*k;if(gcd(n,delta*k)>1,return(0));
-fordiv(psidelta(h,k,n),m,	
+fordiv(psidelta(h,k,n),m,
 u = m; t = 1; v = x;
 while(u != 0, if(u%2 == 1, t = gprod(h,k,n,t,v)); v = gprod(h,k,n,v,v);
 u = floor(u/2));
@@ -579,7 +579,7 @@ ris;
 
 
 \\_______________________________________________________________
-\\ Lez 7 Es 1: decsomma 
+\\ Lez 7 Es 1: decsomma
 \\ Input: a, n, p con a polinoimo
 \\ Output: decomposizione additiva di a in Rn,p come prodotto di campi
 \\         generati dagli idempotenti primitivi
@@ -594,13 +594,13 @@ return(ris);
 \\dovevo usare moltnp, anche nel programma!!!
 
 \\ricorda il comando moltnp per verificare l'ortogonalità
-\\dgli elementi del vettore: 
+\\dgli elementi del vettore:
 \\e=decsomma(a,n,p); moltnp(e[i],e[j],9,31) == delta(i,j)
 
 \\_____________________________________________________________
 \\ Lez 7 Es 2.0: matvettid1
 \\ Input: vettore
-\\ Output: la matrice avente il vettore ripetuto sulla diagonale 
+\\ Output: la matrice avente il vettore ripetuto sulla diagonale
 \\          e in tutto il resto '1'
 {
 matvettid1(vett)=local(s,ris);
@@ -612,7 +612,7 @@ ris;
 
 \\ Lez 7 Es 2: decprod
 \\ Input: a, n, p con a polinomio
-\\ Output: decomposizione moltiplicativa di a in Rp,n 
+\\ Output: decomposizione moltiplicativa di a in Rp,n
 {
 decprod(a,n,p)=local(ee, vett_a, matr, ris);
 ee=circolidem(n,p)~; \\vettore idempot primitivi
@@ -636,9 +636,9 @@ matris=pol2mat(polris,n);
 return(matris);
 }
 
-\\ Lez 7 Es 3.2: decmatprod 
+\\ Lez 7 Es 3.2: decmatprod
 \\ Input: a, n, p con a matrice circolante modulo p
-\\ Output: decomposizione moltiplicativa di a in Rp,n 
+\\ Output: decomposizione moltiplicativa di a in Rp,n
 {
 decmatprod(a,n,p)=local(pola,polris,matris);
 pola=mat2pol(a);
@@ -662,7 +662,7 @@ vv[1]=lift(chinese([Mod(1,ff[1,1]),Mod(0,ff[2,1]),...,Mod(0,ff[s,1])]))
 quindi vv è il vettore degli idempotenti.
 mm sono le matrici circolanti degli idempotenti, calcolate come
 mm[1]=pol2mat(vv[1],n)
-Le componenti additive sono 
+Le componenti additive sono
 ris[n]=a*vv[n]
 */
 {
@@ -692,7 +692,7 @@ ris;
 
 \\ Lez 7 Es 4.2: decmatprodQ
 \\ Input: a, n con a matrice circolante a coeff interi
-\\ Output: decomposizione moltiplicativa di a in Rp,n 
+\\ Output: decomposizione moltiplicativa di a in Rp,n
 {
 decmatprodQ(a,n)=local(ff,s,Mid,MMmod,vv,mm,ris);
 

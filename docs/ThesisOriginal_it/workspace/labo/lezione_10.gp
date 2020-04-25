@@ -467,7 +467,7 @@ if(gcd(Polrev(a[1,]),x^n-1)==1,1,0);
 {
 apparizione(h,k,n)=local(delta,u,t,v);
 delta=h^2-4*k;if(gcd(n,delta*k)>1,return(0));
-fordiv(psidelta(h,k,n),m,	
+fordiv(psidelta(h,k,n),m,
 u = m; t = 1; v = x;
 while(u != 0, if(u%2 == 1, t = gprod(h,k,n,t,v)); v = gprod(h,k,n,v,v);
 u = floor(u/2));
@@ -727,7 +727,7 @@ for(b=1,l,
 bb=Mod(b,n);
 if((xx+bb)^n!=xx^n+bb,print("n è composto");return(bb)));
 return(1);
-} 
+}
 
 {
 \\restituisce la matrice T che rappresenta tetaQ
@@ -843,7 +843,7 @@ a1=E[1];a2=E[2];a3=E[3];a4=E[4];
 xp=P[1];yp=P[2];xq=Q[1];yq=Q[2];
 mP=[xp,-yp-a1*xp-a3];
 if(mP==Q,R=[0],
-         if(P==Q,lam=(3*xp^2 + 2*a2*xp + a4 - a1*yp)/(2*yp + a1*xp + a3), 
+         if(P==Q,lam=(3*xp^2 + 2*a2*xp + a4 - a1*yp)/(2*yp + a1*xp + a3),
                  lam=(yq-yp)/(xq-xp)
          );
          mu=yp - lam*xp;
@@ -875,7 +875,7 @@ if(r1==1 && r2==1,return(ellisum(E,P,Q)),return("I punti non appartengono alla c
 {
 ellipot(E,a,m)=local(u,t,v);
 u = m;
-t = [0]; 
+t = [0];
 v = a;
 while(u != 0, if(u%2 == 1, t = elladd(E,t,v)); v = elladd(E,v,v);
 u = floor(u/2));
@@ -898,7 +898,7 @@ if(test==1,return(ellipot(E,a,m)),return("a is not in E"));
 
 \\ Lez 10 Es 3 auslialria: ellisumnNOTEST somma modulo n sulle curve ellittiche
 \\ Input: E curva ellittica, P,Q due suoi punti
-\\ Output: P+Q mod n 
+\\ Output: P+Q mod n
 \\N.B. può dividere per elementi non invertibili! In ellisumn si risolve il problema.
 {
 ellisumnNOTEST(E,P,Q,n)=local(a1,a2,a3,a4,xp,yp,xq,yq,mP,lam,mu,xr,yr,R);
@@ -906,7 +906,7 @@ a1=E[1];a2=E[2];a3=E[3];a4=E[4];
 xp=P[1];yp=P[2];xq=Q[1];yq=Q[2];
 mP=[xp,-yp-a1*xp-a3];
 if(mP==Q,R=[0],
-         if(P==Q,lam=Mod(3*xp^2 + 2*a2*xp + a4 - a1*yp,n)/Mod(2*yp + a1*xp + a3,n), 
+         if(P==Q,lam=Mod(3*xp^2 + 2*a2*xp + a4 - a1*yp,n)/Mod(2*yp + a1*xp + a3,n),
                  lam=Mod(yq-yp,n)/Mod(xq-xp,n)
          );
          mu=Mod(yp - lam*xp,n);
@@ -920,8 +920,8 @@ R;
 
 \\ Lez 10 Es 3: ellisumn somma modulo n sulle curve ellittiche
 \\ Input: E curva ellittica, P,Q due suoi punti
-\\ Output: P+Q mod n oppure input errati se nell'algoritmo ci sono 
-\\         divisioni per zero. Mentre restituisce factor(n) se la somma degli elementi inseriti 
+\\ Output: P+Q mod n oppure input errati se nell'algoritmo ci sono
+\\         divisioni per zero. Mentre restituisce factor(n) se la somma degli elementi inseriti
 {
 ellisumn1(E,P,Q,n)=local(a1,a2,a3,a4,xp,yp,xq,yq,t1,t2,tip);
 a1=E[1];a2=E[2];a3=E[3];a4=E[4];
@@ -940,13 +940,13 @@ if(t1==Mod(0,n) && t2==Mod(0,n),return("input errati"),
 
 {
 ellisumn(z,P,Q,n)=local(lam, mu, x3, x1, y1, x2, y2,den,fat,a);
- if(P == [0], return(Q)); if(Q == [0], return(P)); 
+ if(P == [0], return(Q)); if(Q == [0], return(P));
  a=z*Mod(1,n);
- x1 = Mod(P[1],n); x2 = Mod(Q[1],n); y1 = Mod(P[2],n); 
+ x1 = Mod(P[1],n); x2 = Mod(Q[1],n); y1 = Mod(P[2],n);
  y2 = Mod(Q[2],n);if(x1==x2&&y1==-y2,return([0]));
  if(P == Q, den=(2* y1 + a[1]* x1 + a[3]); fat=gcd(n,lift(den)); if(fat>1 && fat!=n,return(fat));
- lam = (3*x1^2 + 2*a[2]*x1 + a[4] - a[1]* y1)*den^-1,den= (x2 - x1); fat=gcd(n,lift(den)); if(fat>1 && fat!=n,return(fat)); 
- lam = (y2 - y1)*den^-1); 
+ lam = (3*x1^2 + 2*a[2]*x1 + a[4] - a[1]* y1)*den^-1,den= (x2 - x1); fat=gcd(n,lift(den)); if(fat>1 && fat!=n,return(fat));
+ lam = (y2 - y1)*den^-1);
  mu = y1 - lam *x1; x3 = lam^2 + a[1]* lam - a[2] - x1 - x2;
  lift([x3, -(lam + a[1])* x3 - mu - a[3]]);
 }
@@ -955,9 +955,9 @@ ellisumn(z,P,Q,n)=local(lam, mu, x3, x1, y1, x2, y2,den,fat,a);
 \\______________________________________________________________
 \\_________________________________________________________Es 4
 
-\\ Lez 10 Es 4: ausiliaria, definisce una curva ellittica di Lenstra 
-\\ Input: a,b,n, con n intero ed a,b in Z_n 
-\\ Output:[E,boo] E pseudocurva ellittica, boo boleano 1 se E è 
+\\ Lez 10 Es 4: ausiliaria, definisce una curva ellittica di Lenstra
+\\ Input: a,b,n, con n intero ed a,b in Z_n
+\\ Output:[E,boo] E pseudocurva ellittica, boo boleano 1 se E è
 \\        ellittica di Lenstra (soddisfa alle cond. dell'alg.), 0 altrimenti.
 {
 ellilenstra(a,b,n)=local(E,boo);
@@ -968,7 +968,7 @@ return([E,boo]);
 
 \\ Lez  Es : random per ECM
 \\ Input: n intero
-\\ Output: [x,y,a,b]. Nel prossimo algoritmo ecm si considererà 
+\\ Output: [x,y,a,b]. Nel prossimo algoritmo ecm si considererà
 \\         randecm(n)=rv; x=rv[1],y=rv[2],a=rv[3],b=rv[4]
 {
 randecm(n)=local(x,y,a,b);
@@ -1014,12 +1014,12 @@ j=1;
 tip=[];
 pivett=primes(pigreco(B1));
 \\return(pivett);
-for(i=1,pigreco(B1),ai=trovai(pivett[i],Bi); 
+for(i=1,pigreco(B1),ai=trovai(pivett[i],Bi);
    while(tip =="t_VEC",P=ellipow(E,P,pvett[i]);
                        tip=type(P);
-                       j=j+1; 
+                       j=j+1;
                        error("fallimento")
-   ); 
+   );
 
 );
 return(["fattore trovato =",gcd(n,pivett[i])] );
@@ -1066,8 +1066,8 @@ error("fallimento!");
 
 \\FUNZIONI AUSILIARIE
 
-\\ Lez 10 aus 1 : data una matrice ad elementi in {-1,+1}, la trasforma in una 
-\\                matrice in {0,1}, avendo sostituito 0 a -1.  
+\\ Lez 10 aus 1 : data una matrice ad elementi in {-1,+1}, la trasforma in una
+\\                matrice in {0,1}, avendo sostituito 0 a -1.
 \\ Input: M matrice in {-1,1}
 \\ Output: R in {0,1}
 {
@@ -1079,8 +1079,8 @@ for(i=1,r,for(j=1,c,if(R[i,j]==-1,R[i,j]=0)));
 R;
 }
 
-\\ Lez 10 aus 1b : dato un vettore ad elementi in {-1,+1}, lo trasforma in un 
-\\                vettore in {0,1}, avendo sostituito 0 a -1.  
+\\ Lez 10 aus 1b : dato un vettore ad elementi in {-1,+1}, lo trasforma in un
+\\                vettore in {0,1}, avendo sostituito 0 a -1.
 \\ Input: V vettore in {-1,1}
 \\ Output: R in {0,1}
 {
@@ -1090,8 +1090,8 @@ lift(Mod(ris,3))
 }
 
 
-\\ Lez 10 aus 2 : data una matrice ad elementi in {0,1}, la trasforma in una 
-\\                matrice in {-1,+1}, avendo sostituito -1 a 0.  
+\\ Lez 10 aus 2 : data una matrice ad elementi in {0,1}, la trasforma in una
+\\                matrice in {-1,+1}, avendo sostituito -1 a 0.
 \\ Input: M matrice in {0,1}
 \\ Output: R in {-1,+1}
 {
@@ -1104,8 +1104,8 @@ R;
 }
 
 
-\\ Lez 10 aus 2bis : dato un vettore ad elementi in {0,1}, la trasforma in un 
-\\                vettore in {-1,+1}, avendo sostituito -1 a 0.  
+\\ Lez 10 aus 2bis : dato un vettore ad elementi in {0,1}, la trasforma in un
+\\                vettore in {-1,+1}, avendo sostituito -1 a 0.
 \\ Input: V vettore in {0,1}
 \\ Output: R in {-1,+1}
 {
@@ -1115,15 +1115,15 @@ ris;
 }
 
 
-\\ Lez 10 aus 3 : prodotto di 'Reed Muller' 
-\\ Input: A,B matrici hxn e kxn. 
+\\ Lez 10 aus 3 : prodotto di 'Reed Muller'
+\\ Input: A,B matrici hxn e kxn.
 \\        N.B. Deve funzionare anche per vettori di lunghezza n
 \\        Il secondo argomento dell'ultimo if e' il cuore della funzione (tutti gli argomenti sopra sono suoi casi particolari).
 \\ Output: A**B=[A,A;0,B] matrice (h+k)x(2n)
 {
 RMprod(A,B)=local(h,k,n,R,test);
 h=matsize(A)[1];
-n=matsize(A)[2]; 
+n=matsize(A)[2];
 k=matsize(B)[1];
 R=matrix(h+k,2*n);
 test=matsize(A)[2]==matsize(B)[2];
@@ -1133,12 +1133,12 @@ if(test==0, return("matrici incompatibili"),
       R[1,]=concat(A,A) ;
       for(p=1,k,R[p+h,]=concat(vector(n),B[p,]));
       return(R);
-    ); 
+    );
     if(k==1 && h!=1,
       for(j=1,h,R[j,]=concat(A[j,],A[j,]) );
       R[h+1,]=concat(vector(n),B);
       return(R);
-    ); 
+    );
     if(h==1 && k==1 ,
       R[1,]=concat(A,A);
       R[2,]=concat(vector(n),B);
@@ -1147,11 +1147,11 @@ if(test==0, return("matrici incompatibili"),
       for(j=1,h,R[j,]=concat(A[j,],A[j,]) );
       for(p=1,k,R[p+h,]=concat(vector(n),B[p,]));
       return(R);
-    ) 
+    )
 );
 }
 
-\\ Lez 10 aus 4 : Matrice generatrice del codice di Reed Muller CON RICORSIONE  
+\\ Lez 10 aus 4 : Matrice generatrice del codice di Reed Muller CON RICORSIONE
 \\ Input: r,m
 \\ Output: Ris matrice generatrice di reed muller(r,m)
 {
@@ -1175,8 +1175,8 @@ Hm=-H;
 sindrom=v*H;
 P1=vecmax(abs(sindrom));
 P2=vecmax(sindrom);
-if(P1==P2,pos=posizioni(sindrom,P1); ris=H[pos[1],] 
-     ,pos=posizioni(sindrom,-P1);  ris=Hm[pos[1],] 
+if(P1==P2,pos=posizioni(sindrom,P1); ris=H[pos[1],]
+     ,pos=posizioni(sindrom,-P1);  ris=Hm[pos[1],]
 );
 ris;
 }

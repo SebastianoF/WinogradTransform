@@ -3,7 +3,7 @@
 \\---------------------------
 
 
-\\input: 
+\\input:
 
 
 
@@ -59,27 +59,27 @@ circolator(V) = local(l, M, i);
 return (M);
 }
 
-\\input: array intmod 
+\\input: array intmod
 \\output: soluzione mediante teorema cinese dei resti
 \\ generalizza chinese ad un vettore di n intmod
 {
 cinese(lista) = local(n, u, v);
    n = length(lista);
    u = chinese(lista[1],lista[2]);
-   for(i = 3, n, 
+   for(i = 3, n,
       v = chinese(u,lista[i]); u = v
    );
 return(u);
 }
 
-\\input: V vettore, x lemento che compare nel vettore 
+\\input: V vettore, x lemento che compare nel vettore
 \\output: vettore delle posizioni di x nel vettore V
 {
 position(V,x) = local(l, ans);
    l = length(V);
    ans = [];
-   for(i = 1, l, 
-      if(V[i] == x, 
+   for(i = 1, l,
+      if(V[i] == x,
          ans = concat(ans,i)
       )
    );
@@ -117,8 +117,8 @@ return(vector(n, j, j));
 perm2mat(a) = local(n, M, i, j);
 n = length(a);
 M = matrix(n,n);
-for(j=1, n, 
-   for(i=1, n, 
+for(j=1, n,
+   for(i=1, n,
       if(a[i] == j, M[i,j] = 1 )
    );
 );
@@ -161,7 +161,7 @@ cicli(g) = local(l, ciclo, ans, s, ini, j, cont);
 l = length(g);
 s = vector(l,j,j);
 ans = [];
-while(length(s) > 0, 
+while(length(s) > 0,
    ini = s[1];
    cont = ini;
    ciclo = [cont];
@@ -218,9 +218,9 @@ if(n < m,
 );
 }
 
-\\input: p1, p2, polinomi a,b in x, 
-\\       di grado <= n-1, n intero positivo 
-\\output: p1*p2 mod x^n-1 
+\\input: p1, p2, polinomi a,b in x,
+\\       di grado <= n-1, n intero positivo
+\\output: p1*p2 mod x^n-1
 {
 moltpoln(a, b, n) = local(p1, p2);
    p1 = Mod(a, x^n - 1);
@@ -228,7 +228,7 @@ moltpoln(a, b, n) = local(p1, p2);
 return(lift(p1*p2));
 }
 
-\\input: M matrice circolante 
+\\input: M matrice circolante
 \\output: polinomio che la rappresenta
 {
 mat2pol(M) = local(ans);

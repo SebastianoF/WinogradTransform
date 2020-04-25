@@ -1,4 +1,4 @@
-This is fancyhdr, a replacement for fancyheadings. 
+This is fancyhdr, a replacement for fancyheadings.
 
 I still still intend to make sometime in the future a real .dtx of it,
 including the minimal documentation. The current documentation is in
@@ -31,7 +31,7 @@ LICENCE: All files in this package may be distributed under the terms of
 the LaTeX Project Public License, as described in lppl.txt in the base
 LaTeX distribution. Either version 1 or, at your option, any later
 version.
--- 
+--
 Piet van Oostrum.
 <piet@cs.ruu.nl>
 http://www.cs.ruu.nl/~piet

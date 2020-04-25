@@ -465,7 +465,7 @@ if(gcd(Polrev(a[1,]),x^n-1)==1,1,0);
 {
 apparizione(h,k,n)=local(delta,u,t,v);
 delta=h^2-4*k;if(gcd(n,delta*k)>1,return(0));
-fordiv(psidelta(h,k,n),m,	
+fordiv(psidelta(h,k,n),m,
 u = m; t = 1; v = x;
 while(u != 0, if(u%2 == 1, t = gprod(h,k,n,t,v)); v = gprod(h,k,n,v,v);
 u = floor(u/2));
@@ -725,7 +725,7 @@ for(b=1,l,
 bb=Mod(b,n);
 if((xx+bb)^n!=xx^n+bb,print("n è composto");return(bb)));
 return(1);
-} 
+}
 
 {
 \\restituisce la matrice T che rappresenta tetaQ
@@ -834,9 +834,9 @@ mh;
 
 {
 ellisum(a,P,Q)=local(lam, mu, x3, x1, y1, x2, y2);
- if(P == [0], return(Q)); if(Q == [0], return(P)); x1 = P[1]; x2 = Q[1]; y1 = P[2]; 
+ if(P == [0], return(Q)); if(Q == [0], return(P)); x1 = P[1]; x2 = Q[1]; y1 = P[2];
  y2 = Q[2];if(x1==x2&&y1==-y2,return([0]));
- if(P == Q, lam = (3*x1^2 + 2*a[2]*x1 + a[4] - a[1]* y1)/(2* y1 + a[1]* x1 + a[3]), lam = (y2 - y1)/(x2 - x1)); 
+ if(P == Q, lam = (3*x1^2 + 2*a[2]*x1 + a[4] - a[1]* y1)/(2* y1 + a[1]* x1 + a[3]), lam = (y2 - y1)/(x2 - x1));
  mu = y1 - lam *x1; x3 = lam^2 + a[1]* lam - a[2] - x1 - x2;
  [x3, -(lam + a[1])* x3 - mu - a[3]];
 }
@@ -853,13 +853,13 @@ t;
 
 {
 ellisumn(z,P,Q,n)=local(lam, mu, x3, x1, y1, x2, y2,den,fat,a);
- if(P == [0], return(Q)); if(Q == [0], return(P)); 
+ if(P == [0], return(Q)); if(Q == [0], return(P));
  a=z*Mod(1,n);
- x1 = Mod(P[1],n); x2 = Mod(Q[1],n); y1 = Mod(P[2],n); 
+ x1 = Mod(P[1],n); x2 = Mod(Q[1],n); y1 = Mod(P[2],n);
  y2 = Mod(Q[2],n);if(x1==x2&&y1==-y2,return([0]));
  if(P == Q, den=(2* y1 + a[1]* x1 + a[3]); fat=gcd(n,lift(den)); if(fat>1 && fat!=n,return(fat));
- lam = (3*x1^2 + 2*a[2]*x1 + a[4] - a[1]* y1)*den^-1,den= (x2 - x1); fat=gcd(n,lift(den)); if(fat>1 && fat!=n,return(fat)); 
- lam = (y2 - y1)*den^-1); 
+ lam = (3*x1^2 + 2*a[2]*x1 + a[4] - a[1]* y1)*den^-1,den= (x2 - x1); fat=gcd(n,lift(den)); if(fat>1 && fat!=n,return(fat));
+ lam = (y2 - y1)*den^-1);
  mu = y1 - lam *x1; x3 = lam^2 + a[1]* lam - a[2] - x1 - x2;
  lift([x3, -(lam + a[1])* x3 - mu - a[3]]);
 }
@@ -917,7 +917,7 @@ return(lift(punti))}
 ellpunti2(a,b,p)=local(e,i,x,s,punti,g,q1,q2);
 e=ellinit([0,0,0,a,b]);
 punti=[];
-for(i=0, p-1, x=Mod(i,p); 
+for(i=0, p-1, x=Mod(i,p);
               s=x^3+a*x+b;
               if(kronecker(lift(s),p)==1,g=s^(1/2); q1=[x,g];
                                           q2=[x,-g];
@@ -928,7 +928,7 @@ return(lift(punti))}
 
 {
 	ellord(z,p)=p+1-ellap(ellinit(z),p)
-}	
+}
 
 {fconv(a)=local(n,p,q,pa,pb,qa,qb,lp,lq);n=length(a);pb=1;pa=a[1];lp=[pa];qb=0;qa=1;lq=[qa];for(i=2,n,p=a[i]*pa+pb;q=a[i]*qa+qb;lp=concat(lp,p);
 lq=concat(lq,q);pb=pa;pa=p;qb=qa;qa=q);return([lp,lq])}
@@ -943,8 +943,8 @@ lq=concat(lq,q);pb=pa;pa=p;qb=qa;qa=q);return([lp,lq])}
 \\______________________________________________
 \\______________________________________________es 1
 
-\\ Lez 12 Es 1: prodotto di due 
-\\ Input: 
+\\ Lez 12 Es 1: prodotto di due
+\\ Input:
 \\ Output:
 {
 prodd(d,a,b)=local(ris);
@@ -966,7 +966,7 @@ for(j=1,l-1,R=V[l-j]+1/R);
 R;
 }
 
-\\ Lez 12 Es 2: da frazione (o eventualmente irrazionale) a frazione continua corrispondente 
+\\ Lez 12 Es 2: da frazione (o eventualmente irrazionale) a frazione continua corrispondente
 \\ Input: F frazione
 \\ Output: V vettore corrispondente alla frazione continua di F
 {
@@ -985,8 +985,8 @@ if(n==1, return(V[1]*V[2]+1) );
 if(n > 1, return( V[n+1]*cfracspn(V,n-1) + cfracspn(V,n-2)) );
 }
 
-\\ Lez 12 Es 2: il vettore dei p_n della frazione continua V 
-\\ Input: 
+\\ Lez 12 Es 2: il vettore dei p_n della frazione continua V
+\\ Input:
 \\ Output:
 {
 cfracpn(V)=local(l,R);
@@ -997,7 +997,7 @@ R;
 }
 
 \\ Lez 12 Es 2: i singoli q_n della frazioni continue V
-\\ Input: 
+\\ Input:
 \\ Output:
 {
 cfracsqn(V,n)=local();
@@ -1006,8 +1006,8 @@ if(n==1, return(V[2]) );
 if(n > 1, return( V[n+1]*cfracsqn(V,n-1) + cfracsqn(V,n-2)) );
 }
 
-\\ Lez 12 Es 2: il vettore dei q_n della frazione continua V 
-\\ Input: 
+\\ Lez 12 Es 2: il vettore dei q_n della frazione continua V
+\\ Input:
 \\ Output:
 {
 cfracqn(V)=local(l,R);
@@ -1028,7 +1028,7 @@ R;
 }
 
 \\ Lez 12 Es 2: sviluppo Qn
-\\ Input: 
+\\ Input:
 \\ Output:
 {
 ricQn(d,n)=local();
@@ -1037,7 +1037,7 @@ if(n > 0, return((d-ricPn(d,n-1)^2)/(ricQn(d,n-1))  ) );
 }
 
 \\ Lez 12 Es 2: sviluppo Pn
-\\ Input: 
+\\ Input:
 \\ Output:
 {
 ricPn(d,n)=local();
@@ -1046,7 +1046,7 @@ if(n > 0, return(floor((ricPn(d,n-1)+sqrt(d))/(ricQn(d,n-1)))*ricQn(d,n-1)+ricPn
 }
 
 \\ Lez 12 Es 2: sviluppo x con n
-\\ Input: 
+\\ Input:
 \\ Output:
 {
 xconn(d,n)=local();
@@ -1054,7 +1054,7 @@ return( (ricPn(d,n-1) + sqrt(d))/(ricQn(d,n-1))   );
 }
 
 \\ Lez 12 Es 2: sviluppo a con n
-\\ Input: 
+\\ Input:
 \\ Output:
 {
 aconn(d,n)=local();
@@ -1062,7 +1062,7 @@ return( floor(xconn(d,n)));
 }
 
 \\ Lez 12 Es 2: quozienti parziali di sqrt d fino a mass
-\\ Input: 
+\\ Input:
 \\ Output:
 {
 seqaconn(d,mass)=local(R);
@@ -1072,7 +1072,7 @@ R;
 }
 
 \\ Lez 12 Es 2: sviluppo Pn
-\\ Input: 
+\\ Input:
 \\ Output:
 {
 ricPn1(d,n)=local();
@@ -1081,7 +1081,7 @@ if(n > 0, return(floor((ricPn(d,n-1)+floor(sqrt(d)))/(ricQn(d,n-1)))*ricQn(d,n-1
 }
 
 \\ Lez 12 Es 2: sviluppo x con n
-\\ Input: 
+\\ Input:
 \\ Output:
 {
 xconn1(d,n)=local();
@@ -1091,10 +1091,10 @@ return( (ricPn(d,n-1) + floor(sqrt(d)))/(ricQn(d,n-1))   );
 \\______________________________________________
 \\______________________________________________ es 2
 
-\\ Lez 12 Es 2: rad 
+\\ Lez 12 Es 2: rad
 \\ Input: riceve d intero non quadrato
 \\ Output: sequenza dei quozienti parziali ak di sqrt d con l'algoritmo di Lagrange
-\\         lo sviluppo di un irrazionale quadratico e' periodico.  
+\\         lo sviluppo di un irrazionale quadratico e' periodico.
 
 {
 rad(d)=local(a,P,Q,s,v);
@@ -1113,9 +1113,9 @@ return(a);
 \\_______________________________________________
 \\ Subordinate a rad:
 
-\\ Lez 12 Es 2: Rad trova la lunghezza del periodo di contfrac(sqrt(d)) 
+\\ Lez 12 Es 2: Rad trova la lunghezza del periodo di contfrac(sqrt(d))
 \\ Input: riceve d intero non quadrato
-\\ Output: lungh periodo di contfrac(sqrt(d))  
+\\ Output: lungh periodo di contfrac(sqrt(d))
 {
 LunghPeriRad(d)=local(V,i,Per);
 V=contfrac(sqrt(d));
@@ -1124,9 +1124,9 @@ while(V[Per+1]!=2*V[1],Per=Per+1);
 Per;
 }
 
-\\ Lez 12 Es 2: Rad trova rad senza usare l'algoritmo di Lagrange, ma usando contfrac 
+\\ Lez 12 Es 2: Rad trova rad senza usare l'algoritmo di Lagrange, ma usando contfrac
 \\ Input: riceve d intero non quadrato
-\\ Output: contfrac(sqrt(d)) con solo 1 periodo 
+\\ Output: contfrac(sqrt(d)) con solo 1 periodo
 {
 rad2(d)=local(V,i,R);
 V=contfrac(sqrt(d));
@@ -1136,10 +1136,10 @@ while(V[i]!=2*V[1],R=concat(R,V[i+1]);i=i+1);
 R;
 }
 
-\\ Lez 12 Es 2: Rad trova rad senza usare l'algoritmo di Lagrange, 
-\\              ma usando contfrac e LunghPeriRad 
+\\ Lez 12 Es 2: Rad trova rad senza usare l'algoritmo di Lagrange,
+\\              ma usando contfrac e LunghPeriRad
 \\ Input: riceve d intero non quadrato
-\\ Output: contfrac(sqrt(d)) con solo 1 periodo 
+\\ Output: contfrac(sqrt(d)) con solo 1 periodo
 {
 Rad(d)=local();
 if(issquare(d)==1,return(contfrac(sqrt(d))) ,
@@ -1147,9 +1147,9 @@ if(issquare(d)==1,return(contfrac(sqrt(d))) ,
 );
 }
 
-\\ Lez 12 Es 2: Restituisce solo il periodo senza l'antiperiod 
+\\ Lez 12 Es 2: Restituisce solo il periodo senza l'antiperiod
 \\ Input: riceve d intero non quadrato
-\\ Output: contfrac(sqrt(d)) con solo 1 periodo 
+\\ Output: contfrac(sqrt(d)) con solo 1 periodo
 {
 PeriRad(d)=local();
 vector(LunghPeriRad(d),j,contfrac(sqrt(d))[j+1]);
@@ -1176,8 +1176,8 @@ if(lungh%2==0,return([X[lungh],Y[lungh]]),
 \\________________________________________________
 \\________________________________________________ es 4
 
-\\ Lez 12 Es 4: interplus applica n volte la matrice 
-\\              [floor(sqrt(d)),d;1,floor(sqrt(d))] al vettore [1;0] 
+\\ Lez 12 Es 4: interplus applica n volte la matrice
+\\              [floor(sqrt(d)),d;1,floor(sqrt(d))] al vettore [1;0]
 \\ Input: d intero n numero iteazioni
 \\ Output: restituisce la storia dei prodotti.
 {
@@ -1188,15 +1188,15 @@ for(j=1,n, R=concat(R,[floor(sqrt(d)),d;1,floor(sqrt(d))]^j*[1;0]) );
 R;
 }
 
-\\ Lez 12 Es 4: interplus1 come sopra, ma senza storia, solo il risultato 
-\\ Input: 
+\\ Lez 12 Es 4: interplus1 come sopra, ma senza storia, solo il risultato
+\\ Input:
 \\ Output:
 {
 interplus1(d,n)=local(R);
 [floor(sqrt(d)),d;1,floor(sqrt(d))]^n*[1;0];
 }
 
-\\ Lez 12 Es 4: interplus come frazioni 
+\\ Lez 12 Es 4: interplus come frazioni
 \\ Input: d,n come in interplus
 \\ Output: anziché la matrice rest. frazioni.
 {
@@ -1222,15 +1222,15 @@ for(j=1,lim,
 R;
 }
 
-\\ Lez 12 Es 5: ausiliario condizione (b) Theorem Plus 
+\\ Lez 12 Es 5: ausiliario condizione (b) Theorem Plus
 \\ Input: h
-\\ Output: calcola 
+\\ Output: calcola
 {
 ausplus(h)=local();
 2*floor(sqrt(h))/(h-floor(sqrt(h))^2);
 }
 
-\\ Lez 12 Es 5: determinare i d tali che lo sviluppo ordinario in 
+\\ Lez 12 Es 5: determinare i d tali che lo sviluppo ordinario in
 \\              frazioni continue di sqrt(d) abbia periodo minore di 2:
 \\              uso la condizione b del teorema Plus
 \\ Input: n
@@ -1247,7 +1247,7 @@ R;
 
 \\ congettura 1
 
-\\ Lez 12 Es 6: skip 2 pick 3 
+\\ Lez 12 Es 6: skip 2 pick 3
 \\ Input: V vettore
 \\ Output: R vettore con skip 2 pick 3 di V dal primo elemento incluso
 \\         torna indietro dal pivot V[5k+1] K=1
@@ -1259,7 +1259,7 @@ forstep(j=6,length(V),5,R=concat(R,[V[j-2],V[j-1],V[j]]));
 R;
 }
 
-\\ Lez 12 Es 6: skip 2 pick 3 
+\\ Lez 12 Es 6: skip 2 pick 3
 \\ Input: V vettore
 \\ Output: R vettore con skip 2 pick 3 di V dal primo elemento incluso
 \\         va in avanti dal pivot V[5k+1] k=0
@@ -1271,7 +1271,7 @@ forstep(j=1,length(V)-5,5,R=concat(R,[V[j+3],V[j+4],V[j+5]]));
 R;
 }
 
-\\ Lez 12 Es 6: skip 2 pick 1, skip 2 pick 3 
+\\ Lez 12 Es 6: skip 2 pick 1, skip 2 pick 3
 \\ Input: V vettore
 \\ Output: R vettore con skip 2 pick 1, skip 2 pick 3 di V dal primo elemento incluso
 {
@@ -1282,9 +1282,9 @@ forstep(j=9,length(V),8,R=concat(R,[V[j-5],V[j-2],V[j-1],V[j]]));
 R;
 }
 
-\\ Si in avanti che indietro funzionano correttamente, ma 
+\\ Si in avanti che indietro funzionano correttamente, ma
 \\ solo con vettori sufficientemete lunghi. Aumento i periodi
-\\questo però appesantisce troppo i calcoli 
+\\questo però appesantisce troppo i calcoli
 \\in caso di periodi troppo lunghi. Sarebbe da migliorare.
 
 \\ Lez 12 Es 6: approssimazione pn/qn per rad(d)
@@ -1300,7 +1300,7 @@ for(j=1,length(P),R[j]=P[j]/Q[j]);
 R;
 }
 
-\\ Lez 12 Es 6: confronto la frazione continua e la matrice convergente  
+\\ Lez 12 Es 6: confronto la frazione continua e la matrice convergente
 \\ Input: d intero squarefree
 \\ Output: convergenza frazione continua e matrice convergente
 \\         uso approxv e finterplus di sqrt(d)
@@ -1311,7 +1311,7 @@ B=finterplus(d,length(A));
 return([A;B]);
 }
 
-\\ Lez 12 Es 6: confronto applicando s2p3i o s2p1s2p3  
+\\ Lez 12 Es 6: confronto applicando s2p3i o s2p1s2p3
 \\ Input: d intero squarefree che soddisfi alla condizione di conjecture 1
 \\ Output: valuta i due vettori della congettura
 {
@@ -1333,7 +1333,7 @@ floor(a)+1;
 }
 
 
-\\ Lez 12 Es 7: tassello dello sviluppo f.c. minus 
+\\ Lez 12 Es 7: tassello dello sviluppo f.c. minus
 \\ Input: a
 \\ Output: 1/(ceilm(a)-a)
 {
@@ -1341,7 +1341,7 @@ gaussm(a)=local();
 1/(ceilm(a)-a);
 }
 
-\\ Lez 12 Es 7: i primi n termini dello sviluppo di a in f c minus 
+\\ Lez 12 Es 7: i primi n termini dello sviluppo di a in f c minus
 \\ Input: a numero da sviluppare in f c, n numero di termini in f c
 \\ Output: fc minus di a con n termini
 \\         uso Beta come vettore parallelo seguendo pag 4 senza ricorsione.
@@ -1364,7 +1364,7 @@ B;
 \\________________________________________________ es 8
 
 
-\\ Lez 12 Es 8: calcolo degli Rn di minus 
+\\ Lez 12 Es 8: calcolo degli Rn di minus
 \\ Input: V vettore
 \\ Output: vettore degli Rn
 {
@@ -1376,7 +1376,7 @@ for(i=3,l,R[i]=V[i-2]*R[i-1]+R[i-2]);
 R;
 }
 
-\\ Lez 12 Es 8: calcolo degli Sn di minus 
+\\ Lez 12 Es 8: calcolo degli Sn di minus
 \\ Input: V vettore
 \\ Output: vettore degli Sn
 {
@@ -1388,7 +1388,7 @@ for(i=3,l,S[i]=V[i-2]*S[i-1]+S[i-2]);
 S;
 }
 
-\\ Lez 12 Es 8: 
+\\ Lez 12 Es 8:
 \\ Input: V sviluppo minus di un valore a
 \\ Output: relativi Rk ed Sk dello sviluppo
 {
@@ -1417,15 +1417,15 @@ if(n > 1, return(V[n-1]*ricmS(V,n-1)-ricmS(V,n-2)  ));
 \\________________________________________________
 \\________________________________________________ es 9
 
-\\ Lez 12 Es 5: ausiliario condizione (b) Theorem Minus 
+\\ Lez 12 Es 5: ausiliario condizione (b) Theorem Minus
 \\ Input: h
-\\ Output: calcola 
+\\ Output: calcola
 {
 ausminus(h)=local();
 2*ceilm(sqrt(h))/(ceilm(sqrt(h))^2-h);
 }
 
-\\ Lez 12 Es 5: determinare i d tali che lo sviluppo ordinario in 
+\\ Lez 12 Es 5: determinare i d tali che lo sviluppo ordinario in
 \\              frazioni continue di sqrt(d) abbia periodo minore di 2:
 \\              uso la condizione b del teorema Plus
 \\ Input: n intero

@@ -52,27 +52,27 @@ circolator(V) = local(l, M, i);
 return (M);
 }
 
-\\input: array intmod 
+\\input: array intmod
 \\output: soluzione mediante teorema cinese dei resti
 \\ generalizza chinese ad un vettore di n intmod
 {
 cinese(lista) = local(n, u, v);
    n = length(lista);
    u = chinese(lista[1],lista[2]);
-   for(i = 3, n, 
+   for(i = 3, n,
       v = chinese(u,lista[i]); u = v
    );
 return(u);
 }
 
-\\input: V vettore, x lemento che compare nel vettore 
+\\input: V vettore, x lemento che compare nel vettore
 \\output: vettore delle posizioni di x nel vettore V
 {
 position(V,x) = local(l, ans);
    l = length(V);
    ans = [];
-   for(i = 1, l, 
-      if(V[i] == x, 
+   for(i = 1, l,
+      if(V[i] == x,
          ans = concat(ans,i)
       )
    );
@@ -110,8 +110,8 @@ return(vector(n, j, j));
 perm2mat(a) = local(n, M, i, j);
 n = length(a);
 M = matrix(n,n);
-for(j=1, n, 
-   for(i=1, n, 
+for(j=1, n,
+   for(i=1, n,
       if(a[i] == j, M[i,j] = 1 )
    );
 );
@@ -154,7 +154,7 @@ cicli(g) = local(l, ciclo, ans, s, ini, j, cont);
 l = length(g);
 s = vector(l,j,j);
 ans = [];
-while(length(s) > 0, 
+while(length(s) > 0,
    ini = s[1];
    cont = ini;
    ciclo = [cont];
@@ -211,9 +211,9 @@ if(n < m,
 );
 }
 
-\\input: p1, p2, polinomi a,b in x, 
-\\       di grado <= n-1, n intero positivo 
-\\output: p1*p2 mod x^n-1 
+\\input: p1, p2, polinomi a,b in x,
+\\       di grado <= n-1, n intero positivo
+\\output: p1*p2 mod x^n-1
 {
 moltpoln(a, b, n) = local(p1, p2);
    p1 = Mod(a, x^n - 1);
@@ -221,7 +221,7 @@ moltpoln(a, b, n) = local(p1, p2);
 return(lift(p1*p2));
 }
 
-\\input: M matrice circolante 
+\\input: M matrice circolante
 \\output: polinomio che la rappresenta
 {
 mat2pol(M) = local(ans);
@@ -242,7 +242,7 @@ return(circolator(ans));
 \\---------------------
 
 \\input: n intero, p primo: n divide p-1
-\\output: radice primitiva n-esima modulo p primo; 
+\\output: radice primitiva n-esima modulo p primo;
 {
 primerootnp(n,p) = local(z);
    if( gcd(n,p) !=1 || !isprime(p) ,return(0));
@@ -275,9 +275,9 @@ reutrn(s^(-1)*M);
 \\ algebra Rn,p
 \\-----------------------
 
-\\input: a,b,p polinomi in una stessa variabile, 
+\\input: a,b,p polinomi in una stessa variabile,
 \\       n un intero positivo.
-\\output: a*b mod p , a coeff in Zn. 
+\\output: a*b mod p , a coeff in Zn.
 {
 moltp(a,b,p,n)=local(p1,p2);
    p1 = Mod(Mod(1,n)*a,p);
@@ -290,10 +290,10 @@ return( lift(lift(p1*p2)) );
 moltnp(a,b,n,p) = moltp(a,b,x^n-1,p)
 }
 
-\\input: a,b polinomi in una stessa variabile, 
+\\input: a,b polinomi in una stessa variabile,
 \\       e esponente, n un intero positivo.
 \\ e può essere negativo, se a è coprimo con p
-\\output: a^e mod p , a coeff in Zn. 
+\\output: a^e mod p , a coeff in Zn.
 {
 potp(a,e,p,n) = local(p1);
    p1 = Mod(Mod(1,n)*a,p);
@@ -305,7 +305,7 @@ return( lift(lift(p1^e)) );
 potnp(a,e,n,p)=potp(a,e,x^n-1,p)
 }
 
-\\input: a,b polinomi in una stessa variabile, 
+\\input: a,b polinomi in una stessa variabile,
 \\       p primo
 \\output: mcd tra due polinomi a, b in Zp[x]
 {
@@ -315,8 +315,8 @@ mcdp(a,b,p)=local(p1, p2);
 return(lift(gcd(p1,p2)));
 }
 
-\\input: ap array di polinomi, mp array dei relativi moduli 
-\\       p modulo. 
+\\input: ap array di polinomi, mp array dei relativi moduli
+\\       p modulo.
 \\output: polinomio soluzione con il tcr
 {
 tcrp(ap, am, p) = local(n, u, v);

@@ -2,13 +2,13 @@ Comodità: (non è da implementare nella tesi, solo per copiare rapidamente le
 righe di codice che servono man mano!)
 
 \begin{align*}
-C = 
+C =
 \left(
 \begin{array} {c c c c }
 a_0 & a_1 & \dots & a_{r-1}   \\
 a_{r-1} & a_0 & \dots & a_{r-2}   \\
 \vdots & \vdots &  & \vdots   \\
-a_{1} & a_2 & \dots & a_{0}   \\       
+a_{1} & a_2 & \dots & a_{0}   \\
 \end{array}
 \right)
 \end{align*}
@@ -22,14 +22,14 @@ $, per $\mathbf{a} = (a_0, a_1, \dots, a_{r-1} )$
 a_{i}
 
 \begin{array} {c c c }
-a_0 & a_1 & a_2    
+a_0 & a_1 & a_2
 \end{array}
-\right) 
+\right)
 \left(
 \begin{array} {c c c}
 b_0 & b_1 & b_2   \\
 b_2 & b_0 & b_1   \\
-b_1 & b_2 & b_0        
+b_1 & b_2 & b_0
 \end{array}
 \right)
 \end{align*}
@@ -37,12 +37,12 @@ b_1 & b_2 & b_0
 a_0 + a_1 g + a_2 g^2 + \dots + a_{r-1} g^{r-1}
 
 
- a = a_0 + a_1 g + a_2 g^2 + \dots + a_{r-1} g^{r-1} 
+ a = a_0 + a_1 g + a_2 g^2 + \dots + a_{r-1} g^{r-1}
  \qquad
  b = b_0 + b_1 g + b_2 g^2 + \dots + b_{r-1} g^{r-1}
- 
- 
- a(x) = a_{0} + a_{1}x+ a_{2}x^2 = (a_{0}, a_{1},a_{2}) 
+
+
+ a(x) = a_{0} + a_{1}x+ a_{2}x^2 = (a_{0}, a_{1},a_{2})
  \qquad
  b(x) = b_{0} + b_{1}x+ b_{2}x^2 = (b_{0}, b_{1},b_{2})
 
@@ -70,9 +70,9 @@ $G = Gal(\mathbb{F}(\xi), \mathbb{F}))$
 
 
 \begin{align*}
-\mathfrak{X}(M) \times \mathcal{C}^{\infty}(M) & \longrightarrow 
+\mathfrak{X}(M) \times \mathcal{C}^{\infty}(M) & \longrightarrow
 \mathcal{C}^{\infty}(M) &   \\
-   (X,f) &\longmapsto  Xf  : \mathcal{C}^{\infty}(M)  \longrightarrow  
+   (X,f) &\longmapsto  Xf  : \mathcal{C}^{\infty}(M)  \longrightarrow
 \mathbb{R} \\
                                               & \qquad \qquad \qquad \quad p
 \longmapsto (Xf)(p) = X_{p}f
@@ -122,10 +122,10 @@ $G = Gal(\mathbb{F}(\xi), \mathbb{F}))$
 
  $\arrowvert \cdot \arrowvert$ la cardinalità di un insieme
 
-H \trianglelefteq \mathbb{Z}_{r}^{\star} 
-\mathfrak{a} \trianglelefteq \mathcal{R}_{r,q} 
+H \trianglelefteq \mathbb{Z}_{r}^{\star}
+\mathfrak{a} \trianglelefteq \mathcal{R}_{r,q}
 $v \in \mathscr{L}$
-\mathcal{R}_{r,q} 
+\mathcal{R}_{r,q}
 $\mathbb{F}_{q}$
 
 
@@ -148,11 +148,11 @@ $\mathbb{F}_{q}$
    \begin{itemize}
    \item[$\Rightarrow$)]
    \begin{align*}
-     
+
    \end{align*}
-   \item[$\Leftarrow$)] 
+   \item[$\Leftarrow$)]
    \begin{align*}
-     
+
    \end{align*}
 \end{itemize}
 \end{proof}
@@ -162,25 +162,25 @@ $\mathbb{F}_{q}$
 
     \begin{align*}
       \sigma :S  &\longrightarrow \mathbb{P}^{\mathbb{C}} \\
-      \sigma(p) &\longmapsto  
+      \sigma(p) &\longmapsto
       \left\{ \begin{array}{l l}
                  a & b \\
                  c & d
-              \end{array} \right. 
-    \end{align*} 
-    
-    
-    
-    
-    
+              \end{array} \right.
+    \end{align*}
+
+
+
+
+
     In parallelo alla definizione delle mappe $I$ e $V$ della geometria algebrica che agiscono fra insiemi algebrici affini dello spazio affine $n$-dimensionale e ideali dell'anello dei polinomi ad $n$ indeterminate\footnote{Presentate ad esempio in .} possiamo definire due corrispondenze nel contesto che stiamo esaminando:
 \begin{align*}
-   I: \mathcal{P}(\mathscr{L})  &\longrightarrow  
+   I: \mathcal{P}(\mathscr{L})  &\longrightarrow
                        \lbrace \mathfrak{a} \mid \mathfrak{a} \trianglelefteq \mathcal{R}_{r,q} \rbrace  \\
               A &\longmapsto I(A) = (\prod_{v\in A} M^{(v)}(x)) = \mathfrak{a}_{A} \\
-   V: \lbrace \mathfrak{a} \mid \mathfrak{a} \trianglelefteq \mathcal{R}_{r,q} \rbrace  &\longrightarrow   
+   V: \lbrace \mathfrak{a} \mid \mathfrak{a} \trianglelefteq \mathcal{R}_{r,q} \rbrace  &\longrightarrow
 	                \mathcal{P}(\mathscr{L})  \\
-              (\prod_{v\in A} M^{(v)}(x)) = \mathfrak{a}_{A}  &\longmapsto V(\mathfrak{a}_{A}) = A 
+              (\prod_{v\in A} M^{(v)}(x)) = \mathfrak{a}_{A}  &\longmapsto V(\mathfrak{a}_{A}) = A
 \end{align*}
 dove con $\mathcal{P}(\mathscr{L})$ intendiamo l'insieme delle parti dell'insieme delle etichette.\\
 
@@ -203,7 +203,7 @@ Cominciamo il paragrafo esaminando un esempio:
    \end{align*}
    Indicando con $\mathscr{F}_{s(x)}(j)$, per $j$ intero non negativo, il suo $j$-esimo elemento, allora $\mathscr{F}_{s(x)}$ è caratterizzato dall'equazione
    \begin{align*}
-      \mathscr{F}_{s(x)} (j) = \mathscr{F}_{s(x)} (j-7) \qquad \forall j \geq 7 
+      \mathscr{F}_{s(x)} (j) = \mathscr{F}_{s(x)} (j-7) \qquad \forall j \geq 7
    \end{align*}
    Variando $s(x)$ in $\mathcal{R}_{7,2}$, l'insieme costituito da tutti i vettori di lunghezza infinita $\mathscr{F}_{s(x)}$ è uno spazio vettoriale isomorfo a $\mathbb{F}_{2}^{7}$ ed è un'algebra isomorfa a $\mathcal{R}_{7,2}$ se dotata del prodotto di convoluzione in modo naturale.\\
    Da un altro punto di vista, il vettore $\psi_{2}(s(x))$ definisce una funzione da $\mathbb{Z}_{7}$ in $\mathbb{F}_{2}$ che associa ad ogni $j$ in $\mathbb{Z}_{7}$ il $j$-esimo elemento del vettore $\psi_{2}(s(x))$, indicato con $s_j$. Tale funzione può essere considerata anche da $\mathbb{Z}$ in $\mathbb{F}_{2}$; in questo caso a $j \in \mathbb{Z}$ è associato il $j$-esimo elemento di una stringa infinita costruita ripetendo il vettore $\psi_{2}(s(x))$.\\
@@ -216,17 +216,17 @@ Cominciamo il paragrafo esaminando un esempio:
 \end{esempio}
 Giocando su vettori e stringhe, nel precedente esempio abbiamo costruito due algebre
    \begin{align*}
-      \mathscr{F} &= \lbrace  \mathscr{F}_{s(x)} \mid s(x) \in \mathcal{R}_{7,2} \rbrace \\ 
+      \mathscr{F} &= \lbrace  \mathscr{F}_{s(x)} \mid s(x) \in \mathcal{R}_{7,2} \rbrace \\
       \mathscr{I} &= \lbrace f:\mathbb{Z} \rightarrow  \mathbb{F}_{2} \mid f(j) = \mathscr{I}_{s(x)}(j) \rbrace
    \end{align*}
-le quali, oltre ad essere due ulteriori varianti di $\mathcal{R}_{7,2}$, sono un caso particolare di successioni lineari ricorrenti $7$-periodiche e di funzioni lineari $7$-periodiche, che introdurremo in questo paragrafo\footnote{Per una esposizione completa delle successioni lineari ricorrenti sui campi finiti \cite{lidl} pagine 190 e seguenti.}. 
+le quali, oltre ad essere due ulteriori varianti di $\mathcal{R}_{7,2}$, sono un caso particolare di successioni lineari ricorrenti $7$-periodiche e di funzioni lineari $7$-periodiche, che introdurremo in questo paragrafo\footnote{Per una esposizione completa delle successioni lineari ricorrenti sui campi finiti \cite{lidl} pagine 190 e seguenti.}.
 \begin{definizione}
    Siano $\mathbf{s} = (s_0, s_1, \dots , s_{r-1})$ vettore dei {\bf valori iniziali} ed $\mathbf{a} = (a_0, a_1, \dots , a_{r-1})$ vettore dei {\bf coefficienti}, elementi di $\mathcal{V}_{r, q}^{c}$, allora una successione $F_{j} = F_{n}(\mathbf{a},\mathbf{s})$ che soddisfa la relazione di ricorrenza
    \begin{displaymath}
-     \left\{ 
-     \begin{array}{l c} 
+     \left\{
+     \begin{array}{l c}
      F_{j}(\mathbf{a},\mathbf{s}) = s_{j} & 0 \leq j \leq r-1 \\
-      F_{j}(\mathbf{a},\mathbf{s}) = \sum_{k=0}^{r-1} a_{k} F_{j-r+k}(\mathbf{a},\mathbf{s})  & n \geq r 
+      F_{j}(\mathbf{a},\mathbf{s}) = \sum_{k=0}^{r-1} a_{k} F_{j-r+k}(\mathbf{a},\mathbf{s})  & n \geq r
      \end{array}
      \right.
      \end{displaymath}
@@ -358,23 +358,23 @@ Cosa accade se anziché considerare $Rec(x^r-1)$, consideriamo $Rec(a(x))$ per $
 \enddc
 \]
 
-con 
+con
 \begin{align*}
   \mathcal{A}_{r,q}
   &:=
-  \mathbb{F}_{q}C_{r} 
+  \mathbb{F}_{q}C_{r}
 \\
-  \mathcal{P}_{r,q} 
+  \mathcal{P}_{r,q}
   &=  \prod_{v \in \mathscr{L}} \mathcal{P}_{v}
   := \prod_{v \in \mathscr{L}} \mathbb{F}_{q}(\xi^{v}) %= \mathbb{F}_{q}(\xi)
 \\
-  \mathcal{Q}_{r,q} 
+  \mathcal{Q}_{r,q}
   &=  \prod_{v \in \mathscr{L}} \mathcal{Q}_{v}
-  := \prod_{v \in \mathscr{L}} \quotient{ \mathbb{F}_{q}[x] }{ M^{(v)}(x)} 
+  := \prod_{v \in \mathscr{L}} \quotient{ \mathbb{F}_{q}[x] }{ M^{(v)}(x)}
 \\
   \mathcal{R}_{r,q}
   &:=
-  \quotient{ \mathbb{F}_{q}[x] }{ (x^r -1 )} 
+  \quotient{ \mathbb{F}_{q}[x] }{ (x^r -1 )}
 \end{align*}
 
 
@@ -382,14 +382,14 @@ con
 
 
 
-   Seguendo una strada un po' meno comoda si può dimostrare che 
+   Seguendo una strada un po' meno comoda si può dimostrare che
    \begin{align*}
-      \delta :  \mathcal{V}_{r, \mathbb{F}}^{c}    
-      & \longrightarrow  
+      \delta :  \mathcal{V}_{r, \mathbb{F}}^{c}
+      & \longrightarrow
       \mathcal{V}_{r}^{\mathscr{L}}  \\
       %%
-      ( a_{j} )_{j = 0, \dots, r-1 } 
-      &\longmapsto  
-      ( a_{j} )_{j = 0, \dots, r-1 } 
+      ( a_{j} )_{j = 0, \dots, r-1 }
+      &\longmapsto
+      ( a_{j} )_{j = 0, \dots, r-1 }
   \end{align*}
   è un isomorfismo di algebre.

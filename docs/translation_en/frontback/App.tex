@@ -29,7 +29,7 @@ Con questa definizione si dimostra\footnote{Da \cite{cattaneo}, teoremi $4.36$ e
    Rimane da dimostrare che il polinomio minimo è proprio determinato dal prodotto $ \prod_{\beta \in C(\xi)} (x-\beta)$. \\
    Sia $M_{\xi}(x) = \sum_{j=0}^{t} m_{j}x^{j}$ definito come polinomio minimo di $\xi$. Dato che se $\xi$ è una sua radice, lo deve necessariamente essere anche $\xi^{p}$:
    \begin{align}\label{app:eq:alfaEalfa}
-       M_{\xi}(\xi^{p}) 
+       M_{\xi}(\xi^{p})
        &= \sum_{j=0}^{t} m_{j}(\xi^{p})^{j} = \sum_{j=0}^{t} m_{j}^{p}(\xi^{p})^{j} \\
        &= \sum_{j=0}^{t} (m_{j}\xi^{j})^{p} = (\sum_{j=0}^{t} m_{j}\xi^{j})^{p} \\
        &= (M_{\xi}(\xi))^{p} = 0
@@ -41,15 +41,15 @@ Con questa definizione si dimostra\footnote{Da \cite{cattaneo}, teoremi $4.36$ e
    La \ref{app:eq:alfaEalfa} è valida solo se si può affermare che $m_{j}^{p} = m_{j}$ cosa che accade solo dimostrando che $m_{j} \in \mathbb{F}_{q}$. Questo completa la dimostrazione: \\
    da un lato segue che
    \begin{align*}
-       (M_{\xi}(x))^{p} 
+       (M_{\xi}(x))^{p}
        &= \prod_{\beta \in C(\xi)} (x-\beta)^{p} = \prod_{\beta \in C(\xi)} (x^{p} -\beta^{p}) \\
        &= \prod_{\beta \in C(\xi)} (x^{p} -\beta) = (M_{\xi}(x^{p})) = \sum_{j=0}^{t} m_{j}x^{jp}
-   \end{align*}  
+   \end{align*}
    e d'altra parte
    \begin{align*}
        (M_{\xi}(x))^{p} =  \sum_{j=0}^{t} (m_{j}x^{j})^{p} =  \sum_{j=0}^{t} m_{j}^{p}x^{jp}
-   \end{align*}   
-   Pertanto $m_{j}^{p} = m_{j}$ ed $m_{j} \in  \mathbb{F}_{q}$.   
+   \end{align*}
+   Pertanto $m_{j}^{p} = m_{j}$ ed $m_{j} \in  \mathbb{F}_{q}$.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -65,7 +65,7 @@ Accenniamo al rapporto fra l'algebra $\mathcal{R}_{r,q}$ e le ricorrenze lineari
    \end{align*}
    Indicando con $\mathscr{F}_{s(x)}(j)$, per $j$ intero non negativo, il suo $j$-esimo elemento, allora $\mathscr{F}_{s(x)}$ è caratterizzato dall'equazione
    \begin{align*}
-      \mathscr{F}_{s(x)} (j) = \mathscr{F}_{s(x)} (j-7) \qquad \forall j \geq 7 
+      \mathscr{F}_{s(x)} (j) = \mathscr{F}_{s(x)} (j-7) \qquad \forall j \geq 7
    \end{align*}
    Variando $s(x)$ in $\mathcal{R}_{7,2}$, l'insieme costituito da tutti i vettori di lunghezza infinita $\mathscr{F}_{s(x)}$ è uno spazio vettoriale isomorfo a $\mathbb{F}_{2}^{7}$ ed è un'algebra isomorfa a $\mathcal{R}_{7,2}$ se dotata del prodotto di convoluzione in modo naturale.\\
    Da un altro punto di vista, il vettore $\psi_{2}(s(x))$ definisce una funzione da $\mathbb{Z}_{7}$ in $\mathbb{F}_{2}$ che associa ad ogni $j$ in $\mathbb{Z}_{7}$ il $j$-esimo elemento del vettore $\psi_{2}(s(x))$, indicato con $s_j$. Tale funzione può essere considerata anche da $\mathbb{Z}$ in $\mathbb{F}_{2}$; in questo caso a $j \in \mathbb{Z}$ è associato il $j$-esimo elemento di una stringa infinita anche verso sinistra costruita ripetendo il vettore $\psi_{2}(s(x))$.\\
@@ -78,20 +78,20 @@ Accenniamo al rapporto fra l'algebra $\mathcal{R}_{r,q}$ e le ricorrenze lineari
 \end{esempio}
 Giocando su vettori e stringhe, nel precedente esempio abbiamo costruito due algebre
    \begin{align*}
-      \mathscr{F} &= \lbrace  \mathscr{F}_{s(x)} \mid s(x) \in \mathcal{R}_{7,2} \rbrace 
+      \mathscr{F} &= \lbrace  \mathscr{F}_{s(x)} \mid s(x) \in \mathcal{R}_{7,2} \rbrace
                 = \lbrace f:\mathbb{Z}_{7}\rightarrow\mathbb{F}_{2} \mid f(j)=\mathscr{F}_{s(x)}(j) \rbrace
-      \\ 
-      \mathscr{I} &= \lbrace  \mathscr{I}_{s(x)} \mid s(x) \in \mathcal{R}_{7,2} \rbrace 
+      \\
+      \mathscr{I} &= \lbrace  \mathscr{I}_{s(x)} \mid s(x) \in \mathcal{R}_{7,2} \rbrace
            =\lbrace f:\mathbb{Z} \rightarrow  \mathbb{F}_{2} \mid f(j) = \mathscr{I}_{s(x)}(j) \rbrace
    \end{align*}
-le quali, oltre ad essere due ulteriori varianti di $\mathcal{R}_{7,2}$, sono un caso particolare di successioni lineari ricorrenti $7$-periodiche e di funzioni lineari $7$-periodiche, che introdurremo in questo paragrafo\footnote{Per una esposizione completa delle successioni lineari ricorrenti sui campi finiti: \cite{lidl} pagine 190 e seguenti.}. 
+le quali, oltre ad essere due ulteriori varianti di $\mathcal{R}_{7,2}$, sono un caso particolare di successioni lineari ricorrenti $7$-periodiche e di funzioni lineari $7$-periodiche, che introdurremo in questo paragrafo\footnote{Per una esposizione completa delle successioni lineari ricorrenti sui campi finiti: \cite{lidl} pagine 190 e seguenti.}.
 \begin{definizione}
    Siano $\mathbf{s} = (s_0, s_1, \dots , s_{r-1})$ vettore dei {\bf valori iniziali} ed $\mathbf{a} = (a_0, a_1, \dots , a_{r-1})$ vettore dei {\bf coefficienti}, elementi di $\mathcal{V}_{r, q}^{c}$, allora una successione $F_{j} = F_{n}(\mathbf{a},\mathbf{s})$ che soddisfa la relazione di ricorrenza
    \begin{displaymath}
-     \left\{ 
-     \begin{array}{l c} 
+     \left\{
+     \begin{array}{l c}
      F_{j}(\mathbf{a},\mathbf{s}) = s_{j} & 0 \leq j \leq r-1 \\
-      F_{j}(\mathbf{a},\mathbf{s}) = \sum_{k=0}^{r-1} a_{k} F_{j-r+k}(\mathbf{a},\mathbf{s})  & n \geq r 
+      F_{j}(\mathbf{a},\mathbf{s}) = \sum_{k=0}^{r-1} a_{k} F_{j-r+k}(\mathbf{a},\mathbf{s})  & n \geq r
      \end{array}
      \right.
      \end{displaymath}
@@ -180,31 +180,31 @@ Nell'esempio \ref{ese:ricorr1} abbiamo considerato la ricorrenza lineare avente 
    \end{align*}
    per come è stato definito il prodotto su $Rec(x^r-1)$.
 \end{proof}
-È stato dimostrato (\cite{cerruti} pag. $21$) che un ideale generato da $a(x)$ divisore di $x^r-1$ coincide con lo spazio delle ricorrenze lineari $r$-periodicheaventi polinomio caratteristico 
+È stato dimostrato (\cite{cerruti} pag. $21$) che un ideale generato da $a(x)$ divisore di $x^r-1$ coincide con lo spazio delle ricorrenze lineari $r$-periodicheaventi polinomio caratteristico
 \begin{align*}
    h(x) = \frac{\hat{a}(x)^{\perp}}{a_{0}}
-\end{align*} 
+\end{align*}
 ed inoltre l'ideale minimale $(M^{(v)}(x))$ è costituito da tutte le ricorrenze lineari $r$-periodiche aventi polinomio caratteristico $M^{(-v)}(x)$.\\
-Una ulteriore indagine potrebbe essere sviluppata per rispondere a questa domanda: 
+Una ulteriore indagine potrebbe essere sviluppata per rispondere a questa domanda:
 Cosa accade se anziché considerare $Rec(x^r-1)$, consideriamo $Rec(a(x))$ per $a(x)$ divisore di $\mathcal{R}$?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % %%%%%%%%%%%%%%%%%%%%%% SEZIONE    %%%%%%%%%%%%%%%%%%%%
 % \section{Diagonalizzazione a blocchi}
-% 
+%
 % Possiamo diagonalizzare una matrice circolante usando la trasformata di Fourier discreta. Valutando la trasformata di Winograd come caso particolare della trasformata di Fourier come ha fatto Winograd nella sua idea originale \cite{winograd}, oltre che come trasformazione lineare come fatto in questa tesi basata sull'articolo \cite{cerruti} possiamo ottenere il risultato che {\bf la trasformata di Winograd diagonalizza a blocchi una matrice circolante}. \\
-% 
+%
 % \subsection{Trasformata di Fourier discreta unitaria}
-% 
+%
 % In generale un segnale è una funzione discreta sui complessi $v(k)$ periodica di periodo $N$. Può quindi essere interpretata come una successione finita di $n$ punti complessi: $ (v_0, v_1, \dots, v_{n-1} )$.
 % La trasformata di Fourier dell'insieme di punti $v_n$ è una successione di punti complessi $ (V_0, V_1, \dots, V_{n-1} )$ derivata dalla prima successione attraverso la formula:
 % \begin{align*}
-% V_k = \frac{1}{n} \sum_{h=0}^{n-1} v_h e^{\frac{2\pi i k h}{n}} 
+% V_k = \frac{1}{n} \sum_{h=0}^{n-1} v_h e^{\frac{2\pi i k h}{n}}
 % \end{align*}
 % Da cui si ottiene che la funzione complessa discreta inizialmente data può essere scritta come sovrapposizione finita dei fasori, definiti come gli addendi della seguente sommatoria:
 % \begin{align*}
-% v_k = \sum_{h=0}^{n-1} V_h e^{ - \frac{2\pi i k h}{n}} 
+% v_k = \sum_{h=0}^{n-1} V_h e^{ - \frac{2\pi i k h}{n}}
 % \end{align*}
 % Quindi si può interpretare la trasformata discreta di Fourier come una funzione lineare dallo spazio vettoriale complesso in se stesso, che mappa un vettore di $n$ punti in un altro.
 % \begin{align*}
@@ -213,33 +213,33 @@ Cosa accade se anziché considerare $Rec(x^r-1)$, consideriamo $Rec(a(x))$ per $
 % &\mathcal{F}^{-1}(V_k) = \frac{1}{n} \sum_{h=0}^{n-1} v_h e^{ \frac{2\pi i k h}{n}}
 % \end{align*}
 % avendo indicato con $\mathcal{F}$ la trasformata di Fourier.
-% 
+%
 % \noindent
 % I coefficienti $e^{ \frac{2\pi i k h}{n}}$ sono detti fasi lineari e sono generate come potenze della radice primitiva $n-$esima dell'unità $\xi_{n} = e^{\frac{2\pi i}{n}}$. Si osserva che moltiplicando $v_k$ per una fase lineare si ottiene uno shift circolare dell'elemento. \\\\
 % \noindent
 % $\mathcal{F}$ e la sua inversa possono essere rappresentate in forma matriciale, come $F = (\overline{\xi}_{n}^{(i-1)(j-1)})_{i,j}$ ed  $F^{-1} =\frac{1}{n}(\xi_{n}^{(i-1)(j-1)})_{i,j}$:
 % \begin{align*}
-% \mathbf{v}^{t} = F \mathbf{V}^t  & & & \mathbf{V}^{t} = F^{-1} \mathbf{v}^t 
+% \mathbf{v}^{t} = F \mathbf{V}^t  & & & \mathbf{V}^{t} = F^{-1} \mathbf{v}^t
 % \end{align*}
-% 
+%
 % \begin{align*}
 % \left(
 % \begin{array} {c }
 % v_0\\
 % v_1\\
 % v_2\\
-% \vdots \\ 
-% v_{n-1} 
+% \vdots \\
+% v_{n-1}
 % \end{array}
 % \right)
-% = 
+% =
 % \left(
 % \begin{array} {c c c c c }
 % 1   &  1  &  1  & 1 & 1\\
 % 1 & \overline{\xi}_{n} & \overline{\xi}_{n}^{2} &\dots & \overline{\xi}_{n}^{n-1} \\
 % 1 & \overline{\xi}_{n}^{2} & \overline{\xi}_{n}^{4} &\dots & \overline{\xi}_{n}^{2(n-1)} \\
 % \vdots & & &  & \vdots \\
-% 1 & \overline{\xi}_{n}^{n-1} & \overline{\xi}_{n}^{2(n-1)} &\dots & \overline{\xi}_{n}^{(n-1)(n-1)} 
+% 1 & \overline{\xi}_{n}^{n-1} & \overline{\xi}_{n}^{2(n-1)} &\dots & \overline{\xi}_{n}^{(n-1)(n-1)}
 % \end{array}
 % \right)
 % \left(
@@ -247,8 +247,8 @@ Cosa accade se anziché considerare $Rec(x^r-1)$, consideriamo $Rec(a(x))$ per $
 % V_0\\
 % V_1\\
 % V_1\\
-% \vdots \\ 
-% V_{n-1} 
+% \vdots \\
+% V_{n-1}
 % \end{array}
 % \right)
 % \end{align*}
@@ -258,11 +258,11 @@ Cosa accade se anziché considerare $Rec(x^r-1)$, consideriamo $Rec(a(x))$ per $
 % V_0\\
 % V_1\\
 % V_2\\
-% \vdots \\ 
-% V_{n-1} 
+% \vdots \\
+% V_{n-1}
 % \end{array}
 % \right)
-% = 
+% =
 % \frac{1}{n}
 % \left(
 % \begin{array} {c c c c c }
@@ -270,7 +270,7 @@ Cosa accade se anziché considerare $Rec(x^r-1)$, consideriamo $Rec(a(x))$ per $
 % 1 & \xi_{n} & \xi_{n}^{2} &\dots & \xi_{n}^{n-1} \\
 % 1 & \xi_{n}^{2} & \xi_{n}^{4} &\dots & \xi_{n}^{2(n-1)} \\
 % \vdots & & &  & \vdots \\
-% 1 & \xi_{n}^{n-1} & \xi_{n}^{2(n-1)} &\dots & \xi_{n}^{(n-1)(n-1)} 
+% 1 & \xi_{n}^{n-1} & \xi_{n}^{2(n-1)} &\dots & \xi_{n}^{(n-1)(n-1)}
 % \end{array}
 % \right)
 % \left(
@@ -278,12 +278,12 @@ Cosa accade se anziché considerare $Rec(x^r-1)$, consideriamo $Rec(a(x))$ per $
 % v_0\\
 % v_1\\
 % v_1\\
-% \vdots \\ 
-% v_{n-1} 
+% \vdots \\
+% v_{n-1}
 % \end{array}
 % \right)
 % \end{align*}
-% Dove $F$ è detta matrice della trasformata di Fourier, ed $F^{-1}$ è la sua inversa. 
+% Dove $F$ è detta matrice della trasformata di Fourier, ed $F^{-1}$ è la sua inversa.
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% lemma
 % \begin{lemmax}
 %  Sia $ \lbrace \xi_{n}^{j} \rbrace_{j \in \mathbb{Z}_{n} }$ insieme delle potenze $n-$esime della radice primitiva dell'unità, allora
@@ -298,7 +298,7 @@ Cosa accade se anziché considerare $Rec(x^r-1)$, consideriamo $Rec(a(x))$ per $
 % \end{align*}
 % Per $z = \xi_{n}$.
 % \end{proof}
-% 
+%
 % \noindent
 % Dal lemma si verfica che $F^{-1}$ è l'inversa anche nel senso dell'algebra lineare.
 % \begin{align*}
@@ -306,13 +306,13 @@ Cosa accade se anziché considerare $Rec(x^r-1)$, consideriamo $Rec(a(x))$ per $
 % \left\lbrace
 % \begin{array} {c l}
 % 1 & i=j  \\
-% 0 & altrimenti       
+% 0 & altrimenti
 % \end{array}
 % \right.
 % \end{align*}
-% 
+%
 % \noindent
-% Indicando con $F^{\star}$la coniugata della trasposta di $F$, si può inoltre osservare che  
+% Indicando con $F^{\star}$la coniugata della trasposta di $F$, si può inoltre osservare che
 % \begin{align*}
 % F^{-1} =  \frac{1}{n} F^{\star} & & F F^{\star} = n I_{n}
 % \end{align*}
@@ -320,21 +320,21 @@ Cosa accade se anziché considerare $Rec(x^r-1)$, consideriamo $Rec(a(x))$ per $
 % \begin{align*}
 % U =  \frac{F}{\sqrt{n}} & & U^{\star} = \frac{F^{\star}}{\sqrt{n}}
 % \end{align*}
-% Per cui $U$ prende il nome di matrice di Fourier unitaria, ed $U^{-1} = U^{\star}$ è l'inversa. 
-% 
-% 
+% Per cui $U$ prende il nome di matrice di Fourier unitaria, ed $U^{-1} = U^{\star}$ è l'inversa.
+%
+%
 % \noindent
-% Oltre ad $s_n$ c'è una matrice con un ruolo importante nella trasformata di Fourier discreta, che sarà usata nel prossimo teorema: 
+% Oltre ad $s_n$ c'è una matrice con un ruolo importante nella trasformata di Fourier discreta, che sarà usata nel prossimo teorema:
 % \begin{align*}
-% t_n = 
+% t_n =
 % \left(
 % \begin{array} {c | c c c c }
 % 1 & 0 & 0 & \dots & 0    \\
 % \hline
 % 0 & 0 & 0 & \dots & 1   \\
 % \vdots & & \vdots &  & \vdots   \\
-% 0 & 0 & 1 & \dots & 0   \\ 
-% 0 & 1 & 0 & \dots & 0      
+% 0 & 0 & 1 & \dots & 0   \\
+% 0 & 1 & 0 & \dots & 0
 % \end{array}
 % \right)
 % \end{align*}
@@ -351,16 +351,16 @@ Cosa accade se anziché considerare $Rec(x^r-1)$, consideriamo $Rec(a(x))$ per $
 % (U^{\star})^{4} = (t_n)^{2} = I & &  (U)^{4} = (t_n)^{2} = I
 % \end{align*}
 % \end{corollario}
-% Questo fornisce la curiosa notazione\footnote{\cite{davis}, cap 2.} 
+% Questo fornisce la curiosa notazione\footnote{\cite{davis}, cap 2.}
 % \begin{align*}
-% U = \sqrt[4]{I}   
+% U = \sqrt[4]{I}
 % \end{align*}
-% 
+%
 % \subsection{Teorema di diagonalizzazione delle matrici circolanti e diagonalizzazione a blocchi}
-% 
+%
 % Affrontiamo alcune proprietà sulle matrici circolanti per dimostrare che sono diagonalizzate dalla trasformata di Fourier discreta.
 % \begin{teorema}(caratterizzazione delle matrici circolanti)
-%   Sia $s_n = circ(0,1,0,\dots,0)$. Sia $A$ matrice $n\times n$ a coefficienti in $\mathbb{F}$: 
+%   Sia $s_n = circ(0,1,0,\dots,0)$. Sia $A$ matrice $n\times n$ a coefficienti in $\mathbb{F}$:
 %   \begin{align*}
 %     A \in \mathfrak{C}_{\mathbb{F},n} \quad \iff \quad A s_n = s_n A
 %   \end{align*}
@@ -377,33 +377,33 @@ Cosa accade se anziché considerare $Rec(x^r-1)$, consideriamo $Rec(a(x))$ per $
 % \end{proof}
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%corollario
 % \begin{corollario}
-%    $A$ è circolante $\iff$ $A^{\star}$ è circolante. 
+%    $A$ è circolante $\iff$ $A^{\star}$ è circolante.
 % \end{corollario}
 % %%%%%%%%%%%%%%%%%%%%%%%%%% definizone diagonale
 % \begin{definizione}
 % Dato il vettore circolante $(a_0,a_1,\dots,a_{n-1}) \in\mathbb{F}^{n}$, allora la matrice diagonale di $(a_0,a_1,\dots,a_{n-1})$ è definita come
 % \begin{align*}
-%   diag(a_0,a_1,\dots,a_{n-1}) = 
+%   diag(a_0,a_1,\dots,a_{n-1}) =
 %   \left(
 %   \begin{array} { c c c c }
-%     a_0 & 0 & \dots & 0 \\    
-%     0 & a_1 & \dots & 0 \\ 
+%     a_0 & 0 & \dots & 0 \\
+%     0 & a_1 & \dots & 0 \\
 %     \vdots & & & \vdots \\
-%     0 & 0 & \dots & a_{n-1}   
+%     0 & 0 & \dots & a_{n-1}
 %    \end{array}
 %   \right)
 %   \end{align*}
 % \end{definizione}
 % Sia $\xi = diag(1, \xi_{n}, \xi_{n}^{2}, \dots , \xi_{n}^{n-1} )$ allora si osserva che \\
-% \mbox{$\xi^{k} = diag(1, \xi_{n}^{k}, \xi_{n}^{2k}, \dots , \xi_{n}^{(n-1)k} )$}. 
-% 
+% \mbox{$\xi^{k} = diag(1, \xi_{n}^{k}, \xi_{n}^{2k}, \dots , \xi_{n}^{(n-1)k} )$}.
+%
 % %%%%%%%%%%%%%%%%%%%%%% teorema
 % \begin{teorema}(diagonalizzazione delle matrici circolanti)
 % \begin{align*}
 % s_n = U^{\star} \xi U
 % \end{align*}
 % \end{teorema}
-% 
+%
 % \begin{proof}
 % Si indica la $i-$esima riga di $U^{\star}$ con $U_{i,\sim}^{\star}$ e la $j-$esima colonna con $U_{\sim,j}^{\star}$.
 % \begin{align*}
@@ -415,7 +415,7 @@ Cosa accade se anziché considerare $Rec(x^r-1)$, consideriamo $Rec(a(x))$ per $
 % \end{align*}
 % Quindi la $i-$ esima riga di $U^{\star}\xi$ è data da
 % \begin{align*}
-% \big(U^{\star}\xi\big)_{i,\sim} = \frac{1}{\sqrt{n}} (\xi_{n}^{(i)0}, \xi_{n}^{(i)1}, \dots , \xi_{n}^{ir}, \dots, \xi_{n}^{i(n-1)}) 
+% \big(U^{\star}\xi\big)_{i,\sim} = \frac{1}{\sqrt{n}} (\xi_{n}^{(i)0}, \xi_{n}^{(i)1}, \dots , \xi_{n}^{ir}, \dots, \xi_{n}^{i(n-1)})
 % \end{align*}
 % Mentre la $j-$esima colonna di $U$ è data da
 % \begin{align*}
@@ -426,48 +426,48 @@ Cosa accade se anziché considerare $Rec(x^r-1)$, consideriamo $Rec(a(x))$ per $
 % &\big( U^{\star}\xi U \big)_{i,j}=\\
 % &= \frac{1}{n} (\xi_{n}^{(i)0}, \dots , \xi_{n}^{ir}, \dots, \xi_{n}^{i(n-1)}) (\overline{\xi}_{n}^{0(j-1)},\dots , \overline{\xi}_{n}^{r(j-1)}, \dots , \overline{\xi}_{n}^{(n-1)(j-1)} )^{t} \\
 % & = \frac{1}{n} \Big( \sum_{r = 0}^{n-1} \xi_{n}^{ir} \overline{\xi}_{n}^{r(j-1)} \Big) \\
-% & = \frac{1}{n} \Big( \sum_{r \in \mathbb{Z}_n} \xi_{n}^{r(i-j+1)} \Big) 
+% & = \frac{1}{n} \Big( \sum_{r \in \mathbb{Z}_n} \xi_{n}^{r(i-j+1)} \Big)
 % =
 % \left\lbrace
 % \begin{array} {c l}
 % 1 & i \equiv j+1 \mod{n} \\
-% 0 & altrimenti       
+% 0 & altrimenti
 % \end{array}
 % \right.
 % \end{align*}
 % La matrice ottenuta in questo modo è proprio $s_n$.
 % \end{proof}
-% 
+%
 % \noindent
 % Dato $\mathbf{a} = (a_{0}, a_{1}, \dots , a_{n-1})$ vettore circolante di dimensione $n$, si introduce la notazione $ \gamma_{\mathbf{a}}(x)$  per indicare il polinomio di grado $n$ avente gli stessi coefficienti di $\mathbf{a}$:
 % \begin{align*}
 % \gamma_{\mathbf{a}}(x) =  \sum_{h=0}^{n-1} a_{h} x^{h}
 % \end{align*}
-% 
+%
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% corollario
 % \begin{corollario}
 % Se $A$ è una matrice circolante, allora è diagonalizzata da $U$.
 % \end{corollario}
 % \begin{proof}
-%  $A \in \mathfrak{C}_{\mathbb{K},n}$, con $A = circ(\mathbf{a}) = circ(a_0, a_1, \dots, a_{n-1})$. Osservando che 
+%  $A \in \mathfrak{C}_{\mathbb{K},n}$, con $A = circ(\mathbf{a}) = circ(a_0, a_1, \dots, a_{n-1})$. Osservando che
 % \begin{align*}
 % U s_{n}U^{\star} = \xi \quad \Longrightarrow \quad U s_{n}^{m}U^{\star} = \xi^{m}
 % \end{align*}
-% e che 
+% e che
 % \begin{align*}
-% A = a_0  I_{n} + a_1  s_{n}^{1} + \dots + a_{n-1}  s_{n}^{n-1} 
+% A = a_0  I_{n} + a_1  s_{n}^{1} + \dots + a_{n-1}  s_{n}^{n-1}
 % \end{align*}
 % segue
-% \begin{align*}   
+% \begin{align*}
 % UAU^{\star} &= a_0  U I_{n}U^{\star} + a_1  U s_{n}^{1}U^{\star} + \dots + a_{n-1} U s_{n}^{n-1}U^{\star} U s_{n}^{n-1}U^{\star}\\
 % &= a_0 I_{n} + a_1 \xi^{1} + \dots + a_{m}  \xi^{m} \dots + a_{n-1}  \xi^{n-1}
 % \end{align*}
 % Il secondo membro equivale alla matrice diagonale:
 % \begin{align*}
-% \Lambda_{\mathbf{a}} :=  diag(\gamma_{\mathbf{a}}(1), \gamma_{\mathbf{a}}(\xi), \dots ,\gamma_{\mathbf{a}}(\xi^{t}), \dots , \gamma_{\mathbf{a}}(\xi^{n-1})) 
+% \Lambda_{\mathbf{a}} :=  diag(\gamma_{\mathbf{a}}(1), \gamma_{\mathbf{a}}(\xi), \dots ,\gamma_{\mathbf{a}}(\xi^{t}), \dots , \gamma_{\mathbf{a}}(\xi^{n-1}))
 % \end{align*}
-% Quindi 
-% \begin{align*}   
+% Quindi
+% \begin{align*}
 % UAU^{\star} = \Lambda_{\mathbf{a}}
 % \end{align*}
 % Osserviamo che gli autovalori sono della forma $\lambda_{m} = \gamma_{\mathbf{a}}(\xi^{m-1}) $
@@ -476,7 +476,7 @@ Cosa accade se anziché considerare $Rec(x^r-1)$, consideriamo $Rec(a(x))$ per $
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% corollario
 % \begin{corollario}
 % Sia $\mathbf{\lambda} = (\lambda_{1}, \dots, \lambda_{n})$ vettore in $\mathbb{K}$, allora
-% \begin{align*}   
+% \begin{align*}
 % U^{\star} diag(\mathbf{\lambda}) U
 % \end{align*}
 % è una matrice circolante di autovalori $\lambda_{1}, \dots, \lambda_{n}$.
@@ -489,16 +489,16 @@ Cosa accade se anziché considerare $Rec(x^r-1)$, consideriamo $Rec(a(x))$ per $
 % \end{teorema}
 % definizione di {\bf blocchi della scomposizione di Winograd}.
 % $W_{v}$
-% 
-% 
+%
+%
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % %%%%%%%%%%%%%%%%%%%%%% SEZIONE    %%%%%%%%%%%%%%%%%%%%
 % \section{Scomposizione con gli idempotenti}
-% 
-% Usando gli idempotenti possiamo scomporre una matrice circolante in un prodotto di 
+%
+% Usando gli idempotenti possiamo scomporre una matrice circolante in un prodotto di
 % {\bf blocchi della scomposizione per idempotenti} $C_{v}$...
-% 
-% 
-% 
+%
+%
+%
 % Possiamo osservare che in alcuni casi (in tutti quelli esaminati) $det(C_{v}) = det(W_{v})$: il determinante blocchi di Winograd e il determinante dei blocchi della scomposizione con gli idempotenti coincidono. Questo risultato vale sempre?

@@ -178,7 +178,7 @@ mattranspose(m);
 \\_____________________________________________
 \\ Programmi fatti per esercizio LEZ 3
 
-\\ Lez 3 Es 1: QUADEST riducibilità di un polinomio 
+\\ Lez 3 Es 1: QUADEST riducibilità di un polinomio
 \\ Input: polinomio pol di grado 2, p primo
 \\ Output: controlla se p è irriducibile mod p: 0 no, 1 sì.
 {
@@ -196,7 +196,7 @@ matper(MM,p) = local(mataus,matidmod, period);
 period = 1;
 mataus = Mod(MM,p);                            \\matrice data modulo p
 matidmod = Mod(matid(matsize(MM)[1]),p);       \\ matrice identità mod p da confrontare
-if(matdet(MM)==0, return(0), 
+if(matdet(MM)==0, return(0),
     while(mataus != matidmod, mataus = mataus^2 && period = period + 1 ) );
 period;
 }

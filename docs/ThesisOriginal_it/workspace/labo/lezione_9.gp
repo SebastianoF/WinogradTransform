@@ -465,7 +465,7 @@ if(gcd(Polrev(a[1,]),x^n-1)==1,1,0);
 {
 apparizione(h,k,n)=local(delta,u,t,v);
 delta=h^2-4*k;if(gcd(n,delta*k)>1,return(0));
-fordiv(psidelta(h,k,n),m,	
+fordiv(psidelta(h,k,n),m,
 u = m; t = 1; v = x;
 while(u != 0, if(u%2 == 1, t = gprod(h,k,n,t,v)); v = gprod(h,k,n,v,v);
 u = floor(u/2));
@@ -725,7 +725,7 @@ for(b=1,l,
 bb=Mod(b,n);
 if((xx+bb)^n!=xx^n+bb,print("n è composto");return(bb)));
 return(1);
-} 
+}
 
 {
 \\restituisce la matrice T che rappresenta tetaQ
@@ -769,12 +769,12 @@ v;
 \\________________________________________________________________
 \\________________________________________________________________es 1
 
-\\ Lez 9 Es 1: ausiliaria di gam, prende un vettore di tau vettori, 
+\\ Lez 9 Es 1: ausiliaria di gam, prende un vettore di tau vettori,
 \\            un vettore di interi positivi lungo tau e forma la matrice le cui
 \\            colonne sono i vettori del vettore dato ripetuto nella matrice e
-\\            shiftato tante volte quante lo dice il vettore dato  
+\\            shiftato tante volte quante lo dice il vettore dato
 \\ Input: vett, grad
-\\ Output: matrice M t.c. M=destrak(vettore[j],grad[j+h]) 
+\\ Output: matrice M t.c. M=destrak(vettore[j],grad[j+h])
 {
 incoleshift(vett,n,grad,tau)=local(M,VN);
 M=matrix(n,n);
@@ -800,8 +800,8 @@ G=vector(tau);
 vgra=[];
 for(i=1,tau,vgra=concat(vgra,poldegree(fatt[i,1]) ));
 
-\\vettore G: è un vettore lungo tau i cui elementi 
-\\sono i vettori colonna di G senza shift  
+\\vettore G: è un vettore lungo tau i cui elementi
+\\sono i vettori colonna di G senza shift
 
 for(i=1,tau,G[i]= pol2vetc(gammaQ(matid(tau)[i,],n),n) );
 
@@ -820,10 +820,10 @@ mattranspose(gam(n)*mattranspose(a));
 
 \\_____________________________________________________________
 \\_________________________________________________es 2 parte 1
-\\ Lez 9 Es 2: ausliaria 
-\\ Input: vettore di polinomi, lunghezza ed un vettore di gradi 
+\\ Lez 9 Es 2: ausliaria
+\\ Input: vettore di polinomi, lunghezza ed un vettore di gradi
 \\ Output: trasforma la sequenza dei polinomi in un vettore dei coefficienti
-\\         seguendo i gradi dati dal vettore dei gradi 
+\\         seguendo i gradi dati dal vettore dei gradi
 {
 polinomizza(vett,lungh,vettgrad)=local(ris);
 ris=[];
@@ -832,7 +832,7 @@ ris;
 }
 
 \\ Lez 9 Es 2: delnp(n,p) restituisce la trasformazione lineare di delta
-\\ Input: n p 
+\\ Input: n p
 \\ Output: matrice che rappresenta la trasformazione lineare
 \\         data da delnp
 {
@@ -883,7 +883,7 @@ G=vector(tau);
 
 vgra=[];
 for(i=1,tau,vgra=concat(vgra,poldegree(fatt[i,1]) ));
- 
+
 for(i=1,tau,G[i]= Mod(pol2vetc(gamm(matid(tau)[i,],n,p),n) ,p)   );
 
 R=incoleshift(G,n,vgra,tau);
@@ -908,8 +908,8 @@ mattranspose(gamnp(n,p)*mattranspose(a));
 \\______________________________________________________Es 3
 
 
-\\ Lez 9 Es 3: ausiliaria, dato un numero dec ed una lunghezza lungh 
-\\             restituisce dec in binario in un vettore binario lungo lungh  
+\\ Lez 9 Es 3: ausiliaria, dato un numero dec ed una lunghezza lungh
+\\             restituisce dec in binario in un vettore binario lungo lungh
 \\ Input: dec, lungh
 \\ Output: rv vett, binario
 {
@@ -937,7 +937,7 @@ M;
 \\Cerco un sistema per trovare la matrice H in forma standard
 \\costruendo un vettore del tipo [1,2,4,...,2^k,3,5,6,7...,n]:
 
-\\ Lez 9 Es 3: ausilairia, elimina l'elemento x dal vettore v 
+\\ Lez 9 Es 3: ausilairia, elimina l'elemento x dal vettore v
 \\ Input: v vettore, x elemento (necessariamente) in v
 \\ Output: v senza x
 {
@@ -953,7 +953,7 @@ if(pos==1, for(l=1,h-1,vris[l]=v[l+1]),
 vris;
 }
 
-\\ Lez 9 Es 3: ausliaria, elimina dal vettore v gli elementi del vettore E 
+\\ Lez 9 Es 3: ausliaria, elimina dal vettore v gli elementi del vettore E
 \\ Input: v vettore, eE vettore di elementi contenuti in v
 \\ Output:
 {
@@ -991,7 +991,7 @@ M=matrix(r,n,i,j,v[j][i]);
 M;
 }
 
-\\Esiste un sistema per ricavare la stessa matrice dalla funzione teta, o in un 
+\\Esiste un sistema per ricavare la stessa matrice dalla funzione teta, o in un
 \\modo meno arzigogolato?
 
 \\_________________________________________________________________
@@ -1013,7 +1013,7 @@ ris;
 \\______________________________________________________________
 \\______________________________________________________________Es5
 
-\\ Lez 9 Es 5: codifica di un vettore con il codice di Hamming	
+\\ Lez 9 Es 5: codifica di un vettore con il codice di Hamming
 \\ Input: r altezza del codice, a vettore (di lunghezza k=2^r-1-r)
 \\ Output: vettore codificato
 {
@@ -1043,7 +1043,7 @@ V[s]=lift(Mod(V[s]+1,2));
 V;
 }
 
-\\Lez 9 es 6: ausilairio, sindrome di un vettore 
+\\Lez 9 es 6: ausilairio, sindrome di un vettore
 \\(usata solo come prova e non in hdecoder, altrimenti calcola due volte H)
 {
 hsind(r,x)=local(H,sind);
@@ -1053,7 +1053,7 @@ sind;
 }
 
 \\ Lez 9 Es 6: decodifica un vettore con il codice di hamming
-\\ Input: r altezza del codice, a vettore in codice (di lunghezza n=2^r-1) 
+\\ Input: r altezza del codice, a vettore in codice (di lunghezza n=2^r-1)
 \\ Output: vettore decodificato
 {
 hdecode(r,x)=local(H,sind,k,pos);
@@ -1061,8 +1061,8 @@ k=2^r-1-r;
 H=hammH(r);
 sind=lift(Mod(H*x~,2));
 pos=0;
-if(sind==vector(r)~, return(prendik(x,k)), 
-    for(j=1,matsize(H)[2],if(sind==H[,j],pos=j)              
+if(sind==vector(r)~, return(prendik(x,k)),
+    for(j=1,matsize(H)[2],if(sind==H[,j],pos=j)
     )
 );
 if(pos==0,
@@ -1072,9 +1072,9 @@ if(pos==0,
 
 /*
 Commento sull'algortimo:
-confronta la sindrome con i vettori colonna della matrice h. 
+confronta la sindrome con i vettori colonna della matrice h.
 Se la sindrome è il vettore colonna nullo, allora non si presume non ci siano errori.
-Se la sindrome non è il vettore nullo, allora la si confronta con le 
+Se la sindrome non è il vettore nullo, allora la si confronta con le
 prime k colonne della matrice h.
 Se la sindrome è la j-esima colonna allora si corregge risp alla posizione j
 Se la sindrome è diversa da tutte le colonne, allora il codice non corregge.

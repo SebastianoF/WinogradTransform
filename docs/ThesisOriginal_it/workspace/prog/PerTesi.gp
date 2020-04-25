@@ -132,7 +132,7 @@ psi1(a) = local(r,s,m);
   r = length(a);
   s = matShifter(r);
   m = matrix(r,r);
-  for(i=0, r-1, 
+  for(i=0, r-1,
     m = m + a[i+1]*s^i
   );
 m;
@@ -166,8 +166,8 @@ a;
 }
 
 
-\\ Input: u elemento dell'algebra FC_{r} con g 
-\\        elemento del gruppo ciclico, 
+\\ Input: u elemento dell'algebra FC_{r} con g
+\\        elemento del gruppo ciclico,
 \\        r intero postivo
 \\ Output: matrice circolante corrispondente
 {

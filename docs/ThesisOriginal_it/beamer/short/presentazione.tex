@@ -27,7 +27,7 @@
 
 
 
-%%% per i diagrammi commutativi: 
+%%% per i diagrammi commutativi:
 \usepackage{tikz}
 
 \usetikzlibrary{matrix, arrows, scopes}
@@ -87,16 +87,16 @@
    \begin{center}
    \begin{tikzpicture}[xscale=1.5,yscale=1.5]
 
-\path node   (V) at (0,0) {$\mathcal{V}_{r, \mathbb{F}}^{c}$}         %(-1,0) node[anchor=east] {$e_1$ \ :}       
-      node   (M) at (4,0) {$ \mathcal{M}_{r,\mathbb{F} }^{c} $}         
+\path node   (V) at (0,0) {$\mathcal{V}_{r, \mathbb{F}}^{c}$}         %(-1,0) node[anchor=east] {$e_1$ \ :}
+      node   (M) at (4,0) {$ \mathcal{M}_{r,\mathbb{F} }^{c} $}
       node   (R) at (0,3) {$ \quotient{ \mathbb{F}[x] }{ (x^r -1 )}$} %(-0.9,3) node[anchor=east] {$\mathcal{R}_{r, \mathbb{F}}$ \ =}
       node   (A) at (4,3) {$\mathbb{F}C_{r}$} %(-1,1) node[anchor=east] {$e_1\times A$ \ :}
       ;
      { %[ thick]
-      \draw[->]   (R) -- node[above]{$\psi_4$}     (A); 
+      \draw[->]   (R) -- node[above]{$\psi_4$}     (A);
       \draw[->]   (V) -- node[above]{$\psi_1$}     (M);
-      \draw[->]   (R) -- node[right]{$\psi_2$}     (V);  
-      \draw[->]   (A) -- node[right]{$\psi_3$}     (M);     
+      \draw[->]   (R) -- node[right]{$\psi_2$}     (V);
+      \draw[->]   (A) -- node[right]{$\psi_3$}     (M);
       }
 \end{tikzpicture}
    \end{center}
@@ -109,7 +109,7 @@
 % \thispagestyle{empty}
 % \begin{frame}
 %       \vspace{-1.5cm}
-%       Prodotto di convoluzione dei vettori circolanti $\mathbf{a}, \mathbf{b}$: 
+%       Prodotto di convoluzione dei vettori circolanti $\mathbf{a}, \mathbf{b}$:
 %       \begin{align*}
 %       (\mathbf{a} \star \mathbf{b})_{i} = \sum_{j \in \mathbb{Z}_{r} } a_{j} b_{i-j}
 %       \qquad \forall i \in \mathbb{Z}_{r}
@@ -118,17 +118,17 @@
 %       \pause
 %       Per $r=3$ equivale a
 %       \begin{align*}
-%       \mathbf{a} \star \mathbf{b} = 
+%       \mathbf{a} \star \mathbf{b} =
 %       \left(
 %       \begin{array} {c c c }
-%       a_0 & a_1 & a_2    
+%       a_0 & a_1 & a_2
 %       \end{array}
-%       \right) 
+%       \right)
 %       \left(
 %       \begin{array} {c c c}
 %       b_0 & b_1 & b_2   \\
 %       b_2 & b_0 & b_1   \\
-%       b_1 & b_2 & b_0        
+%       b_1 & b_2 & b_0
 %       \end{array}
 %       \right)
 %       \end{align*}
@@ -137,18 +137,18 @@
 %       Tutte le strutture possiedono uno Shifter:
 %       \begin{center}
 %       \begin{tabular}{ c | c c c c }
-% 	  Strutture 
-% 	  & 
-% 	  $\mathcal{V}_{r, \mathbb{F}}^{c}$ 
-% 	  & 
-% 	  $\mathcal{M}_{r,\mathbb{F} }^{c} $ 
-% 	  & 
-% 	  $\mathbb{F}C_{r} $ 
-% 	  & 
-% 	  $\quotient{ \mathbb{F}[x] }{ (x^r -1 )} $ 
+% 	  Strutture
+% 	  &
+% 	  $\mathcal{V}_{r, \mathbb{F}}^{c}$
+% 	  &
+% 	  $\mathcal{M}_{r,\mathbb{F} }^{c} $
+% 	  &
+% 	  $\mathbb{F}C_{r} $
+% 	  &
+% 	  $\quotient{ \mathbb{F}[x] }{ (x^r -1 )} $
 % 	  \\
 % 	  \hline
-% 	  Shifter & $(0,1,0,\dots,0)$ & $s_n$ & $g$ & $x$ 
+% 	  Shifter & $(0,1,0,\dots,0)$ & $s_n$ & $g$ & $x$
 %       \end{tabular}
 %       \end{center}
 %       Generano il gruppo ciclico su cui le algebre sono definite e definiscono le trasformazioni.
@@ -165,17 +165,17 @@
 
 \vspace{0.5cm}
 
-   $E^{(r)} = \lbrace \xi^{j}\rbrace_{j=0}^{r-1}\cong \mathbb{Z}_{r}  
+   $E^{(r)} = \lbrace \xi^{j}\rbrace_{j=0}^{r-1}\cong \mathbb{Z}_{r}
    \qquad \quad
-   G \trianglelefteq \mathbb{Z}_{r}^{\star} 
-   \qquad  \quad 
+   G \trianglelefteq \mathbb{Z}_{r}^{\star}
+   \qquad  \quad
    G \cong Gal(\mathbb{F}(\xi), \mathbb{F})$
    \vspace{0.5cm}
    \begin{align*}
 	Gal(\mathbb{F}(\xi), \mathbb{F}) \times E^{(r)}  & \longrightarrow  E^{(r)}   \\
-		  (\varphi_{k},\xi^{l}) & \longmapsto \varphi_{k}(\xi^{l}) = \xi^{lk} 
+		  (\varphi_{k},\xi^{l}) & \longmapsto \varphi_{k}(\xi^{l}) = \xi^{lk}
     \end{align*}
-    \begin{align*}	  
+    \begin{align*}
 	G \times \mathbb{Z}_{r} \longrightarrow  \mathbb{Z}_{r}   \\
 		  (g,l) \longmapsto gl
     \end{align*}
@@ -185,7 +185,7 @@
 %%% ORBITE ED ETICHETTE  1 %%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{ORBITE ED ETICHETTE}
 \begin{frame}
-       Due elementi $l_{1}$ ed $l_{2}$ di $\mathbb{Z}_{r}$ sono nella stessa orbita della azione 
+       Due elementi $l_{1}$ ed $l_{2}$ di $\mathbb{Z}_{r}$ sono nella stessa orbita della azione
 	\begin{align*}
 	G \times \mathbb{Z}_{r} &\longrightarrow  \mathbb{Z}_{r}   \\
 		  (g,l) &\longmapsto gl
@@ -218,8 +218,8 @@
  	\begin{align*}
 	   l_{r,\mathbb{F}} = l = \arrowvert \mathscr{L} \arrowvert
 	\end{align*}
-     coincide con il numero di fattori irriducibili di \\ 
-     $x^r-1$	
+     coincide con il numero di fattori irriducibili di \\
+     $x^r-1$
     \end{center}
 \end{frame}
 
@@ -228,13 +228,13 @@
 \subsection{TRASFORMATA DI WINOGRAD}
 \begin{frame}
     \begin{teorema}
-      Sia $r$ intero positivo ed $\mathbb{F}$ campo perfetto. 
+      Sia $r$ intero positivo ed $\mathbb{F}$ campo perfetto.
       \begin{enumerate}
-	  \item Ad ogni orbita $O(v)$ corrisponde un polinomio irriducibile in $\mathbb{F}[x]$ definito da 
+	  \item Ad ogni orbita $O(v)$ corrisponde un polinomio irriducibile in $\mathbb{F}[x]$ definito da
 		\begin{align*}
 		  M^{(v)}(x) =  \prod_{t \in O(v)} (x- \xi^t)
 		\end{align*}
-	  \item La decomposizione in $\mathbb{F}$ di $x^r - 1$ in fattori irriducibili è data da 
+	  \item La decomposizione in $\mathbb{F}$ di $x^r - 1$ in fattori irriducibili è data da
 		\begin{align*}
 		  x^r - 1 = \prod_{v \in \mathscr{L} } M^{(v)}(x)
 		\end{align*}
@@ -250,13 +250,13 @@
 %    \begin{teorema}
 % 	$\mathbb{F}$ campo perfetto, $r$ intero positivo coprimo con $p$,
 % 	\begin{align*}
-% 	  l_{r,\mathbb{F}} = \frac{1}{\arrowvert G \arrowvert }\sum_{g \in G} (g-1, r) 
+% 	  l_{r,\mathbb{F}} = \frac{1}{\arrowvert G \arrowvert }\sum_{g \in G} (g-1, r)
 % 	\end{align*}
 %     \end{teorema}
 %     \begin{proof}
 % 	\begin{align*}
-% 	  l = \frac{1}{\arrowvert G \arrowvert }\sum_{g \in G}\arrowvert X_{g} \arrowvert \qquad \quad 
-%  	   X_{g} = \lbrace t \in \mathbb{Z}_{r} \mid gt = t \mod r \rbrace 
+% 	  l = \frac{1}{\arrowvert G \arrowvert }\sum_{g \in G}\arrowvert X_{g} \arrowvert \qquad \quad
+%  	   X_{g} = \lbrace t \in \mathbb{Z}_{r} \mid gt = t \mod r \rbrace
 %  	   \\
 %  	   \arrowvert X_{g} \arrowvert = \arrowvert \lbrace t \mid  gt \equiv t \mod{r} \rbrace = (g-1, r)
 % 	\end{align*}
@@ -270,14 +270,14 @@
 %\subsection{FATTORIZZAZIONE DI $\mathcal{R}_{r,\mathbb{F}}$ }
 \begin{frame}
       \begin{teorema}
-        $\mathbb{F}$ campo perfetto, $r$ intero positivo ed 
+        $\mathbb{F}$ campo perfetto, $r$ intero positivo ed
 	\begin{align*}
-	      x^r-1 = \prod_{v\in \mathscr{L}} M^{(v)}(x) 
+	      x^r-1 = \prod_{v\in \mathscr{L}} M^{(v)}(x)
 	\end{align*}
        Allora $\gamma$, {\bf trasformata di Winograd},  è un isomorfismo di algebre
 	\begin{align*}
-	\gamma :  \quotient{\mathbb{F} \lbrack x \rbrack  }{x^{r} - 1}  
-		  & \longrightarrow  
+	\gamma :  \quotient{\mathbb{F} \lbrack x \rbrack  }{x^{r} - 1}
+		  & \longrightarrow
 		  \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}   \\
 		  %%
 		  a(x) &\longmapsto  ( a(x)\mod{M^{(v)}(x)})_{v\in \mathscr{L}}
@@ -291,15 +291,15 @@
 \begin{frame}
    \begin{proof}
 	\begin{center}
-	 \begin{tikzpicture}[xscale=1,yscale=1]	 
-	  \path node   (Dom) at (0,2.8) {$\quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^r - 1)}$}             
-		node   (Im) at (4,0) {$  \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)} $}         
-		node   (Quoz) at (6,2.8) {$ \quotient{\quotient{\mathbb{F} \lbrack x \rbrack  }{(x^r-1)} }{ \prod_{v\in \mathscr{L}} M^{(v)}(x)}$} 
+	 \begin{tikzpicture}[xscale=1,yscale=1]
+	  \path node   (Dom) at (0,2.8) {$\quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^r - 1)}$}
+		node   (Im) at (4,0) {$  \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)} $}
+		node   (Quoz) at (6,2.8) {$ \quotient{\quotient{\mathbb{F} \lbrack x \rbrack  }{(x^r-1)} }{ \prod_{v\in \mathscr{L}} M^{(v)}(x)}$}
 		;
 	      { %[ thick]
-		\draw[->]   (Dom)  -- node[above]{$\gamma$}     (Im); 
+		\draw[->]   (Dom)  -- node[above]{$\gamma$}     (Im);
 		\draw[->]   (Dom)  -- node[above]{$\pi$}        (Quoz);
-		\draw[->]   (Quoz) -- node[right]{$\sim$}       (Im);       
+		\draw[->]   (Quoz) -- node[right]{$\sim$}       (Im);
 		}
 	 \end{tikzpicture}
          \end{center}
@@ -311,9 +311,9 @@
 \thispagestyle{empty}
 \begin{frame}
    \vspace{-1.2cm}
-   Ad esempio: 
+   Ad esempio:
    \begin{itemize}
-      \item   $r = 7 , \quad \mathbb{F} = \mathbb{Q}, \quad G = \mathbb{Z}_{7}^{\star}$ 
+      \item   $r = 7 , \quad \mathbb{F} = \mathbb{Q}, \quad G = \mathbb{Z}_{7}^{\star}$
 	  \begin{align*}
 	      O(0)&= \lbrace 0 \rbrace \\
 	      O(1)&= \lbrace 1,2,3,4,5,6 \rbrace
@@ -321,16 +321,16 @@
 	    \begin{align*}
 	      x^{7} - 1 &= M^{(0)}(x) M^{(1)}(x) =  \Phi_{1}(x) \Phi_{7}(x)  \\
 			&= (x-1)(x^6 +x^5 + x^4 + x^3 +x^2 + x +1)
-	    \end{align*}  
-      \item  $r = 7 , \quad \mathbb{F} = GF(2)  \quad G =\lbrace 1,2,4 \rbrace \triangleleft \mathbb{Z}_{7}^{\star}$ 
+	    \end{align*}
+      \item  $r = 7 , \quad \mathbb{F} = GF(2)  \quad G =\lbrace 1,2,4 \rbrace \triangleleft \mathbb{Z}_{7}^{\star}$
 	  \begin{align*}
 	      O(0) &= \lbrace 0 \rbrace \\
 	      O(1) &= \lbrace 1,2,4 \rbrace \\
 	      O(3) &= \lbrace 3,5,6 \rbrace
-	  \end{align*}   
+	  \end{align*}
 	  \begin{align*}
 	      x^{7} - 1 &= M^{(0)}(x) M^{(1)}(x) M^{(3)}(x) \\
-			&= (x-1)(x^3 + x + 1)(x^3 + x^2 + 1) 
+			&= (x-1)(x^3 + x + 1)(x^3 + x^2 + 1)
 	    \end{align*}
    \end{itemize}
 \end{frame}
@@ -341,7 +341,7 @@
 \begin{frame}
    \vspace{-1.5cm}
         \begin{center}
-         $x^7 - 1$ si scompone in $ \mathbb{Q} $ in due fattori irriducibili 
+         $x^7 - 1$ si scompone in $ \mathbb{Q} $ in due fattori irriducibili
 	\begin{align*}
 	  \quotient{\mathbb{Q} \lbrack x \rbrack  }{(x^{7} - 1)}
 	  \cong
@@ -350,7 +350,7 @@
 	  \quotient{\mathbb{Q} \lbrack x \rbrack  }{\Phi_{7}(x)}
 	\end{align*}
 	\vspace{1cm}
-	
+
 	 $x^7 - 1$ si scompone in $ \mathbb{Z}_{2}$ in tre fattori irriducibili
 	\begin{align*}
 	  \quotient{\mathbb{Z}_{2} \lbrack x \rbrack  }{(x^{7} - 1)}
@@ -378,14 +378,14 @@
   \end{lemma}
   \begin{corollario}
      \begin{align*}
-        \quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)} 
-         \cong 
-         \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}  
-         \cong 
+        \quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)}
+         \cong
+         \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}
+         \cong
          \prod_{v\in \mathscr{L}} \mathbb{F}(\xi^{v})
-     \end{align*}   
+     \end{align*}
   \end{corollario}
-   
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -395,19 +395,19 @@
 \begin{frame}
    \vspace{-1.5cm}
     \begin{center}
-    \begin{tikzpicture}[xscale=1,yscale=1]	 
-    \path node   (Q) at (-5,3) {}         
-	  node   (P) at (0,6.5) {} 
-	  node   (R) at (0,3) {$\quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)} $} 
-	  node   (V) at (0,0) {$\mathcal{V}_{r, \mathbb{F}}^{c}$}         %(-1,0) node[anchor=east] {$e_1$ \ :}       
-          node   (M) at (4,0) {$ \mathcal{M}_{r,\mathbb{F} }^{c} $}         
-          node   (A) at (4,3) {$\mathbb{F}C_{r}$} 
+    \begin{tikzpicture}[xscale=1,yscale=1]
+    \path node   (Q) at (-5,3) {}
+	  node   (P) at (0,6.5) {}
+	  node   (R) at (0,3) {$\quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)} $}
+	  node   (V) at (0,0) {$\mathcal{V}_{r, \mathbb{F}}^{c}$}         %(-1,0) node[anchor=east] {$e_1$ \ :}
+          node   (M) at (4,0) {$ \mathcal{M}_{r,\mathbb{F} }^{c} $}
+          node   (A) at (4,3) {$\mathbb{F}C_{r}$}
 	  ;
-	{ 
-	  \draw[->]   (R) -- node[above]{$\psi_4$}     (A); 
+	{
+	  \draw[->]   (R) -- node[above]{$\psi_4$}     (A);
 	  \draw[->]   (V) -- node[above]{$\psi_1$}     (M);
-	  \draw[->]   (R) -- node[right]{$\psi_2$}     (V);  
-	  \draw[->]   (A) -- node[right]{$\psi_3$}     (M);     
+	  \draw[->]   (R) -- node[right]{$\psi_2$}     (V);
+	  \draw[->]   (A) -- node[right]{$\psi_3$}     (M);
         }
     \end{tikzpicture}
   \end{center}
@@ -421,24 +421,24 @@
 \begin{frame}
    \vspace{-1.5cm}
     \begin{center}
-    \begin{tikzpicture}[xscale=1,yscale=1]	 
-    \path node   (Q) at (-4.5,3) {$  \prod_{v\in \mathscr{L}} \mathbb{F}(\xi^{v})$}         
-	  node   (P) at (0,6) {$ \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}$} 
-	  node   (R) at (0,3) {$\quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)} $} 
-	  node   (V) at (0,0) {$\mathcal{V}_{r, \mathbb{F}}^{c}$}         %(-1,0) node[anchor=east] {$e_1$ \ :}       
-          node   (M) at (4,0) {$ \mathcal{M}_{r,\mathbb{F} }^{c} $}         
-          node   (A) at (4,3) {$\mathbb{F}C_{r}$} 
+    \begin{tikzpicture}[xscale=1,yscale=1]
+    \path node   (Q) at (-4.5,3) {$  \prod_{v\in \mathscr{L}} \mathbb{F}(\xi^{v})$}
+	  node   (P) at (0,6) {$ \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}$}
+	  node   (R) at (0,3) {$\quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)} $}
+	  node   (V) at (0,0) {$\mathcal{V}_{r, \mathbb{F}}^{c}$}         %(-1,0) node[anchor=east] {$e_1$ \ :}
+          node   (M) at (4,0) {$ \mathcal{M}_{r,\mathbb{F} }^{c} $}
+          node   (A) at (4,3) {$\mathbb{F}C_{r}$}
 	  ;
 	{ [ thick]
-	  \draw[->]          (R)  -- node[right]{$\gamma$}     (P); 
+	  \draw[->]          (R)  -- node[right]{$\gamma$}     (P);
 	  \draw[->]          (R)  -- node[above]{$\eta$}       (Q);
-	  \draw[->]          (Q)  -- node[above]{$\mu$}        (P);       
+	  \draw[->]          (Q)  -- node[above]{$\mu$}        (P);
 	}
-	{ 
-	  \draw[->]   (R) -- node[above]{$\psi_4$}     (A); 
+	{
+	  \draw[->]   (R) -- node[above]{$\psi_4$}     (A);
 	  \draw[->]   (V) -- node[above]{$\psi_1$}     (M);
-	  \draw[->]   (R) -- node[right]{$\psi_2$}     (V);  
-	  \draw[->]   (A) -- node[right]{$\psi_3$}     (M);     
+	  \draw[->]   (R) -- node[right]{$\psi_2$}     (V);
+	  \draw[->]   (A) -- node[right]{$\psi_3$}     (M);
         }
     \end{tikzpicture}
   \end{center}
@@ -459,15 +459,15 @@
    \begin{teorema}
    \begin{center}
       \begin{align*}
-	  \mathfrak{a}\phantom{a} \unlhd \phantom{a} \quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)} \\ 
+	  \mathfrak{a}\phantom{a} \unlhd \phantom{a} \quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)} \\
 	  \end{align*}
 	  se e solo se
 	  \begin{align*}
-	      \exists ! \phantom{a}  a(x),   \phantom{aa} 
+	      \exists ! \phantom{a}  a(x),   \phantom{aa}
 	      a(x) \mid x^r - 1 \phantom{aa} monico, \phantom{aa} \mathfrak{a} = (a(x))
 	\end{align*}
-   \end{center}	
-   \end{teorema}   
+   \end{center}
+   \end{teorema}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -476,19 +476,19 @@
    \begin{teorema}
    \begin{center}
    \begin{tikzpicture}[xscale=1,yscale=0.7]
-      \path node   (A) at (0,2) {$ \lbrace A \mid A \subseteq \mathscr{L} \rbrace $}       
-	    node   (O) at (4,4) {$ \lbrace \cup_{t \in A} O(t)  \mid A \subseteq \mathscr{L} \rbrace $}         
-	    node   (R) at (4,0) {$ \lbrace \mathfrak{a} \mid \mathfrak{a} \trianglelefteq  \quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)}  \rbrace $} 
+      \path node   (A) at (0,2) {$ \lbrace A \mid A \subseteq \mathscr{L} \rbrace $}
+	    node   (O) at (4,4) {$ \lbrace \cup_{t \in A} O(t)  \mid A \subseteq \mathscr{L} \rbrace $}
+	    node   (R) at (4,0) {$ \lbrace \mathfrak{a} \mid \mathfrak{a} \trianglelefteq  \quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)}  \rbrace $}
 	    ;
 	  { %[ thick]
-	    \draw[->]   (A) -- node{}     (O); 
+	    \draw[->]   (A) -- node{}     (O);
 	    \draw[->]   (A) -- node{}     (R);
-	    \draw[->]   (O) -- node{}     (R);     
+	    \draw[->]   (O) -- node{}     (R);
 	    }
     \end{tikzpicture}
    \end{center}
-   sono biiezioni.	
-   \end{teorema}   
+   sono biiezioni.
+   \end{teorema}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -499,8 +499,8 @@
      Ad esempio $r = 9$, $q = 2$: $ G = \mathbb{Z}_{9}^{\star} $, $\mathscr{L} = \lbrace 0,1,3 \rbrace$:
       \begin{align*}
 	  M^{(0)}(x) &= x+1 \\
-	  M^{(1)}(x) &= x^6+x^3+1 \\ 
-	  M^{(3)}(x) &= x^2+x+1 
+	  M^{(1)}(x) &= x^6+x^3+1 \\
+	  M^{(3)}(x) &= x^2+x+1
       \end{align*}
       \begin{align*}
 	  &\mathfrak{a}_{\lbrace 0 \rbrace} = (M^{(0)}(x)) = (x-1) \\
@@ -508,10 +508,10 @@
 	  &\mathfrak{a}_{\lbrace 3 \rbrace} = (M^{(3)}(x)) = (x^2+x+1) \\
 	  &\mathfrak{a}_{\lbrace 0,1 \rbrace} = (M^{(0)}(x)M^{(1)}(x)) = (x^3 -1) \\
 	  &\mathfrak{a}_{\lbrace 0,3 \rbrace} = (M^{(0)}(x)M^{(3)}(x)) = (x^7 + x^6 + x^4 + x^3 + x + 1) \\
-	  &\mathfrak{a}_{\lbrace 1,3 \rbrace} 
+	  &\mathfrak{a}_{\lbrace 1,3 \rbrace}
 			= (M^{(1)}(x)M^{(3)}(x)) = (x^8 + x^7 + \dots + x + 1) \\
 	  &\mathfrak{a}_{\lbrace 0,1,3 \rbrace} = (M^{(0)}(x)M^{(1)}(x)M^{(3)}(x)) = (x^9 -1) = (0) \\
-	  &\mathfrak{a}_{\emptyset} = (1) 
+	  &\mathfrak{a}_{\emptyset} = (1)
       \end{align*}
 \end{frame}
 
@@ -522,19 +522,19 @@
 \begin{frame}
   \frametitle{Idempotenti}
   \begin{definizione}
-     $ $  %{\bf idempotente} se 
+     $ $  %{\bf idempotente} se
      \begin{align*}
         a(x) \in \quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)} \qquad \qquad a(x)^2 = a(x)
      \end{align*}
   \end{definizione}
   \pause
     \begin{prop}
-      In $\prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}$ 
-      %$  \prod_{v\in \mathscr{L}} \mathbb{F}(\xi^{v})$ 
+      In $\prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}$
+      %$  \prod_{v\in \mathscr{L}} \mathbb{F}(\xi^{v})$
       sono tutti e soli i vettori $l$-dimensionali di polinomi costituiti da $1$ e da $0$.
     \end{prop}
     {\bf Idempotente minimale}: $  \mathbf{e}_{j} = (0, \dots, 0,1,0, \dots, 0)$ \\
-    {\bf Idempotente massimale}: $  \mathbf{\hat{e}}_{j} = (1, \dots, 1,0,1, \dots, 1)$ 
+    {\bf Idempotente massimale}: $  \mathbf{\hat{e}}_{j} = (1, \dots, 1,0,1, \dots, 1)$
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -565,19 +565,19 @@
 \begin{frame}
    \vspace{-1.2cm}
     Le immagini tramite $\gamma$ degli elementi della base di $ \quotient{\mathbb{F}_{2} \lbrack x \rbrack  }{ (x^{7} - 1)}$ sono
-    \begin{align*}   
+    \begin{align*}
       \gamma(x^0) &= (1,1,1)  \\
       \gamma(x^1) &= (1,x,x) \\
       \gamma(x^2) &= (1,x^2,x^2)  \\
       \gamma(x^3) &= (1,1+x^2,1+x+x^2)  \\
       \gamma(x^4) &= (1,1+x,x+x^2)  \\
       \gamma(x^5) &= (1,1+x+x^2,1+x^2)  \\
-      \gamma(x^6) &= (1,x+x^2,1+x) 
+      \gamma(x^6) &= (1,x+x^2,1+x)
     \end{align*}
-    per 
+    per
     \begin{align*}
       x^{7} + 1 &= M^{(0)}(x) M^{(1)}(x) M^{(3)}(x) \\
-		&= (x+1)(x^3 + x + 1)(x^3 + x^2 + 1) 
+		&= (x+1)(x^3 + x + 1)(x^3 + x^2 + 1)
     \end{align*}
 \end{frame}
 
@@ -587,19 +587,19 @@
 \begin{frame}
    \vspace{-1.2cm}
     Le immagini tramite $\gamma$ degli elementi della base di $ \quotient{\mathbb{F}_{2} \lbrack x \rbrack  }{ (x^{7} - 1)}$ sono
-    \begin{align*}   
+    \begin{align*}
 	\gamma(1,0,0,0,0,0,0)  = \gamma(x^0) &= (1,1,1) =  (1|1,0,0|1,0,0)          \\
 	\gamma(0,1,0,0,0,0,0)  = \gamma(x^1) &= (1,x,x) = (1|0,1,0|0,1,0)            \\
 	\gamma(0,0,1,0,0,0,0)  = \gamma(x^2) &= (1,x^2,x^2) = (1|0,0,1|0,0,1)        \\
 	\gamma(0,0,0,1,0,0,0)  = \gamma(x^3) &= (1,1+x^2,1+x+x^2) = (1|1,0,1|1,1,1)  \\
 	\gamma(0,0,0,0,1,0,0)  = \gamma(x^4) &= (1,1+x,x+x^2) = (1|1,1,0|0,1,1)      \\
 	\gamma(0,0,0,0,0,1,0)  = \gamma(x^5) &= (1,1+x+x^2,1+x^2) = (1|1,1,1|1,0,1)  \\
-	\gamma(0,0,0,0,0,0,1)  = \gamma(x^6) &= (1,x+x^2,1+x) = (1|0,1,1|1,1,0) 
+	\gamma(0,0,0,0,0,0,1)  = \gamma(x^6) &= (1,x+x^2,1+x) = (1|0,1,1|1,1,0)
     \end{align*}
-    per 
+    per
     \begin{align*}
       x^{7} + 1 &= M^{(0)}(x) M^{(1)}(x) M^{(3)}(x) \\
-		&= (x+1)(x^3 + x + 1)(x^3 + x^2 + 1) 
+		&= (x+1)(x^3 + x + 1)(x^3 + x^2 + 1)
     \end{align*}
 \end{frame}
 
@@ -610,16 +610,16 @@
     \begin{definizione}
       La matrice della trasformazione $\gamma$ fra le algebre
       \begin{align*}
-         \quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)} 
-         \quad 
-         e 
-         \quad 
+         \quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)}
+         \quad
+         e
+         \quad
          \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}
       \end{align*}
-      nelle rispettive rappresentazioni vettoriali 
+      nelle rispettive rappresentazioni vettoriali
       \begin{align*}
          \mathcal{V}_{r, q}^{c} \quad e \quad \mathcal{V}_{r,q}^{\mathscr{L}}
-      \end{align*}      
+      \end{align*}
       è detta {\bf trasformata di Winograd} \\
       È indicata con $\Gamma$, e la sua inversa è indicata con $\Delta$.
     \end{definizione}
@@ -633,12 +633,12 @@
 \begin{frame}
    \vspace{-1.2cm}
       \begin{align*}
-	  \Gamma = 
+	  \Gamma =
 	  \left(
 	    \begin{array} { c }
 	    \Gamma^{(0)}  \\ \\
 	    \Gamma^{(1)} \\ \\
-	    \Gamma^{(3)} 
+	    \Gamma^{(3)}
 	    \end{array}
 	  \right)
 	  =
@@ -652,15 +652,15 @@
 	    \hline
 	    1 & 0 & 0 & 1 & 0 & 1 & 1  \\
 	    0 & 1 & 0 & 1 & 1 & 0 & 1  \\
-	    0 & 0 & 1 & 1 & 1 & 1 & 0  
+	    0 & 0 & 1 & 1 & 1 & 1 & 0
 	    \end{array}
 	  \right)
       \end{align*}
       \begin{align*}
-	  \Delta = 
+	  \Delta =
 	  \left(
 	  \begin{array} { c | c | c }
-	  \Delta^{(0)} & \Delta^{(1)} & \Delta^{(3)}   
+	  \Delta^{(0)} & \Delta^{(1)} & \Delta^{(3)}
 	  \end{array}
 	  \right)
 	  =
@@ -672,15 +672,15 @@
 	  1 & 1 & 0 & 0 & 0 & 1 & 1  \\
 	  1 & 0 & 1 & 0 & 1 & 0 & 1  \\
 	  1 & 1 & 0 & 1 & 0 & 1 & 0  \\
-	  1 & 1 & 1 & 0 & 0 & 0 & 1  
+	  1 & 1 & 1 & 0 & 0 & 0 & 1
 	  \end{array}
 	  \right)
-      \end{align*}      
+      \end{align*}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% PROPRIETà GAMMA %%%%%%%%%%%%%%%%%%%%%%%%%%
-% 
+%
 % \begin{frame}
 %     \begin{lemmax}
 %       Il divisore $M^{(v)}(x)$ soddisfa l'eqazione
@@ -726,14 +726,14 @@
 % \begin{frame}
 %     Come determinare l'inversa di $\gamma$?
 %     \begin{align*}
-%       \gamma^{-1} :  \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}    
-%       & \longrightarrow  
+%       \gamma^{-1} :  \prod_{v\in \mathscr{L}} \quotient{\mathbb{F} \lbrack x \rbrack  }{M^{(v)}(x)}
+%       & \longrightarrow
 %       \quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)}
 %       \\
 %       %%
 %       (a_{v}(x) \mod{M^{(v)}(x)})_{v \in \mathscr{L}  }
-%       &\longmapsto  
-%       a(x) 
+%       &\longmapsto
+%       a(x)
 %     \end{align*}
 %     $a(x)$ è il risultato del sistema di congruenze $a(x) \equiv a_{v}(x) \mod{M^{(v)} (x) }$ ottenuto con il teorema cinese dei resti.
 % \end{frame}
@@ -744,18 +744,18 @@
 \begin{frame}
     \begin{prop}
     \begin{enumerate}
-      \item  La prima colonna di ogni blocco $\Delta^{(v)}$ di $\Delta$ è l'idempotente miminale $\mathbf{e}_{v}$ che genera l'ideale minimale 
+      \item  La prima colonna di ogni blocco $\Delta^{(v)}$ di $\Delta$ è l'idempotente miminale $\mathbf{e}_{v}$ che genera l'ideale minimale
       \begin{align*}
 	  (\hat{M}^{(v)}(x)) = \Big(\frac{1-x^r}{M^{(v)}(x)} \Big)
       \end{align*}
       \item L'insieme $\lbrace \Delta_{\sim, 0}^{(v)} \rbrace_{v\in \mathscr{L}}$ delle prime colonne di tutti i blocchi di $\Delta$ costituisce l'insieme di tutti gli idempotenti minimali che generano tutti gli ideali minimali.
       \item  $v \in \mathscr{L}$, $j \in \lbrace 0, 1 \dots , m(v)-1 \rbrace$:
       \begin{align*}
-      \big( \Delta_{\sim, j}^{(v)} \big)^{t} \in \mathcal{V}_{m(v), q}^{c} 
-      \qquad \qquad 
-      \big( \Delta_{\sim, j}^{(v)} \big)^{t}  =  (0,1,0,\dots,0)^{j} \star \big( \Delta_{\sim, 0}^{(v)} \big)^{t}  
+      \big( \Delta_{\sim, j}^{(v)} \big)^{t} \in \mathcal{V}_{m(v), q}^{c}
+      \qquad \qquad
+      \big( \Delta_{\sim, j}^{(v)} \big)^{t}  =  (0,1,0,\dots,0)^{j} \star \big( \Delta_{\sim, 0}^{(v)} \big)^{t}
       \end{align*}
-    \end{enumerate}  
+    \end{enumerate}
     \end{prop}
 \end{frame}
 
@@ -766,7 +766,7 @@
 %       L'insieme dei vettori colonna $\lbrace \Delta_{\sim, j}^{(v)} \rbrace_{j=0}^{m(v)-1}$ determina una base dell'ideale $(M^{(v)}(x))$.
 %     \end{prop}
 %     \begin{prop}
-% 	Esiste un altro modo per ricavare $\Delta$, senza utilizzare il teorema cinese dei resti: 
+% 	Esiste un altro modo per ricavare $\Delta$, senza utilizzare il teorema cinese dei resti:
 % 	\begin{align*}
 % 	  \Delta_{i,j} = \frac{1}{r} \sum_{k=1}^{m(v)-1} \Gamma_{k,j-i+k}^{(v)}
 % 	\end{align*}
@@ -792,15 +792,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 \section{Codici correttori}
 \begin{frame}
-  \frametitle{Coici Ciclici} 
+  \frametitle{Coici Ciclici}
     \begin{definizione}
     Un codice lineare $C$ di lunghezza $r$ (cioè sottospazio vettoriale di $\mathbb{F}^{r}$) si dice {\bf ciclico} se è chiuso rispetto alla permutazione ciclica dei suoi elementi verso destra:
     \begin{align*}
-	\mathbf{c} = (c_{0},c_{1}, \dots , c_{r-1}) \in C \Longrightarrow (c_{r-1},c_{0}, \dots , c_{r-2}) \in C 
+	\mathbf{c} = (c_{0},c_{1}, \dots , c_{r-1}) \in C \Longrightarrow (c_{r-1},c_{0}, \dots , c_{r-2}) \in C
     \end{align*}
     \end{definizione}
     \begin{teorema}
-      Un codice lineare $C$ di lunghezza $r$ sull'alfabeto $\mathbb{F}_{q}$ è ciclico se e solo se è un ideale di $\quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)}$. 
+      Un codice lineare $C$ di lunghezza $r$ sull'alfabeto $\mathbb{F}_{q}$ è ciclico se e solo se è un ideale di $\quotient{\mathbb{F} \lbrack x \rbrack  }{ (x^{r} - 1)}$.
     \end{teorema}
 \end{frame}
 
@@ -809,13 +809,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-  La matrice di trasformazione fra lo spazio $\mathbb{F}^{r}$ ed il codice ciclico $(a(x))$ è chiamata {\bf matrice generatrice} ed è indicata con $G$. 
+  La matrice di trasformazione fra lo spazio $\mathbb{F}^{r}$ ed il codice ciclico $(a(x))$ è chiamata {\bf matrice generatrice} ed è indicata con $G$.
   La matrice di trasformazione fra lo spazio $\mathbb{F}^{r}$ ed il codice duale $(a(x))^{\perp} = (\hat{a}(x)^{\perp})$ è chiamata {\bf matrice di controllo} ed è indicata con $H$.
   \begin{teorema}
-     Sia $\mathfrak{a} $ codice ciclico 
+     Sia $\mathfrak{a} $ codice ciclico
      \begin{align*}
 	c(x) \in \mathfrak{a} &\iff H \mathbf{c}^{t} = \mathbf{0}^{t}  \\
-	c(x) \in \mathfrak{a}^{\perp} &\iff G \mathbf{c}^{t} = \mathbf{0}^{t} 
+	c(x) \in \mathfrak{a}^{\perp} &\iff G \mathbf{c}^{t} = \mathbf{0}^{t}
       \end{align*}
   \end{teorema}
 \end{frame}
@@ -833,7 +833,7 @@
       c(x) \in (M^{(v)}(x)) &\iff \Gamma^{(v)} \mathbf{c}^{t} = \mathbf{0}^{t}
     \end{align*}
    \begin{teorema}
-      Sia $v \in \mathscr{L}$, allora il codice ciclico massimale $\mathfrak{a} = (M^{(v)}(x))$ ha come matrice di controllo $\Gamma^{(v)} $, $v$-esimo blocco della trasformata di Winograd. 
+      Sia $v \in \mathscr{L}$, allora il codice ciclico massimale $\mathfrak{a} = (M^{(v)}(x))$ ha come matrice di controllo $\Gamma^{(v)} $, $v$-esimo blocco della trasformata di Winograd.
     \end{teorema}
     \begin{teorema}
       Sia $v \in \mathscr{L}$, allora il codice ciclico minimale $(M^{(-v)}(x))^{\perp}$ ha come matrice generatrice $\Gamma^{(v)} $ $v$-esimo blocco della trasformata di Winograd.
@@ -844,7 +844,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 %%%%%%%%%%%%% APPLICAZIONI
 \begin{frame}
-  Generalizzazione: sia $a(x) = M^{(v_{1})}(x) \cdots M^{(v_{k})}(x)$. 
+  Generalizzazione: sia $a(x) = M^{(v_{1})}(x) \cdots M^{(v_{k})}(x)$.
 
     \begin{corollario}
       $A=(v_{1}, \dots, v_{k}) \subseteq \mathscr{L}$, allora
@@ -855,7 +855,7 @@
 	  \begin{array} { c }
 	  \Gamma^{(v_{1})}  \\ \\
 	  \vdots \\ \\
-	  \Gamma^{(v_{k})} 
+	  \Gamma^{(v_{k})}
 	  \end{array}
 	  \right)
       \end{align*}
@@ -874,8 +874,8 @@
    $A=(v_{1}, \dots, v_{k}) \subseteq \mathscr{L}$, $\mathfrak{a} = (  M^{(v_{1})}(x) \cdots  M^{(v_{k})}(x) )$.
    L'immagine della parola $c(x)$ di $\mathfrak{a}$ tramite $\gamma$ è costituita da sottovettori circolanti nulli nei posti $v_{1}, \dots, v_{k}$. Definiamo questi sottovettori {\bf privi di informazione}.
     \begin{align*}
-      \mathbf{c} \in \mathcal{V}_{r, q}^{\mathscr{L}} 
-      \mapsto 
+      \mathbf{c} \in \mathcal{V}_{r, q}^{\mathscr{L}}
+      \mapsto
       \mathbf{c} ~ \Bigg|~ \coprod_{v\in \mathscr{L} \setminus A} \mathcal{V}_{m(v), q}^{c}
     \end{align*}
 \end{frame}
@@ -903,14 +903,14 @@
 Fonti principali:
     \begin{itemize}
       \item U. Cerruti, F. Vaccarino \emph{From Cyclotomic Extensions to Generalized
-	    Ramanuyan's Sum through the Winograd Transform}, pre-print.    
+	    Ramanuyan's Sum through the Winograd Transform}, pre-print.
       \item Luigia Berardi, \emph{Algebra e teoria dei codici correttori}, Franco angeli
 	    Editore 1994.
-      \item Richard E. Blahut, \emph{Theory and Practice of Error Control Codes}, 
+      \item Richard E. Blahut, \emph{Theory and Practice of Error Control Codes},
 	    Addison Wesley publishing Company, 1984.
       \item Ian F. Blake, Ronald C. Mullin, \emph{The Mathematical Theory of Coding},
 	    Academic Press 1975.
-      
+
     \end{itemize}
 \end{frame}
 

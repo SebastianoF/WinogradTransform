@@ -2,7 +2,7 @@
 Methods to convert strings to numbers and vice versa.
 """
 
-alphabet1 = [" ","A","B","C","D","E",
+alphabet_custom = [" ","A","B","C","D","E",
 "F","G","H","I","J","K","L",
 "M","N","O","P","Q","R","S",
 "T","U","V","W", "X","Y","Z",
@@ -11,12 +11,15 @@ alphabet1 = [" ","A","B","C","D","E",
 alphabet_ascii = [chr(i) for i in range(256)]
 
 ALPHABET = alphabet_ascii
+WL = 5
+
+MAX_INT = len(ALPHABET) ** WL - 1
+MAX_INT_BIN = "{:b}".format(MAX_INT)
 
 
-
-def S2N(s, wl):
+def S2N(s):
     """String to list of numbers of worm length w"""
-    worms = _subdivide_list(_zero_padding(_string2list(s), wl), wl)
+    worms = _subdivide_list(_zero_padding(_string2list(s)))
     return _worms2ints(worms)
     
 
@@ -25,15 +28,15 @@ def _string2list(string):
     return [ALPHABET.index(letter) for letter in string]
 
 
-def _zero_padding(v, wl):
+def _zero_padding(v):
     """Makes the input list a list of length multiple of wl, padding with zeros """
-    r = len(v) % wl    
-    return v + [0] * ((wl - r) % wl)
+    r = len(v) % WL
+    return v + [0] * ((WL - r) % WL)
 
 
-def _subdivide_list(lis, wl):
+def _subdivide_list(lis):
     """From a list of number to a list of lists of len wl. """
-    return [lis[j*wl:(j+1)*wl] for j in range(int(len(lis)/wl))]
+    return [lis[j*WL:(j+1)*WL] for j in range(int(len(lis)/WL))]
 
 
 def _worms2ints(list_of_worms):
@@ -45,22 +48,22 @@ def _worm2int(worm):
     return sum([w*len(ALPHABET)**(len(worm)- i - 1) for i, w in enumerate(worm)])
 
 
-def N2S(v, lw):
+def N2S(v):
     """ From a list of integers to the corresponding word"""
-    list_nums = _trim(_lifter(_ints2worms(v, lw)))
+    list_nums = _trim(_lifter(_ints2worms(v)))
     return _list2string(list_nums)
     
 
-def _ints2worms(list_of_ints, wl):
+def _ints2worms(list_of_ints):
     """From list of integers to list of worms"""
-    return [_int2worm(n, wl) for n in list_of_ints]
+    return [_int2worm(n) for n in list_of_ints]
 
 
-def _int2worm(num, wl):
+def _int2worm(num):
     """From integer to corresponding worm"""
-    worm = [0] * wl
+    worm = [0] * WL
     worm[-1] = num % len(ALPHABET)
-    for i in range(wl-2, -1, -1):
+    for i in range(WL-2, -1, -1):
         num = (num - worm[i + 1]) / len(ALPHABET)
         worm[i] = int(num % len(ALPHABET))
     return worm
@@ -89,10 +92,9 @@ def _list2string(list_of_numbers):
     return result
 
 
-def list2binary(list_of_integers):
-    max_len = len(ALPHABET) + 1  # TODO not so simple!
-    return  ["{0:b}".format(k).zfill(max_len) for k in list_of_integers] 
+def listTen2ListBin(list_of_integers_base_ten):
+    return  ["{0:b}".format(k).zfill(MAX_INT_BIN) for k in list_of_integers_base_ten]
 
 
-def list2decimals(list_of_binaries):
-    return [int(k, 2) for k in list_of_binaries]
+def listBin2ListDec(list_of_base_two):
+    return [int(k, 2) for k in list_of_base_two]

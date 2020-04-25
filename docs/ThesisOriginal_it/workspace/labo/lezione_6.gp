@@ -471,7 +471,7 @@ if(gcd(Polrev(a[1,]),x^n-1)==1,1,0);
 {
 apparizione(h,k,n)=local(delta,u,t,v);
 delta=h^2-4*k;if(gcd(n,delta*k)>1,return(0));
-fordiv(psidelta(h,k,n),m,	
+fordiv(psidelta(h,k,n),m,
 u = m; t = 1; v = x;
 while(u != 0, if(u%2 == 1, t = gprod(h,k,n,t,v)); v = gprod(h,k,n,v,v);
 u = floor(u/2));
@@ -598,7 +598,7 @@ u;
 \\______________________________________________________________________
 \\ GAMMA: trovo la funzione gammaa inversa di teta data a lezione
 
-\\ Lez 6 Es 1: gammaa inverso di teta 
+\\ Lez 6 Es 1: gammaa inverso di teta
 \\ Input: riceve un vettore V di s polinomi in Z_p modulo M_i
 \\        dove M_i è l'iesimo polinomio irriducibile della fattorizzazone.
 \\        riceve inoltre n, p
@@ -615,7 +615,7 @@ risp;
 
 \\__________________
 \\ ESPERIMENTO: modifico teta in teta1 e ne trovo l'inverso. Non so dire cosa sia...
-\\ Lez 6 Es 1BIS : gamma1 inverso di teta1 
+\\ Lez 6 Es 1BIS : gamma1 inverso di teta1
 \\ Input: riceve un vettore V di s polinomi in Z_p modulo M_i
 \\        dove M_i è l'iesimo polinomio irriducibile della fattorizzazone.
 \\        riceve inoltre n, p
@@ -645,7 +645,7 @@ risp;
 
 
 \\_________________________________________________________________________
-\\ Lez 6 Es 2: circolidem  
+\\ Lez 6 Es 2: circolidem
 \\ Input: n, p, con p primo
 \\ Output: elenco degli idempotenti primitivi di R_n,p
 {

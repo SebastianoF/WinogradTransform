@@ -465,7 +465,7 @@ if(gcd(Polrev(a[1,]),x^n-1)==1,1,0);
 {
 apparizione(h,k,n)=local(delta,u,t,v);
 delta=h^2-4*k;if(gcd(n,delta*k)>1,return(0));
-fordiv(psidelta(h,k,n),m,	
+fordiv(psidelta(h,k,n),m,
 u = m; t = 1; v = x;
 while(u != 0, if(u%2 == 1, t = gprod(h,k,n,t,v)); v = gprod(h,k,n,v,v);
 u = floor(u/2));
@@ -725,7 +725,7 @@ for(b=1,l,
 bb=Mod(b,n);
 if((xx+bb)^n!=xx^n+bb,print("n è composto");return(bb)));
 return(1);
-} 
+}
 
 {
 \\restituisce la matrice T che rappresenta tetaQ
@@ -835,9 +835,9 @@ mh;
 
 {
 ellisum(a,P,Q)=local(lam, mu, x3, x1, y1, x2, y2);
- if(P == [0], return(Q)); if(Q == [0], return(P)); x1 = P[1]; x2 = Q[1]; y1 = P[2]; 
+ if(P == [0], return(Q)); if(Q == [0], return(P)); x1 = P[1]; x2 = Q[1]; y1 = P[2];
  y2 = Q[2];if(x1==x2&&y1==-y2,return([0]));
- if(P == Q, lam = (3*x1^2 + 2*a[2]*x1 + a[4] - a[1]* y1)/(2* y1 + a[1]* x1 + a[3]), lam = (y2 - y1)/(x2 - x1)); 
+ if(P == Q, lam = (3*x1^2 + 2*a[2]*x1 + a[4] - a[1]* y1)/(2* y1 + a[1]* x1 + a[3]), lam = (y2 - y1)/(x2 - x1));
  mu = y1 - lam *x1; x3 = lam^2 + a[1]* lam - a[2] - x1 - x2;
  [x3, -(lam + a[1])* x3 - mu - a[3]];
 }
@@ -854,13 +854,13 @@ t;
 
 {
 ellisumn(z,P,Q,n)=local(lam, mu, x3, x1, y1, x2, y2,den,fat,a);
- if(P == [0], return(Q)); if(Q == [0], return(P)); 
+ if(P == [0], return(Q)); if(Q == [0], return(P));
  a=z*Mod(1,n);
- x1 = Mod(P[1],n); x2 = Mod(Q[1],n); y1 = Mod(P[2],n); 
+ x1 = Mod(P[1],n); x2 = Mod(Q[1],n); y1 = Mod(P[2],n);
  y2 = Mod(Q[2],n);if(x1==x2&&y1==-y2,return([0]));
  if(P == Q, den=(2* y1 + a[1]* x1 + a[3]); fat=gcd(n,lift(den)); if(fat>1 && fat!=n,return(fat));
- lam = (3*x1^2 + 2*a[2]*x1 + a[4] - a[1]* y1)*den^-1,den= (x2 - x1); fat=gcd(n,lift(den)); if(fat>1 && fat!=n,return(fat)); 
- lam = (y2 - y1)*den^-1); 
+ lam = (3*x1^2 + 2*a[2]*x1 + a[4] - a[1]* y1)*den^-1,den= (x2 - x1); fat=gcd(n,lift(den)); if(fat>1 && fat!=n,return(fat));
+ lam = (y2 - y1)*den^-1);
  mu = y1 - lam *x1; x3 = lam^2 + a[1]* lam - a[2] - x1 - x2;
  lift([x3, -(lam + a[1])* x3 - mu - a[3]]);
 }
@@ -921,7 +921,7 @@ return(lift(punti))
 ellpunti2(a,b,p)=local(e,i,x,s,punti,g,q1,q2);
 e=ellinit([0,0,0,a,b]);
 punti=[];
-for(i=0, p-1, x=Mod(i,p); 
+for(i=0, p-1, x=Mod(i,p);
               s=x^3+a*x+b;
               if(kronecker(lift(s),p)==1,g=s^(1/2); q1=[x,g];
                                           q2=[x,-g];
@@ -934,7 +934,7 @@ return(lift(punti))
 \\restituisce l'ordine della curva
 {
 ellord(z,p)=p+1-ellap(ellinit(z),p)
-}	
+}
 
 \\sono il gruppo di torsione della curva mod q
 \\ [0, 0, 0, -191, -510] [4] r=0
@@ -995,8 +995,8 @@ k=random(p); Q=ellprecode(z,m,p);
 \\___________________________________________________
 
 \\ Lez 11 Es 3: decodifica di el Gamal
-\\ Input: (z,P,ra,p,c). z parametri curva ellittica, P punto , ra segreto, 
-\\                      p primo,c vettore ricevuto dal mittente 
+\\ Input: (z,P,ra,p,c). z parametri curva ellittica, P punto , ra segreto,
+\\                      p primo,c vettore ricevuto dal mittente
 \\ Output:
 {
 ellgamaldecode(z,P,ra,p,c)=local(rakP,Q);
@@ -1030,7 +1030,7 @@ c;
 \\___________________________________________________
 
 \\ Lez 11 Es 6: frazioni continue
-\\ Input: 
+\\ Input:
 \\ Output:
 {
 gaussmap(n)=local(pint);

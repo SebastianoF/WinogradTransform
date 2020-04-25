@@ -16,7 +16,7 @@
 	\raise1ex\hbox{$#1$}\Big/\lower1ex\hbox{$#2$}%
 }
 
-% FINE 
+% FINE
 
 \title{
     Winograd Transform in Error Correcting Code theory
@@ -30,7 +30,7 @@
 
 \noindent \textbf{Supervisor:} Umberto Cerruti. \\
 \textbf{Alma mater:} Universit\`a degli studi di Torino, Facoltà di Scienze Matematiche Fisiche Naturali, Corso di Laurea in Matematica. \\
-\textbf{Date:} 17/07/2013 
+\textbf{Date:} 17/07/2013
 
 \medskip
 
@@ -87,24 +87,24 @@ The first part can be quickly summarized with a diagram:
 %\vspace{0.2in}
 
 \noindent
-where $\mathcal{V}_{r, \mathbb{F}}^{c}$ e $\mathcal{M}_{r,\mathbb{F} }^{c}$ 
-are the circulant vectors and circulant matrices algebras and the of dimension $r$ over the field $\mathbb{F}$. 
-$\prod_{v} \mathbb{F} (\xi^{v})$ e $\prod_{v} \quotient{ \mathbb{F}[x] }{ (M^{(v)}(x) )}$ 
+where $\mathcal{V}_{r, \mathbb{F}}^{c}$ e $\mathcal{M}_{r,\mathbb{F} }^{c}$
+are the circulant vectors and circulant matrices algebras and the of dimension $r$ over the field $\mathbb{F}$.
+$\prod_{v} \mathbb{F} (\xi^{v})$ e $\prod_{v} \quotient{ \mathbb{F}[x] }{ (M^{(v)}(x) )}$
 are product of the splitting fields, and all the arrows are isomorphisms. \\
 Idempotents and ideals of $\quotient{ \mathbb{F}[x] }{ (x^r -1 )}$, that plays a fundamental role in the theory and that are in general not simple to be found, becomes easily accessible in the splitting field, thanks to the Winograd transform $\gamma$.\\
 
-The diagram also shows the strong relationship between circulant matrices and the Winograd transform, which led to the definition of a new structure, here called \emph{interlinked circulant vectors}. \\ 
+The diagram also shows the strong relationship between circulant matrices and the Winograd transform, which led to the definition of a new structure, here called \emph{interlinked circulant vectors}. \\
 This definition allows to define the vectors of the residual polynomials over every factor of the decomposition $x^r - 1$ in a vector of vectors of various dimensions, that are still keeping the same properties they had in the original structure. Which means:
 \begin{align*}
-\psi_{5} :  \prod_{v\in \mathscr{L}} \quotient{\mathbb{F}_{q} \lbrack x \rbrack  }{M^{(v)}(x)}    
-& \longrightarrow  
+\psi_{5} :  \prod_{v\in \mathscr{L}} \quotient{\mathbb{F}_{q} \lbrack x \rbrack  }{M^{(v)}(x)}
+& \longrightarrow
 \coprod_{v\in \mathscr{L} } \mathcal{V}_{m(v), q}^{c}   \\
 %%
-( a(x) \mod{M^{(v)}(x)} )_{v \in \mathscr{L}} 
-&\longmapsto  
+( a(x) \mod{M^{(v)}(x)} )_{v \in \mathscr{L}}
+&\longmapsto
 ( (a_v )_0, (a_v)_1, \dots (a_v)_{m(v)-1})_{v \in \mathscr{L}} ~,
 \end{align*}
-Where $\prod$ is the usual product of fields, $\coprod$ is the interlinked product defined in the thesis, $\mathscr{L}$ is the set of the degreed of the divisors of $x^r - 1$. 
+Where $\prod$ is the usual product of fields, $\coprod$ is the interlinked product defined in the thesis, $\mathscr{L}$ is the set of the degreed of the divisors of $x^r - 1$.
 
 Afterwards we explore the new diagram, where $\gamma$ can be identified with $\rho$ through the interlinked circulant vectors:
 %\vspace{0.3in}
@@ -131,7 +131,7 @@ Afterwards we explore the new diagram, where $\gamma$ can be identified with $\r
 %FRECCE
 % RPQ
 \mor{R}{P}{$ \eta $}
-\mor{R}{Q}{$ \gamma $}   
+\mor{R}{Q}{$ \gamma $}
 \mor{P}{Q}{$ \mu $}
 %psi_2
 \mor{R}{Vc}{$\psi_{2}$}
@@ -153,7 +153,7 @@ Afterwards we explore the new diagram, where $\gamma$ can be identified with $\r
 \noindent
 Having in mind a thesis oriented towards application, and in the attempt of exploiting the understanding of the relationships between algebraic structures, in the thesis the reader can find numerous examples:\\
 Considering $r = 7$ over the field $\mathbb{Z}_2$, it follows:
-\begin{align*}   
+\begin{align*}
 \gamma(x^0) &= (1,1,1) =  (1,1,0,0,1,0,0) \\
 \gamma(x^1) &= (1,x,x) = (1,0,1,0,0,1,0) \\
 \gamma(x^2) &= (1,x^2,x^2) = (1,0,0,1,0,0,1) \\
@@ -165,12 +165,12 @@ Considering $r = 7$ over the field $\mathbb{Z}_2$, it follows:
 Where the second equality of each line shows the polynomial in the corresponding interlinked circular vector.
 The matrix $\Gamma$, defining the Winograd transform, in this case results to be the block circulant matrix:
 \begin{align*}
-\Gamma = 
+\Gamma =
 \left(
 \begin{array} { c }
 \Gamma^{(0)}  \\ \\
 \Gamma^{(1)} \\ \\
-\Gamma^{(3)} 
+\Gamma^{(3)}
 \end{array}
 \right)
 =
@@ -184,20 +184,20 @@ The matrix $\Gamma$, defining the Winograd transform, in this case results to be
 \hline
 1 & 0 & 0 & 1 & 0 & 1 & 1  \\
 0 & 1 & 0 & 1 & 1 & 0 & 1  \\
-0 & 0 & 1 & 1 & 1 & 1 & 0  
+0 & 0 & 1 & 1 & 1 & 1 & 0
 \end{array}
 \right)~.
 \end{align*}
 Every subset of prime polynomials in the decomposition of $x^r - 1$ defines a set of blocks in the matrix $\Gamma$, which can be recomposed to create cyclic code's generating matrices, or duals' control matrices. The inverse of $\Gamma$, indicated with $\Delta$ in the literature, can be used to decode an encoded message: $\Delta$ can be a turn into a device to quickly find the \emph{null-information subvectors} in the interlinked circular vectors, and so to recover the original message in a quicker way if compared to the classical syndrome-based method.\\
-There are $31$ titles in the thesis bibliography, though the main source is the pre-print written by the supervisor [1], that we combined with the three strongholds in error correcting code theory [2,3,4].  
+There are $31$ titles in the thesis bibliography, though the main source is the pre-print written by the supervisor [1], that we combined with the three strongholds in error correcting code theory [2,3,4].
 
 
 \begin{enumerate}
 	\item U. Cerruti, F. Vaccarino \emph{From Cyclotomic Extensions to Generalized
-		Ramanuyan's Sum through the Winograd Transform}, pre-print.    
+		Ramanuyan's Sum through the Winograd Transform}, pre-print.
 	\item Luigia Berardi, \emph{Algebra e teoria dei codici correttori}, Franco angeli
 	Editore 1994.
-	\item Richard E. Blahut, \emph{Theory and Practice of Error Control Codes}, 
+	\item Richard E. Blahut, \emph{Theory and Practice of Error Control Codes},
 	Addison Wesley publishing Company, 1984.
 	\item Ian F. Blake, Ronald C. Mullin, \emph{The Mathematical Theory of Coding},
 	Academic Press 1975.

@@ -12,7 +12,7 @@ In questo capitolo riportiamo le definizioni e i risultati fondamentali della te
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Codici rivelatori e codici correttori}
 
-I messaggi inviati attraverso un sistema di comunicazione sono generalmente vettori di lunghezza $k$ appartenenti ad uno spazio metrico. Si vedrà nel corso del paragrafo che è conveniente aggiungere a tale spazio la struttura di spazio vettoriale. 
+I messaggi inviati attraverso un sistema di comunicazione sono generalmente vettori di lunghezza $k$ appartenenti ad uno spazio metrico. Si vedrà nel corso del paragrafo che è conveniente aggiungere a tale spazio la struttura di spazio vettoriale.
 \begin{definizione}
    Sia $\mathbb{F} = \mathbb{F}_{q}$ campo finito di ordine $p$ e di cardinalità $q=p^n$. L'insieme delle $r$-uple ordinate ad elementi in $\mathbb{F}$ definito come
    \begin{align*}
@@ -21,26 +21,26 @@ I messaggi inviati attraverso un sistema di comunicazione sono generalmente vett
    e considerato congiuntamente con l'operazione binaria
    \begin{align*}
        \rho: \mathbb{F}^{r} \times \mathbb{F}^{r}  &\longrightarrow  \mathbb{R}   \\
-              (\mathbf{x},\mathbf{y}) &\longmapsto  \rho(\mathbf{x},\mathbf{y})  
+              (\mathbf{x},\mathbf{y}) &\longmapsto  \rho(\mathbf{x},\mathbf{y})
               = \arrowvert \lbrace j \mid x_j \neq y_j \rbrace \arrowvert
    \end{align*}
    è detto {\bf spazio delle parole} di lunghezza $r$ e soddisfa gli assiomi di spazio metrico. I suoi elementi sono detti {\bf parole} ed $\mathbb{F}_{q}$ è detto {\bf alfabeto} dello spazio. \\
-   Un qualsiasi sottoinsieme $C$ di $\mathbb{F}^{r} $ è detto {\bf codice}, mentre i sottospazi vettoriali sono detti {\bf codici lineari}. 
-\end{definizione}   
+   Un qualsiasi sottoinsieme $C$ di $\mathbb{F}^{r} $ è detto {\bf codice}, mentre i sottospazi vettoriali sono detti {\bf codici lineari}.
+\end{definizione}
 \begin{definizione}
    Si definisce {\bf distanza minima} la più piccola distanza fra due parole del codice:
    \begin{align*}
-      d(C) 
+      d(C)
       := min\lbrace  \rho(\mathbf{x},\mathbf{y})    \mid \mathbf{x},\mathbf{y} \in C \rbrace
-   \end{align*}   
+   \end{align*}
 \end{definizione}
 \noindent
 Il vantaggio principale nel considerare i codici $C$ come sottospazi vettoriali dello spazio delle parole, consiste nel poter definire una norma e nel poter esprimere i codici in modo compatto tramite matrici.
 \begin{definizione}
    Si definisce {\bf peso di Hamming} di una parola $\mathbf{x}$, la sua distanza dall'origine, cioè il numero delle sue componenti non nulle.
-   \begin{align*}   
+   \begin{align*}
       w(\mathbf{x}) = \arrowvert \lbrace j \mid x_j \neq 0 \rbrace \arrowvert = \rho(\mathbf{x},\mathbf{0})
-   \end{align*}   
+   \end{align*}
    Si verifica che $w$ soddisfa la definizione di norma dello spazio vettoriale $\mathbb{F}^{r}$ e dei suoi sottospazi.\\
    Il più piccolo peso delle parole di un codice è detto {\bf peso minimo} ed equivale alla distanza minima.
 \end{definizione}
@@ -56,7 +56,7 @@ Si introduce la definizione di rumore, di funzione rivelatore e la pseudo-funzio
    \begin{align*}
        r: \mathbb{F}^{r}   &\longrightarrow  \lbrace 0,1 \rbrace \\
             \mathbf{v}  &\longmapsto  0 \quad if \quad \mathbf{v} \notin C  \\
-            \mathbf{v}  &\longmapsto  1 \quad if \quad  \mathbf{v} \in C 
+            \mathbf{v}  &\longmapsto  1 \quad if \quad  \mathbf{v} \in C
    \end{align*}
 \end{definizione}
 
@@ -64,14 +64,14 @@ Si introduce la definizione di rumore, di funzione rivelatore e la pseudo-funzio
    Dato il codice $C$ con distanza minima $d$, la pseudofunzione che associa ad ogni parola dello spazio $\mathbb{F}^{r}$ la parola (o le parole) del codice ad essa più vicina è detta funzione {\bf correttore}
    \begin{align*}
        c: \mathbb{F}^{r}   &\longrightarrow  C \\
-            \mathbf{x} + \mathbf{r} &\longmapsto  \mathbf{x}  
+            \mathbf{x} + \mathbf{r} &\longmapsto  \mathbf{x}
    \end{align*}
    dove $\mathbf{x}$ è una parola del codice ed $\mathbf{r}$ è il rumore.
 \end{definizione}
 \noindent
 La funzione $c$ è una pseudofunzione se esiste un vettore di $\mathbb{F}^{r}$ avente distanza pari a $\llcorner d/2 \lrcorner$ da due parole distinte del codice $C$. Sulle definizioni appena enunciate si basano le prossime di codice rivelatore e codice correttore:
 \begin{definizione}
-   Un codice $C$ con distanza minima $d$ si dice $e$-{\bf rivelatore} se $e$ è il peso massimo del rumore che può essere sommato ad una parola del codice, senza che l'immagine del correttore di tale somma risulti essere $1$ (cioè senza che il rumore la trasformi in un'altra parola del codice). In questo caso $e+1$ è il più piccolo peso dei rumori critici delle parole del codice. 
+   Un codice $C$ con distanza minima $d$ si dice $e$-{\bf rivelatore} se $e$ è il peso massimo del rumore che può essere sommato ad una parola del codice, senza che l'immagine del correttore di tale somma risulti essere $1$ (cioè senza che il rumore la trasformi in un'altra parola del codice). In questo caso $e+1$ è il più piccolo peso dei rumori critici delle parole del codice.
 \end{definizione}
 \begin{definizione}
    Un codice $C$ con distanza minima $d$ si dice {\bf $e$-correttore} se la funzione $c$ è ben definita per la restrizione del dominio ai vettori di $\mathbb{F}^{r}$ del tipo $\mathbf{v} = \mathbf{x} + \mathbf{r}$ dove $x$ è un vettore di $C$ ed $r$ ha peso di Hamming minore o uguale ad $e$.
@@ -81,14 +81,14 @@ Presentiamo tre proprietà che mettono in relazione le caratteristiche di un cod
 \begin{prop} \label{cap2_1:propcodici1}
    Sia $C$ codice di lunghezza $r$. $C$ è $e$-rivelatore se e solo se $d(C)= e+1$.
 \end{prop}
-\begin{proof} 
+\begin{proof}
    Dimostriamo separatamente le due inclusioni.
    \begin{itemize}
-   \item[$\Rightarrow$)] Se per assurdo $d(C) < e+1 $ allora esistono due vettori del codice $\mathbf{x}, \mathbf{y}$, la cui distanza è minore di $e$. Quindi $C$ non può essere $e$-rivelatore. 
+   \item[$\Rightarrow$)] Se per assurdo $d(C) < e+1 $ allora esistono due vettori del codice $\mathbf{x}, \mathbf{y}$, la cui distanza è minore di $e$. Quindi $C$ non può essere $e$-rivelatore.
    \item[$\Leftarrow$)] Viceversa, siano $\mathbf{x} \in C$, $\mathbf{r} \in \mathbb{F}^{r}$ tale che $w(\mathbf{r}) \leq e$. Allora
    \begin{align*}
      &\rho(\mathbf{x}, \mathbf{x}+\mathbf{r}) \leq e < d(C) \\
-     &\Rightarrow \mathbf{x}+\mathbf{r} \notin C 
+     &\Rightarrow \mathbf{x}+\mathbf{r} \notin C
    \end{align*}
    Se invece $w(\mathbf{r}) > e + 1$ allora
    \begin{align*}
@@ -102,7 +102,7 @@ Presentiamo tre proprietà che mettono in relazione le caratteristiche di un cod
    Sia $C$ codice di lunghezza $r$. $C$ è $e$-correttore se e solo se $d(C)= 2e+1$.
 \end{prop}
 \begin{proof}
-   Dimostriamo separatamente le due inclusioni. 
+   Dimostriamo separatamente le due inclusioni.
    \begin{itemize}
    \item[$\Rightarrow$)] Se $C$ è $e$-correttore, allora per ogni coppia di parole distinte del codice $\mathbf{x}, \mathbf{y}$ e comunque scelti $\mathbf{r}_{1}$ ed $\mathbf{r}_{2}$ rumori di peso massimo $e$, $\mathbf{x}+\mathbf{r}_{1} \neq \mathbf{y}+\mathbf{r}_{2}$ cioè la funzione correttore è ancora ben definita,  quindi $\rho(\mathbf{x},\mathbf{y}) = 2e + 1$.
    \item[$\Leftarrow$)] Viceversa se $d(C) = 2e + 1$ allora comunque scelti $\mathbf{x}, \mathbf{y} \in C$ parole distinte del codice $\rho(\mathbf{x},\mathbf{y}) \geq 2e+1$. Sia $\mathbf{r}$ rumore di peso $w(\mathbf{r}) \leq e$ allora $\rho(\mathbf{x} + \mathbf{r},\mathbf{y}) \geq e+1$, quindi la funzione correttore è ben definita per il dominio ristretto a tutti gli elementi del tipo $\mathbf{x} + \mathbf{r}$.
@@ -123,25 +123,25 @@ Se nei casi in cui la funzione rivelatore è ben definita allora la codifica del
 
 La metrica nello spazio delle parole $\mathbb{F}^{r}$ induce una topologia i cui chiusi sono definiti da sfere indicate con
 \begin{align*}
-   S_{t}(\mathbf{x}) := \lbrace \mathbf{y} \in \mathbb{F}^{r} \mid \rho(\mathbf{x},\mathbf{y}) \leq t \rbrace 
+   S_{t}(\mathbf{x}) := \lbrace \mathbf{y} \in \mathbb{F}^{r} \mid \rho(\mathbf{x},\mathbf{y}) \leq t \rbrace
 \end{align*}
 la cui frontiera è una superficie sferica definita da
 \begin{align*}
-   fr(S_{t}(\mathbf{x})) = \sigma_{t}(\mathbf{x}) 
-   := \lbrace \mathbf{y} \in \mathbb{F}^{r} \mid \rho(\mathbf{x},\mathbf{y}) = t \rbrace 
+   fr(S_{t}(\mathbf{x})) = \sigma_{t}(\mathbf{x})
+   := \lbrace \mathbf{y} \in \mathbb{F}^{r} \mid \rho(\mathbf{x},\mathbf{y}) = t \rbrace
 \end{align*}
 Ciascuna sfera è unione di superfici sferiche  concentriche di raggio compreso fra $0$ ed il raggio della sfera:
 \begin{align*}
-   S_{t}(\mathbf{x}) = \bigcup_{s=0}^{t} \sigma_{s}(\mathbf{x}) 
+   S_{t}(\mathbf{x}) = \bigcup_{s=0}^{t} \sigma_{s}(\mathbf{x})
 \end{align*}
 da cui la cardinalità di una sfera è pari alla somma delle cardinalità delle superfici sferiche concentriche che lo definiscono, essendo queste fra loro disgiunte
 \begin{align*}
-   \arrowvert S_{t}(\mathbf{x})\arrowvert  = \bigcup_{s=0}^{t} \arrowvert\sigma_{s}(\mathbf{x})\arrowvert 
+   \arrowvert S_{t}(\mathbf{x})\arrowvert  = \bigcup_{s=0}^{t} \arrowvert\sigma_{s}(\mathbf{x})\arrowvert
 \end{align*}
 Si verifica inoltre che
 \begin{align*}
    \arrowvert\sigma_{s}(\mathbf{x})\arrowvert  = \binom{r}{s}(q-1)^{s}
-\end{align*} 
+\end{align*}
 quindi
 \begin{align*}
    \arrowvert S_{t}(\mathbf{x})\arrowvert  = \sum_{s=0}^{t} \binom{r}{s}(q-1)^{s}
@@ -153,7 +153,7 @@ quindi
 \begin{proof}
    Dalla proprietà \ref{cap2_1:propcodici2} $C$ è $e$ correttore se e solo se $d(C)= 2e+1$, allora segue
    \begin{align*}
-      d(C)= 2e+1 
+      d(C)= 2e+1
       &\iff \forall \mathbf{x},\mathbf{y} \in C, \mathbf{x} \neq \mathbf{y} \quad \rho(\mathbf{x},\mathbf{y}) \geq 2e + 1 \\
       &\iff S_{e}(\mathbf{x}) \cap S_{e}(\mathbf{x}) = \emptyset
    \end{align*}
@@ -171,12 +171,12 @@ Considerando lo spazio delle parole, se esiste un raggio ed un insieme di centri
 \begin{definizione}
    Dato un codice $C$ $e$-correttore, si definisce {\bf insieme dei punti di difetto}
    \begin{align*}
-      set(\delta_{C}) 
+      set(\delta_{C})
       :=  \mathbb{F}^{r} \setminus  \bigcup_{\mathbf{x} \in C} S_{e}(\mathbf{x})
    \end{align*}
    e si definisce {\bf difetto} il numero
    \begin{align*}
-      \delta_{C} 
+      \delta_{C}
       &:= \arrowvert \mathbb{F}^{r} \arrowvert - \arrowvert \bigcup_{\mathbf{x} \in C} S_{e}(\mathbf{x}) \arrowvert \\
       &= \arrowvert \lbrace \mathbf{y} \in \mathbb{F}^{r} \mid \mathbf{y} \notin \cup_{\mathbf{x} \in C} S_{e}(\mathbf{x}) \rbrace \arrowvert
    \end{align*}
@@ -204,7 +204,7 @@ La tesi può essere riformulata come:
 \end{align*}
 Tre conseguenze del teorema di limitazione di Hamming sono
 \begin{corollario}
-    Il codice $e$-correttore $C$ di lunghezza $r$ è perfetto se 
+    Il codice $e$-correttore $C$ di lunghezza $r$ è perfetto se
     \begin{align*}
         \arrowvert S_{e}(\mathbf{x})  \arrowvert \mid  \arrowvert \mathbb{F}^{r} \arrowvert
      \end{align*}
@@ -215,7 +215,7 @@ Tre conseguenze del teorema di limitazione di Hamming sono
 \end{corollario}
 
 \begin{corollario}
-    Il codice $1$-correttore $C$ di lunghezza $r$ è perfetto se 
+    Il codice $1$-correttore $C$ di lunghezza $r$ è perfetto se
      \begin{align*}
          (1+r(q-1)) \mid q^r
      \end{align*}
@@ -230,19 +230,19 @@ Tre conseguenze del teorema di limitazione di Hamming sono
 
 Presentiamo un ulteriore limite alla progettazione di codici correttori lineari, detto limitazione di Singleton. Il seguente teorema è un primo passo che conduce alla definizione di \emph{posti di informazione}, che sarà cruciale nei prossimi capitoli.
 \begin{teorema}\label{cap2_1:teolimitecodici}
-   Sia $C$ codice di lunghezza $r$ e distanza minima $d$, allora 
+   Sia $C$ codice di lunghezza $r$ e distanza minima $d$, allora
    \begin{align*}
       \arrowvert C \arrowvert \leq q^{r-d+1}
    \end{align*}
 \end{teorema}
 \begin{proof}
-   Segue da 
+   Segue da
    \begin{align*}
       \arrowvert C \arrowvert q^{d-1} \leq \arrowvert \mathbb{F}^{r} \arrowvert
    \end{align*}
 \end{proof}
 \noindent
-Dal teorema precedente è possibile assegnare $k \leq r-d+1$ posti di ogni parola del codice che la determinano univocamente. 
+Dal teorema precedente è possibile assegnare $k \leq r-d+1$ posti di ogni parola del codice che la determinano univocamente.
 \begin{definizione}
    Sia $C$ codice di lunghezza $r$ e distanza minima $d$. Fissati $k \leq r-d+1$ interi positivi compresi fra $1$ ed $r$ ed indicati con $j_1, \dots j_k$, si dicono {\bf posti di informazione} se comunque scelta una $k$-upla $(y_1,\dots , y_k)$ ad elementi in $\mathbb{F}$, esiste una ed una sola parola di $C$ tale che nel posto $j_i$ compaia $y_i$ per ogni $i$ compreso fra $1$ e $k$. I posti che non sono di informazione sono detti di {\bf ridondanza}.
 \end{definizione}
@@ -261,7 +261,7 @@ La tesi del seguente teorema è nota come {\bf limitazione di Singleton}:
 \end{proof}
 
 \begin{definizione}
-   Un $(r,k)$-codice $C$ è detto a {\bf massima distanza separabile} (o MDS) se comunque scelti $k$ posti di un qualsiasi vettore del codice, questi sono di informazione. 
+   Un $(r,k)$-codice $C$ è detto a {\bf massima distanza separabile} (o MDS) se comunque scelti $k$ posti di un qualsiasi vettore del codice, questi sono di informazione.
 \end{definizione}
 
 
@@ -271,7 +271,7 @@ La tesi del seguente teorema è nota come {\bf limitazione di Singleton}:
 Utilizzando il fatto che i codici lineari sono in particolare dei sottospazi vettoriali, possiamo scrivere gli elementi di un codice dalla matrice di passaggio dallo spazio $\mathbb{F}^{r} $ al sottospazio $C$. \\
 Sia $\lbrace \mathbf{b}_{i} \rbrace_{i=1}^{r}$ base di $\mathbb{F}^{r}$ e sia $\lbrace \mathbf{e}_{i} \rbrace_{i=1}^{k}$ base di $C$, allora è noto che ogni vettore $\mathbf{b}_{i}$ può essere scritto come combinazione lineare dei $\mathbf{e}_{i}$:
 \begin{align*}
-   \mathbf{b}_{i} = \sum_{j=1}^{r} a_{ij} \mathbf{e}_{j}  
+   \mathbf{b}_{i} = \sum_{j=1}^{r} a_{ij} \mathbf{e}_{j}
 \end{align*}
 A tale sistema corrisponde la matrice di caratteristica $k$, indicata con $G$ e detta {\bf matrice generatrice} del codice $C$
 \begin{align*}
@@ -281,17 +281,17 @@ A tale sistema corrisponde la matrice di caratteristica $k$, indicata con $G$ e 
   a_{11} & \cdots & a_{1k} & \cdots & a_{1r} \\
   a_{21} & \cdots & a_{2k} & \cdots & a_{2r} \\
   \vdots &  & \vdots & & \vdots \\
-  a_{k1} & \cdots & a_{kk} & \cdots & a_{kr} 
+  a_{k1} & \cdots & a_{kk} & \cdots & a_{kr}
   \end{array}
   \right)
 \end{align*}
 In questo caso il codice $C$ è detto generato da $G$.
 Utilizzando i risultati dell'algebra lineare
 \footnote{Ad esempio con una generalizzazione di pag. 99 \cite{stoka}.}
-è possibile scrivere la matrice $G$ in modo tale che le prime $k$ colonne coincidano con le prime $k$ colonne della matrice identità $k\times k$: 
+è possibile scrivere la matrice $G$ in modo tale che le prime $k$ colonne coincidano con le prime $k$ colonne della matrice identità $k\times k$:
 \begin{align*}
    G = (I_{k} \mid E)
-\end{align*} 
+\end{align*}
 In questa forma $G$ è detta {\bf in forma standard}.
 Risulta immediato il rapporto fra gli $(r,k)$-codici sopra definiti ed i codici lineari:
 \begin{teorema}
@@ -316,9 +316,9 @@ Fra i vantaggi della rappresentazione matriciale si annovera un modo rapido per 
 
 Si pone ora il problema di cercare un modo computazionalmente efficiente per determinare se una parola dello spazio $ \mathbb{F}^{r} $ appartiene ad un dato codice lineare $C$. Per tale scopo è necessario introdurre i codici duali definiti sull'usuale prodotto scalare fra vettori:
 \begin{definizione}
-   Sia un codice lineare $C$ di $\mathbb{F}^{r}$ si definisce {\bf spazio ortogonale} l'insieme 
+   Sia un codice lineare $C$ di $\mathbb{F}^{r}$ si definisce {\bf spazio ortogonale} l'insieme
    \begin{align*}
-      C^{\perp} 
+      C^{\perp}
       := \lbrace \mathbf{x} \mid \mathbf{x} \cdot \mathbf{c} = 0 \quad \forall \mathbf{c} \in C \rbrace
    \end{align*}
    che è a sua volta un sottospazio vettoriale di $\mathbb{F}^{r}$ detto {\bf codice ortogonale} (o codice duale).
@@ -331,7 +331,7 @@ Dato che sui campi finiti possono esserci vettori isotropi, $C$ e $C^{\perp}$ po
 \noindent
 I prossimi teoremi stabiliscono un modo per determinare l'appartenenza di una parola ad un codice tramite la matrice di controllo.
 \begin{teorema} \label{teorFondMatrGen}
-   Sia $C$ $(n,k)$-codice lineare generato dalla matrice $G$.\\ 
+   Sia $C$ $(n,k)$-codice lineare generato dalla matrice $G$.\\
    Allora
    \begin{align*}
       \mathbf{x} \in C^{\perp} \iff G \mathbf{x}^{t} = \mathbf{0}^{t}
@@ -343,7 +343,7 @@ I prossimi teoremi stabiliscono un modo per determinare l'appartenenza di una pa
    \item[$\Rightarrow$)] Sia $\mathbf{x} \in C^{\perp}$ allora $\mathbf{x}$ è ortogonale ad ogni parola di $C$, quinde a maggior ragione è ortogonale alle parole di ogni base di $C$, anche della base i cui vettori costituiscono la matrice $G$: $G \mathbf{x}^{t} = \mathbf{0}^{t}$.
    \item[$\Leftarrow$)] Viceversa se $G \mathbf{x}^{t} = \mathbf{0}^{t}$, allora $\mathbf{x}$ è ortogonale a una scelta di vettori $\lbrace \mathbf{e}_{0}, \dots , \mathbf{e}_{r-1} \rbrace$ base di $C$. Dato che ogni parola del codice è definita come combinazione lineare  $\mathbf{c} = \lambda_{0} \mathbf{e}_{0} + \dots + \lambda_{r-1} \mathbf{e}_{r-1}$ allora
    \begin{align*}
-      \mathbf{x} \cdot \mathbf{c} 
+      \mathbf{x} \cdot \mathbf{c}
       &= \mathbf{x} \cdot ( \lambda_{0} \mathbf{e}_{0} + \dots + \lambda_{r-1} \mathbf{e}_{r-1}) \\
       &= \lambda_{0} (\mathbf{x} \cdot  \mathbf{e}_{0}) + \dots + \lambda_{r-1} (\mathbf{x} \cdot \mathbf{e}_{r-1})\\
       &= 0
@@ -363,11 +363,11 @@ I prossimi teoremi stabiliscono un modo per determinare l'appartenenza di una pa
 \end{proof}
 
 \begin{teorema}\label{teorFondMatrContrllo}
-   Sia $C$ $(n,k)$-codice lineare generato dalla matrice $G$ ed avente $H$ come matrice di controllo.\\ 
+   Sia $C$ $(n,k)$-codice lineare generato dalla matrice $G$ ed avente $H$ come matrice di controllo.\\
    Allora
    \begin{align*}
       \mathbf{x} \in C \iff H \mathbf{x}^{t} = \mathbf{0}^{t}
-   \end{align*}   
+   \end{align*}
 \end{teorema}
 \begin{proof}
    $\mathbf{x}\in C$ se e solo se $\mathbf{x}\cdot \mathbf{c}^{\perp} = \mathbf{0}$ $\forall \mathbf{c}^{\perp} \in C^{\perp}$. Ma questo accade in particolare per tutti i vettori della base che costituiscono le righe di $H$, e viceversa se accade per tutti i vettori della base accade per ogni altro vettore.
@@ -377,10 +377,10 @@ Risulta quindi essere di importanza cruciale il valore di $H \mathbf{x}^{t}$ che
 \noindent
 È possibile ricavare la matrice di controllo $H$ costruendola a partire dalla matrice generatrice $G$, utilizzando il seguente
 \begin{teorema}[di correlazione fra $G$ ed $H$]
-   Sia $C$ $(r,k)$-codice lineare di matrice generatrice $G$ scritta in forma standard come $G = (I_{k} \mid E)$, allora la matrice di controllo risulta essere $H = (-E^{t} \mid I_{n-k})$.   
+   Sia $C$ $(r,k)$-codice lineare di matrice generatrice $G$ scritta in forma standard come $G = (I_{k} \mid E)$, allora la matrice di controllo risulta essere $H = (-E^{t} \mid I_{n-k})$.
 \end{teorema}
 \begin{proof}
-   Se $G$, rispetto alla base standard di $\mathbb{F}_{q}^{r}$ e alla base $\lbrace \mathbf{e}_{0} \dots \mathbf{e}_{k} $ di $C$, è data da 
+   Se $G$, rispetto alla base standard di $\mathbb{F}_{q}^{r}$ e alla base $\lbrace \mathbf{e}_{0} \dots \mathbf{e}_{k} $ di $C$, è data da
    \begin{align*}
       G=
       \left(
@@ -388,18 +388,18 @@ Risulta quindi essere di importanza cruciale il valore di $H \mathbf{x}^{t}$ che
       1 & 0 & \cdots & 0 & e_{1,k+1} & \cdots &e_{1,k+1}   \\
       0 & 1 & \cdots & 0 & e_{1,k+1} & \cdots &e_{1,k+1}   \\
        \vdots & &  & \vdots & \vdots  &  &  \vdots   \\
-      0 & 0 & \cdots & 1 & e_{1,k+1} & \cdots &e_{1,k+1}   
+      0 & 0 & \cdots & 1 & e_{1,k+1} & \cdots &e_{1,k+1}
       \end{array}
       \right)
    \end{align*}
-   allora un vettore $\mathbf{x}$ è una parola del codice $C$ se e solo se 
+   allora un vettore $\mathbf{x}$ è una parola del codice $C$ se e solo se
    \begin{align*}
       \left(
       \begin{array} {c c c c | c c c }
       1 & 0 & \cdots & 0 & e_{1,k+1} & \cdots &e_{1,k+1}   \\
       0 & 1 & \cdots & 0 & e_{1,k+1} & \cdots &e_{1,k+1}   \\
        \vdots & &  & \vdots & \vdots  &  &  \vdots   \\
-      0 & 0 & \cdots & 1 & e_{1,k+1} & \cdots &e_{1,k+1}   
+      0 & 0 & \cdots & 1 & e_{1,k+1} & \cdots &e_{1,k+1}
       \end{array}
       \right)
       \left(
@@ -407,22 +407,22 @@ Risulta quindi essere di importanza cruciale il valore di $H \mathbf{x}^{t}$ che
       x_1    \\
       \vdots    \\
       x_{k}   \\
-      \hline 
+      \hline
       x_{k + 1}   \\
        \vdots    \\
-      x_{r}   \\  
+      x_{r}   \\
       \end{array}
-      \right) 
+      \right)
       =
       \left(
       \begin{array} {c  }
       0    \\
       \vdots    \\
       0   \\
-      \hline 
+      \hline
       0   \\
        \vdots    \\
-      0   \\  
+      0   \\
       \end{array}
       \right)
    \end{align*}
@@ -432,7 +432,7 @@ Risulta quindi essere di importanza cruciale il valore di $H \mathbf{x}^{t}$ che
       &(-e_{1,k+1}, -e_{2,k+1}, \dots , -e_{k,k+1}, 1, 0 , \dots , 0 ) \\
       &(-e_{1,k+2}, -e_{2,k+2}, \dots , -e_{k,k+2}, 0, 1 , \dots , 0 ) \\
       &\vdots \qquad \qquad \qquad \qquad \vdots \\
-      &(-e_{1,r}, -e_{2,r}, \dots , -e_{k,r}, 0, 0 , \dots , 1 ) 
+      &(-e_{1,r}, -e_{2,r}, \dots , -e_{k,r}, 0, 0 , \dots , 1 )
    \end{align*}
     e consentono di ricavare i vettori che occupano lo spazio che avevamo indicato con $?$:
    \begin{align*}
@@ -442,10 +442,10 @@ Risulta quindi essere di importanza cruciale il valore di $H \mathbf{x}^{t}$ che
       -e_{1,k+1} & -e_{2,k+1} & \dots & -e_{k,k+1} & 1 & 0 & \dots & 0   \\
       -e_{1,k+2} & -e_{2,k+2} & \dots & -e_{k,k+2} & 0 & 1 & \dots & 0   \\
        \vdots & & &  & \vdots & \vdots  &  &  \vdots   \\
-      -e_{1,k+r} & -e_{2,k+r} & \dots & -e_{k,k+r} & 0 & 0 & \dots & 1   \\  
+      -e_{1,k+r} & -e_{2,k+r} & \dots & -e_{k,k+r} & 0 & 0 & \dots & 1   \\
       \end{array}
       \right)
-   \end{align*}    
+   \end{align*}
     da cui risulta la tesi.
 \end{proof}
 
@@ -481,15 +481,15 @@ Esistono dei procedimenti standard per la codifica e la decodifica dei codici li
 
 \subsection{Codifica tramite matrice generatrice}
 
-Codificare un messaggio di un $(r,k)$-codice significa associare tramite un algoritmo ad ogni parola di $\mathbb{F}^{k}$ una parola di $\mathbb{F}^{r}$. La matrice generatrice $G$ del codice determina un modo computazionalmente efficiente per effettuare la codifica: sia $\mathbf{m} \in \mathbb{F}^{k}$ messaggio da codificare, allora $\mathbf{m}$ viene codificato nella parola del codice $\mathbf{c}$ mediante il prodotto: 
+Codificare un messaggio di un $(r,k)$-codice significa associare tramite un algoritmo ad ogni parola di $\mathbb{F}^{k}$ una parola di $\mathbb{F}^{r}$. La matrice generatrice $G$ del codice determina un modo computazionalmente efficiente per effettuare la codifica: sia $\mathbf{m} \in \mathbb{F}^{k}$ messaggio da codificare, allora $\mathbf{m}$ viene codificato nella parola del codice $\mathbf{c}$ mediante il prodotto:
 \begin{align*}
-  \mathbf{c} = \mathbf{m}G = (m_1 ,m_2 , \dots m_{k}) 
+  \mathbf{c} = \mathbf{m}G = (m_1 ,m_2 , \dots m_{k})
   \left(
   \begin{array} {c c c c c}
   a_{11} & \cdots & a_{1k} & \cdots & a_{1r} \\
   a_{21} & \cdots & a_{2k} & \cdots & a_{2r} \\
   \vdots &  & \vdots & & \vdots \\
-  a_{k1} & \cdots & a_{kk} & \cdots & a_{kr} 
+  a_{k1} & \cdots & a_{kk} & \cdots & a_{kr}
   \end{array}
   \right)
 \end{align*}
@@ -502,7 +502,7 @@ E quindi la parola del codice $\mathbf{c}$ generata dal messaggio $\mathbf{m}$ r
   \quad \vdots \qquad \qquad \qquad \qquad \qquad \vdots\\
   c_{k} = m_{1}e_{1r} + m_{2}e_{2r} + \dots + m_{k}e_{kr}
   \end{array}
-  \right. 
+  \right.
 \end{align*}
 Il procedimento descritto associa ad ogni messaggio una ed una sola parola, infatti per definizione di $G$ messaggi diversi diventano parole diverse tramite il prodotto per $G$.
 
@@ -529,34 +529,34 @@ Per la decodifica è utile considerare un $(r,k)$-codice lineare $C$ come un sot
 \noindent
 Basandosi su questa idea ed assumendo che l'errore sia di peso minore del rumore di peso massimo riconoscibile il decodificatore che riceve $\mathbf{y}$ individua come errore il leader del laterale di $\mathbf{y}$: $\mathbf{e} = \mathbf{a_{j}}$. Determina quindi la parola corretta come $\mathbf{y} - \mathbf{a_{j}}$, che è la parola del codice più vicina alla parola trasmessa:
 \begin{teorema}
-   Sia $C$ un $(r,k)$-codice, sia $\mathbf{y} \in C_{j}$ laterale di $C$ avente leader $\mathbf{a_{j}}$. Allora 
+   Sia $C$ un $(r,k)$-codice, sia $\mathbf{y} \in C_{j}$ laterale di $C$ avente leader $\mathbf{a_{j}}$. Allora
    \begin{align*}
       \rho (\mathbf{y} ,\mathbf{y} -\mathbf{a_{j}} ) \leq \rho (\mathbf{y} ,\mathbf{c}) \qquad \forall \mathbf{c} \in C
    \end{align*}
 \end{teorema}
 \begin{proof}
-    Utilizzando la notazione $\mathbf{y} = \mathbf{a_{j}} + \mathbf{c'}$ dove $\mathbf{a_{j}}$ è il leader di $C_{j}$ e $\mathbf{c'}$ è una parola del codice $C$ segue che 
+    Utilizzando la notazione $\mathbf{y} = \mathbf{a_{j}} + \mathbf{c'}$ dove $\mathbf{a_{j}}$ è il leader di $C_{j}$ e $\mathbf{c'}$ è una parola del codice $C$ segue che
    \begin{align*}
-      \rho (\mathbf{y} ,\mathbf{c'}) = \rho ( \mathbf{a_{j}} + \mathbf{c'} ,\mathbf{c'}) 
-      = w(\mathbf{a_{j}} + \mathbf{c'} - \mathbf{c'}) = w(\mathbf{a_{j}}) 
+      \rho (\mathbf{y} ,\mathbf{c'}) = \rho ( \mathbf{a_{j}} + \mathbf{c'} ,\mathbf{c'})
+      = w(\mathbf{a_{j}} + \mathbf{c'} - \mathbf{c'}) = w(\mathbf{a_{j}})
    \end{align*}
-   Cioé $\rho (\mathbf{y} ,\mathbf{c'}) = w(\mathbf{a_{j}})$. \\ 
-   Inoltre per ogni parola $\mathbf{c}$ appartenente al codice $C$ 
+   Cioé $\rho (\mathbf{y} ,\mathbf{c'}) = w(\mathbf{a_{j}})$. \\
+   Inoltre per ogni parola $\mathbf{c}$ appartenente al codice $C$
    \begin{align*}
-      \rho (\mathbf{y} ,\mathbf{c}) = \rho ( \mathbf{a_{j}} + \mathbf{c'} ,\mathbf{c}) 
-      = w(\mathbf{a_{j}} + \mathbf{c'} - \mathbf{c})  
+      \rho (\mathbf{y} ,\mathbf{c}) = \rho ( \mathbf{a_{j}} + \mathbf{c'} ,\mathbf{c})
+      = w(\mathbf{a_{j}} + \mathbf{c'} - \mathbf{c})
    \end{align*}
    Cioé $w(\mathbf{a_{j}} + \mathbf{c'} - \mathbf{c}) = \rho(\mathbf{y} ,\mathbf{c})$. \\
-   La tesi segue allora dal fatto che 
+   La tesi segue allora dal fatto che
    \begin{align*}
-      w(\mathbf{a_{j}}) \leq w(\mathbf{a_{j}} + \mathbf{c'} - \mathbf{c})  
+      w(\mathbf{a_{j}}) \leq w(\mathbf{a_{j}} + \mathbf{c'} - \mathbf{c})
    \end{align*}
-   che è una conseguenza della definizione di leader e dal fatto che $\mathbf{a_{j}} + \mathbf{c'} - \mathbf{c} \in C_{j}$. 
+   che è una conseguenza della definizione di leader e dal fatto che $\mathbf{a_{j}} + \mathbf{c'} - \mathbf{c} \in C_{j}$.
 \end{proof}
 
-Il metodo che abbiamo appena esposto per la decodifica di un codice lineare non sfrutta la struttura matriciale del codice. Esiste infatti una procedura più efficiente, conseguenza del fatto che l'appartenenza di un vettore $\mathbf{x} \in \mathbb{F}^{r}$ ad un laterale di $C$ è determinato univocamente dalla sua sindrome $H \mathbf{x}^{t}$ (dove $H$ è la matrice di controllo). 
+Il metodo che abbiamo appena esposto per la decodifica di un codice lineare non sfrutta la struttura matriciale del codice. Esiste infatti una procedura più efficiente, conseguenza del fatto che l'appartenenza di un vettore $\mathbf{x} \in \mathbb{F}^{r}$ ad un laterale di $C$ è determinato univocamente dalla sua sindrome $H \mathbf{x}^{t}$ (dove $H$ è la matrice di controllo).
 \begin{teorema}
-   Sia $C$ codice lineare di lunghezza $r$ generato dalla matrice $G$ e di matrice di controllo $H$. Due vettori $\mathbf{x}, \mathbf{y} \in \mathbb{F}^{r}$ appartengono allo stesso laterale di $C$ se e solo se hanno la stessa sindrome. 
+   Sia $C$ codice lineare di lunghezza $r$ generato dalla matrice $G$ e di matrice di controllo $H$. Due vettori $\mathbf{x}, \mathbf{y} \in \mathbb{F}^{r}$ appartengono allo stesso laterale di $C$ se e solo se hanno la stessa sindrome.
 \end{teorema}
 \begin{proof}
    I vettori $\mathbf{x}$ ed $\mathbf{y}$ hanno la stessa sindrome se e solo se $H \mathbf{x}^{t} = H \mathbf{y}^{t}$, cioè se e solo se $H (\mathbf{x}-\mathbf{y})^{t} = \mathbf{0}$. Dal teorema \ref{teorFondMatrContrllo} $H (\mathbf{x}-\mathbf{y})^{t} = \mathbf{0}$ se e solo se $\mathbf{x}-\mathbf{y} \in C$ quindi se e solo se $\mathbf{x}$ ed $\mathbf{y}$ appartengono ad uno stesso laterale di $C$.
@@ -564,7 +564,7 @@ Il metodo che abbiamo appena esposto per la decodifica di un codice lineare non 
 \noindent
 Dal momento che la sindrome di un vettore appartenente al laterale $C_{j}$ equivale alla sindrome del leader $a_{j}$ di tale laterale, si ha una corrispondenza biunivoca fra i leader dei laterali e la loro sindrome. Si delinea quindi un algoritmo di decodifica suddiviso in $3$ passi da applicare al vettore $\mathbf{y}$ ricevuto nota $H$:
 \begin{enumerate}
-   \item Si calcola la sindrome $\mathbf{s} = H \mathbf{y}^{t}$, che è uguale a quella del leader del laterale al quale $\mathbf{y}$ appartiene. 
+   \item Si calcola la sindrome $\mathbf{s} = H \mathbf{y}^{t}$, che è uguale a quella del leader del laterale al quale $\mathbf{y}$ appartiene.
    \item Si determina il leader $\mathbf{a_{j}}$ avente sindrome $\mathbf{s}$.
    \item Si decodifica $\mathbf{y}$ con la parola $\mathbf{x} = \mathbf{y} - \mathbf{a_{j}}$.
 \end{enumerate}
@@ -585,8 +585,8 @@ Il teorema che presentiamo, la cui tesi è nota come limitazione di Gilbert-Vars
 \end{teorema}
 \begin{proof}
    Dimostriamo una tesi equivalente: esiste una matrice di controllo $H$ di dimensione $(r-k)\times r$ tale che $d-1$ sue colonne siano linearmente indipendenti.\\
-   Come prima colonna possiamo considerare una qualsiasi non nulla, come seconda possiamo considerare un'altra colonna non nulla ed indipendente dalla prima, fino ad arrivare ad avere $j \leq r-1$ colonne tali che siano linearmente indipendenti da qualsiasi $d-2$ colonne scelte precedentemente. 
-   Possiamo aggiungere una $(j+1)$-esima colonna linearmente indipendente con $d-2$ qualsiasi delle precedenti se 
+   Come prima colonna possiamo considerare una qualsiasi non nulla, come seconda possiamo considerare un'altra colonna non nulla ed indipendente dalla prima, fino ad arrivare ad avere $j \leq r-1$ colonne tali che siano linearmente indipendenti da qualsiasi $d-2$ colonne scelte precedentemente.
+   Possiamo aggiungere una $(j+1)$-esima colonna linearmente indipendente con $d-2$ qualsiasi delle precedenti se
    \begin{align*}
       \binom{j}{1} + \binom{j}{2}+ \dots + \binom{j}{d-2}
       <
@@ -614,7 +614,7 @@ Il teorema precedente può essere generalizzato al caso in cui il codice non sia
    \end{align*}
 \end{corollario}
 \begin{proof}
-   Segue dal teorema precedente e dal fatto che è possibile scegliere un insieme di $d-2$ colonne linearmente indipendenti da un insieme di $j$ colonne ad un alfabeto di ordine $q$ se 
+   Segue dal teorema precedente e dal fatto che è possibile scegliere un insieme di $d-2$ colonne linearmente indipendenti da un insieme di $j$ colonne ad un alfabeto di ordine $q$ se
    \begin{align*}
       (q-1)\binom{j}{1} + (q-1)^{2} \binom{j}{2}+ \dots + (q-1)^{d-2} \binom{j}{d-2}
       <

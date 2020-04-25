@@ -77,7 +77,7 @@ ris;
 
 
 
-{\\vernam con generatore random di pari/gp; la chiave è il seme del generatore, deve essere un intero < 2^31 (in modulo) 
+{\\vernam con generatore random di pari/gp; la chiave è il seme del generatore, deve essere un intero < 2^31 (in modulo)
 vernamcod(testo,chiave)=local(ww,n,ris);
 ww=Vecsmall(testo);
 n=length(ww);
@@ -467,7 +467,7 @@ subst(ris,XX,var);
 {\\Restituisce in polinomio primitivo di grado n in Z_p[var]
 \\L'algoritmo elimina via via gli elementi il cui ordine è un divisore proprio di p^n-1
 primpoly(p, n, var) = local(s,f);
-f = var^(p^n-1) -1; s = divisors(p^n -1); 
+f = var^(p^n-1) -1; s = divisors(p^n -1);
 for(k=1,length(s)-1, f=f/gcd(f,var^s[k] - 1));
 factormod(f, p)[1, 1];
 }
@@ -475,7 +475,7 @@ factormod(f, p)[1, 1];
 
 
 {\\costruisce il campo GF(p^n)
-\\utilizza un polinomio primitivo opportuno, ff=primpoly(p,n,var), nella variabile desiderata var,  e costruisce una radice generica al 
+\\utilizza un polinomio primitivo opportuno, ff=primpoly(p,n,var), nella variabile desiderata var,  e costruisce una radice generica al
 \\restituisce l'insieme delle P^n-1 potenze distinte di al
 \\unito con 0, al primo posto. All'ultimo posto c'è 1
 campop(p,n,var)=local(ff,al,kk);
@@ -542,7 +542,7 @@ mm;
 matpowers(lista,p,n)=local(mm);
 mm=matrix(n,n);
 for(i=1,n,for(j=1,n,mm[i,j]=lista[j]^(p^(i-1))));
-mm; 
+mm;
 }
 
 
@@ -1166,7 +1166,7 @@ for(b=1,l,
 bb=Mod(b,n);
 if((xx+bb)^n!=xx^n+bb,print("n è composto");return([r,bb])));
 return(1);
-} 
+}
 
 
 \\vettore -> polinomio
@@ -1311,9 +1311,9 @@ mh;
 
 {
 ellisum(a,P,Q)=local(lam, mu, x3, x1, y1, x2, y2);
- if(P == [0], return(Q)); if(Q == [0], return(P)); x1 = P[1]; x2 = Q[1]; y1 = P[2]; 
+ if(P == [0], return(Q)); if(Q == [0], return(P)); x1 = P[1]; x2 = Q[1]; y1 = P[2];
  y2 = Q[2];if(x1==x2&&y1==-y2,return([0]));
- if(P == Q, lam = (3*x1^2 + 2*a[2]*x1 + a[4] - a[1]* y1)/(2* y1 + a[1]* x1 + a[3]), lam = (y2 - y1)/(x2 - x1)); 
+ if(P == Q, lam = (3*x1^2 + 2*a[2]*x1 + a[4] - a[1]* y1)/(2* y1 + a[1]* x1 + a[3]), lam = (y2 - y1)/(x2 - x1));
  mu = y1 - lam *x1; x3 = lam^2 + a[1]* lam - a[2] - x1 - x2;
  [x3, -(lam + a[1])* x3 - mu - a[3]];
 }
@@ -1330,13 +1330,13 @@ t;
 
 {
 ellisumn(z,P,Q,n)=local(lam, mu, x3, x1, y1, x2, y2,den,fat,a);
- if(P == [0], return(Q)); if(Q == [0], return(P)); 
+ if(P == [0], return(Q)); if(Q == [0], return(P));
  a=z*Mod(1,n);
- x1 = Mod(P[1],n); x2 = Mod(Q[1],n); y1 = Mod(P[2],n); 
+ x1 = Mod(P[1],n); x2 = Mod(Q[1],n); y1 = Mod(P[2],n);
  y2 = Mod(Q[2],n);if(x1==x2&&y1==-y2,return([0]));
  if(P == Q, den=(2* y1 + a[1]* x1 + a[3]); fat=gcd(n,lift(den)); if(fat>1 && fat!=n,return(fat));
- lam = (3*x1^2 + 2*a[2]*x1 + a[4] - a[1]* y1)*den^-1,den= (x2 - x1); fat=gcd(n,lift(den)); if(fat>1 && fat!=n,return(fat)); 
- lam = (y2 - y1)*den^-1); 
+ lam = (3*x1^2 + 2*a[2]*x1 + a[4] - a[1]* y1)*den^-1,den= (x2 - x1); fat=gcd(n,lift(den)); if(fat>1 && fat!=n,return(fat));
+ lam = (y2 - y1)*den^-1);
  mu = y1 - lam *x1; x3 = lam^2 + a[1]* lam - a[2] - x1 - x2;
  lift([x3, -(lam + a[1])* x3 - mu - a[3]]);
 }
@@ -1390,7 +1390,7 @@ return(lift(punti))}
 	ellpunti2(a,b,p)=local(e,i,x,s,punti,g,q1,q2);
 e=ellinit([0,0,0,a,b]);
 punti=[];
-for(i=0, p-1, x=Mod(i,p); 
+for(i=0, p-1, x=Mod(i,p);
               s=x^3+a*x+b;
               if(kronecker(lift(s),p)==1,g=s^(1/2); q1=[x,g];
                                           q2=[x,-g];
@@ -1401,7 +1401,7 @@ return(lift(punti))}
 
 {
 	ellord(z,p)=p+1-ellap(ellinit(z),p)
-}	
+}
 
 \\ [0, 0, 0, -191, -510] [4] r=0
 \\ [1, -1, 1, -122, 1721] [12] r=0
@@ -1451,10 +1451,10 @@ prodd(d,a,b)=[a[1]*b[1]+d*a[2]*b[2],a[1]*b[2]+a[2]*b[1]]
       Q = concat(Q, (d - P[k + 1]^2)/Q[k]);
       if(a[k] == 2*v, break); k=k+1);
     return(a)}
-    
+
     {pell(D) = local(r, n, a, v, b);
     r = rad(D); n = length(r) - 1;a = fconv(r);
-    if(n%2 == 0, 
+    if(n%2 == 0,
       return([a[1][n], a[2][n]]),
       return([[a[1][n], a[2][n]], prodd(D,[a[1][n], a[2][n]],[a[1][n], a[2][n]])]));
      }
@@ -1468,8 +1468,8 @@ prodd(d,a,b)=[a[1]*b[1]+d*a[2]*b[2],a[1]*b[2]+a[2]*b[1]]
       Q = concat(Q, (d - P[k + 1]^2)/Q[k]);
       if(a[k] == 2*v, break); k=k+1);
     return([a,P,Q])}
-    
-     
+
+
 {provarad(d,n) = local(a, P, Q, s, v);
     s = sqrt(d); v = floor(s);
     a = []; P = [0]; Q = [1];
@@ -1479,9 +1479,9 @@ prodd(d,a,b)=[a[1]*b[1]+d*a[2]*b[2],a[1]*b[2]+a[2]*b[1]]
       Q = concat(Q, (d - P[k + 1]^2)/Q[k]);
       if(a[k] == 2*v, break); k=k+1);
     return(a)}
-    
-     
-     
+
+
+
 {pell2(D) = local(r, n, a, v, b);
     r = rad(D); n = length(r) - 1;
     if(n%2 == 0, a = fconv(r);
@@ -1489,15 +1489,15 @@ prodd(d,a,b)=[a[1]*b[1]+d*a[2]*b[2],a[1]*b[2]+a[2]*b[1]]
       v = concat(r, vecextract(r, "2..")); b = fconv(v);
       return([[a[1][n], a[2][n]], [b[1][2*n], b[2][2*n]]]))}
 
-      
+
 {
       maplus(k)=[floor(sqrt(k)),k;1,floor(sqrt(k))]
 }
 
-     
+
 {
       maminus(k)=[floor(sqrt(k)+1),k;1,floor(sqrt(k)+1)]
-}     
+}
 
 {
 gauss(a)=1/(a-floor(a))

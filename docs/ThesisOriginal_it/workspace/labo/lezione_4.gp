@@ -347,7 +347,7 @@ lift(y*z);
 
 
 \\ Lez 4 Es 1: permper(a) riceve una permutazione e restituisce il suo periodo.
-\\ usare il formato delle permutazioni descritto in percomp 
+\\ usare il formato delle permutazioni descritto in percomp
 \\ Input: permutazione a
 \\ Output: periodo di a
 
@@ -371,14 +371,14 @@ while(b != permid(lungh), b = permcomp(a,b); cont=cont+1);
 cont;
 }
 
-\\ Lez 4 Es 2: mat2pol dalla matrice circolante associa il polinomio isomorfo 
+\\ Lez 4 Es 2: mat2pol dalla matrice circolante associa il polinomio isomorfo
 \\ Input: matrice circolante
 \\ Output: polinomio ismomrfo in F[x]/(x^n - 1)
 {
 mat2pol(a)=local(vett,ris);
 vett = a[1,];
 ris = Mod(Polrev(vett),x^(length(vett))-1);
-ris; 
+ris;
 }
 
 \\ Lez 4 Es 2 bis: pol2mat(b,n)
@@ -387,7 +387,7 @@ ris;
 {
 pol2mat(b,n)=local(modpol,vett,ris);
 modpol = Mod(b, x^n - 1);
-vett=pol2vect(lift(modpol),n);  
+vett=pol2vect(lift(modpol),n);
 ris=circol(vett);
 ris;
 }
@@ -398,7 +398,7 @@ ris;
 \\ Output: 0 se non è inv 1 se è inv, senza calcolare il det (si usa l'isomorfismo)
 \\ la somma di ogni termine del polinomio è uguale al prodotto dei termini per il grado,
 \\ allora il det è uguale a zero.
- 
+
 {
 matinvQ(a)=local(vett,n,hh,kk);
 vett=a[1,];
@@ -409,12 +409,12 @@ if(hh==kk,return(0),return(1));
 }
 
 \\ Da migliorare capendo dove il polinomio al quadrato calcolato in 1 è uguale
-\\ alla somma dei termini al quadrato. 
+\\ alla somma dei termini al quadrato.
 
 
 \\ Lez 4 Es 4: radnp(n,p) restituisce una radice primitiva n-esima di 1 modulo p
 \\ Input: n, p
-\\ Output: resituisce quel numero alpha che elevato ad n è radice primitiva 
+\\ Output: resituisce quel numero alpha che elevato ad n è radice primitiva
 \\ modulo p. Cioè ord_p(alpha^n) = phi(p) = p-1
 {
 radnp(n,p) = local(zz,aa);

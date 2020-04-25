@@ -50,10 +50,10 @@
 \maketitle
 \begin{abstract}
   This article describes how to customize the page layout of your LaTeX
-  documents, i.e how to change page margings and sizes, 
+  documents, i.e how to change page margings and sizes,
   headers and footers, and the
   proper placement of figures and tables (collectively called floats) on
-  the page. 
+  the page.
 
   Originally this was the documentation of the  \textsf{fancyheadings}
   package. It did contain also other info, e.g. advanced use of marks.
@@ -72,7 +72,7 @@
 \label{sec:intro}
 
 A page in a \LaTeX{} document is built from various elements as shown in
-figure \ref{fig:layout}. 
+figure \ref{fig:layout}.
 \begin{figure}[htbp]
   \begin{center}
     \leavevmode
@@ -85,7 +85,7 @@ figure \ref{fig:layout}.
 %\thispagestyle{fancy}
 \thispagestyle{plain}
 The body contains the main text of the document
-together with the so called floats (tables and figures). 
+together with the so called floats (tables and figures).
 
 The pages are constructed by \LaTeX's output routine, which is quite
 complicated and should therefore not be modified. Some of the packages
@@ -98,14 +98,14 @@ There a a number of things that you must be aware of:
 \begin{enumerate}
 \item The margins on the left are not called \Cmd{leftmargin}, but
   \Cmd{evensidemargin} (on even-numbered pages) and \Cmd{oddsidemargin}
-  (on odd-numbered pages). In one-sided documents 
+  (on odd-numbered pages). In one-sided documents
   \Cmd{oddsidemargin} is used for either.  \Cmd{leftmargin} is also a valid
   \latex/ parameter but it has a different use (namely the indentation of
-  lists). 
+  lists).
 \item Most of the parameters should not be changed in the middle of a
   document. Some changes might work at a pagebreak. If you want to change
   the height of a single page, you can use the \Cmd{enlargethispage}
-  command. 
+  command.
 \end{enumerate}
 
 The margin notes
@@ -114,7 +114,7 @@ command. On twosided documents the margin notes appear on the left and right
 alternatively. The margin notes are not on fixed places with respect to the
 paper but at approximately the same height as the paragraph in which they
 appear. Due to the algorithm used to decide the placement of margin notes,
-in a twosided document unfortunately 
+in a twosided document unfortunately
 they may appear on the wrong side if they are close
 to a page break.
 If you want to put information on fixed places in the margins you may use
@@ -143,7 +143,7 @@ myheadings & no footer, header contains page number and user supplied informatio
 Although these are useful styles, they are quite limited. Additional page
 styles can be defined by defining commands of the form \Cmd{ps@xxx}. This
 command is executed when a \Cmd{pagestyle\{xxx\}} is given in the document.
-The  \Cmd{ps@xxx} command should define the following 
+The  \Cmd{ps@xxx} command should define the following
 commands for the contents of the headers and footers:
 
 \noindent
@@ -174,7 +174,7 @@ Alph & upper case letter
 \end{tabular}
 
 The  \Cmd{pagenumbering\{xxx\}} defines the command \Cmd{thepage} to be the
-expansion of the page number in the given notation \texttt{xxx}. 
+expansion of the page number in the given notation \texttt{xxx}.
 The pagestyle command
 then would include \Cmd{thepage} in the appropriate place. Additionally
 the  \Cmd{pagenumbering} command resets the page number to~1.
@@ -228,7 +228,7 @@ after
 \end{verbatim}
 the commands\footnote{For LaTeX2.09 you should specify \texttt{[fancyhdr]}
   in the \Cmd{documentstyle} instead of the \Cmd{usepackage}
-  command.}: 
+  command.}:
 
 \PSindex{fancy}
 \begin{verbatim}
@@ -418,7 +418,7 @@ page~1.
 
 Some \latex/ commands, like \Cmd{chapter}, use the \Cmd{thispagestyle}
 command to automatically switch to the \texttt{plain} page style, thus
-ignoring the page style currently in effect. 
+ignoring the page style currently in effect.
 To customize even such pages you must redefine the \texttt{plain}
 pagestyle. As we indicated before you could do this by defining the
 \Cmd{ps@plain} command, but \textsf{fancyhdr} gives you an easier way
@@ -428,10 +428,10 @@ e.g. if part of your document is to use a different pagestyle. This command
 has two parameters: one is the name of the pagestyle to be defined, the
 second consists of commands that change the headers and/or footers, i.e.
 \verb|fancyhead| etc. Also allowed are changes to \Cmd{headrulewidth} and
-\Cmd{footrulewidth}. 
+\Cmd{footrulewidth}.
   As an example, let us
 redefine the \texttt{plain} style for the report in Section~\ref{two-sided} by
-making the page number bold. 
+making the page number bold.
 \PSindex{plain}
 
 \begin{verbatim}
@@ -517,7 +517,7 @@ sectioning information available to you.  The macros:
 \CmdIndex{leftmark}
 \Cmd{leftmark}
 (higher-level) and \Cmd{rightmark} (lower-level) contain the information
-processed by \latex/, and you can use them directly as shown in 
+processed by \latex/, and you can use them directly as shown in
 Section~\ref{default}.
 
 The \Cmd{leftmark} contains the Left argument of the \emph{Last}
@@ -660,23 +660,23 @@ subsections.  This is a problem with \latex/, not with
 
 As an example let's take a page layout where the leftmarks are generated by
 the sections and the rightmarks by the subsections (as is default in the
-\texttt{article} class). Take a page with some short sections, e.g. 
+\texttt{article} class). Take a page with some short sections, e.g.
 
 \begin{samepage}
 \noindent Section 1.\\
 subsection 1.1\\
 subsection 1.2\\
-Section 2.  
+Section 2.
 \end{samepage}
 
 As the leftmark contains the \emph{last} mark of the page it will be
 ``Section 2.'', and the rightmark will be ``subsection 1.1'' as it will be
-the \emph{first} mark of the page. So the page header info will combine 
+the \emph{first} mark of the page. So the page header info will combine
 section 2 with subsection 1.1 which isn't very nice.
 The best you can do in these cases is use only the \Cmd{rightmark}s and
 redefine \Cmd{sectionmark} accordingly. A \latex/ command
 \CmdIndex{firstleftmark}
-\Cmd{firstleftmark} would also be a nice addition (see the 
+\Cmd{firstleftmark} would also be a nice addition (see the
 \texttt{extramarks} package in section~\ref{sec:xmarks}).
 
 Another problem with the marks in the standard \latex/ classes is that the
@@ -821,7 +821,7 @@ fonts in the footer. Change it with \Cmd{renewcommand}.
 The width of headers and footers is \Cmd{headwidth}, which by default
 equals the width of the text: \Cmd{textwidth}. You can make the width
 \CmdIndex{headwidth}
-wider (or narrower) by using the commands 
+wider (or narrower) by using the commands
 \CmdIndex{fancyheadoffset}
 \CmdIndex{fancyfootoffset}
 \CmdIndex{fancyhfoffset}
@@ -997,7 +997,7 @@ let a float (e.g.\ a figure caption) influence the page header or footer.
 In the \texttt{book} class when the \texttt{openany} option is not given or
 in the \texttt{report} class when the \texttt{openright} option is given,
 chapters start at odd-numbered pages, half of the time causing a blank page
-to be inserted. Some people prefer this page to be completely empty, i.e.\ 
+to be inserted. Some people prefer this page to be completely empty, i.e.\
 without headers and footers. This cannot be done with \Cmd{thispagestyle}
 as this command would have to be issued on the \emph{previous} page. There
 is, however, no magic necessary to get this done:
@@ -1084,7 +1084,7 @@ chapter. The package \textsf{chappg} can be used to get this format. If you
 want to change the layout e.g. use a dot rather than a dash, or a section
 rather than a chapter, you should make a private copy and edit it.
 
-This package redefines \Cmd{thepage} as 
+This package redefines \Cmd{thepage} as
 \Cmd{arabic\{chapter\}-}\Cmd{arabic\{page\}}.
 Unfortunately this gives numbers rather than letters for appendices. A
 better definition would be  \Cmd{thechapter-}\Cmd{arabic\{page\}} but you can
@@ -1099,7 +1099,7 @@ or footer, but not in the table of contents, index, or references like
 ``\emph{See page \emph{xx}}''. Therefore it does not change the command
 \Cmd{thepage}. The page numbering style ``2-10'', however should be used
 in all references to the page number, therefore it must be done by redefining
-\Cmd{thepage}. 
+\Cmd{thepage}.
 
 
 \section{When to change the headers and footers?}
@@ -1118,7 +1118,7 @@ page that is currently being built. If you want the change to take effect
 at the next page you must make sure that the current page is finished. In
 \CmdIndex{clearpage}
 most cases this can be done by issuing a \Cmd{clearpage} command before
-any of the above mentioned changes. If this is not possible you can use the 
+any of the above mentioned changes. If this is not possible you can use the
 \TTindex{afterpage.sty}
 \texttt{afterpage} package with:\\
 \Cmd{afterpage\{}\Cmd{lhead\{new value\}\}} or
@@ -1128,7 +1128,7 @@ to change the \Cmd{pagestyle} as the commands issued by \Cmd{afterpage}
 are local in a group, and the \Cmd{pagestyle} command makes only local
 changes. The \Cmd{pagenumbering} and the \textsf{fancyhdr} commands
 make global changes so they will work, as will the \Cmd{thispagestyle}
-command. 
+command.
 
 It should be noted that although the \textsf{fancyhdr} commands like
 \Cmd{fancyhead} take effect immediately, this does not mean that any
@@ -1149,12 +1149,12 @@ use the following commands:
 \lfoot{\TheAuthor}
 \end{verbatim}
 
-\noindent and start each chapter with the command 
+\noindent and start each chapter with the command
 \Cmd{Author\{Real Name\}}.
  If however, the author name would be changed before a page is
 completed the wrong author could come in the footer. This would be the case
 if you gave the above command \emph{before} the \Cmd{chapter} command
-rather than after it. 
+rather than after it.
 Another source of problems is the fact that \tex/'s output routine processes
 commands ahead, so it may already have processed some commands that produce
 text that will appear on the next page. See the next section for an example.
@@ -1166,7 +1166,7 @@ We have seen how we can use \LaTeX's marks to get information from the
 document contents to the headers and footers. The marks mechanism is the
 only reliable mechanism that you can use to get changing information to the
 headers or footers. This is because \latex/ may be processing your document
-ahead before deciding to break the page. 
+ahead before deciding to break the page.
 
 Sometimes the two marks that \latex/ offers are not enough. An example is
 the following:
@@ -1266,12 +1266,12 @@ may be nicer to put it in the  margin. This can be easily
 accomplished by positioning it at a fixed place relative to the page header.
 In plain \tex/ you would use a concoction of \Cmd{hbox to 0pt},
 \Cmd{vbox to 0pt}, \Cmd{hskip},\Cmd{vskip}, \Cmd{hss} and
-\Cmd{vss} but fortunately 
+\Cmd{vss} but fortunately
 \latex/'s \texttt{picture} environment gives a much cleaner way to do this.
 In order not to disturb the normal header layout we put the text in a zero-sized
 \texttt{picture}. Generally this is the best way to position things on fixed
 places on the page. You can then also use the normal headings. See also
-section~\ref{sec:thumb} for another example of 
+section~\ref{sec:thumb} for another example of
 this technique.
 
 \TTindex{picture}
@@ -1333,7 +1333,7 @@ pages. You can create such a movie easily with fancyhdr. For
 simplicity we assume that each picture is in a postscript (EPS) file called
 \texttt{pic}$\langle n\rangle$.\texttt{ps} where $\langle n\rangle$ is the page number and that we use
 the \texttt{graphics} or  \texttt{graphicx} package\footnote{If you use an older version of
-  \LaTeX{} you could use the \texttt{epsf} or \texttt{epsfig} package.}. 
+  \LaTeX{} you could use the \texttt{epsf} or \texttt{epsfig} package.}.
 \TTindex{graphics}
 \TTindex{graphicx}
 \TTindex{epsf}
@@ -1374,7 +1374,7 @@ calculations they are set in a \texttt{picture} environment with the
 \Cmd{unitlength} set to 18~mm. Page numbers are set in the headers at the
 outer sides, and the blobs are attached to these. In this example the
 section numbers are used to position the blobs, but you can replace this
-with any numeric value. 
+with any numeric value.
 See figure~\ref{fig:overview} for the resulting
 overview page and figure~\ref{fig:thumb} for the code.
 
@@ -1393,7 +1393,7 @@ overview page and figure~\ref{fig:thumb} for the code.
     \secname{The first year}
     \secname{Specialisation}
   \end{picture}}
- 
+
   \begin{center}
     \leavevmode
     \begin{picture}(11.3,5)
@@ -1517,7 +1517,7 @@ usually caused by the following:
     \bs bottomfraction & max fraction of page for floats at bottom & 0.3 \\
     \bs textfraction & min fraction of page for text & 0.2 \\
     \bs floatpagefraction & min fraction of floatpage that should have
-    floats  & 0.5 \\ 
+    floats  & 0.5 \\
     \hline
   \end{tabular}
 \end{center}
@@ -1553,7 +1553,7 @@ including an exclamation mark (!) in the placement parameters, e.g.
 Floats which contain a ``\texttt{t}'' in the position parameter could be
 placed before the place where they are referenced (but on the same page).
 This is normal behaviour for \latex/ but some people just don't like it.
-There are a number of ways to prevent this: 
+There are a number of ways to prevent this:
 \begin{enumerate}
 \item Of course deleting the ``\texttt{t}'' will help, but in general this is
   undesirable, as you may want the float to be placed at the top of the
@@ -1693,7 +1693,7 @@ Figure~\ref{fig:xxx} (continued)
 You have to make sure that the last part is big enough, otherwise \LaTeX{}
 could decide to postpone it until it has collected some more floats. This
 can be done either by making the figure big enough (e.g. by adding some
-\Cmd{vspace}), or by tweaking the \Cmd{floatpagefraction} 
+\Cmd{vspace}), or by tweaking the \Cmd{floatpagefraction}
 \CmdIndex{floatpagefraction} parameter.
 
 If you want your multipage figure to start at a lefthand-side

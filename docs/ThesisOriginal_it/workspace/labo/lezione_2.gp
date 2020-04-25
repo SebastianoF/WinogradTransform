@@ -84,7 +84,7 @@ mattranspose(m);
 \\_____________________________________________
 \\ Programmi fatti per esercizio LEZ 2
 
-\\ Lez 2 Es 0: Manipolazione di "destra". Non usa vecextract ma vector. 
+\\ Lez 2 Es 0: Manipolazione di "destra". Non usa vecextract ma vector.
 \\ Input: lista
 \\ Output:lista con lo shift di 1 a destra
 {
@@ -119,7 +119,7 @@ ris=concat(b,a[1]);
 ris;
 }
 
-\\ Lez 2 Es 2: Destra di n posti 
+\\ Lez 2 Es 2: Destra di n posti
 \\ Input: lista e posti da shiftare
 \\ Output: lista shiftata a destra di n posti
 {
@@ -129,7 +129,7 @@ for(i=1, posti,ris = destra(ris));
 ris;
 }
 
-\\ Lez 2 Es 2 BIS: Sinistra di n posti 
+\\ Lez 2 Es 2 BIS: Sinistra di n posti
 \\ Input: lista e posti da shiftare
 \\ Output: lista shiftata a sinistra di n posti
 {
@@ -139,7 +139,7 @@ for(i=1, posti,ris = sinistra(ris));
 ris;
 }
 
-\\ Lez 2 Es 3: FERMATEST 
+\\ Lez 2 Es 3: FERMATEST
 \\ Input: b,n
 \\ Output: 1 se b^(n-1) = 1 mod n, 0 altrimenti
 {
@@ -148,18 +148,18 @@ if(Mod(b^(n-1),n)==1,return(1),return(0));
 }
 
 \\ Lez 2 Es 4: lista dei primi n pseudoprimi di fermat in base b
-\\ Input: b, n 
+\\ Input: b, n
 \\ Output: lista degli pseudoprimi di fermat sulla base b
 {
 fermatlista(b,n)=local();
 return( vector(n,n,b^(2^(n-1))+1) );
 }
 
-\\ Lez 2 Es 5: Test Solovay-Strassen 
+\\ Lez 2 Es 5: Test Solovay-Strassen
 \\sulla formula di eulero p primo allora a^((p-1)/2)) = (a/p) mod p, per ogni a.
 \\Quelli che soddisfano il viceversa sono detti pseudoprimi di Eulero.
 \\    b^((n-1)/2)) = (b/n) mod n     NB: n deve essere dispari!!
-\\ Input: b base intera positiva, n intero positivo 
+\\ Input: b base intera positiva, n intero positivo
 \\ Output: dice se n è uno pseudoprimo di Eulero
 {
 eulertest(b,n)=local();
@@ -180,7 +180,7 @@ vv;
 
 \\ Lez 2 Es 5 TRIS: LISTA NUMERI SI EULERO, NO PRIMI.
 \\ Input: b n
-\\ Output: lista dei numeri che da 1 ad n passano il test 
+\\ Output: lista dei numeri che da 1 ad n passano il test
 \\         di Eulero ma non sono primi
 {
 eulerprimi(b,n)=local(vv,lungh,Risp);
@@ -208,7 +208,7 @@ Risp;
 generatori1(n) = local(Risp);
 Risp=[];
 for(i=1,n, if(gcd(n,i)==1, Risp=concat(Risp,i) ,Risp = Risp   ) );
-Risp; 
+Risp;
 }
 
 
@@ -227,18 +227,18 @@ cont;
 
 /*
 \\ Lez 2 Es 9: MACCHINA DI TURING (facoltativo) per2
-\\ Input: vettore binario del tipo [1,1,...,1] n volte. 
+\\ Input: vettore binario del tipo [1,1,...,1] n volte.
 \\ Output: riporta il vettore raddoppiato con i passaggi
 \\ ad ogni step e l'elenco delle terne M(s,q)
 \\ Non legge una macchina di Turing, ma è una macchina di turing
 
 {
 turing(T,nastro, q1,n1)=local(V,N,q,n);
-V = T[q1,n1]; \\legge nella matrice al posto [q1,n1] 
+V = T[q1,n1]; \\legge nella matrice al posto [q1,n1]
 N = nastro(n1); \\legge il nastro in n1
 while
  q = V[1];
- n = N(1); 
+ n = N(1);
 
 }
 */

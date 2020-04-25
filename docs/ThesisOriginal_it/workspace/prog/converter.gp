@@ -54,7 +54,7 @@ return(v);
 error("string2vect input non valido");
 }
 
-\\input: vettore di numeri corrispondenti 
+\\input: vettore di numeri corrispondenti
 \\       a lettere di alfabeto
 \\output: stringa corrispondente al vettore
 \\come Vecsmall ma su alfabeto.
@@ -63,13 +63,13 @@ error("string2vect input non valido");
 vect2string(v)=local(s,l,i);
    s = "";
    l = length(v);
-   for(i = 1, l, s = concat(s,numb2letter(v[i])));   
+   for(i = 1, l, s = concat(s,numb2letter(v[i])));
 return(s);
 error("vect2string input non valido");
 }
 
 \\input: intero n
-\\output: vettore di elementi nulli [0, ... ,0] 
+\\output: vettore di elementi nulli [0, ... ,0]
 {
 emptyVect(n) = local(V,i);
    V=vector(n);
@@ -78,7 +78,7 @@ error("emptyVect input non valido");
 }
 
 \\input: vettore di interi V, lunghezza verme l
-\\output: completa V con spazi vuoti 
+\\output: completa V con spazi vuoti
 \\        in modo che sia di lungh multipla di l
 \\USA: emptyVect
 {
@@ -88,10 +88,10 @@ fullfit(V,l) = local(q,r,F);
    r = q%l;
    if(r > 0, F = concat(V,emptyVect(l-r)), F = V);
 return(F);
-error("fullfit input non valido");  
+error("fullfit input non valido");
 }
 
-\\input: V vettore 
+\\input: V vettore
 \\ouput: F come V privato dell'ultimo elemento
 {
 lastElim(V) = local(l, F, i);
@@ -99,12 +99,12 @@ lastElim(V) = local(l, F, i);
    F = vector( l - 1 );
    for(i = 1, l-1, F[i] = V[i]);
 return(F);
-error("lastElim input non valido");  
+error("lastElim input non valido");
 }
 
 \\input: V vettore [1,2,3,0,0]
 \\ouput: [1,2,3]
-\\   elimina gli 0 corrispondenti a spazi vuoti 
+\\   elimina gli 0 corrispondenti a spazi vuoti
 \\   al fondo del vettore V
 \\USA: lastElim
 {
@@ -113,7 +113,7 @@ trim(V) = local(l,F);
    F = V;
    while(F[l] == 0, F = lastElim(F); l = l-1);
 return(F);
-error("trim input non valido");  
+error("trim input non valido");
 }
 
 \\input: V vettore di interi di lunghezza multipla di l
@@ -158,7 +158,7 @@ return(a);
 error("worm2int input non valido");
 }
 
-\\input: a intero corrispondente ad un verme, 
+\\input: a intero corrispondente ad un verme,
 \\       l lunghezza del verme
 \\output: V verme corrispondente
 \\E' la pseudoinversa di worm2int
@@ -167,8 +167,8 @@ int2worm(a,l) = local(V, aux, lAlfabeto, i);
    V = vector(l);
    aux = a;
    lAlfabeto = length(alfabeto);
-   for(i = 0, l-1,  V[l-i] = lift(Mod(aux,lAlfabeto)); 
-                  aux = (aux - V[l-i])/lAlfabeto 
+   for(i = 0, l-1,  V[l-i] = lift(Mod(aux,lAlfabeto));
+                  aux = (aux - V[l-i])/lAlfabeto
    );
 return(V);
 error("int2worm input non valido");
@@ -177,7 +177,7 @@ error("int2worm input non valido");
 \\input: V vettore di sottovettori di pari lunghezza
 \\       [[11,...,1l],[21,...2l ], ... ,[n1,...,nl]]
 \\output: [ worm2int[11,...,1l], ... , worm2int[n1,...,nl]]
-\\Generalizza worm2int a tutto il vettore di vettori 
+\\Generalizza worm2int a tutto il vettore di vettori
 {
 worm2intGen(V) = local(l,i,F);
    l = length(V);
@@ -191,7 +191,7 @@ error("worm2intGen input non valido");
 \\ vettore di interi corrispondenti a cifre codificate
 \\output:V vettore di sottovettori corrispondenti
 \\       [[11,...,1l],[21,...2l ], ... ,[m1,...,ml]]
-\\Generalizza int2worm 
+\\Generalizza int2worm
 {
 int2wormGen(V,l) = local(m,i,F);
    m = length(V);
@@ -213,7 +213,7 @@ error("int2wormGen input non valido");
 \\ usato nella conversione Ascii
 {
 vecsmall2vec(v) = local(F,i);
-   F=[];   
+   F=[];
    for(i=1,length(v),F=concat(F,v[i]));
 return(F);
 error("Vecsmall2vec input non valido");
@@ -231,7 +231,7 @@ error("emptyVectAscii input non valido");
 }
 
 \\input: vettore di interi V, lunghezza verme l
-\\output: completa V con spazi vuoti 
+\\output: completa V con spazi vuoti
 \\        in modo che sia di lungh multipla di l
 \\USA: emptyVectAscii
 {
@@ -241,13 +241,13 @@ fullfitAscii(V,l) = local(q,r,F);
    r = q%l;
    if(r > 0, F = concat(V, emptyVectAscii(l-r)), F = V);
 return(F);
-error("fullfitAscii input non valido");  
+error("fullfitAscii input non valido");
 }
 
 
 \\input: V vettore [1,2,3,32,32]
 \\ouput: [1,2,3]
-\\   elimina gli 0 corrispondenti a spazi vuoti 
+\\   elimina gli 0 corrispondenti a spazi vuoti
 \\   al fondo del vettore V
 \\USA: lastElim
 {
@@ -256,7 +256,7 @@ trimAscii(V) = local(l,F);
    F = V;
    while(F[l] == 32, F = lastElim(F); l = l-1);
 return(F);
-error("trimAscii input non valido");  
+error("trimAscii input non valido");
 }
 
 
@@ -271,7 +271,7 @@ return(a);
 error("worm2intAscii input non valido");
 }
 
-\\input: a intero corrispondente ad un verme, 
+\\input: a intero corrispondente ad un verme,
 \\       l lunghezza del verme
 \\output: V verme corrispondente
 \\E' la pseudoinversa di verme2int
@@ -279,8 +279,8 @@ error("worm2intAscii input non valido");
 int2wormAscii(a,l) = local(V, aux, i);
    V = vector(l);
    aux = a;
-   for(i = 0, l-1,  V[l-i] = lift(Mod(aux,255)); 
-                  aux = (aux - V[l-i])/255 
+   for(i = 0, l-1,  V[l-i] = lift(Mod(aux,255));
+                  aux = (aux - V[l-i])/255
    );
 return(V);
 error("int2worm input non valido");
@@ -289,7 +289,7 @@ error("int2worm input non valido");
 \\input: V vettore di sottovettori di pari lunghezza
 \\       [[11,...,1l],[21,...2l ], ... ,[n1,...,nl]]
 \\output: [ worm2int[11,...,1l], ... , worm2int[n1,...,nl]]
-\\Generalizza worm2int a tutto il vettore di vettori 
+\\Generalizza worm2int a tutto il vettore di vettori
 {
 worm2intGenAscii(V) = local(l,i,F);
    l = length(V);
@@ -303,7 +303,7 @@ error("worm2intGen input non valido");
 \\ vettore di interi corrispondenti a cifre codificate
 \\output:V vettore di sottovettori corrispondenti
 \\       [[11,...,1l],[21,...2l ], ... ,[m1,...,ml]]
-\\Generalizza int2worm 
+\\Generalizza int2worm
 {
 int2wormGenAscii(V,l) = local(m,i,F);
    m = length(V);
@@ -329,7 +329,7 @@ S2Vascii(S, l) = local(a, b, c, V);
 return(V);
 error("S2Vascii input non valido");
 }
-  
+
 \\input: V vettore di interi corrispondenti ai vermi, l lunghezza vermi
 \\output: Stringa di caratteri di Alfabeto, l lunghezza dei vermi
 {
@@ -359,7 +359,7 @@ S2V(S, l) = local(a, b, c, V);
 return(V);
 error("S2V input non valido");
 }
-  
+
 \\input: V vettore di interi corrispondenti ai vermi, l lunghezza vermi
 \\output: Stringa di caratteri di Alfabeto, l lunghezza dei vermi
 {
@@ -376,7 +376,7 @@ error("V2S input non valido");
 /*
 Esempio di utilizzo:
 
-? \r /.../converter.gp 
+? \r /.../converter.gp
 ? S = "MY FUNNY VALENTINE";
 ? S2V(S,5)
 %45 = [11205201, 11740522, 1138940, 7672500]

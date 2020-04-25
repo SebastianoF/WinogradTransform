@@ -58,7 +58,7 @@ print(n);
 
 
 \\Lez 1 ES1 bis: Collatz con la ricorsione
-\\ Input: numero iniziale di avvio ricorsione 
+\\ Input: numero iniziale di avvio ricorsione
 \\ Output: no. Scrive la sequenza.
 {
 collatzric(n) = local();
@@ -67,7 +67,7 @@ if( n!=1, if(n%2 == 0, collatzric(n/2),collatzric(3*n + 1)), n  );
 }
 
 
-\\Lez 1 Es1 tris: collatz con contatore 
+\\Lez 1 Es1 tris: collatz con contatore
 \\ Input: numero iniziale di avvio calcolo sequenza
 \\ Output: no. Scrive la sequenza con il contatore.
 {
@@ -87,7 +87,7 @@ while(n > 1,print([ cont, n ]); if(n%2 == 0, n = n/2 , n = 3*n + 1 ); cont = con
 }
 
 \\Lez 1 Es1 pent: collatz con contatore su matrice 1x2
-\\ Input: passo richiesto del calcolo e numero iniziale sequenza  
+\\ Input: passo richiesto del calcolo e numero iniziale sequenza
 \\ Output: matrice 1x2, con passo richiesto e calcolo
 {
 collatzmatr(step, n) = local(cont);
@@ -99,12 +99,12 @@ return([ cont, n ]);
 \\__________________________________________________________________________________
 \\Lez 1 Es2: Euclide Mullin
 \\ Input riceve vettore (a_i) di interi. (uso length per evitare una entrata)
-\\ Output il vettore concatenato con il fattore minimo primo di Y = prod(a_i) + 1  
+\\ Output il vettore concatenato con il fattore minimo primo di Y = prod(a_i) + 1
 {
 euc1esercizio(V) =  local(x,y,W,minim,Risp,long);
 long = length(V);
 x = prod(n = 1, long, V[n]);
-y = x + 1;  
+y = x + 1;
 W = factor(y);
 minim = W[1,1];
 Risp = concat(V,minim);
@@ -113,25 +113,25 @@ return(Risp)
 
 \\ Lez 1 Es2 bis: Euclide Mullin less local
 \\ Input riceve vettore (a_i) di interi.
-\\ Output il vettore concatenato con il fattore minimo primo di Y = prod(a_i) + 1  
+\\ Output il vettore concatenato con il fattore minimo primo di Y = prod(a_i) + 1
 {
 euc1less(V) =  local(Risp,long);
 long = length(V);
 Risp = concat(V,factor( prod(n = 1, long, V[n]) +1)[1,1]  ) ;
 return(Risp)
-} 
+}
 
 \\ Lez 1 Es2 tris: Euclide Mullin no local
 \\ Input riceve vettore (a_i) di interi.
-\\ Output il vettore concatenato con il fattore minimo primo di Y = prod(a_i) + 1  
+\\ Output il vettore concatenato con il fattore minimo primo di Y = prod(a_i) + 1
 {
 euc1lessless(V) =  local();
 return( concat(V,factor( prod(n = 1, length(V), V[n]) +1)[1,1]  )) ;
-} 
+}
 
 \\ Lez 1 Es2 ter: Euclide Mullin. Stampa dei passaggi fino a niter.
 \\ Input: riceve vettore (a_i) di interi e il numero di iterazioni desiderate.
-\\ Output: no. Stampa i vettori concatenati con il fattore minimo primo di Y = prod(a_i) + 1  
+\\ Output: no. Stampa i vettori concatenati con il fattore minimo primo di Y = prod(a_i) + 1
 {
 euc1seq(V,niter) =  local();
 print(V);

@@ -466,7 +466,7 @@ if(gcd(Polrev(a[1,]),x^n-1)==1,1,0);
 {
 apparizione(h,k,n)=local(delta,u,t,v);
 delta=h^2-4*k;if(gcd(n,delta*k)>1,return(0));
-fordiv(psidelta(h,k,n),m,	
+fordiv(psidelta(h,k,n),m,
 u = m; t = 1; v = x;
 while(u != 0, if(u%2 == 1, t = gprod(h,k,n,t,v)); v = gprod(h,k,n,v,v);
 u = floor(u/2));
@@ -694,8 +694,8 @@ for(i=1,casi,if(matdet(circol(randvett(n,p)))%p==0,favorevoli++));
 \\ Programmi fatti per esercizio LEZ 8
 
 \\_____________________________________________
-\\ Lez 8 Es 1: Test di Miller 
-\\ Input: n, a 
+\\ Lez 8 Es 1: Test di Miller
+\\ Input: n, a
 \\ Output: test di miller di n sulla base a
 {
 miller(n,a)=local(mcd,risp);
@@ -708,7 +708,7 @@ ris;
 \\ Lez 8 Es 2: Test di Baillie
 \\ Input: n intero
 \\ Output: esegue il test di baillie su n. Consiste nel test di Miller in base 2
-\\         seguito dal test di Lucas 
+\\         seguito dal test di Lucas
 {
 baillie(n)=local(mill,ris);
 mill=miller(n,2);
@@ -732,10 +732,10 @@ ris;
 \\ Output: si calcola l'algoritmo aks fino al secondo passo
 {
 akspasso2(n)=local(r,mcd,logar);
-if(issquare(n)==1,return(0), 
+if(issquare(n)==1,return(0),
    r=2;
-   while(r<n,if(gcd(n,r)>1,return(0),      
-              for(i=1,4*floor(log(n)^2),if(Mod(n^r,r)!=1,break ) )  
+   while(r<n,if(gcd(n,r)>1,return(0),
+              for(i=1,4*floor(log(n)^2),if(Mod(n^r,r)!=1,break ) )
               );
    r=r++;
    );
@@ -750,22 +750,22 @@ if(issquare(n)==1,return(0),
 \\ Output: aks per n
 {
 aks(n)=local(r);
-if(issquare(n)==1,return(0), 
+if(issquare(n)==1,return(0),
    r=2;
-   while(r<n,if(gcd(n,r)>1,return(0),      
-              for(i=1,4*floor(log(n)^2),if(Mod(n^r,r)!=1,break ) )                          
+   while(r<n,if(gcd(n,r)>1,return(0),
+              for(i=1,4*floor(log(n)^2),if(Mod(n^r,r)!=1,break ) )
               );
    r=r++;
    );
 
 );
 
-if(r==n, return(1), 
+if(r==n, return(1),
    for(j=1,2*floor(sqrt(r))*floor(log(n))+1,
         if(Mod( (Mod(1,n)*x+Mod(j,n))^n, x^r-1)== Mod(Mod(1,n)*x^n+Mod(j,n)^n,x^r-1),
-            return(0), return(1) 
-        );     
-   );               
+            return(0), return(1)
+        );
+   );
 
 );
 }
@@ -776,7 +776,7 @@ if(r==n, return(1),
 
 
 \\______________________________________________
-\\ Lez 8 Es 5: del(n) 
+\\ Lez 8 Es 5: del(n)
 \\ Input: n intero
 \\ Output: restituisce la matrice T che rappresenta la trasformazione lineare
 \\         data da TetaQ
@@ -797,7 +797,7 @@ T;
 
 
 {
-\\rest la iesima colonna della matrice T, con 
+\\rest la iesima colonna della matrice T, con
 \\    vett=tetaQ(x^i,n)
 \\    lungh=tau
 \\    vettgrad=vgra vettore dei gradi dei poly della fattor di x^n-1

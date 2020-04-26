@@ -30,3 +30,5 @@ alphabet_custom = [
     ".",
     "'",
 ]
+
+alphabet_small = [" ", "n", "a", "u", "y", "l", "v", "f", "m"]

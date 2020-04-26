@@ -56,7 +56,6 @@ class Convert:
     def _worm2int(self, worm):
         """From a worm to the corresponding integer """
         return sum([worm[i] * len(self.A) ** i for i in range(len(worm))])
-        # return sum([w * len(self.A) ** (len(worm) - i - 1) for i, w in enumerate(worm)])
 
     def _int2worm(self, num):
         """From integer to corresponding worm"""
@@ -66,13 +65,6 @@ class Convert:
             num = (num - worm[i - 1]) / len(self.A)
             worm[i] = int(num % len(self.A))
         return worm
-
-        # worm = [0] * self.wl
-        # worm[-1] = num % len(self.A)
-        # for i in range(self.wl - 2, -1, -1):
-        #     num = (num - worm[i + 1]) / len(self.A)
-        #     worm[i] = int(num % len(self.A))
-        # return worm
 
     def _listDec2ListBin(self, list_of_integers_base_ten):
         return [

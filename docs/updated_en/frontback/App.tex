@@ -62,51 +62,63 @@ To go backward, the only critical passage is the inverse of \ref{eq:worm_to_int}
 \end{align*}
 where $n ~\text{mod}~ \vert\mathcal{A}\vert$ is the reminder of $n$ modulo n $\vert\mathcal{A}\vert$.
 
-% \section{Recipe to find minimal polynomials over finite fields}
-% Nella pratica, per trovare i polinomi minimi sui campi finiti, esiste un procedimento che non implica la ricerca del gruppo $H$ isomorfo al gruppo di Galois $Gal(\mathbb{F}(\xi), \mathbb{F})$ presentato nel capitolo \ref{cap:fattorizzazione}, e che risulta essere quindi più maneggevole per le implementazioni\footnote{Come proposto ad esempio in \cite{cattaneo} pag.83.}. Si riconduce alla seguente definizione che riformula la definizione di elementi coniugati, classi ciclotomiche e polinomio minimo.
-% \begin{definizione}
-%    Sia $\xi \in \mathbb{F}_{q^m}$ non nullo e sia $t$ il più piccolo intero positivo tale che $\xi^{p^{t}} = \xi$. Allora l'insieme
-%    \begin{align*}
-%       C(\xi) = \lbrace \xi, \xi^{p}, \xi^{p^{2}}, \dots ,\xi^{p^{t-1}} \rbrace
-%    \end{align*}
-%    è detto {\bf classe ciclotomica} e due elementi di tale insieme sono detti {\bf coniugati}.\\
-%    Si definisce {\bf polinomio minimo} di $\xi$ il più piccolo polinomio in $\mathbb{F}_{q}$ che ammette $\xi$ come radice.
-% \end{definizione}
-% \noindent
-% Con questa definizione si dimostra\footnote{Da \cite{cattaneo}, teoremi $4.36$ e $4.38$.} che il polinomio minimo di un elemento di $\mathbb{F}_{q}$ non nullo è il più piccolo polinomio che contiene tutti gli elementi di una stessa classe ciclotomica:
-% \begin{teorema}
-%    Se $\xi$ è un elemento non nullo di $\mathbb{F}_{q}$ allora il suo polinomio minimo $M_{\xi}(x)$ è un polinomio irriducibile in $\mathbb{F}_{q}[x]$ ed è definito come
-%    \begin{align*}
-%       M_{\xi}(x) = \prod_{\beta \in C(\xi)} (x-\beta)
-%    \end{align*}
-% \end{teorema}
-% \begin{proof}
-%    Se per assurdo $M_{\xi}(x) $ polinomio minimo di $\xi$ non è un polinomio irriducibile allora può essere scritto come prodotto di due polinomi in $\mathbb{F}_{q}[x]$ $M_{\xi}(x) = f_{1}(x) f_{2}(x)$ con $0 \leq deg(f_{j}(x)) < deg(M_{\xi}(x))$. Dato che $M_{\xi}(\xi) = f_{1}(\xi) f_{2}(\xi) = 0 $ e dato che $\mathbb{F}_{q}$ è un campo, allora uno dei due polinomi della fattorizzazione di $M_{\xi}(x)$ ammette $\xi$ come radice in contraddizione con la minimalità di $M_{\xi}(x)$.\\
-%    Rimane da dimostrare che il polinomio minimo è proprio determinato dal prodotto $ \prod_{\beta \in C(\xi)} (x-\beta)$. \\
-%    Sia $M_{\xi}(x) = \sum_{j=0}^{t} m_{j}x^{j}$ definito come polinomio minimo di $\xi$. Dato che se $\xi$ è una sua radice, lo deve necessariamente essere anche $\xi^{p}$:
-%    \begin{align}\label{app:eq:alfaEalfa}
-%        M_{\xi}(\xi^{p})
-%        &= \sum_{j=0}^{t} m_{j}(\xi^{p})^{j} = \sum_{j=0}^{t} m_{j}^{p}(\xi^{p})^{j} \\
-%        &= \sum_{j=0}^{t} (m_{j}\xi^{j})^{p} = (\sum_{j=0}^{t} m_{j}\xi^{j})^{p} \\
-%        &= (M_{\xi}(\xi))^{p} = 0
-%    \end{align}
-%    inoltre per la sua minimalità $M_{\xi}(x)$ non ammette altre radici. Quindi
-%    \begin{align*}
-%       M_{\xi}(x) = \prod_{\beta \in C(\xi)} (x-\beta)
-%    \end{align*}
-%    La \ref{app:eq:alfaEalfa} è valida solo se si può affermare che $m_{j}^{p} = m_{j}$ cosa che accade solo dimostrando che $m_{j} \in \mathbb{F}_{q}$. Questo completa la dimostrazione: \\
-%    da un lato segue che
-%    \begin{align*}
-%        (M_{\xi}(x))^{p}
-%        &= \prod_{\beta \in C(\xi)} (x-\beta)^{p} = \prod_{\beta \in C(\xi)} (x^{p} -\beta^{p}) \\
-%        &= \prod_{\beta \in C(\xi)} (x^{p} -\beta) = (M_{\xi}(x^{p})) = \sum_{j=0}^{t} m_{j}x^{jp}
-%    \end{align*}
-%    e d'altra parte
-%    \begin{align*}
-%        (M_{\xi}(x))^{p} =  \sum_{j=0}^{t} (m_{j}x^{j})^{p} =  \sum_{j=0}^{t} m_{j}^{p}x^{jp}
-%    \end{align*}
-%    Pertanto $m_{j}^{p} = m_{j}$ ed $m_{j} \in  \mathbb{F}_{q}$.
-% \end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Recipe: find the minimal polynomials over a finite field}
+To find the minimal polynomial over a finite field there is a procedure that does not involve the research for the group $H$ isomorphic to the Galois group $Gal(\mathbb{F}(\xi), \mathbb{F})$ that we show in one of the chapters of the Italian version. This method is a better candidate to be coded\footnote{As also underlined in \cite{cattaneo} pag.83.}.
+It is underpinned by the following definition, reformulating the meaning of conjugate elements, cyclotomic classes and minimal polynomial.
+\begin{definition}
+   For an element $\xi$ of the fields $\mathbb{F}_{q^m}$ there is an integer $t$, the smallest one, so that $\xi^{p^{t}} = \xi$. We call the set
+   \begin{align*}
+      C(\xi) = \lbrace \xi, \xi^{p}, \xi^{p^{2}}, \dots ,\xi^{p^{t-1}} \rbrace
+   \end{align*}
+   {\bf cyclotomic class} and two elements of this set are called {\bf conjugates}.
+   The {\bf minimal polynomial of} $\xi$ is the smallest polynomial in $\mathbb{F}_{q}[x]$ having $\xi$ as its root.
+\end{definition}
+
+\noindent
+With this definition at hand, it is then possible to prove\footnote{
+   From \cite{cattaneo}, theorems $4.36$ e $4.38$.
+   }
+   that the minimal polynomial of a non zero element of $\mathbb{F}_{q}$ is the smallest polynomial having as its roots all the element of the same cyclotomic class. Let's prove it formally:
+\begin{theorem}
+   Let $\xi$ be a non zero element of $\mathbb{F}_{q}$, then its minimal polynomial, $M_{\xi}(x)$ is irruducible in $\mathbb{F}_{q}[x]$ and it is defined as
+   \begin{align*}
+      M_{\xi}(x) = \prod_{\beta \in C(\xi)} (x-\beta)
+   \end{align*}
+\end{theorem}
+\begin{proof}
+   Let ad absurdum $M_{\xi}(x)$ be not irriducible. Then it can be written as the product of two polynomials in $\mathbb{F}_{q}[x]$: $M_{\xi}(x) = f_{1}(x) f_{2}(x)$ for $0 \leq deg(f_{j}(x)) < deg(M_{\xi}(x))$. Since $M_{\xi}(\xi) = f_{1}(\xi) f_{2}(\xi) = 0 $ and since $\mathbb{F}_{q}$ is a field, then one of the two polynomials in the facorisation of $M_{\xi}(x)$ admits $\xi$ as its root, in contradiction with the minimality of $M_{\xi}(x)$.\\
+   To complete our knowledge upon the minimal polynomial (as well as to complete the proof) we have to show that $M_{\xi}(x) = \prod_{\beta \in C(\xi)} (x-\beta)$. \\
+   Let $M_{\xi}(x) = \sum_{j=0}^{t} m_{j}x^{j}$ be defined as the minimal polynomial of $\xi$. Since $\xi$ is one of its roots then also $\xi^{p}$ must be one of its roots:
+   \begin{align}\label{app:eq:alfaEalfa}
+       M_{\xi}(\xi^{p})
+       &= \sum_{j=0}^{t} m_{j}(\xi^{p})^{j} = \sum_{j=0}^{t} m_{j}^{p}(\xi^{p})^{j} \\
+       &= \sum_{j=0}^{t} (m_{j}\xi^{j})^{p} = (\sum_{j=0}^{t} m_{j}\xi^{j})^{p} \\
+       &= (M_{\xi}(\xi))^{p} = 0
+   \end{align}
+   Moreover, thanks to the minimality $M_{\xi}(x)$ does not have other roots. Therefore:
+   \begin{align*}
+      M_{\xi}(x) = \prod_{\beta \in C(\xi)} (x-\beta)
+   \end{align*}
+   Equation~\ref{app:eq:alfaEalfa} holds only if we can say that $m_{j}^{p} = m_{j}$ which happens only if $m_{j} \in \mathbb{F}_{q}$. \\
+   On one hand:
+   \begin{align*}
+       (M_{\xi}(x))^{p}
+       &= \prod_{\beta \in C(\xi)} (x-\beta)^{p} = \prod_{\beta \in C(\xi)} (x^{p} -\beta^{p}) \\
+       &= \prod_{\beta \in C(\xi)} (x^{p} -\beta) = (M_{\xi}(x^{p})) = \sum_{j=0}^{t} m_{j}x^{jp}
+   \end{align*}
+   And on the other hand:
+   \begin{align*}
+       (M_{\xi}(x))^{p} =  \sum_{j=0}^{t} (m_{j}x^{j})^{p} =  \sum_{j=0}^{t} m_{j}^{p}x^{jp}
+   \end{align*}
+   Therefore $m_{j}^{p} = m_{j}$ and $m_{j} \in  \mathbb{F}_{q}$.
+\end{proof}
+
+Therefore obtaining the minimal polynomials is a matter of generating the cyclotomic classes starting from the elements of the field.
+
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
